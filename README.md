@@ -1,4 +1,3 @@
-# new_project_rmd
+# Repo for paper "Improving Deconvolution Methods in Biology through Open Innovation Competitions: an Application to the Connectivity Map"
 
-Core files for writing an academic paper with Rmarkdown.
-
+In progress. 
