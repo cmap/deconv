@@ -3,23 +3,19 @@ Introduction
 
 Many recent examples have shown significant benefits for drug discovery from the systematic analysis of large repositories of gene-expression profiles [Refs]. However, traditional gene-expression high-throughput profiling technologies that are based multianalyte methods, such as Luminex profiling technology, are limited by the type and number of available analytes [Refs]. Therefore, the cost of big data generation in biology remains prohibitive. 
 
-The Connectivity Map (CMap) group at the Broad Institute has developed a novel approach that matches pairs of genes to the same Luminex beads to double xxxx, thus lowering costs. This approach requires a reliable deconvolution approach. 
+The Connectivity Map (CMap) group at the Broad Institute has developed a novel approach that matches pairs of genes to the same Luminex beads to double xxxx, thus lowering costs. A central component of this approach is a reliable deconvolution approach. 
 
-Deconvolution problems arise in a variety of settings, such as regression, natural language, image, and signal processing, and methods developed to solve these problems have applications in fields as diverse as genetics, microscopy, geology, astronomy, engineering, among others. The solution adopted by CMap was a KNN [explain]. This is a standard technique implemented in xxx that gives a good level of accuracy [xxx] and reasonably fast computation time (xxx with the current Matlab implementation). 
+Deconvolution problems arise in a variety of settings, such as regression, natural language, image, and signal processing, and methods developed to solve these problems have applications in fields as diverse as genetics, microscopy, geology, astronomy, engineering, among others. The solution adopted by CMap was a KNN [explain]. This is a standard technique implemented in xxx that gives a good level of accuracy [xxx] and reasonably fast computation time (xxx with the current Matlab implementation).
+
+The trade-off between accuracy and computation time is currently unknown. Alternative methods are well known, such as Gaussian etc. But  it would have required substantial resources to experiment with these alternative approaches (more than what already done) and to adapt new to our data. Moreover, impossible an exhaustive search for all available approaches to try; and the combination of these different approaches. Instead, we used an open innovation competition as a research tool to engage a variety of computer scientist, software developers and bioinformatics in the problem. This allowed a simultaneous exploration of competing approaches tailored to our problem, at no cost. 
+
+
+Methods
+========
 
 In biomedical research, our focus here, deconvolution problems are common in multianalyte assay methods. These methods are widely used to do X, Y and Z. In general terms, multianalyte assay methods are based on microspheres with different fluorescence decay times. This feature can be used to do X, Y, and Z. [EXPLAIN BRIEFLY CMap PROBLEM].
 One problem with existing approaches is that they […. ]
-In mathematical terms, the problem is to solve the equation of the form:
-y = x * z + e
-where y is the recorded signal, x is the signal we want to obtain, z is a confounding signal, and e is noise. Solving this equation is difficult because we do not observe e and z. [ADAPT THIS GENERAL TO CMAP]
-Many solutions have been developed:
-Parametric (maximum likelihood)
-Non-Parametric (k-means), blind deconvolution
-For CMAP: Current solution based on k-means achieves good performance. However, potential limitations are:
-computational time is high (e.g., ~20 minutes)
-documented examples of detection mistakes
-Theoretically it is biased when signals overlap
-Trade-off between accuracy and computation time unknown and perhaps suboptimal
+
 To identify accurate methods we launched an open challenge that allowed a rapid exploration of different approaches. Key ingredients of there challenges are:
 training and testing dataset
 benchmark solution to improve
@@ -40,6 +36,17 @@ For the DUO detection method, the gene-specific proportions are such that each a
 Each measurement produces an intensity histogram (a list of integers), which characterizes expression of two distinct genes in the sample (for a total of 488 x 2 = 976 genes). In the ideal case, each histogram consists of two peaks (see Figure 1), each corresponding to a single gene. The genes are mixed in 2:1 ratio, thus the areas under the peaks have 2:1 ratio, which allows us to associate each peak with the specific gene. The median position of each peak corresponds to the gene's expression level, and that's what you need to determine in this challenge.
 -->
 
+## Data generation 
+
+To generate data for this contest, we profiled six 384-well perturbagen plates, each containing mutually exclusive sets of compound and shRNA treatments. Multiple treatment types were used to ensure avoid potentially over-fitting to any one. The compound and shRNA perturbagen plates were arbitrarily grouped into pairs, and to avoid any potential ‘information leakage’ each pair was profiled in a different cell line. The resulting lysates were amplified by ligation mediated amplification (LMA, Subramanian 2017). The amplicon was then split and detected in both one-gene-per-bead (UNI) and two-genes-per-bead (DUO) detection modes. The three pairs of data were arbitrarily assigned to training, testing, and holdout categories, where in each case the UNI data served as the ground truth.
+
+The data so generated were then split into three subsets called: training, provisional testing, and system testing. Training and provisional-testing data were made available for all the contestants to develop and validate their solutions, while system-testing data were secured to evaluate competitors' last submissions, which was used to award the prizes, and to avoid overfitting as well.  
+
+```{r, echo=FALSE}
+category <- c("training", "provisional testing", "system testing")
+type <- c("Compounds", "shRNA")
+knitr::kable(expand.grid(Category=category, Type=type), caption="Data generated")
+```
 
 ## To read
 
