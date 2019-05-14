@@ -9,7 +9,6 @@ Deconvolution problems arise in a variety of settings, such as regression, natur
 
 The trade-off between accuracy and computation time is currently unknown. Alternative methods are well known, such as Gaussian etc. But  it would have required substantial resources to experiment with these alternative approaches (more than what already done) and to adapt new to our data. Moreover, impossible an exhaustive search for all available approaches to try; and the combination of these different approaches. Instead, we used an open innovation competition as a research tool to engage a variety of computer scientist, software developers and bioinformatics in the problem. This allowed a simultaneous exploration of competing approaches tailored to our problem, at no cost. 
 
-
 Methods
 ========
 
@@ -40,7 +39,7 @@ Each measurement produces an intensity histogram (a list of integers), which cha
 
 To generate data for this contest, we profiled six 384-well perturbagen plates, each containing mutually exclusive sets of compound and shRNA treatments. Multiple treatment types were used to ensure avoid potentially over-fitting to any one. The compound and shRNA perturbagen plates were arbitrarily grouped into pairs, and to avoid any potential ‘information leakage’ each pair was profiled in a different cell line. The resulting lysates were amplified by ligation mediated amplification (LMA, Subramanian 2017). The amplicon was then split and detected in both one-gene-per-bead (UNI) and two-genes-per-bead (DUO) detection modes. The three pairs of data were arbitrarily assigned to training, testing, and holdout categories, where in each case the UNI data served as the ground truth.
 
-The data so generated were then split into three subsets called: training, provisional testing, and system testing. Training and provisional-testing data were made available for all the contestants to develop and validate their solutions, while system-testing data were secured to evaluate competitors' last submissions, which was used to award the prizes, and to avoid overfitting as well.  
+The data so generated were then split into three subsets called: training, provisional testing, and system testing. Training and provisional-testing data were made available for all the contestants to develop and validate their solutions, while system-testing data were secured to evaluate competitors' last submissions, which was used to award the prizes, and to avoid overfitting as well. 
 
 ```{r, echo=FALSE}
 category <- c("training", "provisional testing", "system testing")

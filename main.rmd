@@ -10,6 +10,7 @@ author:
 
 abstract: "Report results fo open innovation competition aimed at solving 
            a gene-related deconvolution problem." 
+
 date: 'Last updated: `r format(Sys.Date(), "%b %d, %Y")`'
 
 keywords:
@@ -37,7 +38,7 @@ header-includes:
 ---
 
 ```{r sections, echo=FALSE}
-childs <- "intro.rmd" 
+childs <- c("intro.rmd", "disc.rmd")
 ```
 
 ```{r child=childs}
