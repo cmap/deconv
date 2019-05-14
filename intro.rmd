@@ -1,14 +1,11 @@
 Introduction
 ============
 
-Deconvolution problems arise in a variety of settings, such as regression, natural language, image, and signal processing, and methods developed to solve these problems have applications in fields as diverse as genetics, microscopy, geology, astronomy, engineering, among others. 
+Many recent examples have shown significant benefits for drug discovery from the systematic analysis of large repositories of gene-expression profiles [Refs]. However, traditional gene-expression high-throughput profiling technologies that are based multianalyte methods, such as Luminex profiling technology, are limited by the type and number of available analytes [Refs]. Therefore, the cost of big data generation in biology remains prohibitive. 
 
-Many studies have shown significant benefits for drug discovery from the systematic analysis of large data repositories of gene-expression profiles [Refs]. Traditional gene-expression profiling multianalyte methods, such as Luminex profiling technology, however, are limited by the type and number of available analytes [Refs]. Therefore, the cost of big data generation in biology remains prohibitive. 
+The Connectivity Map (CMap) group at the Broad Institute has developed a novel approach that matches pairs of genes to the same Luminex beads to double xxxx, thus lowering costs. This approach requires a reliable deconvolution approach. 
 
-- Compound profiling is essential step in drug discovery
-- biomedical big data generatioon is costly. 
-- CMap addressed problem by using the same Luminex beads by two types of mRNA probes requires a reliable deconvolution approach. Furthermore, biases introduced by batch effects need subtle normalization and quality control methods.
-
+Deconvolution problems arise in a variety of settings, such as regression, natural language, image, and signal processing, and methods developed to solve these problems have applications in fields as diverse as genetics, microscopy, geology, astronomy, engineering, among others. The solution adopted by CMap was a KNN [explain]. This is a standard technique implemented in xxx that gives a good level of accuracy [xxx] and reasonably fast computation time (xxx with the current Matlab implementation). 
 
 In biomedical research, our focus here, deconvolution problems are common in multianalyte assay methods. These methods are widely used to do X, Y and Z. In general terms, multianalyte assay methods are based on microspheres with different fluorescence decay times. This feature can be used to do X, Y, and Z. [EXPLAIN BRIEFLY CMap PROBLEM].
 One problem with existing approaches is that they […. ]
