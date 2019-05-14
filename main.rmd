@@ -1,0 +1,48 @@
+---
+title: "Improving Deconvolution Methods in Biology 
+        through Open Innovation Competitions: 
+        an Application to the Connectivity Map"
+
+author: 
+    - Author 1
+    - Author 2
+    - ... 
+
+abstract: "Report results fo open innovation competition aimed at solving 
+           a gene-related deconvolution problem." 
+date: 'Last updated: `r format(Sys.Date(), "%b %d, %Y")`'
+
+keywords:
+  - biology
+  - open innoation competitions
+  - crowdsourcing
+  - deconvolution
+  - gene expressions
+  - cell lines
+
+titlepage: false 
+linestretch: 1.25
+fontfamily: mathpazo
+# fontsize: 11pt
+# colorlinks: true
+# urlcolor: cyan
+# citecolor: blue 
+geometry: margin=1.25in
+# endfloat: true
+# bibliography: races.bib
+header-includes:
+  - \usepackage{bbm}
+  - \newcommand\hl{}
+  - \newcommand\Fig{Fig. XXXX}
+---
+
+```{r sections, echo=FALSE}
+childs <- "intro.rmd" 
+```
+
+```{r child=childs}
+```
+
+References
+==========
+
