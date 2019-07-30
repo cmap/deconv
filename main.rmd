@@ -38,7 +38,7 @@ header-includes:
 ---
 
 ```{r sections, echo=FALSE}
-childs <- c("intro.rmd", "disc.rmd")
+childs <- c("intro.rmd", "results.rmd", "disc.rmd")
 ```
 
 ```{r child=childs}
