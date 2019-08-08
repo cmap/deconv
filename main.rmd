@@ -37,8 +37,19 @@ header-includes:
   - \newcommand\Fig{Fig. XXXX}
 ---
 
+
+TODOS:
+
+- Intro AB
+- Methdos TN
+- Figure Scatter runtime vs accuracy for top10 TN
+- Add data
+
+Here's a figure \ref{pic1}. 
+
+
 ```{r sections, echo=FALSE}
-childs <- c("intro.rmd", "results.rmd", "disc.rmd")
+childs <- c("intro.rmd", "results.rmd", "disc.rmd", "figures.rmd")
 ```
 
 ```{r child=childs}

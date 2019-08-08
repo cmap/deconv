@@ -1,0 +1,8 @@
+# Display items
+
+```{r random, echo=FALSE, fig.cap="\\label{pic1}Random picture"}
+hist(runif(100))
+```
+
+
+
