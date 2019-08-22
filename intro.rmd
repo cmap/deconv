@@ -1,13 +1,26 @@
 Introduction
 ============
-
+ 
 Many recent examples have shown significant benefits for drug discovery from the systematic analysis of large repositories of gene-expression profiles [Refs]. However, traditional gene-expression high-throughput profiling technologies that are based multianalyte methods, such as Luminex profiling technology, are limited by the type and number of available analytes [Refs]. Therefore, the cost of big data generation in biology remains prohibitive. 
 
-The Connectivity Map (CMap) group at the Broad Institute has developed a novel approach that matches pairs of genes to the same Luminex beads to double xxxx, thus lowering costs. A central component of this approach is a reliable deconvolution approach. 
+The Connectivity Map (CMap) group at the Broad Institute has developed a novel approach that matches pairs of genes to the same Luminex beads to double the count of profiled genes per bead, thus lowering costs. A central component of this approach is to quantify gene-type frequency of beads, and then statistically deconvolve and compare gene type-specific average expression profiles for pairs of mixed gene samples. 
 
-Deconvolution problems arise in a variety of settings, such as regression, natural language, image, and signal processing, and methods developed to solve these problems have applications in fields as diverse as genetics, microscopy, geology, astronomy, engineering, among others. The solution adopted by CMap was a KNN [explain]. This is a standard technique implemented in xxx that gives a good level of accuracy [xxx] and reasonably fast computation time (xxx with the current Matlab implementation).
+This type of deconvolution problems are ubiquitous and have a long history in biology [refs]. For example, one common deconvolution is used to identify cell type–specific gene expression differences in complex tissues [Shen-orr et al., 2010]; or the discovery of the target proteins of small molecules [Jung, 2015]. 
 
-The trade-off between accuracy and computation time is currently unknown. Alternative methods are well known, such as Gaussian etc. But  it would have required substantial resources to experiment with these alternative approaches (more than what already done) and to adapt new to our data. Moreover, impossible an exhaustive search for all available approaches to try; and the combination of these different approaches. Instead, we used an open innovation competition as a research tool to engage a variety of computer scientist, software developers and bioinformatics in the problem. This allowed a simultaneous exploration of competing approaches tailored to our problem, at no cost. 
+<!-- 
+Shen-orr et al. (2010). Gene expression data from multiple cell-types. The problem is to quantify cell-type frequency "then deconvolve and compare cell type-specific average expression profiles for groups of mixed tissue samples." One approach is "deconvolution to be linear"
+ -->
+
+<!-- Broadly speaking, the problem is to estimate the density $f$ of a random variable $X$ based on $n$ observations from $Y = X + \epsilon$, where $\epsilon$ is a measurement error based on a possibly unknown distribution.  (Fan, 1991) -->
+
+<!-- The solution adopted by CMap was a KNN [explain]. This is a standard technique implemented in xxx that gives a good level of accuracy [xxx] and reasonably fast computation time (xxx with the current Matlab implementation). -->
+
+Common approaches are parametric (mixture models) and non-parametric. CMap's approach was K-nearest neighbors (KNN) approach. [Explain briefly.] This works well but has several problems as well. [List problems.] Including time. The trade-off between accuracy and computation time is currently unknown. 
+
+Alternative methods are well known, such as Gaussian etc. But it would have required substantial resources to experiment with these alternative approaches (more than what already done) and to adapt new to our data. Moreover, impossible an exhaustive search for all available approaches to try; and the combination of these different approaches. 
+
+Instead, we used an open innovation competition as a research tool to engage a variety of computer scientist, software developers and bioinformatics in the problem. This allowed a simultaneous exploration of competing approaches tailored to our problem, at no cost. 
+
 
 Methods
 ========
