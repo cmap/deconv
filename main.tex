@@ -94,7 +94,11 @@
 \title{Improving Deconvolution Methods in Biology through Open Innovation
 Competitions: an Application to the Connectivity Map}
 \author{Author 1 \and Author 2 \and \ldots{}}
+<<<<<<< HEAD
+\date{Last updated: Aug 22, 2019}
+=======
 \date{Last updated: Aug 15, 2019}
+>>>>>>> b6f853e17b5da8eb3c63bb004bf4df881a79a377
 
 \begin{document}
 \maketitle
@@ -140,6 +144,33 @@ methods, such as Luminex profiling technology, are limited by the type
 and number of available analytes {[}Refs{]}. Therefore, the cost of big
 data generation in biology remains prohibitive.
 
+<<<<<<< HEAD
+The Connectivity Map (CMap) group at the Broad Institute has developed a
+novel approach that matches pairs of genes to the same Luminex beads to
+double the count of profiled genes per bead, thus lowering costs. A
+central component of this approach is to quantify gene-type frequency of
+beads, and then statistically deconvolve and compare gene type-specific
+average expression profiles for pairs of mixed gene samples.
+
+This type of deconvolution problems are ubiquitous and have a long
+history in biology {[}refs{]}. For example, one common deconvolution is
+used to identify cell type--specific gene expression differences in
+complex tissues {[}Shen-orr et al., 2010{]}; or the discovery of the
+target proteins of small molecules {[}Jung, 2015{]}.
+
+Common approaches are parametric (mixture models) and non-parametric.
+CMap's approach was K-nearest neighbors (KNN) approach. {[}Explain
+briefly.{]} This works well but has several problems as well. {[}List
+problems.{]} Including time. The trade-off between accuracy and
+computation time is currently unknown.
+
+Alternative methods are well known, such as Gaussian etc. But it would
+have required substantial resources to experiment with these alternative
+approaches (more than what already done) and to adapt new to our data.
+Moreover, impossible an exhaustive search for all available approaches
+to try; and the combination of these different approaches.
+
+=======
 Using an assay called L1000, The Connectivity Map (CMap) group at the
 Broad Institute has developed a novel approach that matches pairs of
 genes to the same Luminex beads to double xxxx, thus lowering costs
@@ -161,6 +192,7 @@ it would have required substantial resources to experiment with these
 alternative approaches (more than what already done) and to adapt new to
 our data. Moreover, impossible an exhaustive search for all available
 approaches to try; and the combination of these different approaches.
+>>>>>>> b6f853e17b5da8eb3c63bb004bf4df881a79a377
 Instead, we used an open innovation competition as a research tool to
 engage a variety of computer scientist, software developers and
 bioinformatics in the problem. This allowed a simultaneous exploration
