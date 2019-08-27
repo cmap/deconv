@@ -195,6 +195,7 @@ improve
 \subsection{L1000 Experimental Scheme}\label{l1000-experimental-scheme}}
 
 The L1000 assay uses Luminex bead-based fluorescent scanners to detect
+<<<<<<< HEAD
 gene expression changes resulting from in vitro perturbation experiments
 {[}Subramanian 2017{]}. In a single experiment, CMap makes 488
 measurements, each made by a different colored bead. Each measurement
@@ -288,17 +289,35 @@ In UNI detection mode, each of the 978 landmark genes is measured
 individually on one of the 500 Luminex bead colors. In order to capture
 all 978 genes, two detection plates are used, each measuring 489
 landmarks. The two detection plates' worth of data are then
+=======
+gene expression changes resulting from treating cultured human cells
+with chemical or genetic perturbations {[}Subramanian 2017{]}.
+Experiments are performed in 384-well plate format, where each well
+contains an independent sample. The Luminex scanner is able to
+distinguish between 500 different bead types, or colors, which CMap uses
+to measure the expression levels of 978 landmark genes using two
+detection approaches.
+
+In the first detection mode, called UNI, each of the 978 landmark genes
+is measured individually on one of the 500 Luminex bead colors. In order
+to capture all 978 genes, two detection plates are used, each measuring
+489 landmarks. The two detection plates' worth of data are then
+>>>>>>> 716899b6a8d54a5ea70fe3fba00c44bb308119d5
 computationally combined to reconstruct the full 978-gene expression
-profile for each sample, but deconvolution is not required.
+profile for each sample.
 
 By contrast, in the DUO detection scheme two genes are measured using
 the same bead color. Each bead color produces an intensity histogram
 which characterizes the expression of the two distinct genes. In the
 ideal case, each histogram consists of two peaks each corresponding to a
 single gene. The genes are mixed in 2:1 ratio, thus the areas under the
-peaks have 2:1 ratio, which enables the association of each peak with
-the specific gene.
+peaks have 2:1 ratio (see Figure 1), which enables the association of
+each peak with the specific gene. \textbf{The practical advantage of the
+DUO detection mode is that it uses half of the laboratory reagents as
+UNI mode, and hence DUO is and has been the main detection mode used by
+CMap.}
 
+<<<<<<< HEAD
 \begin{longtable}[]{@{}ll@{}}
 \caption{Data generated}\tabularnewline
 \toprule
@@ -415,10 +434,15 @@ ideal case, each histogram consists of two peaks each corresponding to a
 single gene. The genes are mixed in 2:1 ratio, thus the areas under the
 peaks have 2:1 ratio, which enables the association of each peak with
 the specific gene.
+=======
+After DUO detection, the expression values of the two genes are
+computationally extracted in a process called `peak deconvolution,'
+described in the next section.
+>>>>>>> 716899b6a8d54a5ea70fe3fba00c44bb308119d5
 
-\hypertarget{statistical-deconvolution-of-gene-specific-expression-profiles.-1}{%
+\hypertarget{statistical-deconvolution-of-gene-specific-expression-profiles.}{%
 \subsection{Statistical deconvolution of gene-specific expression
-profiles.}\label{statistical-deconvolution-of-gene-specific-expression-profiles.-1}}
+profiles.}\label{statistical-deconvolution-of-gene-specific-expression-profiles.}}
 
 In each sample, assume fluorescent-intensity values \(X_{ij}\) for beads
 \(i=1,2,\dots, n\) and analytes \(j=1,2,\dots, J\), and gene-specific
@@ -440,12 +464,16 @@ of size two of the gene set \(G\). For each pair of genes in \(g\)
 associated with an analyte \(j\), we have:
 \(w^{\text{duo}}_{i1} = 2/3\), \(w_{i2}=1/3\) and is zero otherwise.
 
-\hypertarget{benchmark-k-means-solution-1}{%
+\hypertarget{benchmark-k-means-solution}{%
 \subsubsection{Benchmark k-means
-solution}\label{benchmark-k-means-solution-1}}
+solution}\label{benchmark-k-means-solution}}
 
 CMap's current solution to this problem is based on a k-means clustering
+<<<<<<< HEAD
 algorithm called dpeak that works as follows:
+=======
+algorithm called \(dpeak\) that works as follows:
+>>>>>>> 716899b6a8d54a5ea70fe3fba00c44bb308119d5
 
 For each measurement, the dpeak partitions the list of realizations into
 \(k>=2\) distinct clusters and identifies two of the clusters whose
@@ -472,23 +500,31 @@ contest}\label{data-generation-for-contest}}
 
 To generate data for this contest, we profiled six 384-well perturbagen
 plates, each containing mutually exclusive sets of compound and shRNA
-treatments. Multiple treatment types were used to ensure avoid
-potentially over-fitting to any one. The compound and shRNA perturbagen
-plates were arbitrarily grouped into pairs, and to avoid any potential
-`information leakage' each pair was profiled in a different cell line.
-The resulting lysates were amplified by ligation mediated amplification
-(LMA, Subramanian 2017). The amplicon was then split and detected in
-both one-gene-per-bead (UNI) and two-genes-per-bead (DUO) detection
-modes. The three pairs of data were arbitrarily assigned to training,
-testing, and holdout categories, where in each case the UNI data served
-as the ground truth.
+treatments. Multiple treatment types were used to avoid potentially
+over-fitting to any one. The compound and shRNA perturbagen plates were
+arbitrarily grouped into pairs, and to avoid any potential `information
+leakage' each pair was profiled in a different cell line. The resulting
+lysates were amplified by ligation mediated amplification (LMA,
+Subramanian 2017). The amplicon was then split and detected in both
+one-gene-per-bead (UNI) and two-genes-per-bead (DUO) detection modes.
+The three pairs of data were arbitrarily assigned to training, testing,
+and holdout categories, where in each case the UNI data served as the
+ground truth.
 
 The data so generated were then split into three subsets called:
+<<<<<<< HEAD
 training, provisional-testing, and system-testing. Training and
 provisional-testing data were made available for all the contestants to
 develop and validate their solutions, while system-testing data were
 secured to evaluate competitors' last submissions, which was used to
 award the prizes, and to avoid overfitting as well.
+=======
+training, testing, and holdout. Training and esting data were made
+available for all the contestants to develop and validate their
+solutions, while holdout data were secured to evaluate competitors'
+final submissions and guard against over-fitting. Prizes were awareded
+based on performance on the holdout dataset.
+>>>>>>> 716899b6a8d54a5ea70fe3fba00c44bb308119d5
 
 \begin{longtable}[]{@{}ll@{}}
 \caption{Data generated}\tabularnewline
@@ -501,16 +537,16 @@ Category & Type\tabularnewline
 \midrule
 \endhead
 training & Compounds\tabularnewline
-provisional testing & Compounds\tabularnewline
-system testing & Compounds\tabularnewline
+testing & Compounds\tabularnewline
+holdout & Compounds\tabularnewline
 training & shRNA\tabularnewline
-provisional testing & shRNA\tabularnewline
-system testing & shRNA\tabularnewline
+testing & shRNA\tabularnewline
+holdout & shRNA\tabularnewline
 \bottomrule
 \end{longtable}
 
-\hypertarget{to-read-1}{%
-\subsection{To read}\label{to-read-1}}
+\hypertarget{to-read}{%
+\subsection{To read}\label{to-read}}
 
 \begin{itemize}
 \tightlist
