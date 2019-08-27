@@ -94,11 +94,7 @@
 \title{Improving Deconvolution Methods in Biology through Open Innovation
 Competitions: an Application to the Connectivity Map}
 \author{Author 1 \and Author 2 \and \ldots{}}
-<<<<<<< HEAD
 \date{Last updated: Aug 22, 2019}
-=======
-\date{Last updated: Aug 15, 2019}
->>>>>>> b6f853e17b5da8eb3c63bb004bf4df881a79a377
 
 \begin{document}
 \maketitle
@@ -144,25 +140,30 @@ methods, such as Luminex profiling technology, are limited by the type
 and number of available analytes {[}Refs{]}. Therefore, the cost of big
 data generation in biology remains prohibitive.
 
-<<<<<<< HEAD
-The Connectivity Map (CMap) group at the Broad Institute has developed a
-novel approach that matches pairs of genes to the same Luminex beads to
-double the count of profiled genes per bead, thus lowering costs. A
-central component of this approach is to quantify gene-type frequency of
-beads, and then statistically deconvolve and compare gene type-specific
-average expression profiles for pairs of mixed gene samples.
+Using an assay called L1000, The Connectivity Map (CMap) group at the
+Broad Institute has developed a novel approach that matches pairs of
+genes to the same Luminex beads to double the count of profiled genes
+per bead, thus lowering costs {[}Subramanian 2017{]}. A central
+component of this approach is to quantify gene-type frequency of beads,
+and then statistically deconvolve and compare gene type-specific average
+expression profiles for pairs of mixed gene samples.
 
 This type of deconvolution problems are ubiquitous and have a long
-history in biology {[}refs{]}. For example, one common deconvolution is
-used to identify cell type--specific gene expression differences in
-complex tissues {[}Shen-orr et al., 2010{]}; or the discovery of the
+history in biology {[}refs{]}. For example, deconvolution problems arise
+when trying to identify cell type--specific gene expression differences
+in complex tissues {[}Shen-orr et al., 2010{]}; or in the discovery of
 target proteins of small molecules {[}Jung, 2015{]}.
 
 Common approaches are parametric (mixture models) and non-parametric.
-CMap's approach was K-nearest neighbors (KNN) approach. {[}Explain
-briefly.{]} This works well but has several problems as well. {[}List
-problems.{]} Including time. The trade-off between accuracy and
-computation time is currently unknown.
+CMap's current solution to this problem is an algorithm, called
+``D-Peak,'' based on a K-means clustering {[}Refs{]}. This method
+automatically partitions a set of gene-expression measurements into
+\(k\) clusters, taking the mean of the two largest clusters, assigning
+the mean value of the largest cluster to the gene in higher proportion
+and the mean value of the second largest cluster to the gene in . This
+works well but has several problems as well. {[}List problems.{]}
+Including time. The trade-off between accuracy and computation time is
+currently unknown.
 
 Alternative methods are well known, such as Gaussian etc. But it would
 have required substantial resources to experiment with these alternative
@@ -170,33 +171,10 @@ approaches (more than what already done) and to adapt new to our data.
 Moreover, impossible an exhaustive search for all available approaches
 to try; and the combination of these different approaches.
 
-=======
-Using an assay called L1000, The Connectivity Map (CMap) group at the
-Broad Institute has developed a novel approach that matches pairs of
-genes to the same Luminex beads to double xxxx, thus lowering costs
-{[}Subramanian 2017{]}. A central component of this approach is a
-reliable deconvolution approach.
-
-Deconvolution problems arise in a variety of settings, such as
-regression, natural language, image, and signal processing, and methods
-developed to solve these problems have applications in fields as diverse
-as genetics, microscopy, geology, astronomy, engineering, among others.
-The solution adopted by CMap was a KNN {[}explain{]}. This is a standard
-technique implemented in xxx that gives a good level of accuracy
-{[}xxx{]} and reasonably fast computation time (xxx with the current
-Matlab implementation).
-
-The trade-off between accuracy and computation time is currently
-unknown. Alternative methods are well known, such as Gaussian etc. But
-it would have required substantial resources to experiment with these
-alternative approaches (more than what already done) and to adapt new to
-our data. Moreover, impossible an exhaustive search for all available
-approaches to try; and the combination of these different approaches.
->>>>>>> b6f853e17b5da8eb3c63bb004bf4df881a79a377
 Instead, we used an open innovation competition as a research tool to
 engage a variety of computer scientist, software developers and
-bioinformatics in the problem. This allowed a simultaneous exploration
-of competing approaches tailored to our problem, at no cost.
+bioinformatics in the problem. This approach allows simultaneous
+exploration of competing approaches tailored to our problem, at no cost.
 
 \hypertarget{methods}{%
 \section{Methods}\label{methods}}
@@ -206,7 +184,7 @@ common in multianalyte assay methods. These methods are widely used to
 do X, Y and Z. In general terms, multianalyte assay methods are based on
 microspheres with different fluorescence decay times. This feature can
 be used to do X, Y, and Z. {[}EXPLAIN BRIEFLY CMap PROBLEM{]}. One
-problem with existing approaches is that they {[}\ldots. {]}
+problem with existing approaches is that they {[}\ldots{}. {]}
 
 To identify accurate methods we launched an open challenge that allowed
 a rapid exploration of different approaches. Key ingredients of there
@@ -264,7 +242,7 @@ CMap's current solution to this problem is based on a K-means clustering
 algorithm called dpeak that works as follows:
 
 For each measurement, the dpeak partitions the list of realizations into
-K\textgreater=2 distinct clusters and identifies two of the clusters
+K\textgreater{}=2 distinct clusters and identifies two of the clusters
 whose ratio of membership is as close as possible to 2:1. The algorithm
 then takes the median intensity of each of the two clusters, assigning
 these values to the appropriate gene (i.e., matching clusters with more
@@ -396,7 +374,7 @@ common in multianalyte assay methods. These methods are widely used to
 do X, Y and Z. In general terms, multianalyte assay methods are based on
 microspheres with different fluorescence decay times. This feature can
 be used to do X, Y, and Z. {[}EXPLAIN BRIEFLY CMap PROBLEM{]}. One
-problem with existing approaches is that they {[}\ldots. {]}
+problem with existing approaches is that they {[}\ldots{}. {]}
 
 To identify accurate methods we launched an open challenge that allowed
 a rapid exploration of different approaches. Key ingredients of there
@@ -408,20 +386,35 @@ improve
 Scheme}\label{l1000-experimental-scheme-1}}
 
 The L1000 assay uses Luminex bead-based fluorescent scanners to detect
-gene expression changes resulting from in vitro perturbation experiments
-{[}Subramanian 2017{]}. In a single experiment, CMap makes 488
-measurements, each made by a different colored bead. Each measurement
-produces an intensity histogram (a list of integers), which
-characterizes the expression of two distinct genes in the given sample
-(for a total of 488 x 2 = 976 genes). The genes are mixed in 2:1 ratio.
-Thus, the areas under the peaks have 2:1 ratio, which enables
-association of each peak with a specific gene. In the ideal case, each
-histogram consists of two peaks (see Figure 1), each corresponding to a
-single gene.
+gene expression changes resulting from treating cultured human cells
+with chemical or genetic perturbations {[}Subramanian 2017{]}. In a
+single experiment, CMap makes 488 measurements, each made by a different
+colored bead. Each measurement produces an intensity histogram (a list
+of integers), which characterizes the expression of two distinct genes
+in the given sample (for a total of 488 x 2 = 976 genes). The genes are
+mixed in 2:1 ratio. Thus, the areas under the peaks have 2:1 ratio,
+which enables association of each peak with a specific gene. In the
+ideal case, each histogram consists of two peaks (see Figure 1), each
+corresponding to a single gene.
 
 After data collection, the expression values of the two genes are
 computationally extracted in a process called `peak deconvolution,'
-described further in the next section.
+described in the next section.
+
+In UNI detection mode, each of the 978 landmark genes is measured
+individually on one of the 500 Luminex bead colors. In order to capture
+all 978 genes, two detection plates are used, each measuring 489
+landmarks. The two detection plates' worth of data are then
+computationally combined to reconstruct the full 978-gene expression
+profile for each sample, but deconvolution is not required.
+
+By contrast, in the DUO detection scheme two genes are measured using
+the same bead color. Each bead color produces an intensity histogram
+which characterizes the expression of the two distinct genes. In the
+ideal case, each histogram consists of two peaks each corresponding to a
+single gene. The genes are mixed in 2:1 ratio, thus the areas under the
+peaks have 2:1 ratio, which enables the association of each peak with
+the specific gene.
 
 \hypertarget{statistical-deconvolution-of-gene-specific-expression-profiles.-1}{%
 \subsection{Statistical deconvolution of gene-specific expression
@@ -451,31 +444,31 @@ associated with an analyte \(j\), we have:
 \subsubsection{Benchmark k-means
 solution}\label{benchmark-k-means-solution-1}}
 
-CMap's current solution to this problem is based on a K-means clustering
+CMap's current solution to this problem is based on a k-means clustering
 algorithm called dpeak that works as follows:
 
 For each measurement, the dpeak partitions the list of realizations into
-K\textgreater=2 distinct clusters and identifies two of the clusters
-whose ratio of membership is as close as possible to 2:1. The algorithm
-then takes the median intensity of each of the two clusters, assigning
-these values to the appropriate gene (i.e., matching clusters with more
+\(k>=2\) distinct clusters and identifies two of the clusters whose
+ratio of membership is as close as possible to 2:1. The algorithm then
+takes the median intensity of each of the two clusters, assigning these
+values to the appropriate gene (i.e., matching clusters with more
 observations to the gene mixed in higher proportion).
 
 After deconvoluting each sample on a plate, dpeak then uses the
 plate-wide distributions to perform adjustments on a per-well basis,
 correcting peaks that may have been misassigned (see Appendix).
 
-Known problems with the current approach are that the K-means algorithm
-is generally a biased and inconsistent estimator of the peaks of a
-bimodal distribution and it fails sometimes to detect peaks with few
-observations or it incorrectly identifies these peaks as 3rd peaks and
-disregarding them. Another limitation is that it is computationally
-costly and, hence, expensive for data generation at large scale (current
-Matlab implementation takes about 30 minutes on a 12-core server to
-process one set of 384 experiments).
+Known problems with the current approach are that k-means is generally a
+biased and inconsistent estimator of the peaks of a bimodal distribution
+{[}ref{]}. It also sometimes fails to detect peaks with few observations
+or it incorrectly identifies these peaks as extraneous and disregards
+them. Another limitation is that it is computationally expensive
+(current Matlab implementation takes about 30 minutes on a 12-core
+server to process one set of 384 experiments).
 
-\hypertarget{data-generation-1}{%
-\subsection{Data generation}\label{data-generation-1}}
+\hypertarget{data-generation-for-contest}{%
+\subsection{Data generation for
+contest}\label{data-generation-for-contest}}
 
 To generate data for this contest, we profiled six 384-well perturbagen
 plates, each containing mutually exclusive sets of compound and shRNA
@@ -496,21 +489,6 @@ provisional-testing data were made available for all the contestants to
 develop and validate their solutions, while system-testing data were
 secured to evaluate competitors' last submissions, which was used to
 award the prizes, and to avoid overfitting as well.
-
-In UNI detection mode, each of the 978 landmark genes is measured
-individually on one of the 500 Luminex bead colors. In order to capture
-all 978 genes, two detection plates are used, each measuring 489
-landmarks. The two detection plates' worth of data are then
-computationally combined to reconstruct the full 978-gene expression
-profile for each sample, but deconvolution is not required.
-
-By contrast, in the DUO detection scheme two genes are measured using
-the same bead color. Each bead color produces an intensity histogram
-which characterizes the expression of the two distinct genes. In the
-ideal case, each histogram consists of two peaks each corresponding to a
-single gene. The genes are mixed in 2:1 ratio, thus the areas under the
-peaks have 2:1 ratio, which enables the association of each peak with
-the specific gene.
 
 \begin{longtable}[]{@{}ll@{}}
 \caption{Data generated}\tabularnewline
