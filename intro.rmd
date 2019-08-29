@@ -6,7 +6,7 @@ Many recent examples have shown significant benefits for drug discovery from the
 Using an assay called L1000, The Connectivity Map (CMap) group at the Broad Institute has developed a novel approach that matches pairs of genes to the same Luminex beads to double the count of profiled genes per bead, thus lowering costs [Subramanian 2017].
 A central component of this approach is to quantify gene-type frequency of beads, and then statistically deconvolve and compare gene type-specific average expression profiles for pairs of mixed gene samples. 
 
-This type of deconvolution problems are ubiquitous and have a long history in biology [refs]. For example, one common deconvolution is used to identify cell type–specific gene expression differences in complex tissues [Shen-orr et al., 2010]; or the discovery of the target proteins of small molecules [Jung, 2015]. 
+This type of deconvolution problems are ubiquitous and have a long history in biology [refs]. For example, deconvolution problems arise when trying to identify cell type–specific gene expression differences in complex tissues [Shen-orr et al., 2010]; or in the discovery of target proteins of small molecules [Jung, 2015]. 
 
 <!-- 
 Shen-orr et al. (2010). Gene expression data from multiple cell-types. The problem is to quantify cell-type frequency "then deconvolve and compare cell type-specific average expression profiles for groups of mixed tissue samples." One approach is "deconvolution to be linear"
@@ -16,7 +16,7 @@ Shen-orr et al. (2010). Gene expression data from multiple cell-types. The probl
 
 <!-- The solution adopted by CMap was a KNN [explain]. This is a standard technique implemented in xxx that gives a good level of accuracy [xxx] and reasonably fast computation time (xxx with the current Matlab implementation). -->
 
-Common approaches are parametric (mixture models) and non-parametric. CMap's approach was K-nearest neighbors (KNN) approach. [Explain briefly.] This works well but has several problems as well. [List problems.] Including time. The trade-off between accuracy and computation time is currently unknown. 
+Common approaches are parametric (mixture models) and non-parametric. CMap’s current solution to this problem is an algorithm, called "D-Peak," based on a K-means clustering [Refs]. This method automatically partitions a set of gene-expression measurements into $k$ clusters, taking the mean of the two largest clusters, assigning the mean value of the largest cluster to the gene in higher proportion and the mean value of the second largest cluster to the gene in .  This works well but has several problems as well. [List problems.] Including time. The trade-off between accuracy and computation time is currently unknown. 
 
 Alternative methods are well known, such as Gaussian etc. But it would have required substantial resources to experiment with these alternative approaches (more than what already done) and to adapt new to our data. Moreover, impossible an exhaustive search for all available approaches to try; and the combination of these different approaches. 
 

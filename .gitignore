@@ -1,4 +1,5 @@
 *.docx
+main.tex
 main.pdf
 *.pdf
 .Rproj.user
