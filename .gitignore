@@ -1,3 +1,5 @@
 *.docx
 main.pdf
 *.pdf
+.Rproj.user
+*.Rproj
