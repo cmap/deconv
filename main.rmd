@@ -41,8 +41,8 @@ header-includes:
 TODOS:
 
 - Intro AB
-- Methdos TN
-- Figure Scatter runtime vs accuracy for top10 TN
+- Methdos TN [DONE]
+- Figure Scatter runtime vs accuracy for top10 TN [DONE]
 - Add data
 
 Here's a figure \ref{pic1}. 

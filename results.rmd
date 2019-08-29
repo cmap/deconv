@@ -13,7 +13,15 @@ Fig. 2. (A) Leaderboard (all scores)
             (barplot for mean of the 2 plates by submission and for each metric)
         (C) Scatter plot runtime vs accuracy (mean of AUC and Correlation)
 
-Table 1.  Summary contestant solutions (top 5 methods)
+
+```{r, echo=F, warning=F, }
+# display table of solution description
+library(data.table)
+library(knitr)
+soln_desc <- fread("data/solution_descriptions.txt", na.strings = "n/a")
+kable(soln_desc[1:9], caption = "Summary of contestant solutions")
+```
+
 
 Explain accuracy as measured in the coontest (slide p. 124). And then explain, KD additional test of accuracy (slides p. 128). Results are good on both.
 

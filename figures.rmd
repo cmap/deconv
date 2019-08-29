@@ -1,8 +1,38 @@
-# Display items
+# Figures
 
-```{r random, echo=FALSE, fig.cap="\\label{pic1}Random picture"}
-hist(runif(100))
+## Accuracy vs. Speed
+```{r, echo=FALSE}
+library(data.table)
+library(ggplot2)
+library(ggrepel)
+```
+
+```{r, echo=FALSE}
+# data
+speed_acc <- fread("data/holdout_score_time.txt")
+soln_desc <- fread("data/solution_descriptions.txt", na.strings="n/a")
+speed_acc <- merge(speed_acc, soln_desc, by="handle")
+```
+
+```{r, echo=FALSE}
+# compute composite accuracy
+# in contest, aggregate score was computed as:
+# SCORE = MAX_SCORE * (MAX(CORp, 0))2 * AUCp2 * exp(- Tsolution / (3 * Tbenchmark) )
+speed_acc[, acc := cor^2 * auc^2]
 ```
 
 
+```{r speed_acc, echo=FALSE, fig.cap="\\label{speed_acc}Accuracy vs. Speed", fig.width=6}
+# plot
+# let's just show one plate for now
+ggplot(speed_acc[grepl("^DPK", plate)],
+       aes(x=sec, y=acc, label=rank)) +
+  geom_point(aes(color=method_short), size=2) +
+  geom_text_repel() +
+  scale_color_discrete(name="Method class") +
+  xlab("Time (seconds)") +
+  ylab("Accuracy") +
+  theme_classic() +
+  ggtitle("Accuracy vs. Speed")
+```
 
