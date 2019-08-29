@@ -1,0 +1,11 @@
+rank	handle	language	method	method_short
+1	gardn999	Java	random forest regressor	DTR
+2	Ardavel	C++	Gaussian mixture model	GMM
+3	mkagenius	C++	modified k-means	k-means
+4	Ramzes2	Python/C++	ConvNet	CNN
+5	vladaburian	Python/C++	Gaussian mixture model	GMM
+6	balajipro	Python/C++	modified k-means	k-means
+7	AliGebily	Python	boosted tree regressor	DTR
+8	LastEmperor	Python	modified k-means	k-means
+9	mvaudel	Java	??	n/a
+benchmark	benchmark	Matlab	k-means	k-means
