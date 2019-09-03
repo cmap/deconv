@@ -47,7 +47,7 @@ attach(speed_acc)
 ```
 
 ```{r acc-vs-speed, echo=F, fig.cap=cap, fig.height=7, fig.width=7}
-cap <- "Accuracy vs speed, stratified by plate. Labels at the dots indicate the rank of the submission in the final leaderboard. Dashed lines indicate levels with no improvement over the benchmark."
+cap <- "Accuracy vs speed, stratified by plate. Labels at the dots indicate the rank of the submission in the final leaderboard. Dashed lines indicate levels with no improvement over the benchmark. Dotted lines indicate (ols) association between accuracy and speed improvements."
 par(mfrow=c(2, 2))
 for (k in 1:2) {
 # compute plate stats
@@ -68,6 +68,7 @@ text(x=log(sec/bench.sec)[j & handle!="benchmark"]
 title(paste0("auc (", tolower(gsub("\\..*", "", unique(plate)[k])),")"))
 abline(h=1, lty=2)
 abline(v=0, lty=2)
+abline(lm(auc/bench ~ log(sec/bench.sec), subset=j & handle!="benchmark"),lty=3)
 # Panel 2,3
 # percent over bench
 bench <- cor[j & handle=="benchmark"]
@@ -80,6 +81,7 @@ plot(cor/bench ~ log(sec/bench.sec), subset=j & handle!="benchmark"
   , ylab="rank correlation / bench")
 abline(h=1, lty=2)
 abline(v=0, lty=2)
+abline(lm(cor/bench ~ log(sec/bench.sec), subset=j & handle!="benchmark"), lty=3)
 text(x=log(sec/bench.sec)[j & handle!="benchmark"]
    , y=(cor/bench)[j & handle!="benchmark"]
   , labels=rank[j & handle!="benchmark"]
