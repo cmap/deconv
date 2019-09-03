@@ -94,7 +94,7 @@
 \title{Improving Deconvolution Methods in Biology through Open Innovation
 Competitions: an Application to the Connectivity Map}
 \author{Author 1 \and Author 2 \and \ldots{}}
-\date{Last updated: Aug 22, 2019}
+\date{Last updated: Sep 03, 2019}
 
 \begin{document}
 \maketitle
@@ -120,14 +120,12 @@ TODOS:
 \item
   Intro AB
 \item
-  Methdos TN
+  Methdos TN {[}DONE{]}
 \item
-  Figure Scatter runtime vs accuracy for top10 TN
+  Figure Scatter runtime vs accuracy for top10 TN {[}DONE{]}
 \item
   Add data
 \end{itemize}
-
-Here's a figure \ref{pic1}.
 
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
@@ -195,101 +193,6 @@ improve
 \subsection{L1000 Experimental Scheme}\label{l1000-experimental-scheme}}
 
 The L1000 assay uses Luminex bead-based fluorescent scanners to detect
-<<<<<<< HEAD
-gene expression changes resulting from in vitro perturbation experiments
-{[}Subramanian 2017{]}. In a single experiment, CMap makes 488
-measurements, each made by a different colored bead. Each measurement
-produces an intensity histogram (a list of integers), which
-characterizes the expression of two distinct genes in the given sample
-(for a total of 488 x 2 = 976 genes). The genes are mixed in 2:1 ratio.
-Thus, the areas under the peaks have 2:1 ratio, which enables
-association of each peak with a specific gene. In the ideal case, each
-histogram consists of two peaks (see Figure 1), each corresponding to a
-single gene.
-
-After data collection, the expression values of the two genes are
-computationally extracted in a process called `peak deconvolution,'
-described further in the next section.
-
-\hypertarget{statistical-deconvolution-of-gene-specific-expression-profiles.}{%
-\subsection{Statistical deconvolution of gene-specific expression
-profiles.}\label{statistical-deconvolution-of-gene-specific-expression-profiles.}}
-
-In each sample, assume fluorescent-intensity values \(X_{ij}\) for beads
-\(i=1,2,\dots, n\) and analytes \(j=1,2,\dots, J\), and gene-specific
-proportions \(w_{ik}\) for beads \(i=1,2,\dots, n\) and genes
-\(k=1,2,\dots, K\). Our model of analyte fluourescent intensity is: \[
-  X_{ij} = \sum_{k=1}^{K} w_{ik} h_{kj} + e_{ij}. 
-\] where \(h_{ik}\) is the gene-expression value for genes
-\(k=1,2,\dots, K\) and analytes \(j=1,2,\dots, J\).
-
-For the UNI detection method, the gene-specific proportions are such
-that each analyte has only one gene. Hence, \(w^{\text{uni}}_{ik} = 1\)
-when \(j = k\), and it is zero otherwise. This implies that each sample
-can detect at most \(J\) different genes under the UNI method.
-
-For the DUO detection method, the gene-specific proportions are such
-that each analyte is paired with two genes in 1:2 ratio. Hence, pick an
-element \(g\in G^2\) from the set \(G^2\) of all non-overlapping subsets
-of size two of the gene set \(G\). For each pair of genes in \(g\)
-associated with an analyte \(j\), we have:
-\(w^{\text{duo}}_{i1} = 2/3\), \(w_{i2}=1/3\) and is zero otherwise.
-
-\hypertarget{benchmark-k-means-solution}{%
-\subsubsection{Benchmark k-means
-solution}\label{benchmark-k-means-solution}}
-
-CMap's current solution to this problem is based on a K-means clustering
-algorithm called dpeak that works as follows:
-
-For each measurement, the dpeak partitions the list of realizations into
-K\textgreater{}=2 distinct clusters and identifies two of the clusters
-whose ratio of membership is as close as possible to 2:1. The algorithm
-then takes the median intensity of each of the two clusters, assigning
-these values to the appropriate gene (i.e., matching clusters with more
-observations to the gene mixed in higher proportion).
-
-After deconvoluting each sample on a plate, dpeak then uses the
-plate-wide distributions to perform adjustments on a per-well basis,
-correcting peaks that may have been misassigned (see Appendix).
-
-Known problems with the current approach are that the K-means algorithm
-is generally a biased and inconsistent estimator of the peaks of a
-bimodal distribution and it fails sometimes to detect peaks with few
-observations or it incorrectly identifies these peaks as 3rd peaks and
-disregarding them. Another limitation is that it is computationally
-costly and, hence, expensive for data generation at large scale (current
-Matlab implementation takes about 30 minutes on a 12-core server to
-process one set of 384 experiments).
-
-\hypertarget{data-generation}{%
-\subsection{Data generation}\label{data-generation}}
-
-To generate data for this contest, we profiled six 384-well perturbagen
-plates, each containing mutually exclusive sets of compound and shRNA
-treatments. Multiple treatment types were used to ensure avoid
-potentially over-fitting to any one. The compound and shRNA perturbagen
-plates were arbitrarily grouped into pairs, and to avoid any potential
-`information leakage' each pair was profiled in a different cell line.
-The resulting lysates were amplified by ligation mediated amplification
-(LMA, Subramanian 2017). The amplicon was then split and detected in
-both one-gene-per-bead (UNI) and two-genes-per-bead (DUO) detection
-modes. The three pairs of data were arbitrarily assigned to training,
-testing, and holdout categories, where in each case the UNI data served
-as the ground truth.
-
-The data so generated were then split into three subsets called:
-training, provisional-testing, and system-testing. Training and
-provisional-testing data were made available for all the contestants to
-develop and validate their solutions, while system-testing data were
-secured to evaluate competitors' last submissions, which was used to
-award the prizes, and to avoid overfitting as well.
-
-In UNI detection mode, each of the 978 landmark genes is measured
-individually on one of the 500 Luminex bead colors. In order to capture
-all 978 genes, two detection plates are used, each measuring 489
-landmarks. The two detection plates' worth of data are then
-=======
 gene expression changes resulting from treating cultured human cells
 with chemical or genetic perturbations {[}Subramanian 2017{]}.
 Experiments are performed in 384-well plate format, where each well
@@ -298,147 +201,27 @@ distinguish between 500 different bead types, or colors, which CMap uses
 to measure the expression levels of 978 landmark genes using two
 detection approaches.
 
-In the first detection mode, called UNI, each of the 978 landmark genes
-is measured individually on one of the 500 Luminex bead colors. In order
-to capture all 978 genes, two detection plates are used, each measuring
-489 landmarks. The two detection plates' worth of data are then
->>>>>>> 716899b6a8d54a5ea70fe3fba00c44bb308119d5
-computationally combined to reconstruct the full 978-gene expression
-profile for each sample.
+In the first detection mode, called \(UNI\), each of the 978 landmark
+genes is measured individually on one of the 500 Luminex bead colors. In
+order to capture all 978 genes, two detection plates are used, each
+measuring 489 landmarks. The two detection plates' worth of data are
+then computationally combined to reconstruct the full 978-gene
+expression profile for each sample.
 
-By contrast, in the DUO detection scheme two genes are measured using
-the same bead color. Each bead color produces an intensity histogram
-which characterizes the expression of the two distinct genes. In the
-ideal case, each histogram consists of two peaks each corresponding to a
-single gene. The genes are mixed in 2:1 ratio, thus the areas under the
-peaks have 2:1 ratio (see Figure 1), which enables the association of
-each peak with the specific gene. \textbf{The practical advantage of the
-DUO detection mode is that it uses half of the laboratory reagents as
-UNI mode, and hence DUO is and has been the main detection mode used by
-CMap.}
+By contrast, in the \(DUO\) detection scheme two genes are measured
+using the same bead color. Each bead color produces an intensity
+histogram which characterizes the expression of the two distinct genes.
+In the ideal case, each histogram consists of two peaks each
+corresponding to a single gene. The genes are mixed in 2:1 ratio, thus
+the areas under the peaks have 2:1 ratio (see Figure 1), which enables
+the association of each peak with the specific gene. \textbf{The
+practical advantage of the DUO detection mode is that it uses half of
+the laboratory reagents as UNI mode, and hence \(DUO\) is and has been
+the main detection mode used by CMap.}
 
-<<<<<<< HEAD
-\begin{longtable}[]{@{}ll@{}}
-\caption{Data generated}\tabularnewline
-\toprule
-Category & Type\tabularnewline
-\midrule
-\endfirsthead
-\toprule
-Category & Type\tabularnewline
-\midrule
-\endhead
-training & Compounds\tabularnewline
-provisional testing & Compounds\tabularnewline
-system testing & Compounds\tabularnewline
-training & shRNA\tabularnewline
-provisional testing & shRNA\tabularnewline
-system testing & shRNA\tabularnewline
-\bottomrule
-\end{longtable}
-
-\hypertarget{to-read}{%
-\subsection{To read}\label{to-read}}
-
-\begin{itemize}
-\tightlist
-\item
-  \href{https://pubs.rsc.org/en/content/getauthorversionpdf/c4mb00677a}{Compound
-  signature detection on LINCS L1000 big data} used a fuzzy c-means
-  Gaussian Mixture Model (GMM) to process raw L1000 data, showing better
-  performance compared to KNN. This method is described below:
-\end{itemize}
-
-\begin{quote}
-To deconvolute such overlapped peaks, we assumed that the fluorophore
-intensities of each analyte type (corresponding to a specific mRNA type)
-had a Gaussian distribution. The distribution of the mixture of analytes
-GeneH(i) and GeneL(i) corresponding to the expression levels of GeneH
-and GeneL, respectively, should be subject to a bimodal Gaussian
-distribution, with the proportion of 1.25 to 0.75. We initialized the
-estimations of the two Gaussian distributions using buzzy c-means
-clustering {[}11{]} and estimated the GMM parameters using the
-Nelder-Mead method {[}12{]}. Thus, the overlapped peaks were
-deconvoluted as the two estimated Gaussian peaks and the expression
-levels of the two genes sharing the same analyte were extracted.
-Mathematical details are included in the Supplementary Methods (the GMM
-model).
-\end{quote}
-
-\begin{itemize}
-\item
-  \href{https://ieeexplore.ieee.org/abstract/document/4044778}{Deconvolution
-  of linear systems by constrained regression and its relationship to
-  the Wiener theory}
-\item
-  \href{https://www.nature.com/articles/nmeth.2929}{Efficient
-  Bayesian-based multiview deconvolution}
-\item
-  \href{https://www.nature.com/articles/nbt1414}{A Bayesian
-  deconvolution strategy for immunoprecipitation-based DNA methylome
-  analysis}
-\item
-  \href{https://www.nature.com/articles/nmeth.1830}{Gene expression
-  deconvolution in linear space}
-\item
-  \href{https://www.nature.com/articles/nmeth.1439}{Cell type--specific
-  gene expression differences in complex tissues}
-\end{itemize}
-
-\hypertarget{methods-1}{%
-\section{Methods}\label{methods-1}}
-
-In biomedical research, our focus here, deconvolution problems are
-common in multianalyte assay methods. These methods are widely used to
-do X, Y and Z. In general terms, multianalyte assay methods are based on
-microspheres with different fluorescence decay times. This feature can
-be used to do X, Y, and Z. {[}EXPLAIN BRIEFLY CMap PROBLEM{]}. One
-problem with existing approaches is that they {[}\ldots{}. {]}
-
-To identify accurate methods we launched an open challenge that allowed
-a rapid exploration of different approaches. Key ingredients of there
-challenges are: training and testing dataset benchmark solution to
-improve
-
-\hypertarget{l1000-experimental-scheme-1}{%
-\subsection{L1000 Experimental
-Scheme}\label{l1000-experimental-scheme-1}}
-
-The L1000 assay uses Luminex bead-based fluorescent scanners to detect
-gene expression changes resulting from treating cultured human cells
-with chemical or genetic perturbations {[}Subramanian 2017{]}. In a
-single experiment, CMap makes 488 measurements, each made by a different
-colored bead. Each measurement produces an intensity histogram (a list
-of integers), which characterizes the expression of two distinct genes
-in the given sample (for a total of 488 x 2 = 976 genes). The genes are
-mixed in 2:1 ratio. Thus, the areas under the peaks have 2:1 ratio,
-which enables association of each peak with a specific gene. In the
-ideal case, each histogram consists of two peaks (see Figure 1), each
-corresponding to a single gene.
-
-After data collection, the expression values of the two genes are
+After \(DUO\) detection, the expression values of the two genes are
 computationally extracted in a process called `peak deconvolution,'
 described in the next section.
-
-In UNI detection mode, each of the 978 landmark genes is measured
-individually on one of the 500 Luminex bead colors. In order to capture
-all 978 genes, two detection plates are used, each measuring 489
-landmarks. The two detection plates' worth of data are then
-computationally combined to reconstruct the full 978-gene expression
-profile for each sample, but deconvolution is not required.
-
-By contrast, in the DUO detection scheme two genes are measured using
-the same bead color. Each bead color produces an intensity histogram
-which characterizes the expression of the two distinct genes. In the
-ideal case, each histogram consists of two peaks each corresponding to a
-single gene. The genes are mixed in 2:1 ratio, thus the areas under the
-peaks have 2:1 ratio, which enables the association of each peak with
-the specific gene.
-=======
-After DUO detection, the expression values of the two genes are
-computationally extracted in a process called `peak deconvolution,'
-described in the next section.
->>>>>>> 716899b6a8d54a5ea70fe3fba00c44bb308119d5
 
 \hypertarget{statistical-deconvolution-of-gene-specific-expression-profiles.}{%
 \subsection{Statistical deconvolution of gene-specific expression
@@ -452,12 +235,12 @@ proportions \(w_{ik}\) for beads \(i=1,2,\dots, n\) and genes
 \] where \(h_{ik}\) is the gene-expression value for genes
 \(k=1,2,\dots, K\) and analytes \(j=1,2,\dots, J\).
 
-For the UNI detection method, the gene-specific proportions are such
+For the \(UNI\) detection method, the gene-specific proportions are such
 that each analyte has only one gene. Hence, \(w^{\text{uni}}_{ik} = 1\)
 when \(j = k\), and it is zero otherwise. This implies that each sample
 can detect at most \(J\) different genes under the UNI method.
 
-For the DUO detection method, the gene-specific proportions are such
+For the \(DUO\) detection method, the gene-specific proportions are such
 that each analyte is paired with two genes in 1:2 ratio. Hence, pick an
 element \(g\in G^2\) from the set \(G^2\) of all non-overlapping subsets
 of size two of the gene set \(G\). For each pair of genes in \(g\)
@@ -469,11 +252,7 @@ associated with an analyte \(j\), we have:
 solution}\label{benchmark-k-means-solution}}
 
 CMap's current solution to this problem is based on a k-means clustering
-<<<<<<< HEAD
-algorithm called dpeak that works as follows:
-=======
 algorithm called \(dpeak\) that works as follows:
->>>>>>> 716899b6a8d54a5ea70fe3fba00c44bb308119d5
 
 For each measurement, the dpeak partitions the list of realizations into
 \(k>=2\) distinct clusters and identifies two of the clusters whose
@@ -490,9 +269,9 @@ Known problems with the current approach are that k-means is generally a
 biased and inconsistent estimator of the peaks of a bimodal distribution
 {[}ref{]}. It also sometimes fails to detect peaks with few observations
 or it incorrectly identifies these peaks as extraneous and disregards
-them. Another limitation is that it is computationally expensive
-(current Matlab implementation takes about 30 minutes on a 12-core
-server to process one set of 384 experiments).
+them. Another limitation is that it is computationally expensive (the
+current Matlab implementation takes about 30 minutes on a 12-core server
+to process one set of 384 experiments).
 
 \hypertarget{data-generation-for-contest}{%
 \subsection{Data generation for
@@ -506,25 +285,15 @@ arbitrarily grouped into pairs, and to avoid any potential `information
 leakage' each pair was profiled in a different cell line. The resulting
 lysates were amplified by ligation mediated amplification (LMA,
 Subramanian 2017). The amplicon was then split and detected in both
-one-gene-per-bead (UNI) and two-genes-per-bead (DUO) detection modes.
-The three pairs of data were arbitrarily assigned to training, testing,
-and holdout categories, where in each case the UNI data served as the
-ground truth.
-
-The data so generated were then split into three subsets called:
-<<<<<<< HEAD
-training, provisional-testing, and system-testing. Training and
-provisional-testing data were made available for all the contestants to
-develop and validate their solutions, while system-testing data were
-secured to evaluate competitors' last submissions, which was used to
-award the prizes, and to avoid overfitting as well.
-=======
-training, testing, and holdout. Training and esting data were made
-available for all the contestants to develop and validate their
-solutions, while holdout data were secured to evaluate competitors'
-final submissions and guard against over-fitting. Prizes were awareded
-based on performance on the holdout dataset.
->>>>>>> 716899b6a8d54a5ea70fe3fba00c44bb308119d5
+\(UNI\) and \(DUO\) detection modes. The three pairs of data were
+arbitrarily assigned to training, testing, and holdout categories, where
+in each case the \(UNI\) data served as the ground truth. Training data
+were made available for all the contestants to develop and validate
+their solutions offline. The testing data were used to evaluate
+solutions during the contestn and populate the live leaderboard. Holdout
+data were used evaluate competitors' final submissions and guard against
+over-fitting. Prizes were awareded based on performance on the holdout
+dataset.
 
 \begin{longtable}[]{@{}ll@{}}
 \caption{Data generated}\tabularnewline
@@ -597,22 +366,48 @@ model).
 \section{Results}\label{results}}
 
 \hypertarget{participation}{%
-\paragraph{Participation}\label{participation}}
+\subsection{Participation}\label{participation}}
 
-The contest attracted xxx participants, who made xxx code submissions (a
-median of xxx per person).
+The contest attracted 294 participants, who made 820 code submissions,
+an averge of 18.2 submissions per participant. The top finishers in the
+contest employed a variety of different analysis approaches, including
+descision tree regressors (DTR), Gaussian mixture models (GMM),
+convolutional neural networks (CNN), and customized versions of k-means,
+all with notably improved performance relative to the benchmark. Table
+xx lists the top 9 finishers and the languages and algorithms each used.
+
+\begin{longtable}[]{@{}lllll@{}}
+\caption{Summary of contestant solutions}\tabularnewline
+\toprule
+rank & handle & language & method & category\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+rank & handle & language & method & category\tabularnewline
+\midrule
+\endhead
+1 & gardn999 & Java & random forest regressor & DTR\tabularnewline
+2 & Ardavel & C++ & Gaussian mixture model & GMM\tabularnewline
+3 & mkagenius & C++ & modified k-means & k-means\tabularnewline
+4 & Ramzes2 & Python/C++ & ConvNet & CNN\tabularnewline
+5 & vladaburian & Python/C++ & Gaussian mixture model &
+GMM\tabularnewline
+6 & balajipro & Python/C++ & modified k-means & k-means\tabularnewline
+7 & AliGebily & Python & boosted tree regressor & DTR\tabularnewline
+8 & LastEmperor & Python & modified k-means & k-means\tabularnewline
+9 & mvaudel & Java & other & NA\tabularnewline
+\bottomrule
+\end{longtable}
 
 Fig. 1. Participation stats (Submission counts)
 
 \hypertarget{overall-accuracy-and-speed.}{%
-\paragraph{Overall accuracy and
+\subsection{Overall accuracy and
 speed.}\label{overall-accuracy-and-speed.}}
 
 Fig. 2. (A) Leaderboard (all scores) (B) Disaggregated scores for top 10
 (barplot for mean of the 2 plates by submission and for each metric) (C)
 Scatter plot runtime vs accuracy (mean of AUC and Correlation)
-
-Table 1. Summary contestant solutions (top 5 methods)
 
 Explain accuracy as measured in the coontest (slide p.~124). And then
 explain, KD additional test of accuracy (slides p.~128). Results are
@@ -624,7 +419,7 @@ uni)?)
 Discrepancy between genes with high/low bead counts.
 
 \hypertarget{clustering-submissions.}{%
-\subparagraph{Clustering Submissions.}\label{clustering-submissions.}}
+\subsection{Clustering Submissions.}\label{clustering-submissions.}}
 
 Do methods overlap? Not at a level that we care about.
 
@@ -633,7 +428,7 @@ clustering by method (C) Differences mitigated after standard
 normalization procedure
 
 \hypertarget{ensambles.}{%
-\paragraph{Ensambles.}\label{ensambles.}}
+\subsection{Ensambles.}\label{ensambles.}}
 
 Figure 3. (A) Scatterplot runtime vs accuracy for ensamble (slides
 p.~163)
@@ -641,7 +436,7 @@ p.~163)
 Speed vs accuarcy trade-off. Integration one or multiple methods?
 
 \hypertarget{minors}{%
-\paragraph{Minors:}\label{minors}}
+\subsection{Minors:}\label{minors}}
 
 \begin{itemize}
 \tightlist
@@ -681,13 +476,35 @@ Discuss implications of these methods for CMap production
   Increase in data processing throughput
 \end{itemize}
 
-\hypertarget{display-items}{%
-\section{Display items}\label{display-items}}
+\hypertarget{figures}{%
+\section{Figures}\label{figures}}
+
+\hypertarget{accuracy-vs.-speed}{%
+\subsection{Accuracy vs.~Speed}\label{accuracy-vs.-speed}}
+
+\begin{verbatim}
+## Warning: package 'ggplot2' was built under R version 3.4.4
+\end{verbatim}
 
 \begin{figure}
 \centering
-\includegraphics{main_files/figure-latex/random-1.pdf}
-\caption{\label{pic1}Random picture}
+\includegraphics{main_files/figure-latex/speed_acc-1.pdf}
+\caption{\label{speed_acc}Accuracy vs.~Speed}
+\end{figure}
+
+\hypertarget{accuracy-ab}{%
+\subsection{Accuracy (AB)}\label{accuracy-ab}}
+
+\begin{verbatim}
+## Warning: package 'dplyr' was built under R version 3.4.4
+\end{verbatim}
+
+\begin{figure}
+\centering
+\includegraphics{main_files/figure-latex/acc-vs-speed-1.pdf}
+\caption{Accuracy vs speed, stratified by plate. Labels at the dots
+indicate the rank of the submission in the final leaderboard. Dashed
+lines indicate levels with no improvement over the benchmark.}
 \end{figure}
 
 \hypertarget{references}{%

@@ -36,3 +36,65 @@ ggplot(speed_acc[grepl("^DPK", plate)],
   ggtitle("Accuracy vs. Speed")
 ```
 
+## Accuracy (AB)
+
+```{r setup, echo=F}
+library(dplyr, warn=F)
+impute <- function(x, value) ifelse(is.na(x), value, x)
+shift <- 0.01 
+n <- nrow(speed_acc)
+attach(speed_acc)
+```
+
+```{r acc-vs-speed, echo=F, fig.cap=cap, fig.height=7, fig.width=7}
+cap <- "Accuracy vs speed, stratified by plate. Labels at the dots indicate the rank of the submission in the final leaderboard. Dashed lines indicate levels with no improvement over the benchmark."
+par(mfrow=c(2, 2))
+for (k in 1:2) {
+# compute plate stats
+j <- plate==unique(plate)[k]
+bench <- auc[j & handle=="benchmark"]
+bench.sec <- sec[j & handle=="benchmark"]
+# plot panel 
+plot(auc/bench ~ log(sec/bench.sec), subset=j & handle!="benchmark"
+  , ylim=c(0.99, 1.035)
+  , xlim=c(-5, 0)
+  , pch=c(16,17)[factor(plate)]
+  , xlab="log(runtime / benchmark)"
+  , ylab="auc / benchmark")
+text(x=log(sec/bench.sec)[j & handle!="benchmark"]
+   , y=(auc/bench)[j & handle!="benchmark"]
+  , labels=rank[j & handle!="benchmark"]
+  , pos=1, xpd=T)
+title(paste0("auc (", tolower(gsub("\\..*", "", unique(plate)[k])),")"))
+abline(h=1, lty=2)
+abline(v=0, lty=2)
+# Panel 2,3
+# percent over bench
+bench <- cor[j & handle=="benchmark"]
+plot(cor/bench ~ log(sec/bench.sec), subset=j & handle!="benchmark"
+  , xlim=c(-5, 0)
+  , ylim=c(0.99, 1.07)
+  , pch=c(16,17)[factor(plate)]
+  , col=c(1,2)[factor(handle=="benchmark")]
+  , xlab="log(runtime / benchmark)"
+  , ylab="rank correlation / bench")
+abline(h=1, lty=2)
+abline(v=0, lty=2)
+text(x=log(sec/bench.sec)[j & handle!="benchmark"]
+   , y=(cor/bench)[j & handle!="benchmark"]
+  , labels=rank[j & handle!="benchmark"]
+  , pos=1, xpd=T)
+title(paste0("correlation (", tolower(gsub("\\..*", "", unique(plate)[k])), ")"))
+}
+```
+
+
+```{r, include=F}
+# avg. improvement across plates, methods, etc. 
+bench <- auc[handle=="benchmark"]
+bench.sec <- sec[handle=="benchmark"]
+bench.cor <- cor[handle=="benchmark"]
+lm(auc/bench[factor(plate)] ~ 1, subset=handle!="benchmark") # ~= +17%
+lm(cor/bench.cor[factor(plate)] ~ 1, subset=handle!="benchmark") # ~= +27%
+lm(log(sec/bench.sec[factor(plate)]) ~ 1, subset=handle!="benchmark") # ~= -1.8
+```
