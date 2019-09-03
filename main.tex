@@ -502,42 +502,10 @@ Discuss implications of these methods for CMap production
 \begin{figure}
 \centering
 \includegraphics{main_files/figure-latex/acc-vs-speed-1.pdf}
-\caption{Accuracy vs speed, stratified by plate. Dashed lines indicate
-benchmark.}
+\caption{Accuracy vs speed, stratified by plate. Labels at the dots
+indicate the rank of the submission in the final leaderboard. Dashed
+lines indicate levels with no improvement over the benchmark.}
 \end{figure}
-
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = auc/bench[factor(plate)] ~ 1, subset = handle != 
-##     "benchmark")
-## 
-## Coefficients:
-## (Intercept)  
-##       1.017
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = cor/bench.cor[factor(plate)] ~ 1, subset = handle != 
-##     "benchmark")
-## 
-## Coefficients:
-## (Intercept)  
-##       1.027
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Call:
-## lm(formula = log(sec/bench.sec[factor(plate)]) ~ 1, subset = handle != 
-##     "benchmark")
-## 
-## Coefficients:
-## (Intercept)  
-##      -2.773
-\end{verbatim}
 
 \hypertarget{references}{%
 \section{References}\label{references}}

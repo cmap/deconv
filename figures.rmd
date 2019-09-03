@@ -47,26 +47,23 @@ attach(speed_acc)
 ```
 
 ```{r acc-vs-speed, echo=F, fig.cap=cap, fig.height=7, fig.width=7}
-cap <- "Accuracy vs speed, stratified by plate. Dashed lines indicate benchmark."
+cap <- "Accuracy vs speed, stratified by plate. Labels at the dots indicate the rank of the submission in the final leaderboard. Dashed lines indicate levels with no improvement over the benchmark."
 par(mfrow=c(2, 2))
 for (k in 1:2) {
+# compute plate stats
 j <- plate==unique(plate)[k]
-# as percent over benchm
 bench <- auc[j & handle=="benchmark"]
 bench.sec <- sec[j & handle=="benchmark"]
-ylim <- range(c(1, (auc/bench)[handle!="benchmark"]))
-xlim <- log(range(c(1, (sec/bench.sec)[handle!="benchmark"])))
 # plot panel 
 plot(auc/bench ~ log(sec/bench.sec), subset=j & handle!="benchmark"
   , ylim=c(0.99, 1.035)
   , xlim=c(-5, 0)
   , pch=c(16,17)[factor(plate)]
-  , col=c(1,2)[factor(handle=="benchmark")]
   , xlab="log(runtime / benchmark)"
   , ylab="auc / benchmark")
 text(x=log(sec/bench.sec)[j & handle!="benchmark"]
    , y=(auc/bench)[j & handle!="benchmark"]
-  , labels=impute(method_short,"other")[j & handle!="benchmark"]
+  , labels=rank[j & handle!="benchmark"]
   , pos=1, xpd=T)
 title(paste0("auc (", tolower(gsub("\\..*", "", unique(plate)[k])),")"))
 abline(h=1, lty=2)
@@ -74,7 +71,6 @@ abline(v=0, lty=2)
 # Panel 2,3
 # percent over bench
 bench <- cor[j & handle=="benchmark"]
-ylim <- range(c(1, (cor/bench)[j & handle!="benchmark"]))
 plot(cor/bench ~ log(sec/bench.sec), subset=j & handle!="benchmark"
   , xlim=c(-5, 0)
   , ylim=c(0.99, 1.07)
@@ -86,14 +82,14 @@ abline(h=1, lty=2)
 abline(v=0, lty=2)
 text(x=log(sec/bench.sec)[j & handle!="benchmark"]
    , y=(cor/bench)[j & handle!="benchmark"]
-  , labels=impute(method_short,"other")[j & handle!="benchmark"]
+  , labels=rank[j & handle!="benchmark"]
   , pos=1, xpd=T)
 title(paste0("correlation (", tolower(gsub("\\..*", "", unique(plate)[k])), ")"))
 }
 ```
 
 
-```{r, echo=FALSE}
+```{r, include=F}
 # avg. improvement across plates, methods, etc. 
 bench <- auc[handle=="benchmark"]
 bench.sec <- sec[handle=="benchmark"]
