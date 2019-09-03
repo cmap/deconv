@@ -45,8 +45,6 @@ TODOS:
 - Figure Scatter runtime vs accuracy for top10 TN [DONE]
 - Add data
 
-Here's a figure \ref{pic1}. 
-
 
 ```{r sections, echo=FALSE}
 childs <- c("intro.rmd", "methods.rmd", "results.rmd", "disc.rmd", "figures.rmd")

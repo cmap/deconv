@@ -1,12 +1,21 @@
 # Results
 
-#### Participation
+## Participation
 
-The contest attracted xxx participants, who made xxx code submissions (a median of xxx per person). 
+The contest attracted 294 participants, who made 820 code submissions, an averge of 18.2 submissions per participant. The top finishers in the contest employed a variety of different analysis approaches, including descision tree regressors (DTR), Gaussian mixture models (GMM), convolutional neural networks (CNN), and customized versions of k-means, all with notably improved performance relative to the benchmark. Table xx lists the top 9 finishers and the languages and algorithms each used.
+
+```{r soln_desc, echo=F, warning=F}
+# display table of solution description
+library(data.table)
+library(knitr)
+soln_desc <- fread("data/solution_descriptions.txt", na.strings = "n/a")
+setnames(soln_desc, "method_short", "category")
+kable(soln_desc[1:9], caption = "Summary of contestant solutions")
+```
 
 Fig. 1. Participation stats (Submission counts)
 
-#### Overall accuracy and speed.
+## Overall accuracy and speed.
 
 Fig. 2. (A) Leaderboard (all scores) 
         (B) Disaggregated scores for top 10 
@@ -14,13 +23,7 @@ Fig. 2. (A) Leaderboard (all scores)
         (C) Scatter plot runtime vs accuracy (mean of AUC and Correlation)
 
 
-```{r, echo=F, warning=F, }
-# display table of solution description
-library(data.table)
-library(knitr)
-soln_desc <- fread("data/solution_descriptions.txt", na.strings = "n/a")
-kable(soln_desc[1:9], caption = "Summary of contestant solutions")
-```
+
 
 
 Explain accuracy as measured in the coontest (slide p. 124). And then explain, KD additional test of accuracy (slides p. 128). Results are good on both.
@@ -29,7 +32,7 @@ Explain accuracy as measured in the coontest (slide p. 124). And then explain, K
 
 Discrepancy between genes with high/low bead counts.
 
-##### Clustering Submissions.
+## Clustering Submissions.
 
 Do methods overlap? Not at a level that we care about.
 
@@ -37,14 +40,14 @@ Figure 3. (A) Clustering by genes (high ovverlap);
           (B) TS1-2 Seem to be clustering by method
           (C) Differences mitigated after standard normalization procedure
 
-#### Ensambles.
+## Ensambles.
 
 Figure 3. (A) Scatterplot runtime vs accuracy for ensamble (slides p. 163)
 
 Speed vs accuarcy trade-off. Integration one or multiple methods?
 
 
-#### Minors:
+## Minors:
 
 - signs of ovverfitting (compare traing vs testing)
 
