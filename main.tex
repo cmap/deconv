@@ -94,7 +94,7 @@
 \title{Improving Deconvolution Methods in Biology through Open Innovation
 Competitions: an Application to the Connectivity Map}
 \author{Author 1 \and Author 2 \and \ldots{}}
-\date{Last updated: Aug 27, 2019}
+\date{Last updated: Sep 03, 2019}
 
 \begin{document}
 \maketitle
@@ -120,14 +120,12 @@ TODOS:
 \item
   Intro AB
 \item
-  Methdos TN
+  Methdos TN {[}DONE{]}
 \item
-  Figure Scatter runtime vs accuracy for top10 TN
+  Figure Scatter runtime vs accuracy for top10 TN {[}DONE{]}
 \item
   Add data
 \end{itemize}
-
-Here's a figure \ref{pic1}.
 
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
@@ -368,22 +366,48 @@ model).
 \section{Results}\label{results}}
 
 \hypertarget{participation}{%
-\paragraph{Participation}\label{participation}}
+\subsection{Participation}\label{participation}}
 
-The contest attracted xxx participants, who made xxx code submissions (a
-median of xxx per person).
+The contest attracted 294 participants, who made 820 code submissions,
+an averge of 18.2 submissions per participant. The top finishers in the
+contest employed a variety of different analysis approaches, including
+descision tree regressors (DTR), Gaussian mixture models (GMM),
+convolutional neural networks (CNN), and customized versions of k-means,
+all with notably improved performance relative to the benchmark. Table
+xx lists the top 9 finishers and the languages and algorithms each used.
+
+\begin{longtable}[]{@{}lllll@{}}
+\caption{Summary of contestant solutions}\tabularnewline
+\toprule
+rank & handle & language & method & category\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+rank & handle & language & method & category\tabularnewline
+\midrule
+\endhead
+1 & gardn999 & Java & random forest regressor & DTR\tabularnewline
+2 & Ardavel & C++ & Gaussian mixture model & GMM\tabularnewline
+3 & mkagenius & C++ & modified k-means & k-means\tabularnewline
+4 & Ramzes2 & Python/C++ & ConvNet & CNN\tabularnewline
+5 & vladaburian & Python/C++ & Gaussian mixture model &
+GMM\tabularnewline
+6 & balajipro & Python/C++ & modified k-means & k-means\tabularnewline
+7 & AliGebily & Python & boosted tree regressor & DTR\tabularnewline
+8 & LastEmperor & Python & modified k-means & k-means\tabularnewline
+9 & mvaudel & Java & other & NA\tabularnewline
+\bottomrule
+\end{longtable}
 
 Fig. 1. Participation stats (Submission counts)
 
 \hypertarget{overall-accuracy-and-speed.}{%
-\paragraph{Overall accuracy and
+\subsection{Overall accuracy and
 speed.}\label{overall-accuracy-and-speed.}}
 
 Fig. 2. (A) Leaderboard (all scores) (B) Disaggregated scores for top 10
 (barplot for mean of the 2 plates by submission and for each metric) (C)
 Scatter plot runtime vs accuracy (mean of AUC and Correlation)
-
-Table 1. Summary contestant solutions (top 5 methods)
 
 Explain accuracy as measured in the coontest (slide p.~124). And then
 explain, KD additional test of accuracy (slides p.~128). Results are
@@ -395,7 +419,7 @@ uni)?)
 Discrepancy between genes with high/low bead counts.
 
 \hypertarget{clustering-submissions.}{%
-\subparagraph{Clustering Submissions.}\label{clustering-submissions.}}
+\subsection{Clustering Submissions.}\label{clustering-submissions.}}
 
 Do methods overlap? Not at a level that we care about.
 
@@ -404,7 +428,7 @@ clustering by method (C) Differences mitigated after standard
 normalization procedure
 
 \hypertarget{ensambles.}{%
-\paragraph{Ensambles.}\label{ensambles.}}
+\subsection{Ensambles.}\label{ensambles.}}
 
 Figure 3. (A) Scatterplot runtime vs accuracy for ensamble (slides
 p.~163)
@@ -412,7 +436,7 @@ p.~163)
 Speed vs accuarcy trade-off. Integration one or multiple methods?
 
 \hypertarget{minors}{%
-\paragraph{Minors:}\label{minors}}
+\subsection{Minors:}\label{minors}}
 
 \begin{itemize}
 \tightlist
@@ -452,14 +476,68 @@ Discuss implications of these methods for CMap production
   Increase in data processing throughput
 \end{itemize}
 
-\hypertarget{display-items}{%
-\section{Display items}\label{display-items}}
+\hypertarget{figures}{%
+\section{Figures}\label{figures}}
+
+\hypertarget{accuracy-vs.-speed}{%
+\subsection{Accuracy vs.~Speed}\label{accuracy-vs.-speed}}
+
+\begin{verbatim}
+## Warning: package 'ggplot2' was built under R version 3.4.4
+\end{verbatim}
 
 \begin{figure}
 \centering
-\includegraphics{main_files/figure-latex/random-1.pdf}
-\caption{\label{pic1}Random picture}
+\includegraphics{main_files/figure-latex/speed_acc-1.pdf}
+\caption{\label{speed_acc}Accuracy vs.~Speed}
 \end{figure}
+
+\hypertarget{accuracy-ab}{%
+\subsection{Accuracy (AB)}\label{accuracy-ab}}
+
+\begin{verbatim}
+## Warning: package 'dplyr' was built under R version 3.4.4
+\end{verbatim}
+
+\begin{figure}
+\centering
+\includegraphics{main_files/figure-latex/acc-vs-speed-1.pdf}
+\caption{Accuracy vs speed, stratified by plate. Dashed lines indicate
+benchmark.}
+\end{figure}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = auc/bench[factor(plate)] ~ 1, subset = handle != 
+##     "benchmark")
+## 
+## Coefficients:
+## (Intercept)  
+##       1.017
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = cor/bench.cor[factor(plate)] ~ 1, subset = handle != 
+##     "benchmark")
+## 
+## Coefficients:
+## (Intercept)  
+##       1.027
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = log(sec/bench.sec[factor(plate)]) ~ 1, subset = handle != 
+##     "benchmark")
+## 
+## Coefficients:
+## (Intercept)  
+##      -2.773
+\end{verbatim}
 
 \hypertarget{references}{%
 \section{References}\label{references}}

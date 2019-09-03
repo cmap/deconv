@@ -36,3 +36,69 @@ ggplot(speed_acc[grepl("^DPK", plate)],
   ggtitle("Accuracy vs. Speed")
 ```
 
+## Accuracy (AB)
+
+```{r setup, echo=F}
+library(dplyr, warn=F)
+impute <- function(x, value) ifelse(is.na(x), value, x)
+shift <- 0.01 
+n <- nrow(speed_acc)
+attach(speed_acc)
+```
+
+```{r acc-vs-speed, echo=F, fig.cap=cap, fig.height=7, fig.width=7}
+cap <- "Accuracy vs speed, stratified by plate. Dashed lines indicate benchmark."
+par(mfrow=c(2, 2))
+for (k in 1:2) {
+j <- plate==unique(plate)[k]
+# as percent over benchm
+bench <- auc[j & handle=="benchmark"]
+bench.sec <- sec[j & handle=="benchmark"]
+ylim <- range(c(1, (auc/bench)[handle!="benchmark"]))
+xlim <- log(range(c(1, (sec/bench.sec)[handle!="benchmark"])))
+# plot panel 
+plot(auc/bench ~ log(sec/bench.sec), subset=j & handle!="benchmark"
+  , ylim=c(0.99, 1.035)
+  , xlim=c(-5, 0)
+  , pch=c(16,17)[factor(plate)]
+  , col=c(1,2)[factor(handle=="benchmark")]
+  , xlab="log(runtime / benchmark)"
+  , ylab="auc / benchmark")
+text(x=log(sec/bench.sec)[j & handle!="benchmark"]
+   , y=(auc/bench)[j & handle!="benchmark"]
+  , labels=impute(method_short,"other")[j & handle!="benchmark"]
+  , pos=1, xpd=T)
+title(paste0("auc (", tolower(gsub("\\..*", "", unique(plate)[k])),")"))
+abline(h=1, lty=2)
+abline(v=0, lty=2)
+# Panel 2,3
+# percent over bench
+bench <- cor[j & handle=="benchmark"]
+ylim <- range(c(1, (cor/bench)[j & handle!="benchmark"]))
+plot(cor/bench ~ log(sec/bench.sec), subset=j & handle!="benchmark"
+  , xlim=c(-5, 0)
+  , ylim=c(0.99, 1.07)
+  , pch=c(16,17)[factor(plate)]
+  , col=c(1,2)[factor(handle=="benchmark")]
+  , xlab="log(runtime / benchmark)"
+  , ylab="rank correlation / bench")
+abline(h=1, lty=2)
+abline(v=0, lty=2)
+text(x=log(sec/bench.sec)[j & handle!="benchmark"]
+   , y=(cor/bench)[j & handle!="benchmark"]
+  , labels=impute(method_short,"other")[j & handle!="benchmark"]
+  , pos=1, xpd=T)
+title(paste0("correlation (", tolower(gsub("\\..*", "", unique(plate)[k])), ")"))
+}
+```
+
+
+```{r, echo=FALSE}
+# avg. improvement across plates, methods, etc. 
+bench <- auc[handle=="benchmark"]
+bench.sec <- sec[handle=="benchmark"]
+bench.cor <- cor[handle=="benchmark"]
+lm(auc/bench[factor(plate)] ~ 1, subset=handle!="benchmark") # ~= +17%
+lm(cor/bench.cor[factor(plate)] ~ 1, subset=handle!="benchmark") # ~= +27%
+lm(log(sec/bench.sec[factor(plate)]) ~ 1, subset=handle!="benchmark") # ~= -1.8
+```
