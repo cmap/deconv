@@ -17,17 +17,22 @@ Fig. 1. Participation stats (Submission counts)
 
 ## Overall accuracy and speed.
 
-Using the holdout dataset, we computed the average AUC (on level-four data), the average rank correlation (level-two data), as well as the fraction of knocked-down genes correctly predicted for each of the top solutions and the benchmark. The benchmark achieved an AUC of xxx and xxx, a correlation of xxx and xxx, and successfully predicted xxx and xxx knocked-down genes for plate 1 and 2, respectively. The corresponding runtime for the benchmark in each plate was xxx and xxx seconds. 
+Using the holdout dataset, we computed the average AUC (on level-four data), the average rank correlation (level-two data), as well as the fraction of knocked-down genes correctly predicted for each of the top solutions and the benchmark. The benchmark achieved an AUC of xxx and xxx, a correlation of xxx and xxx for plate 1 and 2, respectively, as well as  it successfully predicted xxx knocked-down genes in plate 2. The corresponding runtime for the benchmark in each plate was of xxx and xxx seconds. 
 
-\Fig{acc-vs-speed} shows that almost all top-nine solutions improved upon the benchmark along these measures. Improvements varied across the different measurs. Overall, the average AUC improvement was 2%, the average correlation improvement was 3% and the average KD improvement was 3%. Note that the theoretical maximum improvement in the AUC metric was 14% = 1/bench, and the theoretical maximum improvement for the correlation was 60% = 1/cor.bench, given both measures cannot be greater than one. Thus, we find solutions achieved greater improvements in auc relative to the theoretical max, than in the correlation metric.  
+\Fig{acc-vs-speed} shows that all top-nine solutions improved upon the performance of the benchmark in nearly all measures. Overall, the average AUC improvement was of 2% (min = xxx, max =xxxx), the average correlation improvement was of 3% (min = xxx, max = xxx) and the average improvement in correct kd genes predictions was of 3% (min = xxx, max =xxx).  Given a theoretical maximum improvement of xxx, xxx, and xxx, for the AUC, correlation and KD metrics, we observe that competitors achieves larger improvements (relative to the maximum achievable) in the AUC metric. 
 
-Note further that, while all submissions improved upon the benchmark in auc and correlation, two out of nine submissions achieved a performance that was below the benchmark on the KD success metric. These submissions, both based on k-means, ranked sixth and eighth in the final leaderboard.
+Only two submissions (out of nine) a performance that was better in AUC and correlation but worse than the benchmark on the KD success metric. These submissions, both based on k-means, ranked sixth and eighth in the final leaderboard.
 
-The top competitors achieved  very significant 300% average improvement in speed, that varied widely among solutions ranging between about 100% to 500%.  
 
-We also observe a relatively flat relationship between improvements in accuracy and improvements in speed, with no particular trade-off in the top solutions. The fastest algorithm, ranked second overall, was based on a gaussian mixture model and achieved the greatest speed improvmenet in both plates. The most accurate algorithm, ranked first overall, was instead based on a random forest and achieved the best performance in both AUC and correlation measures, and it was among the top three approaches in the KD measure. 
+<!-- Note that the theoretical maximum improvement in the AUC metric was 14% = 1/bench, and the theoretical maximum improvement for the correlation was 60% = 1/cor.bench, given both measures cannot be greater than one. Thus, we find solutions achieved greater improvements in auc relative to the theoretical max, than in the correlation metric.   -->
 
-We also observe no significant difference in performance between the plates, with all the submissions achieving similar scores in both plates. 
+Improvement with respect to speed were substantial. The average improvement was 300% ranging between 100% and 500%. We observe no accuracy-vs-speed trade-off. The empirical relationship between improvements in accuracy and improvements in speed is essentially flat. 
+
+Further examination based on the underlying methods used by the top solutions suggests that parametric models, such as mixture models, are both fast and relatively accurate, although non-parametric models, such as regression forests and k-means, tend to be more accurate.  The fastest algorithm was indeed based on a parametric model, i.e., gaussian mixture model, which achieves a good level of accuracy on these data. This solution ranked second overall and achieved the greatest speed improvmenet in both plates. 
+
+The most accurate algorithm was instead based on a random forest. This solution ranked first overall and achieved the best performance in both AUC and correlation measures, as well as it was among the top three approaches in the KD measure. 
+
+We observe no significant difference in performance between the plates, with all the submissions achieving similar scores in both plates. 
 
 <!-- 
 Fig. 2. (A) Leaderboard (all scores) 
