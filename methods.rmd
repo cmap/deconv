@@ -65,19 +65,41 @@ type <- c("Compounds", "shRNA")
 knitr::kable(expand.grid(Category=category, Type=type), caption="Data generated")
 ```
 
-## To read
+## Scoring configuation
 
-- [Compound signature detection on LINCS L1000 big data](https://pubs.rsc.org/en/content/getauthorversionpdf/c4mb00677a) used a fuzzy c-means Gaussian Mixture Model (GMM) to process raw L1000 data, showing better performance compared to KNN. This method is described below:
+Contest submissions were scored based on accuracy and speed.
 
-> To deconvolute such overlapped peaks, we assumed that the fluorophore intensities of each analyte type (corresponding to a specific mRNA type) had a Gaussian distribution. The distribution of the mixture of analytes GeneH(i) and GeneL(i) corresponding to the expression levels of GeneH and GeneL, respectively, should be subject to a bimodal Gaussian distribution, with the proportion of 1.25 to 0.75. We initialized the estimations of the two Gaussian distributions using buzzy c-means clustering [11] and estimated the GMM parameters using the Nelder-Mead method [12]. Thus, the overlapped peaks were deconvoluted as the two estimated Gaussian peaks and the expression levels of the two genes sharing the same analyte were extracted. Mathematical details are included in the Supplementary Methods (the GMM model).
+Regarding accuracy, we will compare your outcomes with the corresponding data obtained by a more accurate, yet more expensive, gene expression technology, called ‘UNI’, in which each bead type is used to measure a single gene. 
 
-  
-- [Deconvolution of linear systems by constrained regression and its relationship to the Wiener theory](https://ieeexplore.ieee.org/abstract/document/4044778)
+The scoring function combines two measures of accuracy: one component of which is applied to deconvoluted (DECONV) data and one to differential expression (DE) data. DE is derived from DECONV by applying a series of transformations (parametric scaling, quantile normalization, and robust z-scoring) that are described in detail below and in Subramanian et al. 2017. The local test & score harness performs DECONV > DE transformation as a part of the scoring, and keeps intermediate results, in case you need DE data.
 
-- [Efficient Bayesian-based multiview deconvolution](https://www.nature.com/articles/nmeth.2929)
+The reason for scoring DE data is because it is at this level where the most interesting gene expression changes are observed. Of particular interest is obtaining significant improvement in the detection of, so called, “extreme modulations.” These are genes that, after a series of necessary transformations, exhibit an exceedingly high (or low) DE values relative to a fixed threshold. It is therefore desirable to assess accuracy here as well as DECONV.
+ACCURACY BASED ON SPEARMAN CORRELATION
+The first component of the scoring function is based on the Spearman rank correlation between the provided DECONV data and the corresponding UNI data.
 
-- [A Bayesian deconvolution strategy for immunoprecipitation-based DNA methylome analysis](https://www.nature.com/articles/nbt1414)
+For a given dataset p, let MDUO, p and MUNI, p denote the matrices of the estimated gene intensities for G = 976 genes (rows) and S ~ 384 experiments (columns) under DUO and UNI detection.  Compute the Spearman rank correlation matrix between the rows of MDUO, p and the rows of MUNI, p; take the median of the diagonal elements of the resulting matrix (i.e., the values corresponding to the matched experiments between UNI and DUO) to compute the median correlation per dataset:
 
-- [Gene expression deconvolution in linear space](https://www.nature.com/articles/nmeth.1830)
+CORp = median(diag(spearman(MDUO, p, MUNI, p))
 
-- [Cell type–specific gene expression differences in complex tissues](https://www.nature.com/articles/nmeth.1439)
+ACCURACY BASED ON AUC
+The second component of the scoring function is based on the Area Under the receiver operating characteristic Curve (AUC) that uses the competitor's DE values at various thresholds to predict the UNI's DE values being higher than 2 ("high") or lower than -2 ("low").
+ 
+For a given bead type a in a given dataset p, let AUCp, c denote the corresponding area under the curve where c = { high | low }, where high means UNIDE, p >= 2, and low means UNIDE, p <= −2; then, compute the arithmetic mean of the area under the curve per class to obtain the corresponding score per dataset:
+
+AUCp = (AUCp, hight + AUCp, low) / 2
+
+SPEED COMPONENT OF THE SCORE
+For a given dataset p, the time component of the score is computed as the run time in seconds for deconvoluting the data in both test cases: Runtimep
+
+Notice that multi-theading is allowed in this match, and thus highly recommended. Your submission will be tested on multi-core machines (presumably, 8 cores). The maximum execution time of your solution will be capped by 30 minutes.
+
+AGGREGATED SCORE
+SCORE = MAX_SCORE * (MAX(CORp, 0))2 * AUCp2 * exp(- Tsolution / (3 * Tbenchmark) )
+where Tbenchmark is the deconvolution time required by the reference DPeak implementation
+
+
+```{r, echo=F}
+# TODO: add scoring schematic
+```
+
+
