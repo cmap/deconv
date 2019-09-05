@@ -1,7 +1,10 @@
 # Figures
 
+## Scoring accuracy
+![Schematic illustrating accuracy components of scoring function](figures/deconvolution_contest Fig2_Final_revised.png)
+
 ## Accuracy vs. Speed
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE}
 palette(c("dodgerblue","brown","orange"))
 library(data.table)
 library(ggplot2)
