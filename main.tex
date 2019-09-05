@@ -71,7 +71,9 @@
 
 \usepackage{bbm}
 \newcommand\hl{}
-\newcommand\Fig{Fig. XXXX}
+\newcommand\Fig[1]{{\it Fig. \ref{fig:#1}}}
+\usepackage{setspace}
+\onehalfspacing
 
 % Custom AB
 \usepackage{booktabs}
@@ -94,7 +96,7 @@
 \title{Improving Deconvolution Methods in Biology through Open Innovation
 Competitions: an Application to the Connectivity Map}
 \author{Author 1 \and Author 2 \and \ldots{}}
-\date{Last updated: Sep 03, 2019}
+\date{Last updated: Sep 05, 2019}
 
 \begin{document}
 \maketitle
@@ -113,19 +115,25 @@ Keywords: biology; open innoation competitions; crowdsourcing; deconvolution; ge
 \tableofcontents
 \newpage
 }
+\color{red}
+
 TODOS:
 
 \begin{itemize}
 \tightlist
 \item
-  Intro AB
+  Check length requirements for Nat. Met.
+\item
+  Intro {[}AB{]}
 \item
   Methdos TN {[}DONE{]}
 \item
-  Figure Scatter runtime vs accuracy for top10 TN {[}DONE{]}
+  Clustering
 \item
-  Add data
+  Add disaggregated data
 \end{itemize}
+
+\color{black}
 
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
@@ -405,18 +413,67 @@ Fig. 1. Participation stats (Submission counts)
 \subsection{Overall accuracy and
 speed.}\label{overall-accuracy-and-speed.}}
 
-Fig. 2. (A) Leaderboard (all scores) (B) Disaggregated scores for top 10
-(barplot for mean of the 2 plates by submission and for each metric) (C)
-Scatter plot runtime vs accuracy (mean of AUC and Correlation)
+Using the holdout dataset, we computed the average AUC (on level-four
+data), the average rank correlation (level-two data), as well as the
+fraction of knocked-down genes correctly predicted for each of the top
+solutions and the benchmark. The benchmark achieved an AUC of xxx and
+xxx, a correlation of xxx and xxx, and successfully predicted xxx and
+xxx knocked-down genes for plate 1 and 2, respectively. The
+corresponding runtime for the benchmark in each plate was xxx and xxx
+seconds.
 
-Explain accuracy as measured in the coontest (slide p.~124). And then
-explain, KD additional test of accuracy (slides p.~128). Results are
-good on both.
+{\it Fig. \ref{fig:acc-vs-speed}} shows that almost all top-nine
+solutions improved upon the benchmark along these measures. Improvements
+varied across the different measurs. Overall, the average AUC
+improvement was 2\%, the average correlation improvement was 3\% and the
+average KD improvement was 3\%. Note that the theoretical maximum
+improvement in the AUC metric was 14\% = 1/bench, and the theoretical
+maximum improvement for the correlation was 60\% = 1/cor.bench, given
+both measures cannot be greater than one. Thus, we find solutions
+achieved greater improvements in auc relative to the theoretical max,
+than in the correlation metric.
 
-(How far froom the max achievable improvement in accuracy (down-sampling
-uni)?)
+Note further that, while all submissions improved upon the benchmark in
+auc and correlation, two out of nine submissions achieved a performance
+that was below the benchmark on the KD success metric. These
+submissions, both based on k-means, ranked sixth and eighth in the final
+leaderboard.
 
-Discrepancy between genes with high/low bead counts.
+The top competitors achieved very significant 300\% average improvement
+in speed, that varied widely among solutions ranging between about 100\%
+to 500\%.
+
+We also observe a relatively flat relationship between improvements in
+accuracy and improvements in speed, with no particular trade-off in the
+top solutions. The fastest algorithm, ranked second overall, was based
+on a gaussian mixture model and achieved the greatest speed improvmenet
+in both plates. The most accurate algorithm, ranked first overall, was
+instead based on a random forest and achieved the best performance in
+both AUC and correlation measures, and it was among the top three
+approaches in the KD measure.
+
+We also observe no significant difference in performance between the
+plates, with all the submissions achieving similar scores in both
+plates.
+
+\color{red}
+
+Todos:
+
+\begin{itemize}
+\tightlist
+\item
+  In Methods section, explain accuracy as measured in the coontest
+  (slide p.~124). And then explain, KD additional test of accuracy
+  (slides p.~128). Results are good on both.
+\item
+  (How far froom the max achievable improvement in accuracy
+  (down-sampling uni)?)
+\item
+  Discrepancy between genes with high/low bead counts.
+\end{itemize}
+
+\color{black}
 
 \hypertarget{clustering-submissions.}{%
 \subsection{Clustering Submissions.}\label{clustering-submissions.}}
@@ -486,26 +543,79 @@ Discuss implications of these methods for CMap production
 ## Warning: package 'ggplot2' was built under R version 3.4.4
 \end{verbatim}
 
-\begin{figure}
-\centering
-\includegraphics{main_files/figure-latex/speed_acc-1.pdf}
-\caption{\label{speed_acc}Accuracy vs.~Speed}
-\end{figure}
-
-\hypertarget{accuracy-ab}{%
-\subsection{Accuracy (AB)}\label{accuracy-ab}}
-
 \begin{verbatim}
 ## Warning: package 'dplyr' was built under R version 3.4.4
 \end{verbatim}
 
 \begin{figure}
 \centering
-\includegraphics{main_files/figure-latex/acc-vs-speed-1.pdf}
-\caption{Accuracy vs speed, stratified by plate. Labels at the dots
-indicate the rank of the submission in the final leaderboard. Dashed
-lines indicate levels with no improvement over the benchmark.}
+\includegraphics{main_files/figure-latex/speed_acc-1.pdf}
+\caption{\label{speed_acc}Accuracy vs.~Speed}
 \end{figure}
+
+\hypertarget{accuracy-vs-speed-ab}{%
+\subsection{Accuracy vs speed (AB)}\label{accuracy-vs-speed-ab}}
+
+\begin{figure}
+\centering
+\includegraphics{main_files/figure-latex/acc-vs-speed-1.pdf}
+\caption{\label{fig:acc-vs-speed}Accuracy vs speed on the holdout
+dataset for the top-nine solutions, by plate. Labels at the dots
+indicate the rank of the submission in the final leaderboard (1 = first
+best, 2 = second best, etc.). Dashed lines indicate levels with no
+improvement over the benchmark. Dotted lines indicate (ols) association
+between accuracy and speed improvements.}
+\end{figure}
+
+\clearpage
+
+\hypertarget{to-read-1}{%
+\subsection{To read}\label{to-read-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://pubs.rsc.org/en/content/getauthorversionpdf/c4mb00677a}{Compound
+  signature detection on LINCS L1000 big data} used a fuzzy c-means
+  Gaussian Mixture Model (GMM) to process raw L1000 data, showing better
+  performance compared to KNN. This method is described below:
+\end{itemize}
+
+\begin{quote}
+To deconvolute such overlapped peaks, we assumed that the fluorophore
+intensities of each analyte type (corresponding to a specific mRNA type)
+had a Gaussian distribution. The distribution of the mixture of analytes
+GeneH(i) and GeneL(i) corresponding to the expression levels of GeneH
+and GeneL, respectively, should be subject to a bimodal Gaussian
+distribution, with the proportion of 1.25 to 0.75. We initialized the
+estimations of the two Gaussian distributions using buzzy c-means
+clustering {[}11{]} and estimated the GMM parameters using the
+Nelder-Mead method {[}12{]}. Thus, the overlapped peaks were
+deconvoluted as the two estimated Gaussian peaks and the expression
+levels of the two genes sharing the same analyte were extracted.
+Mathematical details are included in the Supplementary Methods (the GMM
+model).
+\end{quote}
+
+\begin{itemize}
+\item
+  \href{https://ieeexplore.ieee.org/abstract/document/4044778}{Deconvolution
+  of linear systems by constrained regression and its relationship to
+  the Wiener theory}
+\item
+  \href{https://www.nature.com/articles/nmeth.2929}{Efficient
+  Bayesian-based multiview deconvolution}
+\item
+  \href{https://www.nature.com/articles/nbt1414}{A Bayesian
+  deconvolution strategy for immunoprecipitation-based DNA methylome
+  analysis}
+\item
+  \href{https://www.nature.com/articles/nmeth.1830}{Gene expression
+  deconvolution in linear space}
+\item
+  \href{https://www.nature.com/articles/nmeth.1439}{Cell type--specific
+  gene expression differences in complex tissues}
+\end{itemize}
 
 \hypertarget{references}{%
 \section{References}\label{references}}
