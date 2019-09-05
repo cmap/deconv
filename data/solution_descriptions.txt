@@ -7,5 +7,5 @@ rank	handle	language	method	method_short
 6	balajipro	Python/C++	modified k-means	k-means
 7	AliGebily	Python	boosted tree regressor	DTR
 8	LastEmperor	Python	modified k-means	k-means
-9	mvaudel	Java	other	n/a
+9	mvaudel	Java	other	other
 benchmark	benchmark	Matlab	k-means	k-means
