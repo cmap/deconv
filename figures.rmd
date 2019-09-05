@@ -5,7 +5,7 @@
 
 ## Accuracy vs. Speed
 ```{r, echo=FALSE, warning=FALSE}
-palette(c("dodgerblue","brown","orange"))
+my.pal <- palette(c("dodgerblue","brown","orange"))
 library(data.table)
 library(ggplot2)
 library(ggrepel)
@@ -49,8 +49,6 @@ n <- nrow(speed_acc)
 attach(speed_acc)
 ```
 
-
-
 ```{r acc-vs-speed, fig.width=2.75*3, fig.height=2.75, fig.cap=cap, echo=FALSE}
 cap <- "\\label{fig:acc-vs-speed}Accuracy vs speed on the holdout dataset for the top-nine solutions, by plate. Labels at the dots indicate the rank of the submission in the final leaderboard (1 = first best, 2 = second best, etc.). Dashed lines indicate levels with no improvement over the benchmark. Dotted lines indicate (ols) association between accuracy and speed improvements."
 
@@ -64,6 +62,9 @@ auc.pc <- auc/auc.bench[factor(plate)]
 cor.pc <- cor/cor.bench[factor(plate)]
 sec.pc <- sec/sec.bench[factor(plate)]
 kd.pc <- kd_success_freq/kd.bench[factor(plate)]
+method2 <- method
+method2[grep("Gaussian", method)] <- "gaussian mixture"
+method2[grep("forest", method)] <- "rand. forest"
 
 # Plot
 panel <- function(x,y, xlim=c(0,5),ylim=c(0,0.08),xlab="speed increase (%)", legend=T, ...){
@@ -72,9 +73,21 @@ panel <- function(x,y, xlim=c(0,5),ylim=c(0,0.08),xlab="speed increase (%)", leg
     , col=c(1,2)[factor(plate)]
     , subset=!bench
     ,...)
+  # lable best method
+  j <- which.max(y)
+  y.offset <- +0.002; x.offset <- -1
+  segments(y0=y[j], x0=x[j], y1=y[j] + y.offset, x1=x[j]+x.offset)
+  text(y=y[j]+y.offset, x=x[j]+x.offset, labels=method2[j], pos=3)
+  # label fastest method
+  j <- which.max(x)
+  y.offset <- -0.001; x.offset <- -0.2
+  segments(y0=y[j], x0=x[j], y1=y[j] + y.offset, x1=x[j]+x.offset)
+  text(y=y[j]+y.offset, x=x[j]+x.offset, labels=method2[j], pos=1)
+  # legend
   if(legend)
     legend("topright", pch=15:16, col=1:2, legend=c("plate 1", "plate 2"), bty="n")
-  text(y=y[!bench],x=x[!bench],labels=rank[!bench],pos=3,xpd=T)
+  # rank labels
+  text(y=y[!bench],x=x[!bench],labels=rank[!bench],pos=3,xpd=T, col=gray(.75))
   abline(h=0,lty=2)
   abline(v=0,lty=2)
   abline(lm(y[!bench] ~ x[!bench]), lty=3)
