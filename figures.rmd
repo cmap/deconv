@@ -1,7 +1,12 @@
 # Figures
 
+## Scoring accuracy
+![Schematic illustrating accuracy components of scoring function](figures/deconvolution_contest Fig2_Final_revised.png)
+
+## Accuracy vs. Speed
 ```{r plot-setup-and-libraries, echo=FALSE, warning=FALSE}
 palette(c("dodgerblue","brown","orange"))
+my.pal <- palette(c("dodgerblue","brown","orange"))
 library(data.table)
 library(ggplot2)
 library(ggrepel)
@@ -50,10 +55,8 @@ n <- nrow(speed_acc)
 attach(speed_acc)
 ```
 
-
-
 ```{r acc-vs-speed, fig.width=2.75*3, fig.height=2.75, fig.cap=cap, echo=FALSE}
-cap <- "\\label{fig:acc-vs-speed}Accuracy vs speed on the holdout dataset for the top-nine solutions, by plate. Labels at the dots indicate the rank of the submission in the final leaderboard (1 = first best, 2 = second best, etc.). Dashed lines indicate levels with no improvement over the benchmark. Dotted lines indicate (ols) association between accuracy and speed improvements."
+cap <- "\\label{fig:acc-vs-speed}**Accuracy vs speed.** This figure shows the relationship between improvements in AUC (A.), correlation (B.) and fraction of correctly predicted knocked-down genes(C.) and improvements in speed for the top-nine solutions. These measures are computed for each of the plates on the holdout dataset. Labels at the dots indicate the rank of the submission in the final leaderboard (1 = first best, 2 = second best, etc.). Dashed lines indicate levels with no improvement over the benchmark. Dotted lines indicate (ols) association between accuracy and speed improvements. The name of the most accurate and fastest approach are highlighted in each panel."
 
 # compute measures
 bench <- handle=="benchmark"
@@ -65,6 +68,9 @@ auc.pc <- auc/auc.bench[factor(plate)]
 cor.pc <- cor/cor.bench[factor(plate)]
 sec.pc <- sec/sec.bench[factor(plate)]
 kd.pc <- kd_success_freq/kd.bench[factor(plate)]
+method2 <- method
+method2[grep("Gaussian", method)] <- "gaussian mixture"
+method2[grep("forest", method)] <- "rand. forest"
 
 # Plot
 panel <- function(x,y, xlim=c(0,5),ylim=c(0,0.08),xlab="speed increase (%)", legend=T, ...){
@@ -73,20 +79,32 @@ panel <- function(x,y, xlim=c(0,5),ylim=c(0,0.08),xlab="speed increase (%)", leg
     , col=c(1,2)[factor(plate)]
     , subset=!bench
     ,...)
+  # lable best method
+  j <- which.max(y)
+  y.offset <- +0.002; x.offset <- -1
+  segments(y0=y[j], x0=x[j], y1=y[j] + y.offset, x1=x[j]+x.offset)
+  text(y=y[j]+y.offset, x=x[j]+x.offset, labels=method2[j], pos=3)
+  # label fastest method
+  j <- which.max(x)
+  y.offset <- -0.001; x.offset <- -0.2
+  segments(y0=y[j], x0=x[j], y1=y[j] + y.offset, x1=x[j]+x.offset)
+  text(y=y[j]+y.offset, x=x[j]+x.offset, labels=method2[j], pos=1)
+  # legend
   if(legend)
     legend("topright", pch=15:16, col=1:2, legend=c("plate 1", "plate 2"), bty="n")
-  text(y=y[!bench],x=x[!bench],labels=rank[!bench],pos=3,xpd=T)
+  # rank labels
+  text(y=y[!bench],x=x[!bench],labels=rank[!bench],pos=3,xpd=T, col=gray(.75))
   abline(h=0,lty=2)
   abline(v=0,lty=2)
   abline(lm(y[!bench] ~ x[!bench]), lty=3)
 }
 par(mfrow=c(1,3), mar=c(4,4,2,1)+0.1)
 panel(abs(log(sec.pc)),log(auc.pc), ylim=c(0,0.04), ylab="auc increase (%)")
-mtext(at=c(0,0), "A. AUC vs speed", adj=0, font=2)
+mtext(at=c(0,0), "A.", adj=0, font=2)
 panel(abs(log(sec.pc)),log(cor.pc), ylim=c(0,0.07), ylab="corr increase (%)")
-mtext(at=c(0,0), "B. Correlation vs speed", adj=0, font=2)
+mtext(at=c(0,0), "B.", adj=0, font=2)
 panel(abs(log(sec.pc)), log(kd.pc),ylim=c(-0.1,0.1), ylab="kd success (%)")
-mtext(at=c(0,0), "C. KD success vs speed", adj=0, font=2)
+mtext(at=c(0,0), "C.", adj=0, font=2)
 
 # Ensambles 20 x 20
 # auc.ens <- sapply(auc, function(x) auc + (x - auc*x)*runif(1))
