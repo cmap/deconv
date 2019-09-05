@@ -34,17 +34,23 @@ geometry: margin=1.25in
 header-includes:
   - \usepackage{bbm}
   - \newcommand\hl{}
-  - \newcommand\Fig{Fig. XXXX}
+  - \newcommand\Fig[1]{{\it Fig. \ref{fig:#1}}}
+  - \usepackage{setspace}
+  - \onehalfspacing 
 ---
 
 
+\color{red}
+
 TODOS:
 
-- Intro AB
+- Check length requirements for Nat. Met. 
+- Intro [AB]
 - Methdos TN [DONE]
-- Figure Scatter runtime vs accuracy for top10 TN [DONE]
-- Add data
+- Clustering 
+- Add disaggregated data
 
+\color{black}
 
 ```{r sections, echo=FALSE}
 childs <- c("intro.rmd", "methods.rmd", "results.rmd", "disc.rmd", "figures.rmd")
@@ -52,6 +58,8 @@ childs <- c("intro.rmd", "methods.rmd", "results.rmd", "disc.rmd", "figures.rmd"
 
 ```{r child=childs}
 ```
+
+\clearpage 
 
 ## To read
 

@@ -2,9 +2,11 @@
 
 ## Accuracy vs. Speed
 ```{r, echo=FALSE}
+palette(c("dodgerblue","brown","orange"))
 library(data.table)
 library(ggplot2)
 library(ggrepel)
+library(dplyr, warn=F)
 ```
 
 ```{r, echo=FALSE}
@@ -36,67 +38,56 @@ ggplot(speed_acc[grepl("^DPK", plate)],
   ggtitle("Accuracy vs. Speed")
 ```
 
-## Accuracy (AB)
+## Accuracy vs speed (AB)
 
 ```{r setup, echo=F}
-library(dplyr, warn=F)
 impute <- function(x, value) ifelse(is.na(x), value, x)
-shift <- 0.01 
 n <- nrow(speed_acc)
 attach(speed_acc)
 ```
 
-```{r acc-vs-speed, echo=F, fig.cap=cap, fig.height=7, fig.width=7}
-cap <- "Accuracy vs speed, stratified by plate. Labels at the dots indicate the rank of the submission in the final leaderboard. Dashed lines indicate levels with no improvement over the benchmark. Dotted lines indicate (ols) association between accuracy and speed improvements."
-par(mfrow=c(2, 2))
-for (k in 1:2) {
-# compute plate stats
-j <- plate==unique(plate)[k]
-bench <- auc[j & handle=="benchmark"]
-bench.sec <- sec[j & handle=="benchmark"]
-# plot panel 
-plot(auc/bench ~ log(sec/bench.sec), subset=j & handle!="benchmark"
-  , ylim=c(0.99, 1.035)
-  , xlim=c(-5, 0)
-  , pch=c(16,17)[factor(plate)]
-  , xlab="log(runtime / benchmark)"
-  , ylab="auc / benchmark")
-text(x=log(sec/bench.sec)[j & handle!="benchmark"]
-   , y=(auc/bench)[j & handle!="benchmark"]
-  , labels=rank[j & handle!="benchmark"]
-  , pos=1, xpd=T)
-title(paste0("auc (", tolower(gsub("\\..*", "", unique(plate)[k])),")"))
-abline(h=1, lty=2)
-abline(v=0, lty=2)
-abline(lm(auc/bench ~ log(sec/bench.sec), subset=j & handle!="benchmark"),lty=3)
-# Panel 2,3
-# percent over bench
-bench <- cor[j & handle=="benchmark"]
-plot(cor/bench ~ log(sec/bench.sec), subset=j & handle!="benchmark"
-  , xlim=c(-5, 0)
-  , ylim=c(0.99, 1.07)
-  , pch=c(16,17)[factor(plate)]
-  , col=c(1,2)[factor(handle=="benchmark")]
-  , xlab="log(runtime / benchmark)"
-  , ylab="rank correlation / bench")
-abline(h=1, lty=2)
-abline(v=0, lty=2)
-abline(lm(cor/bench ~ log(sec/bench.sec), subset=j & handle!="benchmark"), lty=3)
-text(x=log(sec/bench.sec)[j & handle!="benchmark"]
-   , y=(cor/bench)[j & handle!="benchmark"]
-  , labels=rank[j & handle!="benchmark"]
-  , pos=1, xpd=T)
-title(paste0("correlation (", tolower(gsub("\\..*", "", unique(plate)[k])), ")"))
+
+
+```{r acc-vs-speed, fig.width=2.75*3, fig.height=2.75, fig.cap=cap, echo=FALSE}
+cap <- "\\label{fig:acc-vs-speed}Accuracy vs speed on the holdout dataset for the top-nine solutions, by plate. Labels at the dots indicate the rank of the submission in the final leaderboard (1 = first best, 2 = second best, etc.). Dashed lines indicate levels with no improvement over the benchmark. Dotted lines indicate (ols) association between accuracy and speed improvements."
+
+# compute measures
+bench <- handle=="benchmark"
+sec.bench <- sec[bench]
+auc.bench <- auc[bench]
+cor.bench <- cor[bench]
+kd.bench <- kd_success_freq[bench]
+auc.pc <- auc/auc.bench[factor(plate)]
+cor.pc <- cor/cor.bench[factor(plate)]
+sec.pc <- sec/sec.bench[factor(plate)]
+kd.pc <- kd_success_freq/kd.bench[factor(plate)]
+
+# Plot
+panel <- function(x,y, xlim=c(0,5),ylim=c(0,0.08),xlab="speed increase (%)", legend=T, ...){
+  plot(y ~ x, xlim=xlim, ylim=ylim, xlab=xlab
+    , pch=c(15:16)[factor(plate)]
+    , col=c(1,2)[factor(plate)]
+    , subset=!bench
+    ,...)
+  if(legend)
+    legend("topright", pch=15:16, col=1:2, legend=c("plate 1", "plate 2"), bty="n")
+  text(y=y[!bench],x=x[!bench],labels=rank[!bench],pos=3,xpd=T)
+  abline(h=0,lty=2)
+  abline(v=0,lty=2)
+  abline(lm(y[!bench] ~ x[!bench]), lty=3)
 }
+par(mfrow=c(1,3), mar=c(4,4,2,1)+0.1)
+panel(abs(log(sec.pc)),log(auc.pc), ylim=c(0,0.04), ylab="auc increase (%)")
+mtext(at=c(0,0), "A. AUC vs speed", adj=0, font=2)
+panel(abs(log(sec.pc)),log(cor.pc), ylim=c(0,0.07), ylab="corr increase (%)")
+mtext(at=c(0,0), "B. Correlation vs speed", adj=0, font=2)
+panel(abs(log(sec.pc)), log(kd.pc),ylim=c(-0.1,0.1), ylab="kd success (%)")
+mtext(at=c(0,0), "C. KD success vs speed", adj=0, font=2)
+
+# Ensambles 20 x 20
+# auc.ens <- sapply(auc, function(x) auc + (x - auc*x)*runif(1))
+# sec.ens <- sapply(sec, function(x) sec + x)
+# plot(auc.ens ~ log(sec.ens), pch=16)
 ```
 
 
-```{r, include=F}
-# avg. improvement across plates, methods, etc. 
-bench <- auc[handle=="benchmark"]
-bench.sec <- sec[handle=="benchmark"]
-bench.cor <- cor[handle=="benchmark"]
-lm(auc/bench[factor(plate)] ~ 1, subset=handle!="benchmark") # ~= +17%
-lm(cor/bench.cor[factor(plate)] ~ 1, subset=handle!="benchmark") # ~= +27%
-lm(log(sec/bench.sec[factor(plate)]) ~ 1, subset=handle!="benchmark") # ~= -1.8
-```
