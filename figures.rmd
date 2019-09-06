@@ -18,7 +18,7 @@ library(dplyr, warn=F)
 
 ```{r, echo=FALSE}
 # data
-speed_acc <- fread("data/holdout_score_time.txt")
+speed_acc <- fread("data/holdout_score_time.txt", na.strings="n/a")
 soln_desc <- fread("data/solution_descriptions.txt", na.strings="n/a")
 speed_acc <- merge(speed_acc, soln_desc, by="handle")
 ```
@@ -34,6 +34,9 @@ speed_acc[, acc := cor^2 * auc^2]
 ```{r speed_acc, echo=FALSE, fig.cap="\\label{speed_acc}Accuracy vs. Speed", fig.width=6}
 # plot
 # let's just show one plate for now
+levs <- c("DTR", "GMM", "k-means", "CNN", "other")
+speed_acc$method_short <- factor(speed_acc$method_short,
+                                 levels=levs)
 ggplot(speed_acc[grepl("^DPK", plate)],
        aes(x=sec, y=acc, label=rank)) +
   geom_point(aes(color=method_short), size=2) +
@@ -109,6 +112,37 @@ mtext(at=c(0,0), "C.", adj=0, font=2)
 # sec.ens <- sapply(sec, function(x) sec + x)
 # plot(auc.ens ~ log(sec.ens), pch=16)
 ```
+
+## Gene knockdowns
+
+```{r kd_barplot, echo=F, fig.cap=cap, fig.width=8}
+cap <- "\\label{kd_barplot}**KD success frequency**" 
+
+speed_acc <- fread("data/holdout_score_time.txt", na.strings = "n/a")
+soln_desc <- fread("data/solution_descriptions.txt", na.strings="n/a")
+soln_desc <- rbind(soln_desc, data.table(rank="ground-truth",
+                                         handle="ground-truth",
+                                         method="ground-truth",
+                                         method_short="GT"),
+                   use.names=T, fill=T)
+speed_acc <- merge(speed_acc, soln_desc, by="handle")
+levs <- c("DTR", "GMM", "k-means", "CNN", "other", "GT")
+speed_acc$method_short <- factor(speed_acc$method_short,
+                                 levels=levs)
+with(speed_acc[!is.na(kd_success_freq)][
+  order(kd_success_freq, decreasing = F)
+], {
+  maxval <- max(kd_success_freq)
+  offset_factor <- 0.1
+  offset <- offset_factor * maxval
+  bp <- barplot(kd_success_freq, names.arg=handle, las=3,
+           ylab="Fraction of successful KD predictions",
+           main="Gene Knockdown Success Frequency",
+           ylim=c(0, maxval + (2 * offset)))
+  text(bp, kd_success_freq + offset, labels=round(kd_success_freq, 2), col="red")
+})
+```
+
 
 ## Clustering of solutions
 ```{r clus_setup, echo=FALSE}

@@ -98,6 +98,7 @@ For a given bead type a in a given dataset p, let AUCp, c denote the correspondi
 AUCp = (AUCp, hight + AUCp, low) / 2
 
 ### Speed
+
 For a given dataset p, the speed component of the score is computed as the run time in seconds for deconvoluting the data in both test cases: Runtimep
 
 Notice that multi-theading is allowed in this match, and thus highly recommended. Your submission will be tested on multi-core machines (presumably, 8 cores). The maximum execution time of your solution will be capped by 30 minutes.
@@ -110,8 +111,6 @@ SCORE = MAX_SCORE * (MAX(CORp, 0))2 * AUCp2 * exp(- Tsolution / (3 * Tbenchmark)
 where Tbenchmark is the deconvolution time required by the reference DPeak implementation
 
 
-```{r, echo=F}
-# TODO: add scoring schematic
-```
+
 
 

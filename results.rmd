@@ -46,6 +46,10 @@ Todos:
 
 \color{black}
 
+### Knockdown predictions
+
+### Reduction of difference between low and high bead proportions
+
 ## Clustering Submissions
 
 Given the variety of methods represented amongst the prize-winning solutions, we sought to assess whether there were notable differences in the predictions generated. Using the holdout dataset, we generated a two-dimensional projection of the $UNI$ ground truth data and $DUO$-derived benchmark and contenstant predictions for both $DECONV$ and $DE$ data using t-distributed stochastic neighbor embedding (t-SNE, van der Maaten et al [ref]). Each point represents a single ground truth or predicted sample.
@@ -54,7 +58,7 @@ We observe that in $DECONV$ data the samples primarily cluster by pertubagen typ
 
 After the standard transformation to $DE$ data we observe that the t-SNE projection is much more homogenous, indicating that perturbagen type and algorithm-specific affects have been greatly reduced (\Fig{tsne_figure} D). This is reassuring, given that in production mode downstream analysis of this data will be based on $DE$. It also suggests that integrating multiple deconvolution algorithms into an ensemble method might be feasible. 
 
-## Ensambles.
+## Ensemble approaches
 
 Figure 3. (A) Scatterplot runtime vs accuracy for ensamble (slides p. 163)
 
