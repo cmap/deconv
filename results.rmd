@@ -48,10 +48,13 @@ Todos:
 - In Methods section, explain accuracy as measured in the coontest (slide p. 124). And then explain, KD additional test of accuracy (slides p. 128). Results are good on both.
 - (How far froom the max achievable improvement in accuracy (down-sampling uni)?)
 - Discrepancy between genes with high/low bead counts.
+- Update equations to use Latex
 
 \color{black}
 
 ### Knockdown predictions
+
+In addition to the Spearman correlation and extreme modulation AUC metrics used in the contest, we were also able to asses each algorithms ability to correctly predict the successful knockdown (KD) of landmark genes. The shRNA experiments used to generate the contest data were constructed such that each shRNA specifically targeted one of the landmark genes. Hence, the expectation in each of those experiments is that the targeted landmark gene should exhibit a greatly reduced expression level, which should manifest in a very low z-score in $DE$ data. Additionally, we expect that the targeted landmark gene should be most dramatically down-regulated in the samples in which it was directly targeted. To assess this, we compute a gene-wise rank by $DE$ z-score across all samples in a given plate. Criteria for indicating a successful KD are $zs <= -2 AND rank <= -10$. For each algorith, we compouted the KD success frequency as the fraction of the 376 landmark-targeting shRNA experiments in the holdout data for which the predictions met these success criteria. We used the $UNI$ ground-truth data to estimate the maximum achievable KD success frequency, which in this case was 0.8. We observe that all but 2 of the top 9 contestant algorithms achieve a higher KD success frequency than the benchmark solution (\Fig{kd_barplot}). These results suggest that the algorithm improvements, as assessed by the accuracy metrics used in the contest, translate to improvements in biologically relevent metrics used in common applications of L1000 data.
 
 ### Reduction of difference between low and high bead proportions
 
@@ -72,6 +75,6 @@ Speed vs accuarcy trade-off. Integration one or multiple methods?
 
 ## Minors:
 
-- signs of ovverfitting (compare traing vs testing)
+- signs of overfitting (compare traing vs testing)
 
 
