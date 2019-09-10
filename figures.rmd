@@ -7,6 +7,7 @@ my.pal <- palette(c("dodgerblue","brown","orange"))
 library(data.table)
 library(ggplot2)
 library(ggrepel)
+library(cmapR)
 library(dplyr, warn=F)
 ```
 
@@ -145,6 +146,35 @@ with(speed_acc[!is.na(kd_success_freq)][
            ylim=c(0, maxval + (2 * offset)))
   text(bp, kd_success_freq + offset, labels=round(kd_success_freq, 2), col="red")
 })
+```
+
+## High / Low bead discrepancy
+
+```{r hi_lo_bead_input, echo=F}
+# read the GCTX file as a GCT object
+# data are stored as a matrix with genes on rows and sample/algo combos on columns
+(ds <- parse.gctx("data/DECONV_holdout_n8228x976.gctx"))
+# read annotations and apply to columns
+annot <- fread("data/holdout_sample_annotations.txt")
+gene_annot <- fread("data/barcode_to_gene_map.txt", colClasses = c("gene_id"="character"))
+ds <- annotate.gct(ds, annot, dim="col", keyfield="id")
+ds <- annotate.gct(ds, gene_annot, dim="row", keyfield="gene_id")
+```
+
+```{r}
+# example - extract just the ground truth data (columns)
+gt_ds <- subset.gct(ds, cid=which(ds@cdesc$handle=="ground-truth"))
+# and plot histogram of expression values
+hist(gt_ds@mat)
+```
+
+```{r}
+# example - plot raw expression values by high vs low bead in ground truth
+row_groups <- with(gt_ds@rdesc, split(1:nrow(gt_ds), high_prop))
+boxplot(list(
+  low_prop = gt_ds@mat[row_groups[[1]], ],
+  high_prop = gt_ds@mat[row_groups[[2]], ]
+), ylab="raw expression")
 ```
 
 
