@@ -3,7 +3,6 @@
 
 
 ```{r plot-setup-and-libraries, echo=FALSE, warning=FALSE}
-palette(c("dodgerblue","brown","orange"))
 my.pal <- palette(c("dodgerblue","brown","orange"))
 library(data.table)
 library(ggplot2)
@@ -75,7 +74,7 @@ method2[grep("Gaussian", method)] <- "gaussian mixture"
 method2[grep("forest", method)] <- "rand. forest"
 
 # Plot
-panel <- function(x,y, xlim=c(0,5),ylim=c(0,0.08),xlab="speed increase (%)", legend=T, ...){
+panel <- function(x,y, xlim=c(0,5), ylim=c(0,0.08), xlab="speed increase (%)", legend=T, ...){
   plot(y ~ x, xlim=xlim, ylim=ylim, xlab=xlab
     , pch=c(15:16)[factor(plate)]
     , col=c(1,2)[factor(plate)]
@@ -100,13 +99,13 @@ panel <- function(x,y, xlim=c(0,5),ylim=c(0,0.08),xlab="speed increase (%)", leg
   abline(v=0,lty=2)
   abline(lm(y[!bench] ~ x[!bench]), lty=3)
 }
-par(mfrow=c(1,3), mar=c(4,4,2,1)+0.1)
+par(mfrow=c(1,2), mar=c(4,4,2,1)+0.1)
 panel(abs(log(sec.pc)),log(auc.pc), ylim=c(0,0.04), ylab="auc increase (%)")
 mtext(at=c(0,0), "A.", adj=0, font=2)
 panel(abs(log(sec.pc)),log(cor.pc), ylim=c(0,0.07), ylab="corr increase (%)")
 mtext(at=c(0,0), "B.", adj=0, font=2)
-panel(abs(log(sec.pc)), log(kd.pc),ylim=c(-0.1,0.1), ylab="kd success (%)")
-mtext(at=c(0,0), "C.", adj=0, font=2)
+#panel(abs(log(sec.pc)), log(kd.pc),ylim=c(-0.1,0.1), ylab="kd success (%)")
+#mtext(at=c(0,0), "C.", adj=0, font=2)
 
 # Ensambles 20 x 20
 # auc.ens <- sapply(auc, function(x) auc + (x - auc*x)*runif(1))

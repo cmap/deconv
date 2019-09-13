@@ -96,7 +96,7 @@
 \title{Improving Deconvolution Methods in Biology through Open Innovation
 Competitions: an Application to the Connectivity Map}
 \author{Author 1 \and Author 2 \and \ldots{}}
-\date{Last updated: Sep 05, 2019}
+\date{Last updated: Sep 08, 2019}
 
 \begin{document}
 \maketitle
@@ -281,6 +281,12 @@ them. Another limitation is that it is computationally expensive (the
 current Matlab implementation takes about 30 minutes on a 12-core server
 to process one set of 384 experiments).
 
+Additionally, because half the landmark genes are measured using
+two-fold less bead than the other half, these low-proportion genes are
+subject to increased variability, which the benchmark k-means solution
+does not mitigate. Hence, there is an unequal noise distribution in the
+benchmark's deconvoluted expression profiles.
+
 \hypertarget{data-generation-for-contest}{%
 \subsection{Data generation for
 contest}\label{data-generation-for-contest}}
@@ -450,9 +456,9 @@ GMM\tabularnewline
 
 Fig. 1. Participation stats (Submission counts)
 
-\hypertarget{overall-accuracy-and-speed.}{%
+\hypertarget{overall-accuracy-and-speed}{%
 \subsection{Overall accuracy and
-speed.}\label{overall-accuracy-and-speed.}}
+speed}\label{overall-accuracy-and-speed}}
 
 Using the holdout dataset, we computed the average AUC (on level-four
 data), the average rank correlation (level-two data), as well as the
@@ -515,21 +521,95 @@ Todos:
   (down-sampling uni)?)
 \item
   Discrepancy between genes with high/low bead counts.
+\item
+  Update equations to use Latex
 \end{itemize}
 
 \color{black}
 
-\hypertarget{clustering-submissions.}{%
-\subsection{Clustering Submissions.}\label{clustering-submissions.}}
+\hypertarget{knockdown-predictions}{%
+\subsubsection{Knockdown predictions}\label{knockdown-predictions}}
 
-Do methods overlap? Not at a level that we care about.
+In addition to the Spearman correlation and extreme modulation AUC
+metrics used in the contest, we were also able to asses each algorithms
+ability to correctly predict the successful knockdown (KD) of landmark
+genes. The shRNA experiments used to generate the contest data were
+constructed such that each shRNA specifically targeted one of the
+landmark genes. Hence, the expectation in each of those experiments is
+that the targeted landmark gene should exhibit a greatly reduced
+expression level, which should manifest in a very low z-score in \(DE\)
+data. Additionally, we expect that the targeted landmark gene should be
+most dramatically down-regulated in the samples in which it was directly
+targeted. To assess this, we compute a gene-wise rank by \(DE\) z-score
+across all samples in a given plate. Criteria for indicating a
+successful KD are \(zs <= -2 AND rank <= -10\). For each algorith, we
+compouted the KD success frequency as the fraction of the 376
+landmark-targeting shRNA experiments in the holdout data for which the
+predictions met these success criteria. We used the \(UNI\) ground-truth
+data to estimate the maximum achievable KD success frequency, which in
+this case was 0.8. We observe that all but 2 of the top 9 contestant
+algorithms achieve a higher KD success frequency than the benchmark
+solution ({\it Fig. \ref{fig:kd_barplot}}). These results suggest that
+the algorithm improvements, as assessed by the accuracy metrics used in
+the contest, translate to improvements in biologically relevent metrics
+used in common applications of L1000 data.
 
-Figure 3. (A) Clustering by genes (high ovverlap); (B) TS1-2 Seem to be
-clustering by method (C) Differences mitigated after standard
-normalization procedure
+\color{red}
 
-\hypertarget{ensambles.}{%
-\subsection{Ensambles.}\label{ensambles.}}
+TODO: 1) compute precision/recall for KD predictions
+
+\color{black}
+
+\hypertarget{reduction-of-difference-between-low-and-high-bead-proportions}{%
+\subsubsection{Reduction of difference between low and high bead
+proportions}\label{reduction-of-difference-between-low-and-high-bead-proportions}}
+
+One of the issues with the benchmark k-means solution is that it does
+little to mitigate the discrepancy in prediction accuracy between the
+genes measued with high and low bead proportions. We observe that the
+contestant solutions reduce this difference, as measured
+
+\color{red}
+
+TODO: 1) global distributions of DECONV values split by hi/low prop 2)
+include UNI for comparison 3) show that variance is higher for low prop
+but difference is reduced w/ new algos
+
+\color{black}
+
+\hypertarget{clustering-submissions}{%
+\subsection{Clustering Submissions}\label{clustering-submissions}}
+
+Given the variety of methods represented amongst the prize-winning
+solutions, we sought to assess whether there were notable differences in
+the predictions generated. Using the holdout dataset, we generated a
+two-dimensional projection of the \(UNI\) ground truth data and
+\(DUO\)-derived benchmark and contenstant predictions for both
+\(DECONV\) and \(DE\) data using t-distributed stochastic neighbor
+embedding (t-SNE, van der Maaten et al {[}ref{]}). Each point represents
+a single ground truth or predicted sample.
+
+We observe that in \(DECONV\) data the samples primarily cluster by
+pertubagen type, with the exeption of the ground truth \(UNI\) data,
+which appears distinct from the deconvoluted samples
+({\it Fig. \ref{fig:tsne_figure}} A and B). Separating the samples by
+algorithm reveals commonalities in the predictions generated by similar
+algorithms ({\it Fig. \ref{fig:tsne_figure}} C). For example, the
+decision tree regressor (DTR) algorithms have similar `footprints' in
+the projection, as do the k-means and Gaussian mixture model (GMM)
+algorithms. This suggests that in general similar algorithms generate
+predictions with similar properties.
+
+After the standard transformation to \(DE\) data we observe that the
+t-SNE projection is much more homogenous, indicating that perturbagen
+type and algorithm-specific affects have been greatly reduced
+({\it Fig. \ref{fig:tsne_figure}} D). This is reassuring, given that in
+production mode downstream analysis of this data will be based on
+\(DE\). It also suggests that integrating multiple deconvolution
+algorithms into an ensemble method might be feasible.
+
+\hypertarget{ensemble-approaches}{%
+\subsection{Ensemble approaches}\label{ensemble-approaches}}
 
 Figure 3. (A) Scatterplot runtime vs accuracy for ensamble (slides
 p.~163)
@@ -542,7 +622,7 @@ Speed vs accuarcy trade-off. Integration one or multiple methods?
 \begin{itemize}
 \tightlist
 \item
-  signs of ovverfitting (compare traing vs testing)
+  signs of overfitting (compare traing vs testing)
 \end{itemize}
 
 \hypertarget{discussion}{%
@@ -586,23 +666,14 @@ Discuss implications of these methods for CMap production
 \begin{figure}
 \centering
 \includegraphics{figures/deconvolution_contest Fig2_Final_revised.png}
-\caption{Schematic illustrating accuracy components of scoring function}
+\caption{\textbf{Schematic illustrating accuracy components of scoring
+function}. The accuracy component is computed as the product of
+gene-wise Spearman correlations with ground truth and the area under the
+curve AUC of extreme modulations.}
 \end{figure}
 
 \hypertarget{accuracy-vs.-speed}{%
 \subsection{Accuracy vs.~Speed}\label{accuracy-vs.-speed}}
-
-\hypertarget{scoring-accuracy-1}{%
-\subsection{Scoring accuracy}\label{scoring-accuracy-1}}
-
-\begin{figure}
-\centering
-\includegraphics{figures/deconvolution_contest Fig2_Final_revised.png}
-\caption{Schematic illustrating accuracy components of scoring function}
-\end{figure}
-
-\hypertarget{accuracy-vs.-speed-1}{%
-\subsection{Accuracy vs.~Speed}\label{accuracy-vs.-speed-1}}
 
 \begin{figure}
 \centering
@@ -628,18 +699,33 @@ between accuracy and speed improvements. The name of the most accurate
 and fastest approach are highlighted in each panel.}
 \end{figure}
 
+\hypertarget{gene-knockdowns}{%
+\subsection{Gene knockdowns}\label{gene-knockdowns}}
+
+\begin{figure}
+\centering
+\includegraphics{main_files/figure-latex/kd_barplot-1.pdf}
+\caption{\label{kd_barplot}\textbf{KD success frequency.} Bars represent
+the fraction of landmark-targeting shRNAs experiments in which the DE
+values indicated successful knockdown (KD). Success criteria are a
+z-score of less than -2 and a gene-wise rank of less than 10. Results
+are shown for the one plate of shRNA holdout data, containing 376
+landmark-targeting shRNA experiments.}
+\end{figure}
+
 \hypertarget{clustering-of-solutions}{%
 \subsection{Clustering of solutions}\label{clustering-of-solutions}}
 
 \begin{figure}
 \centering
 \includegraphics{main_files/figure-latex/tsne_figure-1.pdf}
-\caption{\label{tsne_figure}t-SNE projection of holdout data. Each point
-represents the 2D projection of a sample generated by UNI ground truth
-(GT) or applying one of the deconvolution algorithms to DUO data. DECONV
-data colored by perturbagen type (A) and algorithm type (B). DECONV (C)
-and DE (D) data colored by algorithm type and stratified by each
-individual implementation.}
+\caption{\label{tsne_figure}\textbf{t-SNE projection of deconvoluted
+data.} Each point represents the 2D projection of a sample generated by
+UNI ground truth (GT) or by applying a deconvolution algorithm to DUO
+data. t-SNE was run on the 2 plates of holdout data, one each containing
+compound and shRNA treatmens. DECONV data colored by perturbagen type
+(A) and algorithm type (B). DECONV (C) and DE (D) data colored by
+algorithm type and stratified by each individual implementation.}
 \end{figure}
 
 \clearpage
