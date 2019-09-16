@@ -1,7 +1,5 @@
 # Figures
 
-
-
 ```{r plot-setup-and-libraries, echo=FALSE, warning=FALSE}
 my.pal <- palette(c("dodgerblue","brown","orange"))
 library(data.table)
@@ -31,7 +29,7 @@ speed_acc[, acc := cor^2 * auc^2]
 ```
 
 
-```{r speed_acc, echo=FALSE, fig.cap="\\label{speed_acc}Accuracy vs. Speed", fig.width=6}
+```{r speed_acc, include=FALSE}
 # plot
 # let's just show one plate for now
 levs <- c("DTR", "GMM", "k-means", "CNN", "other")
@@ -161,24 +159,63 @@ ds <- annotate.gct(ds, annot, dim="col", keyfield="id")
 ds <- annotate.gct(ds, gene_annot, dim="row", keyfield="gene_id")
 ```
 
-```{r}
-# example - extract just the ground truth data (columns)
-gt_ds <- subset.gct(ds, cid=which(ds@cdesc$handle=="ground-truth"))
-# and plot histogram of expression values
-hist(gt_ds@mat)
+```{r plot-ecdf, echo=FALSE, fig.width=9,fig.height=9, fig.cap=cap}
+
+# datasets by handles
+handles <- unique(ds@cdesc$handle)
+all_ds <- lapply(handles, function(h) subset.gct(ds, cid=which(ds@cdesc$handle==h)))
+names(all_ds) <- handles
+
+# a few genes example
+gt_ds <- all_ds[["ground-truth"]]
+bench_ds <- all_ds[["benchmark"]]
+gt.1 <- gt_ds@mat[1:5, ] # one sample
+bench.1 <- bench_ds@mat[1:5, ]
+uni <- apply(gt.1, 1, function(x) c(Est=mean(x),SE=sd(x)))
+duo.bench <- apply(bench.1, 1, function(x) c(Est=mean(x),SE=sd(x)))
+knitr::kable(rbind(uni, duo.bench), digits=0)
+
+
+# compute stats
+compute.stats <- function(mat) {
+  out <- list()
+  out$gene_level.mean <- apply(mat, 1, mean)
+  out$gene_level.sd <- apply(mat, 1, sd)
+  out$sample_level.mean <- apply(mat, 2, mean)
+  out$sample_level.sd <- apply(mat, 2, sd)
+  return(out)
+}
+all_ds.stats <- lapply(all_ds, function(x) compute.stats(x@mat))
+
+# Compute stats for Uni and Duo benchmark
+gt_ds.stats <- all_ds.stats[["ground-truth"]] 
+bench_ds.stats <- all_ds.stats[["benchmark"]] 
+
+# Plot differences
+cap <- paste("Differences in estimates -- ", names(gt_ds.stats))
+for (k in names(gt_ds.stats)) {
+  par(mfrow=c(3,3), mar=c(4,2,2,2)+.1)
+  for(j in setdiff(handles, c("ground-truth","benchmark"))) {
+    ecdf(gt_ds.stats[[k]] %>% log) %>% plot(main=j, xlab=k, pch=".", col=1)
+    ecdf(bench_ds.stats[[k]] %>% log) %>% lines(pch=".", col=2)
+    ecdf(all_ds.stats[[j]][[k]] %>% log) %>% lines(pch=".", col=3)
+    legend("topleft", col=1:3, lty=1, bty="n", c("Uni (no-deconv)", "Duo (k-means)", "Duo (comp.)"))
+  }
+}
 ```
 
 ```{r}
 # example - plot raw expression values by high vs low bead in ground truth
 row_groups <- with(gt_ds@rdesc, split(1:nrow(gt_ds), high_prop))
 boxplot(list(
-  low_prop = gt_ds@mat[row_groups[[1]], ],
-  high_prop = gt_ds@mat[row_groups[[2]], ]
+  low_prop = log(gt_ds@mat[row_groups[[1]], ]),
+  high_prop = log(gt_ds@mat[row_groups[[2]], ])
 ), ylab="raw expression")
 ```
 
 
 ## Clustering of solutions
+
 ```{r clus_setup, echo=FALSE}
 # read tsne files and other data
 tsne_de <- fread("data/holdout_tsne_DE.txt")
