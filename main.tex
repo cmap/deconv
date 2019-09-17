@@ -136,7 +136,7 @@
 \title{Improving Deconvolution Methods in Biology through Open Innovation
 Competitions: an Application to the Connectivity Map}
 \author{Author 1 \and Author 2 \and \ldots{}}
-\date{Last updated: Sep 10, 2019}
+\date{Last updated: Sep 16, 2019}
 
 \begin{document}
 \maketitle
@@ -618,7 +618,10 @@ but difference is reduced w/ new algos
 \color{black}
 
 \hypertarget{clustering-submissions}{%
-\subsection{Clustering Submissions}\label{clustering-submissions}}
+\subsection{Clustering submissions}\label{clustering-submissions}}
+
+\hypertarget{d-projection}{%
+\subsubsection{2D projection}\label{d-projection}}
 
 Given the variety of methods represented amongst the prize-winning
 solutions, we sought to assess whether there were notable differences in
@@ -647,6 +650,21 @@ type and algorithm-specific affects have been greatly reduced
 production mode downstream analysis of this data will be based on
 \(DE\). It also suggests that integrating multiple deconvolution
 algorithms into an ensemble method might be feasible.
+
+\hypertarget{clustering-by-gene-level-performance}{%
+\subsubsection{Clustering by gene-Level
+performance}\label{clustering-by-gene-level-performance}}
+
+We observed that the global structure of DE data seemed independent of
+algorithm type in general. We additionally sought to understand whether
+there were differences between the algorithms at the individual gene
+level. To assess this, we clustered the algorithms in the space of their
+gene-level accuracy metrics (Figure XX). We observe that for a large
+proportion of genes, all algorithms perform about equally well. There
+are subsets of genes for which accuracy is a bit more
+algorithm-dependent \color{red}(ex. foo bar).\color{black} These
+differences suggest complementarity between the algorithms which could
+potentially be leveraged using an ensemble approach.
 
 \hypertarget{ensemble-approaches}{%
 \subsection{Ensemble approaches}\label{ensemble-approaches}}
@@ -744,17 +762,6 @@ and fastest approach are highlighted in each panel.}
 \hypertarget{gene-knockdowns}{%
 \subsection{Gene knockdowns}\label{gene-knockdowns}}
 
-\begin{figure}
-\centering
-\includegraphics{main_files/figure-latex/kd_barplot-1.pdf}
-\caption{\label{kd_barplot}\textbf{KD success frequency.} Bars represent
-the fraction of landmark-targeting shRNAs experiments in which the DE
-values indicated successful knockdown (KD). Success criteria are a
-z-score of less than -2 and a gene-wise rank of less than 10. Results
-are shown for the one plate of shRNA holdout data, containing 376
-landmark-targeting shRNA experiments.}
-\end{figure}
-
 \hypertarget{high-low-bead-discrepancy}{%
 \subsection{High / Low bead
 discrepancy}\label{high-low-bead-discrepancy}}
@@ -783,9 +790,17 @@ discrepancy}\label{high-low-bead-discrepancy}}
 ##   ..@ src    : chr "data/DECONV_holdout_n8228x976.gctx"
 \end{verbatim}
 
-\begin{verbatim}
-## [1] 976 748
-\end{verbatim}
+\begin{longtable}[]{@{}lrrrrr@{}}
+\toprule
+& 55847 & 7416 & 10174 & 25803 & 466\tabularnewline
+\midrule
+\endhead
+Est & 4692 & 6159 & 630 & 1099 & 1310\tabularnewline
+SE & 415 & 441 & 104 & 346 & 250\tabularnewline
+Est & 5436 & 5569 & 1018 & 1153 & 1486\tabularnewline
+SE & 597 & 625 & 293 & 374 & 282\tabularnewline
+\bottomrule
+\end{longtable}
 
 \includegraphics{main_files/figure-latex/plot-ecdf-1.pdf}
 \includegraphics{main_files/figure-latex/plot-ecdf-2.pdf}

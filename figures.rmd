@@ -54,7 +54,7 @@ n <- nrow(speed_acc)
 attach(speed_acc)
 ```
 
-```{r acc-vs-speed, fig.width=2.75*3, fig.height=2.75, fig.cap=cap, echo=FALSE}
+```{r acc-vs-speed, fig.width=8, fig.height=3.5, fig.cap=cap, echo=FALSE}
 cap <- "\\label{fig:acc-vs-speed}**Accuracy vs speed.** This figure shows the relationship between improvements in AUC (A.), correlation (B.) and fraction of correctly predicted knocked-down genes(C.) and improvements in speed for the top-nine solutions. These measures are computed for each of the plates on the holdout dataset. Labels at the dots indicate the rank of the submission in the final leaderboard (1 = first best, 2 = second best, etc.). Dashed lines indicate levels with no improvement over the benchmark. Dotted lines indicate (ols) association between accuracy and speed improvements. The name of the most accurate and fastest approach are highlighted in each panel."
 
 # compute measures
@@ -148,7 +148,7 @@ mtext(at=c(0,0), "B.", adj=0, font=2)
 
 ## High / Low bead discrepancy
 
-```{r hi_lo_bead_input, echo=F}
+```{r hi_lo_bead_input, include=FALSE}
 # read the GCTX file as a GCT object
 # data are stored as a matrix with genes on rows and sample/algo combos on columns
 (ds <- parse.gctx("data/DECONV_holdout_n8228x976.gctx"))
@@ -166,15 +166,9 @@ handles <- unique(ds@cdesc$handle)
 all_ds <- lapply(handles, function(h) subset.gct(ds, cid=which(ds@cdesc$handle==h)))
 names(all_ds) <- handles
 
-# a few genes example
+# benchmark vs ground truth
 gt_ds <- all_ds[["ground-truth"]]
 bench_ds <- all_ds[["benchmark"]]
-gt.1 <- gt_ds@mat[1:5, ] # one sample
-bench.1 <- bench_ds@mat[1:5, ]
-uni <- apply(gt.1, 1, function(x) c(Est=mean(x),SE=sd(x)))
-duo.bench <- apply(bench.1, 1, function(x) c(Est=mean(x),SE=sd(x)))
-knitr::kable(rbind(uni, duo.bench), digits=0)
-
 
 # compute stats
 compute.stats <- function(mat) {
