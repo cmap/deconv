@@ -8,6 +8,7 @@ library(data.table)
 library(ggplot2)
 library(ggrepel)
 library(cmapR)
+library(pheatmap)
 library(dplyr, warn=F)
 ```
 
@@ -272,5 +273,35 @@ cowplot::plot_grid(p_deconv_color_type,
                    p_de,
                    align="hv", ncol=2, nrow=2, rel_heights = c(1, 1.6),
                    labels=LETTERS[1:4])
+```
+
+## Clustering gene-level correlations
+```{r gene_clus_setup, echo=F}
+corr_ds <- parse.gctx("data/UNI_DUO_gene_spearman_correlations_holdout_n20x976.gctx")
+soln_desc <- fread("data/solution_descriptions.txt", na.strings="n/a")
+corr_ds <- annotate.gct(corr_ds, soln_desc, dim="col", keyfield = "handle")
+```
+
+```{r gene_clus, echo=F, fig.cap=cap}
+cap <- "\\label{gene_clus}**Clustering gene-level accuracy.** A clustered matrix of the gene-level correlations between algorithm predictions and UNI ground truth using DECONV data. Columns correspond to genes and rows to algorithms."
+this_ds <- subset.gct(corr_ds, cid=grep("^DPK", corr_ds@cid))
+N <- 100
+m <- t(this_ds@mat)
+rownames(m) <- this_ds@cdesc$handle
+idx <- match(rownames(m), soln_desc$handle)
+annot_df <- data.frame(method=soln_desc$method_short[idx])
+annot_df$method <- factor(annot_df$method,
+                          levels=levs)
+rownames(annot_df) <- rownames(m)
+# rownames(m) <- paste(soln_desc$method_short, rownames(m), sep=":")
+x <- seq(min(m), max(m), length.out=N)
+mypal <- c(
+  colorRampPalette(c("blue", "white"))(sum(x < 0)),
+  colorRampPalette(c("white", "red"))(sum(x >= 0))
+)
+pheatmap(m, color=mypal, scale="none",
+         show_colnames = F,
+         annotation_row=annot_df,
+         annotation_names_row = F)
 ```
 
