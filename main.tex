@@ -38,6 +38,46 @@
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
 \usepackage[margin=1.25in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs}
 % Fix footnotes in tables (requires footnote package)
 \IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{longtable}}{}
@@ -96,7 +136,7 @@
 \title{Improving Deconvolution Methods in Biology through Open Innovation
 Competitions: an Application to the Connectivity Map}
 \author{Author 1 \and Author 2 \and \ldots{}}
-\date{Last updated: Sep 08, 2019}
+\date{Last updated: Sep 16, 2019}
 
 \begin{document}
 \maketitle
@@ -578,7 +618,10 @@ but difference is reduced w/ new algos
 \color{black}
 
 \hypertarget{clustering-submissions}{%
-\subsection{Clustering Submissions}\label{clustering-submissions}}
+\subsection{Clustering submissions}\label{clustering-submissions}}
+
+\hypertarget{d-projection}{%
+\subsubsection{2D projection}\label{d-projection}}
 
 Given the variety of methods represented amongst the prize-winning
 solutions, we sought to assess whether there were notable differences in
@@ -607,6 +650,21 @@ type and algorithm-specific affects have been greatly reduced
 production mode downstream analysis of this data will be based on
 \(DE\). It also suggests that integrating multiple deconvolution
 algorithms into an ensemble method might be feasible.
+
+\hypertarget{clustering-by-gene-level-performance}{%
+\subsubsection{Clustering by gene-Level
+performance}\label{clustering-by-gene-level-performance}}
+
+We observed that the global structure of DE data seemed independent of
+algorithm type in general. We additionally sought to understand whether
+there were differences between the algorithms at the individual gene
+level. To assess this, we clustered the algorithms in the space of their
+gene-level accuracy metrics (Figure XX). We observe that for a large
+proportion of genes, all algorithms perform about equally well. There
+are subsets of genes for which accuracy is a bit more
+algorithm-dependent \color{red}(ex. foo bar).\color{black} These
+differences suggest complementarity between the algorithms which could
+potentially be leveraged using an ensemble approach.
 
 \hypertarget{ensemble-approaches}{%
 \subsection{Ensemble approaches}\label{ensemble-approaches}}
@@ -660,6 +718,14 @@ Discuss implications of these methods for CMap production
 \hypertarget{figures}{%
 \section{Figures}\label{figures}}
 
+\begin{verbatim}
+## Loading required package: methods
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: rhdf5
+\end{verbatim}
+
 \hypertarget{scoring-accuracy}{%
 \subsection{Scoring accuracy}\label{scoring-accuracy}}
 
@@ -674,12 +740,6 @@ curve AUC of extreme modulations.}
 
 \hypertarget{accuracy-vs.-speed}{%
 \subsection{Accuracy vs.~Speed}\label{accuracy-vs.-speed}}
-
-\begin{figure}
-\centering
-\includegraphics{main_files/figure-latex/speed_acc-1.pdf}
-\caption{\label{speed_acc}Accuracy vs.~Speed}
-\end{figure}
 
 \hypertarget{accuracy-vs-speed-ab}{%
 \subsection{Accuracy vs speed (AB)}\label{accuracy-vs-speed-ab}}
@@ -702,16 +762,63 @@ and fastest approach are highlighted in each panel.}
 \hypertarget{gene-knockdowns}{%
 \subsection{Gene knockdowns}\label{gene-knockdowns}}
 
-\begin{figure}
-\centering
-\includegraphics{main_files/figure-latex/kd_barplot-1.pdf}
-\caption{\label{kd_barplot}\textbf{KD success frequency.} Bars represent
-the fraction of landmark-targeting shRNAs experiments in which the DE
-values indicated successful knockdown (KD). Success criteria are a
-z-score of less than -2 and a gene-wise rank of less than 10. Results
-are shown for the one plate of shRNA holdout data, containing 376
-landmark-targeting shRNA experiments.}
-\end{figure}
+\hypertarget{high-low-bead-discrepancy}{%
+\subsection{High / Low bead
+discrepancy}\label{high-low-bead-discrepancy}}
+
+\begin{verbatim}
+## reading data/DECONV_holdout_n8228x976.gctx
+\end{verbatim}
+
+\begin{verbatim}
+## done
+\end{verbatim}
+
+\begin{verbatim}
+## Formal class 'GCT' [package "cmapR"] with 7 slots
+##   ..@ mat    : num [1:976, 1:8228] 4722 6557 735 1462 1430 ...
+##   .. ..- attr(*, "dimnames")=List of 2
+##   .. .. ..$ : chr [1:976] "55847" "7416" "10174" "25803" ...
+##   .. .. ..$ : chr [1:8228] "ground-truth:DPK.CP003_PC3_24H_X1_B42:A03" "AliGebily:DPK.CP003_PC3_24H_X1_B42:A03" "Ardavel:DPK.CP003_PC3_24H_X1_B42:A03" "balajipro:DPK.CP003_PC3_24H_X1_B42:A03" ...
+##   ..@ rid    : chr [1:976] "55847" "7416" "10174" "25803" ...
+##   ..@ cid    : chr [1:8228] "ground-truth:DPK.CP003_PC3_24H_X1_B42:A03" "AliGebily:DPK.CP003_PC3_24H_X1_B42:A03" "Ardavel:DPK.CP003_PC3_24H_X1_B42:A03" "balajipro:DPK.CP003_PC3_24H_X1_B42:A03" ...
+##   ..@ rdesc  :'data.frame':  976 obs. of  1 variable:
+##   .. ..$ id: chr [1:976] "55847" "7416" "10174" "25803" ...
+##   ..@ cdesc  :'data.frame':  8228 obs. of  1 variable:
+##   .. ..$ id: chr [1:8228] "ground-truth:DPK.CP003_PC3_24H_X1_B42:A03" "AliGebily:DPK.CP003_PC3_24H_X1_B42:A03" "Ardavel:DPK.CP003_PC3_24H_X1_B42:A03" "balajipro:DPK.CP003_PC3_24H_X1_B42:A03" ...
+##   ..@ version: chr(0) 
+##   ..@ src    : chr "data/DECONV_holdout_n8228x976.gctx"
+\end{verbatim}
+
+\begin{longtable}[]{@{}lrrrrr@{}}
+\toprule
+& 55847 & 7416 & 10174 & 25803 & 466\tabularnewline
+\midrule
+\endhead
+Est & 4692 & 6159 & 630 & 1099 & 1310\tabularnewline
+SE & 415 & 441 & 104 & 346 & 250\tabularnewline
+Est & 5436 & 5569 & 1018 & 1153 & 1486\tabularnewline
+SE & 597 & 625 & 293 & 374 & 282\tabularnewline
+\bottomrule
+\end{longtable}
+
+\includegraphics{main_files/figure-latex/plot-ecdf-1.pdf}
+\includegraphics{main_files/figure-latex/plot-ecdf-2.pdf}
+\includegraphics{main_files/figure-latex/plot-ecdf-3.pdf}
+\includegraphics{main_files/figure-latex/plot-ecdf-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# example - plot raw expression values by high vs low bead in ground truth}
+\NormalTok{row_groups <-}\StringTok{ }\KeywordTok{with}\NormalTok{(gt_ds}\OperatorTok{@}\NormalTok{rdesc, }\KeywordTok{split}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(gt_ds), high_prop))}
+\KeywordTok{boxplot}\NormalTok{(}\KeywordTok{list}\NormalTok{(}
+  \DataTypeTok{low_prop =} \KeywordTok{log}\NormalTok{(gt_ds}\OperatorTok{@}\NormalTok{mat[row_groups[[}\DecValTok{1}\NormalTok{]], ]),}
+  \DataTypeTok{high_prop =} \KeywordTok{log}\NormalTok{(gt_ds}\OperatorTok{@}\NormalTok{mat[row_groups[[}\DecValTok{2}\NormalTok{]], ])}
+\NormalTok{), }\DataTypeTok{ylab=}\StringTok{"raw expression"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{main_files/figure-latex/unnamed-chunk-5-1.pdf}
 
 \hypertarget{clustering-of-solutions}{%
 \subsection{Clustering of solutions}\label{clustering-of-solutions}}
