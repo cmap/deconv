@@ -336,3 +336,31 @@ pheatmap(m, color=mypal, scale="none",
          annotation_names_row = F)
 ```
 
+```{r}
+# TODO: a figure showing the performance difference for the top 2 algos per gene
+# genes with a large difference are those that are correctly predicted by only one
+# algo, and hence might be the best candidates for improvement by ensemble approaches
+best_cor_per_gene <- apply(m, 2, max)
+best_algo_per_gene <- rownames(m)[apply(m, 2, which.max)]
+diff_to_next_best <- apply(m, 2, function(x) max(x) - max(x[-which.max(x)]))
+diff_to_median <- apply(m, 2, function(x) max(x) - median(x[-which.max(x)]))
+# par(pty="s")
+# plot(best_cor_per_gene, diff_to_median, col=rgb(0, 0, 0, 0.7),
+#      xlab="Max. Correlation", ylab="Delta from Median Correlation")
+# text_idx <- which(best_cor_per_gene >= 0.4 & diff_to_median >= 0.15)
+# text(best_cor_per_gene[text_idx],
+#      diff_to_median[text_idx],
+#      labels=best_algo_per_gene[text_idx],
+#      adj= -0.1, col="red")
+df <- data.table(handle=best_algo_per_gene,
+                 best_cor=best_cor_per_gene,
+                 med_diff=diff_to_median)
+ggplot(df, aes(x=best_cor, y=med_diff, label=handle)) +
+  geom_point(alpha=0.5) +
+  xlab("Max. correlation") +
+  ylab("Delta from median correlation") +
+  ggtitle("Algorithm-specific gene performance") +
+  geom_text_repel(data=df[best_cor >= 0.4 & med_diff >= 0.15],
+                  color="red")
+```
+

@@ -86,6 +86,10 @@ After the standard transformation to $DE$ data we observe that the t-SNE project
 
 We observed that the global structure of DE data seemed independent of algorithm type in general. We additionally sought to understand whether there were differences between the algorithms at the individual gene level. To assess this, we clustered the algorithms in the space of their gene-level accuracy metrics (Figure XX). We observe that for a large proportion of genes, all algorithms perform about equally well. There are subsets of genes for which accuracy is a bit more algorithm-dependent \color{red}(ex. foo bar).\color{black} These differences suggest complementarity between the algorithms which could potentially be leveraged using an ensemble approach.
 
+\color{red}
+It seems that the gene-level performance for the top algorithms is quite similar. There are very few for which one algorithm is notably different than the rest. This does not immediately suggest obvious complementarity between the algorithms, but we can formally test this by aggregating the predictions from all possible algorithm combinations and assessing their accuracy.
+\color{black}
+
 ## Ensemble approaches
 
 Figure 3. (A) Scatterplot runtime vs accuracy for ensamble (slides p. 163)
