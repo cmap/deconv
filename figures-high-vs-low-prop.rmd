@@ -1,0 +1,95 @@
+
+
+## High / Low bead discrepancy
+
+```{r setup-and-libraries, echo=FALSE, warning=FALSE}
+my.pal <- palette(c("dodgerblue","brown","orange"))
+library(data.table)
+library(ggplot2)
+library(ggrepel)
+library(cmapR)
+library(dplyr, warn=F)
+```
+
+## Load data 
+
+```{r hi_lo_bead_input, include=FALSE}
+(ds <- parse.gctx("data/DECONV_holdout_n8228x976.gctx"))
+annot <- fread("data/holdout_sample_annotations.txt")
+gene_annot <- fread("data/barcode_to_gene_map.txt", colClasses = c("gene_id"="character"))
+ds <- annotate.gct(ds, annot, dim="col", keyfield="id")
+ds <- annotate.gct(ds, gene_annot, dim="row", keyfield="gene_id")
+```
+
+## 
+
+```{r, include=FALSE}
+handles <- unique(ds@cdesc$handle)
+all_ds <- lapply(handles, function(h) subset.gct(ds, cid=which(ds@cdesc$handle==h)))
+names(all_ds) <- handles
+gt_ds <- all_ds[["ground-truth"]]
+bench_ds <- all_ds[["benchmark"]]
+```
+
+## Function for plot 
+
+Basic idea. Compute average and standard deviation of the estimates of the gene-level log-expression for the 976 genes across the xxx samples. Hypothesis is that estimates of genes in low bead proportins should be less efficient (more volatile) than the estimates for the other genes (i.e., in high bead proportions). 
+
+
+```{r}
+row_groups <- with(gt_ds@rdesc, split(1:nrow(gt_ds), high_prop))
+gt.hi <- log(gt_ds@mat[row_groups[[1]], ])
+gt.lo <- log(dat@mat[row_groups[[2]], ])
+gt.hi.se <- apply(gt.hi, 1, sd)
+gt.lo.se <- apply(gt.lo, 1, sd)
+```
+
+```{r func-to-plot, include=FALSE}
+compare.plot <- function(dat, ...) {
+  row_groups <- with(dat@rdesc, split(1:nrow(gt_ds), high_prop))
+  lg.x.hi <- log(dat@mat[row_groups[[1]], ])
+  lg.x.lo <- log(dat@mat[row_groups[[2]], ])
+  lg.x.hi.se <- apply(lg.x.hi, 1, sd)
+  lg.x.lo.se <- apply(lg.x.lo, 1, sd)
+  plot(density(lg.x.hi.se), ...)
+  lines(density(lg.x.lo.se), col=2)
+#   lg.x.hi.mean <- apply(lg.x.hi, 1, mean)
+#   lg.x.lo.mean <- apply(lg.x.lo, 1, mean)
+#   par(mfrow=c(2, 3))
+#   hist(lg.x.hi.mean, breaks = "Scott", xlim = c(0, 10), main="High bead proportion")
+#   hist(lg.x.lo.mean, breaks = "Scott", xlim = c(0,10), main="Low bead proportion")
+#   qqplot(lg.x.hi.mean, lg.x.lo.mean)
+#   abline(0,1)
+#   hist(lg.x.hi.se, breaks = "Scott", xlim = c(0, 1), main="High bead proportion")
+#   hist(lg.x.lo.se, breaks = "Scott", xlim = c(0, 1), main="Low bead proportion")
+#   qqplot(lg.x.hi.se, lg.x.lo.se, xlim = c(0, 1), ylim = c(0,1), ...)
+#   abline(0,1)
+  stat <- ks.test(lg.x.hi.se, lg.x.lo.se)
+  par(usr=c(0,1,0,1))
+  txt <- paste("statistic =", round(stat$statistic, 3))
+  text(0.5,0.9, txt)
+}
+```
+
+## Ground-truth 
+
+```{r fig-low-vs-high-gt, fig.width=7, fig.height=7, fig.cap=cap, echo=FALSE}
+cap <- "Histogram of the distribution of the estimates of the means and standard deviation for gene expression levels, stratified by proportion of beads; and QQ-plot of the distribution for the low vs high proportion of beads."
+compare.plot(gt_ds)
+```
+
+## Benchmark 
+
+```{r fig-low-vs-high-bench, fig.width=7, fig.height=7, fig.cap=cap, echo=FALSE}
+cap <- "Histogram of the distribution of the estimates of the means and standard deviation for gene expression levels, stratified by proportion of beads; and QQ-plot of the distribution for the low vs high proportion of beads."
+par(mfrow=c(2,2))
+compare.plot(gt_ds)
+compare.plot(bench_ds)
+
+bench_ds
+
+par(mfrow=c(3,3))
+for (h in setdiff(handles, c("benchmark","ground-truth")))
+  compare.plot(all_ds[[h]], main=h, xlim=c(0, 1), ylim = c(0, 10))
+```
+
