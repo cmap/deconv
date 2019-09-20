@@ -364,3 +364,41 @@ ggplot(df, aes(x=best_cor, y=med_diff, label=handle)) +
                   color="red")
 ```
 
+## Ensemble
+```{r ensemble_setup, echo=F}
+# inputs
+speed_acc <- fread("data/holdout_score_time.txt", na.strings="n/a")
+ens_corr <- fread("data/DPK.CP003_PC3_24H_X1_B42_DECONV_correlation_scores.txt")
+# compute total runtime for each algo combo
+ens_corr[, sec := {
+  these_algos <- unlist(strsplit(algos, ":"))
+  sum(speed_acc[handle %in% these_algos]$sec)
+}, algos]
+
+# stack
+speed_acc$nalgo <- 1
+setnames(speed_acc, "handle", "algos")
+tmp <- rbind(ens_corr[!grepl("benchmark", algos)], 
+             speed_acc[plate=="DPK.CP003_PC3_24H_X1_B42", .(algos, cor, sec, nalgo)],
+             fill=T, use.names=T)
+```
+
+```{r ensemble_plot, echo=F}
+ggplot(tmp, aes(x=sec, y=cor)) +
+  geom_point(aes(size=nalgo), alpha=0.6) +
+  geom_point(data=tmp[nalgo==1],
+             aes(x=sec, y=cor, color=algos)) +
+  scale_size_continuous(breaks = 1:9) +
+  xlab("cumulative runtime (sec)") +
+  ylab("correlation score")
+```
+
+```{r ensemble_plot2, echo=F}
+ggplot(ens_corr, aes(x=nalgo, y=cor, group=nalgo)) +
+  geom_boxplot() +
+  geom_jitter(width=0.25, alpha=0.6) +
+  scale_x_continuous(breaks=2:10) +
+  xlab("# of algos combined") +
+  ylab("correlation score")
+```
+
