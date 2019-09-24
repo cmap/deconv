@@ -1,45 +1,64 @@
+```{r results-setup, include=FALSE}
+options(digits=2)
+library(data.table)
+library(dplyr, warn=FALSE)
+library(knitr)
+speed_acc <- fread("data/holdout_score_time.txt", na.strings="n/a")
+soln_desc <- fread("data/solution_descriptions.txt", na.strings="n/a")
+speed_acc <- merge(speed_acc, soln_desc, by="handle")
+```
+
+```{r main-stats, include = FALSE}
+percent <- function (x, digits = 0, brackets = FALSE) {
+    pc <- paste0(round(x * 100, digits), "%")
+    if (brackets) 
+        pc <- paste0("(", pc, ")")
+    return(pc)
+}
+bench.auc <- speed_acc$auc[speed_acc$handle == "benchmark"]
+bench.cor <- speed_acc$cor[speed_acc$handle == "benchmark"]
+bench.sec <- speed_acc$sec[speed_acc$handle == "benchmark"]
+plate_id <- as.numeric(factor(speed_acc$plate))
+
+# avg. improvements
+ols.sec <- lm((sec - bench.sec[plate_id])/bench.sec[plate_id] ~ 1, data=speed_acc, subset = handle!="benchmark")
+ols.auc <- lm(log(auc / bench.auc[plate_id]) ~ 1, data=speed_acc, subset = handle!="benchmark")
+ols.cor <- lm(log(cor / bench.cor[plate_id]) ~ 1, data=speed_acc, subset = handle!="benchmark")
+ci <- sapply(list(sec=ols.sec,auc=ols.auc,cor=ols.cor), confint)
+
+speed_acc$sec / bench.sec[plate_id] 
+``` 
+
 # Results
 
 ## Participation
 
-The contest attracted 294 participants, who made 820 code submissions, an averge of 18.2 submissions per participant. The top finishers in the contest employed a variety of different analysis approaches, including descision tree regressors (DTR), Gaussian mixture models (GMM), convolutional neural networks (CNN), and customized versions of k-means, all with notably improved performance relative to the benchmark. Table xx lists the top 9 finishers and the languages and algorithms each used.
+The contest attracted 294 participants, who made 820 code submissions with an average of about 18 submissions per participant. The top finishers in the contest employed a variety of different analysis approaches, including descision tree regressors (DTR), Gaussian mixture models (GMM), convolutional neural networks (CNN), and customized versions of k-means, all with notably improved performance relative to the benchmark. Table \ref{tab:soln_desc} lists the top 9 finishers and the languages and algorithms each used.
 
 ```{r soln_desc, echo=F, warning=F}
 # display table of solution description
-library(data.table)
-library(knitr)
 soln_desc <- fread("data/solution_descriptions.txt", na.strings = "n/a")
 setnames(soln_desc, "method_short", "category")
-kable(soln_desc[1:9], caption = "Summary of contestant solutions")
+kable(soln_desc[1:9], caption = "\\label{tab:soln_desc}Summary of contestant solutions")
 ```
 
-Fig. 1. Participation stats (Submission counts)
+<!--  Fig. 1. Participation stats (Submission counts) -->
 
 ## Overall accuracy and speed
 
-Using the holdout dataset, we computed the average AUC (on level-four data), the average rank correlation (level-two data), as well as the fraction of knocked-down genes correctly predicted for each of the top solutions and the benchmark. The benchmark achieved an AUC of xxx and xxx, a correlation of xxx and xxx for plate 1 and 2, respectively, as well as  it successfully predicted xxx knocked-down genes in plate 2. The corresponding runtime for the benchmark in each plate was of xxx and xxx seconds. 
+Using the holdout (DE and DECONV) datasets obtained by the UNI and DUO detection methods, we computed the average gene-level AUC (DE data) and rank correlation (DECONV data) for the top nine algorithms and the benchmark. The benchmark achieved a good performance on accuracy (an AUC of `r bench.auc[1]` and `r bench.auc[2]` and a correlation of `r bench.cor[1]` and `r bench.cor[2]` for plate 1 and 2, respectively) with a corresponding runtime of about 4 minutes per plate (`r bench.sec[1]` and `r bench.sec[2]` seconds).
 
-\Fig{acc-vs-speed} shows that all top-nine solutions improved upon the performance of the benchmark in nearly all measures. Overall, the average AUC improvement was of 2% (min = xxx, max =xxxx), the average correlation improvement was of 3% (min = xxx, max = xxx) and the average improvement in correct kd genes predictions was of 3% (min = xxx, max =xxx).  Given a theoretical maximum improvement of xxx, xxx, and xxx, for the AUC, correlation and KD metrics, we observe that competitors achieves larger improvements (relative to the maximum achievable) in the AUC metric. 
-
-Only two submissions (out of nine) a performance that was better in AUC and correlation but worse than the benchmark on the KD success metric. These submissions, both based on k-means, ranked sixth and eighth in the final leaderboard.
-
+Although all top-nine solutions achieved a higher performance in both accuracy metrics compared to the benchmark, improvements with respect to accuracy were relatively small (\Fig{acc-vs-speed}). The mean AUC improvement was of `r percent(coef(ols.auc), digits=1)` (95% CI, `r percent(ci[1, "auc"], 1)` to `r percent(ci[2, "auc"], 1)`) and the mean correlation improvement was of `r percent(coef(ols.cor), digits=1)`  (95% CI, `r percent(ci[1, "cor"],1)` to `r percent(ci[2, "cor"],1)`). In contrast, improvements with respect to speed were substantial (\Fig{acc-vs-speed}) with the fastest algorithm taking as little as `r min(speed_acc$sec)` seconds and all the submissions achieving a mean runtime reduction of `r percent(abs(coef(ols.sec)))` per plate.  Also, we observe no significant difference in performance between the plates, with all the submissions achieving similar scores in both plates; and no accuracy-vs-speed trade-off, as the empirical relationship between accuracy and speed improvements is essentially flat. 
 
 <!-- Note that the theoretical maximum improvement in the AUC metric was 14% = 1/bench, and the theoretical maximum improvement for the correlation was 60% = 1/cor.bench, given both measures cannot be greater than one. Thus, we find solutions achieved greater improvements in auc relative to the theoretical max, than in the correlation metric.   -->
 
-Improvement with respect to speed were substantial. The average improvement was 300% ranging between 100% and 500%. We observe no accuracy-vs-speed trade-off. The empirical relationship between improvements in accuracy and improvements in speed is essentially flat. 
-
-Further examination based on the underlying methods used by the top solutions suggests that parametric models, such as mixture models, are both fast and relatively accurate, although non-parametric models, such as regression forests and k-means, tend to be more accurate.  The fastest algorithm was indeed based on a parametric model, i.e., gaussian mixture model, which achieves a good level of accuracy on these data. This solution ranked second overall and achieved the greatest speed improvmenet in both plates. 
-
-The most accurate algorithm was instead based on a random forest. This solution ranked first overall and achieved the best performance in both AUC and correlation measures, as well as it was among the top three approaches in the KD measure. 
-
-We observe no significant difference in performance between the plates, with all the submissions achieving similar scores in both plates. 
-
 <!-- 
-Fig. 2. (A) Leaderboard (all scores) 
-        (B) Disaggregated scores for top 10 
-            (barplot for mean of the 2 plates by submission and for each metric)
-        (C) Scatter plot runtime vs accuracy (mean of AUC and Correlation)
+Only two submissions (out of nine) a performance that was better in AUC and correlation but worse than the benchmark on the KD success metric. These submissions, both based on k-means, ranked sixth and eighth in the final leaderboard.
  -->
+
+Further examination based on the underlying methods used by the top solutions suggests that parametric models, such as mixture models, are both fast and relatively accurate, although non-parametric models, such as regression forests and k-means, tend to be more accurate.  The fastest algorithm was indeed based on a parametric model, i.e., gaussian mixture model, which achieves a good level of accuracy on these data. This solution ranked second overall and achieved the greatest speed improvmenet in both plates. The most accurate algorithm was instead based on a random forest. This solution ranked first overall and achieved the best performance in both AUC and correlation measures, as well as it was among the top three approaches in the KD measure. 
+
+To further test differences in accuracy performance we computed the KD success frequency for each algorithm and the benchmark. This metric is the fraction of the 376 landmark-targeting shRNA experiments in the holdout data for which the predictions met these success criteria. We used the $UNI$ ground-truth data to estimate the maximum achievable KD success frequency, which in this case was 0.8. We observe that all but 2 of the top 9 contestant algorithms achieve a higher KD success frequency than the benchmark solution (\Fig{kd_barplot}). These results suggest that the algorithm improvements, as assessed by the accuracy metrics used in the contest, translate to improvements in biologically relevent metrics used in common applications of L1000 data.
 
 \color{red}
 
@@ -52,9 +71,6 @@ Todos:
 
 \color{black}
 
-### Knockdown predictions
-
-In addition to the Spearman correlation and extreme modulation AUC metrics used in the contest, we were also able to asses each algorithms ability to correctly predict the successful knockdown (KD) of landmark genes. The shRNA experiments used to generate the contest data were constructed such that each shRNA specifically targeted one of the landmark genes. Hence, the expectation in each of those experiments is that the targeted landmark gene should exhibit a greatly reduced expression level, which should manifest in a very low z-score in $DE$ data. Additionally, we expect that the targeted landmark gene should be most dramatically down-regulated in the samples in which it was directly targeted. To assess this, we compute a gene-wise rank by $DE$ z-score across all samples in a given plate. Criteria for indicating a successful KD are $zs <= -2 AND rank <= -10$. For each algorith, we compouted the KD success frequency as the fraction of the 376 landmark-targeting shRNA experiments in the holdout data for which the predictions met these success criteria. We used the $UNI$ ground-truth data to estimate the maximum achievable KD success frequency, which in this case was 0.8. We observe that all but 2 of the top 9 contestant algorithms achieve a higher KD success frequency than the benchmark solution (\Fig{kd_barplot}). These results suggest that the algorithm improvements, as assessed by the accuracy metrics used in the contest, translate to improvements in biologically relevent metrics used in common applications of L1000 data.
 
 \color{red}
 TODO: 1) compute precision/recall for KD predictions

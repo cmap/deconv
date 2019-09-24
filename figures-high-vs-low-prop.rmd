@@ -1,14 +1,18 @@
-
+---
+fig_width: 5
+fig_height: 5
+---
 
 ## High / Low bead discrepancy
 
 ```{r setup-and-libraries, echo=FALSE, warning=FALSE}
-my.pal <- palette(c("dodgerblue","brown","orange"))
+my.palette <- c(rgb(1,0,0,0.25), rgb(0,0,1,0.25))
 library(data.table)
 library(ggplot2)
 library(ggrepel)
 library(cmapR)
 library(dplyr, warn=F)
+library(parallel)
 ```
 
 ## Load data 
@@ -21,75 +25,133 @@ ds <- annotate.gct(ds, annot, dim="col", keyfield="id")
 ds <- annotate.gct(ds, gene_annot, dim="row", keyfield="gene_id")
 ```
 
-## 
+## Methods
 
-```{r, include=FALSE}
+We have data from 122 experiments (pert_id) for 976 genes for 11 different methods (1 UNI method (ground-truth) and 10 DUO method - d-Peak algorithm combinations).
+For each experiment we have about 10 replicates. 
+The presence of numerous replicates enables us to compute the MEAN and SD of the gene expression level for all the 976 genes. This gives us an array with 122 x 976 x 2 values for each of the 11 different methods. 
+
+## Results 
+
+First compute mean and variance for all the data. 
+
+```{r, include = FALSE, cache = TRUE}
+library(parallel)
 handles <- unique(ds@cdesc$handle)
-all_ds <- lapply(handles, function(h) subset.gct(ds, cid=which(ds@cdesc$handle==h)))
-names(all_ds) <- handles
-gt_ds <- all_ds[["ground-truth"]]
-bench_ds <- all_ds[["benchmark"]]
+perts <- unique(ds@cdesc$pert_id)
+gene_id <- ds@rdesc$gene_id
+out <- mclapply(handles, function(h) {
+  out.mean <- array(NA, c(length(perts), length(gene_id)))
+  out.var <- out.mean 
+  for (j in 1:length(perts)) {
+     cids <- which(ds@cdesc$pert_id==perts[j] & ds@cdesc$handle==h)
+     cids.gt <- which(ds@cdesc$pert_id==perts[j] & ds@cdesc$handle=="ground-truth")
+     mat <- subset.gct(ds, cid=cids, rid=gene_id)@mat
+     mat.gt <- subset.gct(ds, cid=cids, rid=gene_id)@mat
+     out.mean[j, ] <-  apply(log(mat), 1, mean)
+     out.var[j, ] <-  apply(log(mat), 1, var)     
+  }
+  list(mean=out.mean, var=out.var)
+})
+names(out) <- handles
 ```
 
-## Function for plot 
-
-Basic idea. Compute average and standard deviation of the estimates of the gene-level log-expression for the 976 genes across the xxx samples. Hypothesis is that estimates of genes in low bead proportins should be less efficient (more volatile) than the estimates for the other genes (i.e., in high bead proportions). 
-
+## Compare mean and variance (exmplaes)
 
 ```{r}
-row_groups <- with(gt_ds@rdesc, split(1:nrow(gt_ds), high_prop))
-gt.hi <- log(gt_ds@mat[row_groups[[1]], ])
-gt.lo <- log(dat@mat[row_groups[[2]], ])
-gt.hi.se <- apply(gt.hi, 1, sd)
-gt.lo.se <- apply(gt.lo, 1, sd)
+par(mfrow=c(2, 2))
+plot(out$benchmark$mean, out$`ground-truth`$mean, ylim=c(4, 10), xlim=c(4,10), pch=".")
+plot(out$gardn999$mean, out$`ground-truth`$mean, ylim=c(4, 10), xlim=c(4,10), pch=".")
+plot(out$benchmark$var, out$`ground-truth`$var, ylim=c(0, 2), xlim=c(0, 2), pch=".")
+plot(out$gardn999$var, out$`ground-truth`$var, ylim=c(0, 2), xlim=c(0, 2), pch=".")
 ```
 
-```{r func-to-plot, include=FALSE}
-compare.plot <- function(dat, ...) {
-  row_groups <- with(dat@rdesc, split(1:nrow(gt_ds), high_prop))
-  lg.x.hi <- log(dat@mat[row_groups[[1]], ])
-  lg.x.lo <- log(dat@mat[row_groups[[2]], ])
-  lg.x.hi.se <- apply(lg.x.hi, 1, sd)
-  lg.x.lo.se <- apply(lg.x.lo, 1, sd)
-  plot(density(lg.x.hi.se), ...)
-  lines(density(lg.x.lo.se), col=2)
-#   lg.x.hi.mean <- apply(lg.x.hi, 1, mean)
-#   lg.x.lo.mean <- apply(lg.x.lo, 1, mean)
-#   par(mfrow=c(2, 3))
-#   hist(lg.x.hi.mean, breaks = "Scott", xlim = c(0, 10), main="High bead proportion")
-#   hist(lg.x.lo.mean, breaks = "Scott", xlim = c(0,10), main="Low bead proportion")
-#   qqplot(lg.x.hi.mean, lg.x.lo.mean)
-#   abline(0,1)
-#   hist(lg.x.hi.se, breaks = "Scott", xlim = c(0, 1), main="High bead proportion")
-#   hist(lg.x.lo.se, breaks = "Scott", xlim = c(0, 1), main="Low bead proportion")
-#   qqplot(lg.x.hi.se, lg.x.lo.se, xlim = c(0, 1), ylim = c(0,1), ...)
-#   abline(0,1)
-  stat <- ks.test(lg.x.hi.se, lg.x.lo.se)
-  par(usr=c(0,1,0,1))
-  txt <- paste("statistic =", round(stat$statistic, 3))
-  text(0.5,0.9, txt)
+## Compute correlation at the aggregate level 
+
+```{r, fig.width=7, fig.height=7}
+comp.cor <- function(x, y) {
+  rho <- cor(x,y, method="spearman")
+  mean(diag(rho))
+}
+mean.cor <- sapply(out, function(x) comp.cor(x$mean, y=out$`ground-truth`$mean))
+var.cor <- sapply(out, function(x) comp.cor(x$var, y=out$`ground-truth`$var))
+var.mean <- sapply(out, function(x) mean(x$var))
+high <- ds@rdesc$high_prop == 1
+low <- ds@rdesc$high_prop == 0
+# mean
+var.mean.high <- sapply(out, function(x) mean(x$var[, high]))
+var.mean.low <- sapply(out, function(x) mean(x$var[, low]))
+panel <- function(x, ...) {
+  i <- order(x)
+  i.col <- factor(names(x)=="benchmark")[i]
+  b <- barplot(x[i], horiz=F, las=2, col=c(gray(.75),"red")[i.col], ...)
+  text(x=b, y=x[i], round(x[i],2), pos=3, xpd=T)
+}
+par(mfrow=c(2, 2), mar=c(7,3,3,1))
+panel(mean.cor, main = "Avg. rank correlation (replicates)")
+panel(var.mean, main = "Avg. VAR (replicates) - Overall", ylim=c(0,0.05))
+panel(var.mean.high, main = "Avg. VAR (replicates) - high bead prop", ylim=c(0,0.05))
+panel(var.mean.low, main = "Avg. VAR (replicates) - low bead prop", ylim=c(0,0.05))
+```
+
+```{r, fig.width=7, fig.height=7}
+panel <- function(x, ...) {
+  i <- order(x)
+  i.col <- factor(names(x)=="benchmark")[i]
+  b <- barplot(x[i], horiz=F, las=2, col=c(gray(.75),"red")[i.col], ...)
+  text(x=b, y=x[i], round(x[i],2), pos=3, xpd=T)
+}
+high <- ds@rdesc$high_prop == 1
+low <- ds@rdesc$high_prop == 0
+var.median.high <- sapply(out, function(x) median(x$var[, high]))
+var.median.low <- sapply(out, function(x) median(x$var[, low]))
+var.q3.high <- sapply(out, function(x) as.numeric(quantile(x$var[, high], p=0.75)))
+var.q3.low <- sapply(out, function(x) as.numeric(quantile(x$var[, low], p=0.75)))
+par(mfrow=c(2, 2))
+panel(100*var.median.high, main = "Median. VAR - high bead prop", ylim=100*c(0,0.02))
+panel(100*var.median.low, main = "Median. VAR - low bead prop", ylim=100*c(0,0.02))
+panel(100*var.q3.high, main = "q3. VAR - high bead prop", ylim=100*c(0,0.05))
+panel(100*var.q3.low, main = "q3. VAR - low bead prop", ylim=100*c(0,0.05))
+```
+
+
+## Variance ratio 
+
+```{r}
+options(digits=2)
+rho <- out$benchmark$var/out$`ground-truth`$var
+hist(log(rho), breaks="Scott", xlim=c(-1,1)*10)
+quantile(log(rho))
+```
+
+## Example low vs high bead proportion 
+
+```{r}
+par(mfrow=c(1, 2))
+for (k in 0:1) {
+  i <- ds@rdesc$high_prop == k
+  plot(out$benchmark$var[,i], out$`ground-truth`$var[,i]
+    , main=paste("high bead prop. =",k)
+    , pch=".", ylim=c(0, 5), xlim=c(0, 5))
+  abline(0,1, col="red")
 }
 ```
 
-## Ground-truth 
+## Compare variance ratio 
 
-```{r fig-low-vs-high-gt, fig.width=7, fig.height=7, fig.cap=cap, echo=FALSE}
-cap <- "Histogram of the distribution of the estimates of the means and standard deviation for gene expression levels, stratified by proportion of beads; and QQ-plot of the distribution for the low vs high proportion of beads."
-compare.plot(gt_ds)
+```{r}
+library(parallel)
+bottomcode <- function(x, value, replace=value) ifelse(x <= value, replace, x)
+log.sd.ratio <- mclapply(handles, function(h) {
+  x <- log(as.vector(out[[h]]$var) / as.vector(out$`ground-truth`$var))
+  bottomcode(x, -Inf, NA)
+})
+names(log.sd.ratio) <- handles
+knitr::kable(sapply(log.sd.ratio, quantile, na.rm=T), digits=2)
+my.col <- gray(0:10/10)
+my.col[5] <- "red"
+med <- sapply(log.sd.ratio, quantile, p=c(0.5),na.rm=T)
+barplot(sort(med), beside=T, col=my.col)
 ```
 
-## Benchmark 
-
-```{r fig-low-vs-high-bench, fig.width=7, fig.height=7, fig.cap=cap, echo=FALSE}
-cap <- "Histogram of the distribution of the estimates of the means and standard deviation for gene expression levels, stratified by proportion of beads; and QQ-plot of the distribution for the low vs high proportion of beads."
-par(mfrow=c(2,2))
-compare.plot(gt_ds)
-compare.plot(bench_ds)
-
-bench_ds
-
-par(mfrow=c(3,3))
-for (h in setdiff(handles, c("benchmark","ground-truth")))
-  compare.plot(all_ds[[h]], main=h, xlim=c(0, 1), ylim = c(0, 10))
-```
 
