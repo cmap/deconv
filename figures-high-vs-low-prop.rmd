@@ -1,9 +1,3 @@
----
-fig_width: 5
-fig_height: 5
----
-
-## High / Low bead discrepancy
 
 ```{r setup-and-libraries, echo=FALSE, warning=FALSE}
 my.palette <- c(rgb(1,0,0,0.25), rgb(0,0,1,0.25))
@@ -27,34 +21,78 @@ ds <- annotate.gct(ds, gene_annot, dim="row", keyfield="gene_id")
 
 ## Methods
 
-We have data from 122 experiments (pert_id) for 976 genes for 11 different methods (1 UNI method (ground-truth) and 10 DUO method - d-Peak algorithm combinations).
-For each experiment we have about 10 replicates. 
-The presence of numerous replicates enables us to compute the MEAN and SD of the gene expression level for all the 976 genes. This gives us an array with 122 x 976 x 2 values for each of the 11 different methods. 
+We want to see whether algorithms provide similar esimtates under similar conditions. 
+The holdout dataset contains measurements from 122 experiments (pert_id) for 976 genes for about 10 replicates. 
+We computed the mean and variance ge level for all the different methods (1 UNI method (ground-truth) and 10 DUO method - d-Peak algorithm combinations). We now that the bias is small because correlation with ground truth is also high. 
+But we do not know the variance. 
+
+The presence of numerous replicates enables us to compute the MEAN and SD of the gene expression level for all the 976 genes across xxx experiments. This gives us an array with 122 x 976 x 2 values for each of the 11 different methods. 
 
 ## Results 
 
 First compute mean and variance for all the data. 
 
-```{r, include = FALSE, cache = TRUE}
-library(parallel)
+```{r params, include = FALSE}
 handles <- unique(ds@cdesc$handle)
 perts <- unique(ds@cdesc$pert_id)
 gene_id <- ds@rdesc$gene_id
+n.perts <- length(perts) # 121
+n.genes <- length(gene_id) # 976
+high <- ds@rdesc$high_prop == 1
+n.high <- sum(high) # 488 
+```
+
+```{r, include = FALSE, cache = TRUE}
+library(parallel)
 out <- mclapply(handles, function(h) {
-  out.mean <- array(NA, c(length(perts), length(gene_id)))
-  out.var <- out.mean 
+  out.var <- out.mean <- array(NA, c(n.genes, n.perts))
   for (j in 1:length(perts)) {
      cids <- which(ds@cdesc$pert_id==perts[j] & ds@cdesc$handle==h)
-     cids.gt <- which(ds@cdesc$pert_id==perts[j] & ds@cdesc$handle=="ground-truth")
      mat <- subset.gct(ds, cid=cids, rid=gene_id)@mat
-     mat.gt <- subset.gct(ds, cid=cids, rid=gene_id)@mat
-     out.mean[j, ] <-  apply(log(mat), 1, mean)
-     out.var[j, ] <-  apply(log(mat), 1, var)     
+     #cids.gt <- which(ds@cdesc$pert_id==perts[j] & ds@cdesc$handle=="ground-truth")
+     #mat.gt <- subset.gct(ds, cid=cids, rid=gene_id)@mat
+     out.mean[, j] <-  apply(log(mat), 1, mean)
+     out.var[, j] <-  apply(log(mat), 1, var)     
   }
   list(mean=out.mean, var=out.var)
 })
 names(out) <- handles
 ```
+
+## Variance by experiments 
+
+```{r}
+panel <- function(x, type="experiments", prob = c(0.025,0.5, 0.975), ...) {
+  margin <- switch(type, genes = 1, experiments = 2)
+  y <- apply(x, margin, quantile, p = prob)
+  matplot(t(y), type="l", ...)
+#   txt <- paste("mean =", round(mean(y),2))
+#   par(usr=c(0,1,0,1))
+#   text(.5,.9,txt)
+}
+par(mfrow=c(4, 3))
+for (j in names(out))
+  panel(out[[j]]$var, ylim=c(0, 0.35), main = j)
+```
+
+## Variance by genes 
+
+```{r}
+par(mfrow=c(4, 3))
+for (j in names(out)){
+  panel(log(out[[j]]$var / out[["ground-truth"]]$var)
+      , type = "genes"
+      , main = j
+      , ylim = c(-1, 1) * 5
+#       , ylim = 100*c(0, 2.5)
+      , prob = c(0.5, 0.95, 0.05)
+      , lty = c(1, 2, 2), lwd=c(1, 1, 1), col = 2)
+  abline(v=n.high, col=1)
+  abline(h=0, lty=2)
+}
+```
+
+
 
 ## Compare mean and variance (exmplaes)
 
@@ -152,6 +190,17 @@ my.col <- gray(0:10/10)
 my.col[5] <- "red"
 med <- sapply(log.sd.ratio, quantile, p=c(0.5),na.rm=T)
 barplot(sort(med), beside=T, col=my.col)
+```
+
+```{r}
+par(mfrow=c(3,2))
+boxplot(t(out$gardn999$var[,low]),pch=16,ylim=c(0,5))
+title()
+boxplot(t(out$benchmark$var[,low]),pch=16,ylim=c(0,5))
+boxplot(t(out$gardn999$var[,high]),pch=16,ylim=c(0,5))
+boxplot(t(out$gardn999$var[,high]),pch=16,ylim=c(0,5))
+ barplot(1:12) # grouop by low-vs-high by algo
+ barplot(1:12)
 ```
 
 
