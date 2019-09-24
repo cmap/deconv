@@ -47,8 +47,6 @@ speed_acc <- merge(speed_acc, soln_desc, by="handle")
 #   ggtitle("Accuracy vs. Speed")
 ```
 
-## Accuracy vs speed (AB)
-
 ```{r setup, echo=F}
 impute <- function(x, value) ifelse(is.na(x), value, x)
 n <- nrow(speed_acc)
@@ -115,97 +113,97 @@ mtext(at=c(0,0), "B.", adj=0, font=2)
 ## Gene knockdowns
 
 ```{r kd_barplot, echo=F, fig.cap=cap, fig.width=6}
-# cap <- "\\label{kd_barplot}**KD success frequency.** Bars represent the fraction of landmark-targeting shRNAs experiments in which the DE values indicated successful knockdown (KD). Success criteria are a z-score of less than -2 and a gene-wise rank of less than 10. Results are shown for the one plate of shRNA holdout data, containing 376 landmark-targeting shRNA experiments." 
-# 
+cap <- "\\label{kd_barplot}**KD success frequency.** Bars represent the fraction of landmark-targeting shRNAs experiments in which the DE values indicated successful knockdown (KD). Success criteria are a z-score of less than -2 and a gene-wise rank of less than 10. Results are shown for the one plate of shRNA holdout data, containing 376 landmark-targeting shRNA experiments."
+
 # speed_acc <- fread("data/holdout_score_time.txt", na.strings = "n/a")
 # soln_desc <- fread("data/solution_descriptions.txt", na.strings="n/a")
-# soln_desc <- rbind(soln_desc, data.table(rank="ground-truth",
-#                                          handle="ground-truth",
-#                                          method="ground-truth",
-#                                          method_short="GT"),
-#                    use.names=T, fill=T)
-# speed_acc <- merge(speed_acc, soln_desc, by="handle")
-# levs <- c("DTR", "GMM", "k-means", "CNN", "other", "GT")
-# speed_acc$method_short <- factor(speed_acc$method_short,
-#                                  levels=levs)
-# # make plot
-# par(mar=c(6, 4, 4, 2) + 0.1, cex=0.9)
-# with(speed_acc[!is.na(kd_success_freq)][
-#   order(kd_success_freq, decreasing = F)
-# ], {
-#   maxval <- max(kd_success_freq)
-#   offset_factor <- 0.1
-#   offset <- offset_factor * maxval
-#   cols <- rep("gray", length(kd_success_freq))
-#   cols[handle=="benchmark"] <- "red"
-#   cols[handle=="ground-truth"] <- "black"
-#   bp <- barplot(kd_success_freq, names.arg=handle, las=3, col=cols,
-#            ylab="Fraction of successful KD predictions",
-#            main="Gene Knockdown Success Frequency",
-#            ylim=c(0, maxval + (2 * offset)))
-#   text(bp, kd_success_freq + offset, labels=round(kd_success_freq, 2), col="red")
-# })
+soln_desc <- rbind(soln_desc, data.table(rank="ground-truth",
+                                         handle="ground-truth",
+                                         method="ground-truth",
+                                         method_short="GT"),
+                   use.names=T, fill=T)
+speed_acc <- merge(speed_acc, soln_desc, by="handle")
+levs <- c("DTR", "GMM", "k-means", "CNN", "other", "GT")
+speed_acc$method_short <- factor(speed_acc$method_short,
+                                 levels=levs)
+# make plot
+par(mar=c(6, 4, 4, 2) + 0.1, cex=0.9)
+with(speed_acc[!is.na(kd_success_freq)][
+  order(kd_success_freq, decreasing = F)
+], {
+  maxval <- max(kd_success_freq)
+  offset_factor <- 0.1
+  offset <- offset_factor * maxval
+  cols <- rep("gray", length(kd_success_freq))
+  cols[handle=="benchmark"] <- "red"
+  cols[handle=="ground-truth"] <- "black"
+  bp <- barplot(kd_success_freq, names.arg=handle, las=3, col=cols,
+           ylab="Fraction of successful KD predictions",
+           main="Gene Knockdown Success Frequency",
+           ylim=c(0, maxval + (2 * offset)))
+  text(bp, kd_success_freq + offset, labels=round(kd_success_freq, 2), col="red")
+})
 ```
 
 ## High / Low bead discrepancy
 
-```{r hi_lo_bead_input, include=FALSE}
+```{r hi_lo_bead_input, include=FALSE, echo=F}
 # read the GCTX file as a GCT object
 # data are stored as a matrix with genes on rows and sample/algo combos on columns
-(ds <- parse.gctx("data/DECONV_holdout_n8228x976.gctx"))
+# (ds <- parse.gctx("data/DECONV_holdout_n8228x976.gctx"))
 # read annotations and apply to columns
-annot <- fread("data/holdout_sample_annotations.txt")
-gene_annot <- fread("data/barcode_to_gene_map.txt", colClasses = c("gene_id"="character"))
-ds <- annotate.gct(ds, annot, dim="col", keyfield="id")
-ds <- annotate.gct(ds, gene_annot, dim="row", keyfield="gene_id")
+# annot <- fread("data/holdout_sample_annotations.txt")
+# gene_annot <- fread("data/barcode_to_gene_map.txt", colClasses = c("gene_id"="character"))
+# ds <- annotate.gct(ds, annot, dim="col", keyfield="id")
+# ds <- annotate.gct(ds, gene_annot, dim="row", keyfield="gene_id")
 ```
 
 ```{r plot-ecdf, echo=FALSE, fig.width=9,fig.height=9, fig.cap=cap}
 
 # datasets by handles
-handles <- unique(ds@cdesc$handle)
-all_ds <- lapply(handles, function(h) subset.gct(ds, cid=which(ds@cdesc$handle==h)))
-names(all_ds) <- handles
-
-# benchmark vs ground truth
-gt_ds <- all_ds[["ground-truth"]]
-bench_ds <- all_ds[["benchmark"]]
-
-# compute stats
-compute.stats <- function(mat) {
-  out <- list()
-  out$gene_level.mean <- apply(mat, 1, mean)
-  out$gene_level.sd <- apply(mat, 1, sd)
-  out$sample_level.mean <- apply(mat, 2, mean)
-  out$sample_level.sd <- apply(mat, 2, sd)
-  return(out)
-}
-all_ds.stats <- lapply(all_ds, function(x) compute.stats(x@mat))
-
-# Compute stats for Uni and Duo benchmark
-gt_ds.stats <- all_ds.stats[["ground-truth"]] 
-bench_ds.stats <- all_ds.stats[["benchmark"]] 
-
-# Plot differences
-cap <- paste("Differences in estimates -- ", names(gt_ds.stats))
-for (k in names(gt_ds.stats)) {
-  par(mfrow=c(3,3), mar=c(4,2,2,2)+.1)
-  for(j in setdiff(handles, c("ground-truth","benchmark"))) {
-    ecdf(gt_ds.stats[[k]] %>% log) %>% plot(main=j, xlab=k, pch=".", col=1)
-    ecdf(bench_ds.stats[[k]] %>% log) %>% lines(pch=".", col=2)
-    ecdf(all_ds.stats[[j]][[k]] %>% log) %>% lines(pch=".", col=3)
-    legend("topleft", col=1:3, lty=1, bty="n", c("Uni (no-deconv)", "Duo (k-means)", "Duo (comp.)"))
-  }
-}
+# handles <- unique(ds@cdesc$handle)
+# all_ds <- lapply(handles, function(h) subset.gct(ds, cid=which(ds@cdesc$handle==h)))
+# names(all_ds) <- handles
+# 
+# # benchmark vs ground truth
+# gt_ds <- all_ds[["ground-truth"]]
+# bench_ds <- all_ds[["benchmark"]]
+# 
+# # compute stats
+# compute.stats <- function(mat) {
+#   out <- list()
+#   out$gene_level.mean <- apply(mat, 1, mean)
+#   out$gene_level.sd <- apply(mat, 1, sd)
+#   out$sample_level.mean <- apply(mat, 2, mean)
+#   out$sample_level.sd <- apply(mat, 2, sd)
+#   return(out)
+# }
+# all_ds.stats <- lapply(all_ds, function(x) compute.stats(x@mat))
+# 
+# # Compute stats for Uni and Duo benchmark
+# gt_ds.stats <- all_ds.stats[["ground-truth"]] 
+# bench_ds.stats <- all_ds.stats[["benchmark"]] 
+# 
+# # Plot differences
+# cap <- paste("Differences in estimates -- ", names(gt_ds.stats))
+# for (k in names(gt_ds.stats)) {
+#   par(mfrow=c(3,3), mar=c(4,2,2,2)+.1)
+#   for(j in setdiff(handles, c("ground-truth","benchmark"))) {
+#     ecdf(gt_ds.stats[[k]] %>% log) %>% plot(main=j, xlab=k, pch=".", col=1)
+#     ecdf(bench_ds.stats[[k]] %>% log) %>% lines(pch=".", col=2)
+#     ecdf(all_ds.stats[[j]][[k]] %>% log) %>% lines(pch=".", col=3)
+#     legend("topleft", col=1:3, lty=1, bty="n", c("Uni (no-deconv)", "Duo (k-means)", "Duo (comp.)"))
+#   }
+# }
 ```
 
-```{r}
+```{r, echo=F}
 # example - plot raw expression values by high vs low bead in ground truth
-row_groups <- with(gt_ds@rdesc, split(1:nrow(gt_ds), high_prop))
-boxplot(list(
-  low_prop = log(gt_ds@mat[row_groups[[1]], ]),
-  high_prop = log(gt_ds@mat[row_groups[[2]], ])
-), ylab="raw expression")
+# row_groups <- with(gt_ds@rdesc, split(1:nrow(gt_ds), high_prop))
+# boxplot(list(
+#   low_prop = log(gt_ds@mat[row_groups[[1]], ]),
+#   high_prop = log(gt_ds@mat[row_groups[[2]], ])
+# ), ylab="raw expression")
 ```
 
 
@@ -306,44 +304,44 @@ cowplot::plot_grid(p_deconv_color_type,
                    labels=LETTERS[1:4])
 ```
 
-## Clustering gene-level correlations
+
 ```{r gene_clus_setup, echo=F}
-corr_ds <- parse.gctx("data/UNI_DUO_gene_spearman_correlations_holdout_n20x976.gctx")
-soln_desc <- fread("data/solution_descriptions.txt", na.strings="n/a")
-corr_ds <- annotate.gct(corr_ds, soln_desc, dim="col", keyfield = "handle")
+# corr_ds <- parse.gctx("data/UNI_DUO_gene_spearman_correlations_holdout_n20x976.gctx")
+# soln_desc <- fread("data/solution_descriptions.txt", na.strings="n/a")
+# corr_ds <- annotate.gct(corr_ds, soln_desc, dim="col", keyfield = "handle")
 ```
 
 ```{r gene_clus, echo=F, fig.cap=cap}
-cap <- "\\label{gene_clus}**Clustering gene-level accuracy.** A clustered matrix of the gene-level correlations between algorithm predictions and UNI ground truth using DECONV data. Columns correspond to genes and rows to algorithms."
-this_ds <- subset.gct(corr_ds, cid=grep("^DPK", corr_ds@cid))
-N <- 100
-m <- t(this_ds@mat)
-rownames(m) <- this_ds@cdesc$handle
-idx <- match(rownames(m), soln_desc$handle)
-annot_df <- data.frame(method=soln_desc$method_short[idx])
-annot_df$method <- factor(annot_df$method,
-                          levels=levs)
-rownames(annot_df) <- rownames(m)
-# rownames(m) <- paste(soln_desc$method_short, rownames(m), sep=":")
-x <- seq(min(m), max(m), length.out=N)
-mypal <- c(
-  colorRampPalette(c("blue", "white"))(sum(x < 0)),
-  colorRampPalette(c("white", "red"))(sum(x >= 0))
-)
-pheatmap(m, color=mypal, scale="none",
-         show_colnames = F,
-         annotation_row=annot_df,
-         annotation_names_row = F)
+# cap <- "\\label{gene_clus}**Clustering gene-level accuracy.** A clustered matrix of the gene-level correlations between algorithm predictions and UNI ground truth using DECONV data. Columns correspond to genes and rows to algorithms."
+# this_ds <- subset.gct(corr_ds, cid=grep("^DPK", corr_ds@cid))
+# N <- 100
+# m <- t(this_ds@mat)
+# rownames(m) <- this_ds@cdesc$handle
+# idx <- match(rownames(m), soln_desc$handle)
+# annot_df <- data.frame(method=soln_desc$method_short[idx])
+# annot_df$method <- factor(annot_df$method,
+#                           levels=levs)
+# rownames(annot_df) <- rownames(m)
+# # rownames(m) <- paste(soln_desc$method_short, rownames(m), sep=":")
+# x <- seq(min(m), max(m), length.out=N)
+# mypal <- c(
+#   colorRampPalette(c("blue", "white"))(sum(x < 0)),
+#   colorRampPalette(c("white", "red"))(sum(x >= 0))
+# )
+# pheatmap(m, color=mypal, scale="none",
+#          show_colnames = F,
+#          annotation_row=annot_df,
+#          annotation_names_row = F)
 ```
 
-```{r}
+```{r, echo=F}
 # TODO: a figure showing the performance difference for the top 2 algos per gene
 # genes with a large difference are those that are correctly predicted by only one
 # algo, and hence might be the best candidates for improvement by ensemble approaches
-best_cor_per_gene <- apply(m, 2, max)
-best_algo_per_gene <- rownames(m)[apply(m, 2, which.max)]
-diff_to_next_best <- apply(m, 2, function(x) max(x) - max(x[-which.max(x)]))
-diff_to_median <- apply(m, 2, function(x) max(x) - median(x[-which.max(x)]))
+# best_cor_per_gene <- apply(m, 2, max)
+# best_algo_per_gene <- rownames(m)[apply(m, 2, which.max)]
+# diff_to_next_best <- apply(m, 2, function(x) max(x) - max(x[-which.max(x)]))
+# diff_to_median <- apply(m, 2, function(x) max(x) - median(x[-which.max(x)]))
 # par(pty="s")
 # plot(best_cor_per_gene, diff_to_median, col=rgb(0, 0, 0, 0.7),
 #      xlab="Max. Correlation", ylab="Delta from Median Correlation")
@@ -352,17 +350,46 @@ diff_to_median <- apply(m, 2, function(x) max(x) - median(x[-which.max(x)]))
 #      diff_to_median[text_idx],
 #      labels=best_algo_per_gene[text_idx],
 #      adj= -0.1, col="red")
-df <- data.table(handle=best_algo_per_gene,
-                 best_cor=best_cor_per_gene,
-                 med_diff=diff_to_median)
-ggplot(df, aes(x=best_cor, y=med_diff, label=handle)) +
-  geom_point(alpha=0.5) +
-  xlab("Max. correlation") +
-  ylab("Delta from median correlation") +
-  ggtitle("Algorithm-specific gene performance") +
-  geom_text_repel(data=df[best_cor >= 0.4 & med_diff >= 0.15],
-                  color="red")
+# df <- data.table(handle=best_algo_per_gene,
+#                  best_cor=best_cor_per_gene,
+#                  med_diff=diff_to_median)
+# ggplot(df, aes(x=best_cor, y=med_diff, label=handle)) +
+#   geom_point(alpha=0.5) +
+#   xlab("Max. correlation") +
+#   ylab("Delta from median correlation") +
+#   ggtitle("Algorithm-specific gene performance") +
+#   geom_text_repel(data=df[best_cor >= 0.4 & med_diff >= 0.15],
+#                   color="red")
 ```
+
+
+## Complementarity
+
+```{r best_algo_per_gene_bar, echo=F}
+corr_ds <- parse.gctx("data/UNI_DUO_gene_spearman_correlations_holdout_n20x976.gctx")
+plates <- unique(corr_ds@cdesc$plate)
+par(mar=c(8, 4, 4, 2)+0.1, mfrow=c(1, 2))
+for (p in plates) {
+  this_ds <- subset.gct(corr_ds, cid=which(corr_ds@cdesc$plate==p &
+                                             corr_ds@cdesc$handle != "ground-truth"))
+  best_idx <- apply(this_ds@mat, 1, which.max)
+  tbl <- table(this_ds@cdesc$handle[best_idx])
+  tbl <- sort(tbl, decreasing = F)
+  maxval <- max(tbl)
+  offset_factor <- 0.1
+  offset <- offset_factor * maxval
+  cols <- rep("gray", length(tbl))
+  cols[names(tbl)=="benchmark"] <- "red"
+  bp <- barplot(tbl, las=3, col=cols,
+           ylab="Number of genes",
+           main=ifelse(grepl("^DPK", p), "compounds", "shRNA"),
+           ylim=c(0, maxval + (2 * offset)))
+  text(bp, tbl + offset, labels=tbl, col="red")
+}
+```
+
+TODO: barplot of # of genes for which each algo. gives best prediction
+- possible group by plate/low vs. high
 
 ## Ensemble
 ```{r ensemble_setup, echo=F}
@@ -427,10 +454,13 @@ ggplot(tmp, aes(x=nalgo, y=auc, group=nalgo)) +
   ylab("AUC score")
 ```
 
-```{r}
-ggplot(tmp, aes(x=cor, y=auc, size=nalgo)) + 
-  geom_point(alpha=0.6) +
-  scale_size_continuous(breaks = seq(1, 9, 2), name="num. algos")
+TODO: how does this look for precision metric?
+
+
+```{r, echo=F}
+# ggplot(tmp, aes(x=cor, y=auc, size=nalgo)) + 
+#   geom_point(alpha=0.6) +
+#   scale_size_continuous(breaks = seq(1, 9, 2), name="num. algos")
 ```
 
 
