@@ -75,28 +75,20 @@ Further examination based on the underlying methods used by the top solutions su
 \color{red}
 
 Todos:
-
-- In Methods section, explain accuracy as measured in the coontest (slide p. 124). And then explain, KD additional test of accuracy (slides p. 128). Results are good on both.
-- (How far froom the max achievable improvement in accuracy (down-sampling uni)?)
-- Discrepancy between genes with high/low bead counts.
 - Update equations to use Latex
 
 \color{black}
 
 
-\color{red}
-TODO: 1) compute precision/recall for KD predictions
+### Reduction variation across replicate samples
 
-\color{black}
-
-### Reduction of difference between low and high bead proportions
-
-One of the issues with the benchmark k-means solution is that it does little to mitigate the discrepancy in prediction accuracy between the genes measued with high and low bead proportions. We observe that the contestant solutions reduce this difference, as measured 
+One of the issues with the benchmark k-means solution is that it does little to mitigate the discrepancy in prediction accuracy between the genes measued with high and low bead proportions. 
 
 \color{red}
-TODO: 1) global distributions of DECONV values split by hi/low prop
-      2) include UNI for comparison
-      3) show that variance is higher for low prop but difference is reduced w/ new algos
+
+Todos:
+- boxplots of replicate variance, stratified by algo and hi/lo bead
+- barplot of average variance per algo, showing that winning algo has lowest variance and discrepancy b/w hi/lo bead is minimized
 
 \color{black}
 
@@ -112,11 +104,7 @@ After the standard transformation to $DE$ data we observe that the t-SNE project
 
 ### Clustering by gene-Level performance
 
-We observed that the global structure of DE data seemed independent of algorithm type in general. We additionally sought to understand whether there were differences between the algorithms at the individual gene level. To assess this, we clustered the algorithms in the space of their gene-level accuracy metrics (Figure XX). We observe that for a large proportion of genes, all algorithms perform about equally well. There are subsets of genes for which accuracy is a bit more algorithm-dependent \color{red}(ex. foo bar).\color{black} These differences suggest complementarity between the algorithms which could potentially be leveraged using an ensemble approach.
-
-\color{red}
-It seems that the gene-level performance for the top algorithms is quite similar. There are very few for which one algorithm is notably different than the rest. This does not immediately suggest obvious complementarity between the algorithms, but we can formally test this by aggregating the predictions from all possible algorithm combinations and assessing their accuracy.
-\color{black}
+We observed that the global structure of DE data seemed independent of algorithm type in general. We additionally sought to understand whether there were differences between the algorithms at the individual gene level. To assess this, we identified the best performing algorithm (by correlation metric) for each of the 976 landmark genes. We observe that while the contest winner is the best performer for the majority of genes, over 70% of the genes achieve better correlation with a different algorithm, and all but 2 algorithms are the best performers for at least 5% of the genes. This suggest that there may be complementarity between the algorithms, which could potentially be leveraged by an ensemble approach.
 
 ## Ensemble approaches
 
