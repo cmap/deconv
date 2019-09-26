@@ -1,11 +1,28 @@
 Introduction
 ============
  
-Significant benefits for drug discovery come from the systematic analysis of large repositories of gene-expression profiles. However, traditional gene-expression high-throughput profiling technologies based on multianalyte methods, such as Luminex profiling technology, are limited by the type and number of available analytes. Therefore, the cost of big data generation in biology remains prohibitive.
+Significant benefits for drug discovery come from the systematic analysis of large repositories of gene-expression profiles. However, traditional multianalyte methods for gene-expression high-throughput profiling, such as Luminex profiling technology, are usually limited by the type and number of available analytes, which represents a prohibitive cost for big data generation in biology.
 
 Using an assay called "L1000," the Connectivity Map (CMap) group at the Broad Institute has developed a novel approach that matches pairs of genes to the same Luminex beads to double the count of profiled genes per bead, thus lowering costs [@subramanian2017next]. A central component of this approach is to statistically deconvolve and compare gene type-specific expression profiles for pairs of mixed-gene samples. 
 
-Similar deconvolution problems arise very often in biology and, for instance, when trying to identify cell type–specific gene expression differences in complex tissues [@shen2010cell]; or dynamic changes in cell populations [@lu2003expression], or in the discovery of target proteins of small molecules [Jung, 2015].
+Deconvolution problems are very common in biology, and several solutions have been proposed. Examples include algorithms to identify cell type–specific gene expression differences in complex tissues [@shen2010cell] or dynamic changes in cell populations [@lu2003expression], or ways to discover the target proteins of small molecules [Jung, 2015].
+
+CMap’s current deconvolution algorithm (called "D-Peak") is based on the K-means clustering. This method automatically partitions a set of gene-expression measurements for each matched pair of genes into $k$ clusters by minimizing the within-cluster sum of squares, and then assigns the two largest clusters to each gene of the pair, using additional information about differences in the bead proportions of the genes (within each pair, one gene has a higher proportion of beads than the other).
+
+<!-- mean of the largest cluster to the gene in higher proportion and the mean value of the second largest cluster to the gene in lower proportion -->
+
+The current k-means approach works well in practice, but has several problems as well. 
+First, it splits clusters incorrectly even when data are reasonably well separated.
+Second, is computationally demanding (finding k clusters takes ... ). 
+
+<!-- Testing for alternative methods would have required substantial resources to experiment with these alternative approaches (more than what already done) and to adapt new to our data. Moreover, impossible an exhaustive search for all available approaches to try; and the combination of these different approaches.  -->
+
+To test for alternative solutions, we used an open innovation competition as a research tool to engage a variety of computer scientist, software developers and bioinformatics in the problem. This approach allows a cost-effective exploration of competing approaches tailored to our problem [@lakhani2013prize; @blasco2019advancing], that would have been otherwise prohibitive. 
+
+First, we transformed the deconvolution problem from unsupervised to supervised by generating novel dataset of gene expression values based on a UNI detection method (one bead type per gene), which does not require deconvolution. Then, we generated additional L1000 data on the same samples with a DUO detection method (two genes per bead type). Thus, the datasets were based on the same samples, same experiments, the main difference was in the detection method. 
+Both datasets are publicly available [LINK]. 
+
+Second, we used Topcoder for the infrastructure, offered cash prizes, and elicited submissions from competitors, using standard measures of accuracy (based on the distance between UNI direct measurements against DUO deconvolution estimates) and computational speed (See supporting material) to evaluate these submissions and award the prizes. 
 
 <!-- 
 Shen-orr et al. (2010). Gene expression data from multiple cell-types. The problem is to quantify cell-type frequency "then deconvolve and compare cell type-specific average expression profiles for groups of mixed tissue samples." One approach is "deconvolution to be linear"
@@ -14,14 +31,3 @@ Shen-orr et al. (2010). Gene expression data from multiple cell-types. The probl
 <!-- Broadly speaking, the problem is to estimate the density $f$ of a random variable $X$ based on $n$ observations from $Y = X + \epsilon$, where $\epsilon$ is a measurement error based on a possibly unknown distribution.  (Fan, 1991) -->
 
 <!-- The solution adopted by CMap was a KNN [explain]. This is a standard technique implemented in xxx that gives a good level of accuracy [xxx] and reasonably fast computation time (xxx with the current Matlab implementation). -->
-
-Common approaches are parametric (mixture models) and non-parametric. CMap’s current solution to this problem is an algorithm, called "D-Peak," based on a K-means clustering [Refs]. This method automatically partitions a set of gene-expression measurements into $k$ clusters, taking the mean of the two largest clusters, assigning the mean value of the largest cluster to the gene in higher proportion and the mean value of the second largest cluster to the gene in .  This works well but has several problems as well. [List problems.] Including time. The trade-off between accuracy and computation time is currently unknown. 
-
-Alternative methods are well known, such as Gaussian etc. But it would have required substantial resources to experiment with these alternative approaches (more than what already done) and to adapt new to our data. Moreover, impossible an exhaustive search for all available approaches to try; and the combination of these different approaches. 
-
-Instead, we used an open innovation competition as a research tool to engage a variety of computer scientist, software developers and bioinformatics in the problem. This approach allows  simultaneous exploration of competing approaches tailored to our problem, at no cost. 
-
-
-
-
-
