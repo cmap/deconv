@@ -1,3 +1,8 @@
+\clearpage 
+
+Supporting information
+======================
+
 \color{red}
 TODO: update equations to use Latex
 \color{black}
