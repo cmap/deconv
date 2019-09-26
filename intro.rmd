@@ -15,14 +15,10 @@ The current k-means approach works well in practice, but has several problems as
 First, it splits clusters incorrectly even when data are reasonably well separated.
 Second, is computationally demanding (finding k clusters takes ... ). 
 
-<!-- Testing for alternative methods would have required substantial resources to experiment with these alternative approaches (more than what already done) and to adapt new to our data. Moreover, impossible an exhaustive search for all available approaches to try; and the combination of these different approaches.  -->
-
 To test for alternative solutions, we used an open innovation competition as a research tool to engage a variety of computer scientist, software developers and bioinformatics in the problem. This approach allows a cost-effective exploration of competing approaches tailored to our problem [@lakhani2013prize; @blasco2019advancing], that would have been otherwise prohibitive. 
 
-First, we transformed the deconvolution problem from unsupervised to supervised by generating novel dataset of gene expression values based on a UNI detection method (one bead type per gene), which does not require deconvolution. Then, we generated additional L1000 data on the same samples with a DUO detection method (two genes per bead type). Thus, the datasets were based on the same samples, same experiments, the main difference was in the detection method. 
-Both datasets are publicly available [LINK]. 
+<!-- Testing for alternative methods would have required substantial resources to experiment with these alternative approaches (more than what already done) and to adapt new to our data. Moreover, impossible an exhaustive search for all available approaches to try; and the combination of these different approaches.  -->
 
-Second, we used Topcoder for the infrastructure, offered cash prizes, and elicited submissions from competitors, using standard measures of accuracy (based on the distance between UNI direct measurements against DUO deconvolution estimates) and computational speed (See supporting material) to evaluate these submissions and award the prizes. 
 
 <!-- 
 Shen-orr et al. (2010). Gene expression data from multiple cell-types. The problem is to quantify cell-type frequency "then deconvolve and compare cell type-specific average expression profiles for groups of mixed tissue samples." One approach is "deconvolution to be linear"
