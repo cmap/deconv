@@ -1,6 +1,6 @@
 ---
-title: "Improving Deconvolution Methods in Biology 
-        through Open Innovation Competitions: 
+title: "Improving Deconvolution Methods in Biology \
+        through Open Innovation Competitions: \
         an Application to the Connectivity Map"
 
 author: 
@@ -30,7 +30,7 @@ fontfamily: mathpazo
 # citecolor: blue 
 geometry: margin=1.25in
 # endfloat: true
-# bibliography: races.bib
+bibliography: dpeak.bib
 header-includes:
   - \usepackage{bbm}
   - \newcommand\hl{}

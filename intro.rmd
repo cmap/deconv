@@ -1,12 +1,11 @@
 Introduction
 ============
  
-Many recent examples have shown significant benefits for drug discovery from the systematic analysis of large repositories of gene-expression profiles [Refs]. However, traditional gene-expression high-throughput profiling technologies that are based multianalyte methods, such as Luminex profiling technology, are limited by the type and number of available analytes [Refs]. Therefore, the cost of big data generation in biology remains prohibitive. 
+Significant benefits for drug discovery come from the systematic analysis of large repositories of gene-expression profiles. However, traditional gene-expression high-throughput profiling technologies based on multianalyte methods, such as Luminex profiling technology, are limited by the type and number of available analytes. Therefore, the cost of big data generation in biology remains prohibitive.
 
-Using an assay called L1000, The Connectivity Map (CMap) group at the Broad Institute has developed a novel approach that matches pairs of genes to the same Luminex beads to double the count of profiled genes per bead, thus lowering costs [Subramanian 2017].
-A central component of this approach is to quantify gene-type frequency of beads, and then statistically deconvolve and compare gene type-specific average expression profiles for pairs of mixed gene samples. 
+Using an assay called "L1000," the Connectivity Map (CMap) group at the Broad Institute has developed a novel approach that matches pairs of genes to the same Luminex beads to double the count of profiled genes per bead, thus lowering costs [@subramanian2017next]. A central component of this approach is to statistically deconvolve and compare gene type-specific expression profiles for pairs of mixed-gene samples. 
 
-This type of deconvolution problems are ubiquitous and have a long history in biology [refs]. For example, deconvolution problems arise when trying to identify cell type–specific gene expression differences in complex tissues [Shen-orr et al., 2010]; or in the discovery of target proteins of small molecules [Jung, 2015]. 
+Similar deconvolution problems arise very often in biology and, for instance, when trying to identify cell type–specific gene expression differences in complex tissues [@shen2010cell]; or dynamic changes in cell populations [@lu2003expression], or in the discovery of target proteins of small molecules [Jung, 2015].
 
 <!-- 
 Shen-orr et al. (2010). Gene expression data from multiple cell-types. The problem is to quantify cell-type frequency "then deconvolve and compare cell type-specific average expression profiles for groups of mixed tissue samples." One approach is "deconvolution to be linear"
