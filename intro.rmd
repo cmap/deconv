@@ -2,7 +2,7 @@
 
 Introduction
 ============
- 
+
 Traditional multianalyte methods for gene-expression profiling are usually limited by the type and number of available analytes, which typically results in prohibitive costs for big data generation in biology. Using an assay called L1000, the Connectivity Map (CMap) group at the Broad Institute has developed a novel approach that matches pairs of genes to the same analyte type, or bead, to double the count of profiled genes; thus lowering costs [@subramanian2017next]. 
 
 A central component of this approach is to statistically deconvolve and compare gene type-specific expression profiles for pairs of mixed-gene samples. Similar deconvolution problems are ubiquitous in biology and several solutions have been proposed in a variety of different contexts. Examples include algorithms to identify cell type–specific gene expression differences in complex tissues [@shen2010cell] or dynamic changes in cell populations [@lu2003expression], or ways to discover the target proteins of small molecules [Jung, 2015].
