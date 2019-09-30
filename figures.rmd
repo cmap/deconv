@@ -1,7 +1,8 @@
 # Figures
 
-```{r plot-setup-and-libraries, echo=FALSE, warning=FALSE}
-my.pal <- palette(c("dodgerblue","brown","orange"))
+```{r plot-setup-and-libraries, include = FALSE}
+my.col <- c("dodgerblue","brown","orange")
+palette(my.col)
 library(data.table)
 library(ggplot2)
 library(ggrepel)
@@ -15,8 +16,7 @@ library(dplyr, warn=F)
 
 ## Accuracy vs. Speed
 
-```{r, echo=FALSE}
-# data
+```{r acc-vs-speed-data, include = FALSE}
 speed_acc <- fread("data/holdout_score_time.txt", na.strings="n/a")
 soln_desc <- fread("data/solution_descriptions.txt", na.strings="n/a")
 speed_acc <- merge(speed_acc, soln_desc, by="handle")
@@ -28,7 +28,6 @@ speed_acc <- merge(speed_acc, soln_desc, by="handle")
 # SCORE = MAX_SCORE * (MAX(CORp, 0))2 * AUCp2 * exp(- Tsolution / (3 * Tbenchmark) )
 # speed_acc[, acc := cor^2 * auc^2]
 ```
-
 
 ```{r speed_acc, include=FALSE}
 # plot
@@ -47,10 +46,16 @@ speed_acc <- merge(speed_acc, soln_desc, by="handle")
 #   ggtitle("Accuracy vs. Speed")
 ```
 
-```{r setup, echo=F}
+```{r setup, include = FALSE}
 impute <- function(x, value) ifelse(is.na(x), value, x)
 n <- nrow(speed_acc)
 attach(speed_acc)
+```
+
+```{r}
+par(mar=c(6,2,2,2))
+plot(auc[plate==factor(plate)[1]], type="b", ylim=c(0.9,0.96))
+axis(1, at=1:10, handle[plate==factor(plate)[1]], las=2)
 ```
 
 ```{r acc-vs-speed, fig.width=8, fig.height=3.5, fig.cap=cap, echo=FALSE}

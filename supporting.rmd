@@ -1,0 +1,95 @@
+\clearpage 
+
+Supporting information
+======================
+
+\color{red}
+TODO: update equations to use Latex
+\color{black}
+
+## Data generation for contest
+
+To generate data for this contest, we profiled six 384-well perturbagen plates, each containing mutually exclusive sets of compound and shRNA treatments. Multiple treatment types were used to avoid potentially over-fitting to any one. The compound and shRNA perturbagen plates were arbitrarily grouped into pairs, and to avoid any potential 'information leakage' each pair was profiled in a different cell line. The resulting lysates were amplified by ligation mediated amplification (LMA, Subramanian 2017). The amplicon was then split and detected in both $UNI$ and $DUO$ detection modes. The three pairs of data were arbitrarily assigned to training, testing, and holdout categories, where in each case the $UNI$ data served as the ground truth. Training data were made available for all the contestants to develop and validate their solutions offline. The testing data were used to evaluate solutions during the contestn and populate the live leaderboard. Holdout data were used evaluate competitors' final submissions and guard against over-fitting. Prizes were awareded based on performance on the holdout dataset.
+
+```{r, echo=FALSE}
+category <- c("training", "testing", "holdout")
+type <- c("Compounds", "shRNA")
+knitr::kable(expand.grid(Category=category, Type=type), caption="Data generated")
+```
+
+## L1000 Experimental Scheme
+
+The L1000 assay uses Luminex bead-based fluorescent scanners to detect gene expression changes resulting from treating cultured human cells with chemical or genetic perturbations [Subramanian 2017]. Experiments are performed in 384-well plate format, where each well contains an independent sample. The Luminex scanner is able to distinguish between 500 different bead types, or colors, which CMap uses to measure the expression levels of 978 landmark genes using two detection approaches.
+
+In the first detection mode, called $UNI$, each of the 978 landmark genes is measured individually on one of the 500 Luminex bead colors. In order to capture all 978 genes, two detection plates are used, each measuring 489 landmarks. The two detection plates’ worth of data are then computationally combined to reconstruct the full 978-gene expression profile for each sample.
+
+By contrast, in the $DUO$ detection scheme two genes are measured using the same bead color. Each bead color produces an intensity histogram which characterizes the expression of the two distinct genes. In the ideal case, each histogram consists of two peaks each corresponding to a single gene. The genes are mixed in 2:1 ratio, thus the areas under the peaks have 2:1 ratio (see Figure 1), which enables the association of each peak with the specific gene. **The practical advantage of the DUO detection mode is that it uses half of the laboratory reagents as UNI mode, and hence $DUO$ is and has been the main detection mode used by CMap.**
+
+After $DUO$ detection, the expression values of the two genes are computationally extracted in a process called 'peak deconvolution,' described in the next section. 
+
+### Benchmark k-means solution
+
+CMap's current solution to this problem is based on a k-means clustering algorithm called $dpeak$ that works as follows:
+
+For each measurement, the dpeak partitions the list of realizations into $k>=2$ distinct clusters and identifies two of the clusters whose ratio of membership is as close as possible to 2:1. The algorithm then takes the median intensity of each of the two clusters, assigning these values to the appropriate gene (i.e., matching clusters with more observations to the gene mixed in higher proportion).
+
+After deconvoluting each sample on a plate, dpeak then uses the plate-wide distributions to perform adjustments on a per-well basis, correcting peaks that may have been misassigned (see Appendix).
+
+Known problems with the current approach are that k-means is generally a biased and inconsistent estimator of the peaks of a bimodal distribution [ref]. It also sometimes fails to detect peaks with few observations or it incorrectly identifies these peaks as extraneous and disregards them. Another limitation is that it is computationally expensive (the current Matlab implementation takes about 30 minutes on a 12-core server to process one set of 384 experiments).
+
+Additionally, because half the landmark genes are measured using two-fold less bead than the other half, these low-proportion genes are subject to increased variability, which the benchmark k-means solution does not mitigate. Hence, there is an unequal noise distribution in the benchmark's deconvoluted expression profiles. 
+
+
+
+## Scoring configuation
+
+Contest submissions were scored based on accuracy and speed.
+
+### Accuracy
+
+Accuracy measures were obtained by comparing the contestant's predictions, which were derived from $DUO$ data, to the equivalent $UNI$ ground truth data generated from the same samples.
+
+The scoring function combines two measures of accuracy: correlation and AUC, which are applied to deconvoluted ($DECONV$) data and one to differential expression ($DE$) data, respectively (See figure XX).
+
+$DE$ is derived from DECONV by applying a series of transformations (parametric scaling, quantile normalization, and robust z-scoring) that are described in detail in Subramanian et al. 2017[ref].The motivation for scoring $DE$ data in addition to $DECONV$ is because it is at this level where the most bilogically interesting gene expression changes are observed. Of particular interest is obtaining significant improvement in the detection of, so called, "extreme modulations." These are genes that notably up- or down-regulated by pertubation and hence exhibit an exceedingly high (or low) $DE$ values relative to a fixed threshold. 
+
+#### Accuracy based on Spearman correlation
+
+The first accuracy component is based on the Spearman rank correlation between the predicted $DECONV$ data and the corresponding $UNI$ ground truth data.
+
+For a given dataset p, let MDUO, p and MUNI, p denote the matrices of the estimated gene intensities for G = 976 genes (rows) and S ~ 384 experiments (columns) under DUO and UNI detection.  Compute the Spearman rank correlation matrix between the rows of MDUO, p and the rows of MUNI, p; take the median of the diagonal elements of the resulting matrix (i.e., the values corresponding to the matched experiments between UNI and DUO) to compute the median correlation per dataset:
+
+CORp = median(diag(spearman(MDUO, p, MUNI, p))
+
+#### Accuracy based on AUC of extreme modulations
+
+The second component of the scoring function is based on the Area Under the receiver operating characteristic Curve (AUC) that uses the competitor's DE values at various thresholds to predict the UNI's DE values being higher than 2 ("high") or lower than -2 ("low").
+ 
+For a given bead type a in a given dataset p, let AUCp, c denote the corresponding area under the curve where c = { high | low }, where high means UNIDE, p >= 2, and low means UNIDE, p <= -2; then, compute the arithmetic mean of the area under the curve per class to obtain the corresponding score per dataset:
+$$
+\text{AUC}_p = (\text{AUC}_p, hight + \text{AUC}_p, low) / 2.
+$$
+
+### Speed
+
+For a given dataset $p$, the speed component of the score is computed as the run time in seconds for deconvoluting the data in each plate. 
+
+<!-- Notice that multi-theading is allowed in this match, and thus highly recommended. Your submission will be tested on multi-core machines (presumably, 8 cores). The maximum execution time of your solution will be capped by 30 minutes. -->
+
+### Aggregegated score
+
+The accuracy and speed components were integrated into a single aggregate scores as follow:
+$$
+\text{SCORE} = 
+  \text{SCORE}_{\text{max}} \cdot (\max(\text{COR}_{p}, 0)) 2 
+                   \cdot \text{AUC}_{p} 
+                   \cdot \exp(- T_{\text{solution}} / (3 \cdot T_{\text{benchmark}})), 
+$$
+where $T_{\text{benchmark}}$ is the deconvolution time required by the reference D-Peak implementation. 
+
+
+### Accuracy based on knockdown predictions
+
+In addition to the Spearman correlation and extreme modulation AUC metrics used in the contest, we were also able to asses each algorithms ability to correctly predict the successful knockdown (KD) of landmark genes. The shRNA experiments used to generate the contest data were constructed such that each shRNA specifically targeted one of the landmark genes. Hence, the expectation in each of those experiments is that the targeted landmark gene should exhibit a greatly reduced expression level, which should manifest in a very low z-score in $DE$ data. Additionally, we expect that the targeted landmark gene should be most dramatically down-regulated in the samples in which it was directly targeted. To assess this, we compute a gene-wise rank by $DE$ z-score across all samples in a given plate. Criteria for indicating a successful KD are $zs <= -2 AND rank <= -10$. 
+
+
