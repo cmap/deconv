@@ -1,13 +1,24 @@
 Methods
 ========
 
-The first step towards developing an open innovation competition was to transform the deconvolution problem into a supervised classification task. We generated a novel L1000 dataset (976 genes and xxx compounds and xxx shRNA) based on two different detection methods. One, called DUO, in which two genes are measured using the same analyte type, and expression values must be extracted by a deconvolution algorithm. Another one, called UNI, in which each gene is measured individually on one single bead color, and does not require deconvolution to extract the expression values. Then, we used the data obtained from the UNI method (one gene per analyte type) as the ground-truth data; and the data obtained from the DUO method (two genes per analyte type) as data input. Thus, competitors were tasked to predict the 976 gene-expression values measured by UNI with the corresponding 478 DUO measurements in mixed-samples of pairs of matched genes; a subset of about one third of the data was held out for validation (to avoid overfitting). These datasets are now publicly available [LINK to REPO]. 
+The first step towards developing an open innovation competition was to transform the deconvolution problem into a supervised classification task. 
+
+Using the L1000 assay, we profiled six 384-well plates, each containing different sets of compound and shRNA treatments (Supporting Info, xxxx). These plates were profiled using different detection methods. 
+The first detection method, called UNI, measured each gene individually by assigning all genes to mutually exclusive bead colors. Deconvolution was unnecessary to extract the expression values under this method.
+The other method, called DUO, measured a composite expression signal of non-overlapping pairs of genes using the same analyte type and, therefore, the expression values must be extracted by a deconvolution algorithm. 
+Within each pair, genes are mixed in 1:2 ratio so that the composite signal should have two peaks: a bigger peak for the cluster to the gene for which a larger proportion of beads are present, and a smaller peak representing the other gene. 
+
+The goal of the contest was to use the data obtained from the DUO method (two genes per analyte type) as input to predict the corresponding measurements obtained from the UNI method (one gene per analyte type) as the ground-truth data.
+
+The data were randomly split into training, testing, and holdout datasets. Training data were made available for all the contestants to develop and validate their solutions offline. The testing data were used to evaluate solutions during the contest and populate the live leaderboard. Holdout data were used evaluate competitors’ final submissions and guard against over-fitting. Prizes were awareded based on performance on the holdout dataset. The datasets are now publicly available [LINK to REPO]. 
 
 <!-- FOOTNOTE: Since the L1000 assay returns gene-expression profiles for 978 genes, we combined data from two plates to match the amount of data produced.  -->
 
-Next, we developed a scoring function that combines standard measures of accuracy (spearman rank correlation between algorithmic predictions and the ground-truth data, and AUC between extreme-modulations predicted based on DUO data and observed extreme modulations in UNI data), as well as computational speed to evaluate the submissions received and award the prizes to the best competitors. 
+To evaluate submissions, we developed a scoring function that combines standard measures of accuracy based on the distance (e.g., correlation) between the predicted values and the ground truth (Supporting Info, XXXX), as well as computational speed to evaluate the submissions received and award the prizes to the best competitors. 
 
-Finally, the competition was run online  on the platform Topcoder (Wipro, India), for a total of 10 days, offering $10,000 in cash prizes as incentive to be divided amont the top 9 submissions (prize split are: 5, 3, 2, 1, 500, ...). 
+The competition run on the platform Topcoder (Wipro, India) for 10 days. A total of $20,000 in cash prizes was offered to competitors as incentive to be divided among the top 9 submissions (with a prize split of 8000, 6000, 4000, 2000, 1000, 800, 600, 400, 100). 
+
+<!-- (spearman rank correlation between algorithmic predictions and the ground-truth data, and AUC between extreme-modulations predicted based on DUO data and observed extreme modulations in UNI data) -->
 
 <!-- 
 In biomedical research, our focus here, deconvolution problems are common in multianalyte assay methods. These methods are widely used to do X, Y and Z. In general terms, multianalyte assay methods are based on microspheres with different fluorescence decay times. This feature can be used to do X, Y, and Z. [EXPLAIN BRIEFLY CMap PROBLEM].
@@ -17,8 +28,6 @@ To identify accurate methods we launched an open challenge that allowed a rapid 
 training and testing dataset
 benchmark solution to improve
  -->
-
-
 <!-- alt. wording
 In a single experiment, CMap makes 488 measurements, each made by a different colored bead. Each measurement produces an intensity histogram (a list of integers), which characterizes the expression of two distinct genes in the given sample (for a total of 488 x 2 = 976 genes). The genes are mixed in 2:1 ratio. Thus, the areas under the peaks have 2:1 ratio, which enables association of each peak with a specific gene. In the ideal case, each histogram consists of two peaks (see Figure 1), each corresponding to a single gene. 
 -->
