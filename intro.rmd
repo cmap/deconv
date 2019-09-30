@@ -15,7 +15,7 @@ CMap’s current deconvolution algorithm (called D-Peak) is based on the k-means
 The current k-means approach works well in practice but has several limitations as well; it tends to split clusters incorrectly when data are not reasonably well separated, it is sensitive to outliers, and it is computationally demanding (an efficient k-means algorithm, such as Lloyd's, has a running time that scales as $O(kn)$ where $n$ is the number of observations and $k$ the number of clusters). 
 
 As a research tool to test for alternative solutions and to engage a variety of computer scientist, software developers and bioinformatics in the problem, we used an open innovation competition [@lakhani2013prize; @blasco2019advancing]. 
-In this paper, we report the results of the competition, which resulted in a cost-effective exploration of competing approaches, including random forest, gaussian mixture models, and convolutional nets, tailored to our problem that would have been otherwise prohibitive.
+In this paper, we report the outcomes of the competition, which resulted in a cost-effective exploration of competing approaches, including random forest, gaussian mixture models, and convolutional nets, tailored to our problem that would have been otherwise prohibitive.
 
 <!-- Testing for alternative methods would have required substantial resources to experiment with these alternative approaches (more than what already done) and to adapt new to our data. Moreover, impossible an exhaustive search for all available approaches to try; and the combination of these different approaches.  -->
 
