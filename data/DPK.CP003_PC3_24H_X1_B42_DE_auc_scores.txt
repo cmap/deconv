@@ -1,1014 +1,1014 @@
-algos	auc	nalgo
-AliGebily:Ardavel	0.937801891203838	2
-AliGebily:balajipro	0.934908333895539	2
-AliGebily:benchmark	0.928030207632955	2
-AliGebily:gardn999	0.935918616611089	2
-AliGebily:LastEmperor	0.933048107478986	2
-AliGebily:mkagenius	0.934993395714907	2
-AliGebily:mvaudel	0.932178619354009	2
-AliGebily:Ramzes2	0.93407275928463	2
-AliGebily:vladaburian	0.933548748154362	2
-Ardavel:balajipro	0.934359986715323	2
-Ardavel:benchmark	0.930748882518549	2
-Ardavel:gardn999	0.939443138240823	2
-Ardavel:LastEmperor	0.932025078896925	2
-Ardavel:mkagenius	0.936377341239711	2
-Ardavel:mvaudel	0.932478678124643	2
-Ardavel:Ramzes2	0.937513012043559	2
-Ardavel:vladaburian	0.93577308038117	2
-balajipro:benchmark	0.926786006561238	2
-balajipro:gardn999	0.934434222554221	2
-balajipro:LastEmperor	0.921943967859358	2
-balajipro:mkagenius	0.931873276639821	2
-balajipro:mvaudel	0.928391907743758	2
-balajipro:Ramzes2	0.935342064681569	2
-balajipro:vladaburian	0.93348810864292	2
-benchmark:gardn999	0.930258550448272	2
-benchmark:LastEmperor	0.924072611766246	2
-benchmark:mkagenius	0.927635848297176	2
-benchmark:mvaudel	0.924877871262448	2
-benchmark:Ramzes2	0.928472972803123	2
-benchmark:vladaburian	0.925731801160733	2
-gardn999:LastEmperor	0.929843697835576	2
-gardn999:mkagenius	0.935798290953261	2
-gardn999:mvaudel	0.934796769185588	2
-gardn999:Ramzes2	0.93653542350759	2
-gardn999:vladaburian	0.936863045852777	2
-LastEmperor:mkagenius	0.928377963956923	2
-LastEmperor:mvaudel	0.92598581470486	2
-LastEmperor:Ramzes2	0.932886270618873	2
-LastEmperor:vladaburian	0.930947210455304	2
-mkagenius:mvaudel	0.929556039226444	2
-mkagenius:Ramzes2	0.93487339715491	2
-mkagenius:vladaburian	0.933012424794953	2
-mvaudel:Ramzes2	0.932672692958205	2
-mvaudel:vladaburian	0.930792636293432	2
-Ramzes2:vladaburian	0.933747278786063	2
-AliGebily:Ardavel:balajipro	0.939328747992621	3
-AliGebily:Ardavel:benchmark	0.93726784083022	3
-AliGebily:Ardavel:gardn999	0.941294289723861	3
-AliGebily:Ardavel:LastEmperor	0.94087733859236	3
-AliGebily:Ardavel:mkagenius	0.939730513052124	3
-AliGebily:Ardavel:mvaudel	0.937835038141916	3
-AliGebily:Ardavel:Ramzes2	0.940287456376585	3
-AliGebily:Ardavel:vladaburian	0.939978988016732	3
-AliGebily:balajipro:benchmark	0.935476654810934	3
-AliGebily:balajipro:gardn999	0.938598237460353	3
-AliGebily:balajipro:LastEmperor	0.933341734499609	3
-AliGebily:balajipro:mkagenius	0.937923746014905	3
-AliGebily:balajipro:mvaudel	0.935974954962274	3
-AliGebily:balajipro:Ramzes2	0.939505332707163	3
-AliGebily:balajipro:vladaburian	0.939386899649356	3
-AliGebily:benchmark:gardn999	0.935619478957603	3
-AliGebily:benchmark:LastEmperor	0.935593088478029	3
-AliGebily:benchmark:mkagenius	0.93541182843538	3
-AliGebily:benchmark:mvaudel	0.934044219205498	3
-AliGebily:benchmark:Ramzes2	0.935976173048962	3
-AliGebily:benchmark:vladaburian	0.93350286819225	3
-AliGebily:gardn999:LastEmperor	0.936951794575668	3
-AliGebily:gardn999:mkagenius	0.938759036880288	3
-AliGebily:gardn999:mvaudel	0.93983323997031	3
-AliGebily:gardn999:Ramzes2	0.938803089936489	3
-AliGebily:gardn999:vladaburian	0.939052627688126	3
-AliGebily:LastEmperor:mkagenius	0.938107400545513	3
-AliGebily:LastEmperor:mvaudel	0.93849669540246	3
-AliGebily:LastEmperor:Ramzes2	0.93939588024069	3
-AliGebily:LastEmperor:vladaburian	0.939919071252699	3
-AliGebily:mkagenius:mvaudel	0.936648817157502	3
-AliGebily:mkagenius:Ramzes2	0.938130991588106	3
-AliGebily:mkagenius:vladaburian	0.937891882247136	3
-AliGebily:mvaudel:Ramzes2	0.938334502468581	3
-AliGebily:mvaudel:vladaburian	0.937670261705038	3
-AliGebily:Ramzes2:vladaburian	0.938337118399265	3
-Ardavel:balajipro:benchmark	0.93609744114413	3
-Ardavel:balajipro:gardn999	0.937716555864708	3
-Ardavel:balajipro:LastEmperor	0.93147574603079	3
-Ardavel:balajipro:mkagenius	0.937284283121649	3
-Ardavel:balajipro:mvaudel	0.933610223588711	3
-Ardavel:balajipro:Ramzes2	0.940128423398034	3
-Ardavel:balajipro:vladaburian	0.937796212225707	3
-Ardavel:benchmark:gardn999	0.938713565903032	3
-Ardavel:benchmark:LastEmperor	0.937052986074072	3
-Ardavel:benchmark:mkagenius	0.937451338583756	3
-Ardavel:benchmark:mvaudel	0.934389759107586	3
-Ardavel:benchmark:Ramzes2	0.938565888041963	3
-Ardavel:benchmark:vladaburian	0.935142987110696	3
-Ardavel:gardn999:LastEmperor	0.937279881530922	3
-Ardavel:gardn999:mkagenius	0.940821241115496	3
-Ardavel:gardn999:mvaudel	0.938252994115106	3
-Ardavel:gardn999:Ramzes2	0.942745329360672	3
-Ardavel:gardn999:vladaburian	0.941104335546695	3
-Ardavel:LastEmperor:mkagenius	0.938579276727854	3
-Ardavel:LastEmperor:mvaudel	0.935288565392009	3
-Ardavel:LastEmperor:Ramzes2	0.941240428652125	3
-Ardavel:LastEmperor:vladaburian	0.9393335553857	3
-Ardavel:mkagenius:mvaudel	0.935777592795589	3
-Ardavel:mkagenius:Ramzes2	0.941033211818728	3
-Ardavel:mkagenius:vladaburian	0.938779466950071	3
-Ardavel:mvaudel:Ramzes2	0.93821625187941	3
-Ardavel:mvaudel:vladaburian	0.935790063608518	3
-Ardavel:Ramzes2:vladaburian	0.940717068829237	3
-balajipro:benchmark:gardn999	0.936131243021121	3
-balajipro:benchmark:LastEmperor	0.930665750285925	3
-balajipro:benchmark:mkagenius	0.935081864807912	3
-balajipro:benchmark:mvaudel	0.932030994662158	3
-balajipro:benchmark:Ramzes2	0.936744803946869	3
-balajipro:benchmark:vladaburian	0.93343607509422	3
-balajipro:gardn999:LastEmperor	0.931358621617183	3
-balajipro:gardn999:mkagenius	0.937613499132775	3
-balajipro:gardn999:mvaudel	0.934380439462105	3
-balajipro:gardn999:Ramzes2	0.939786433045843	3
-balajipro:gardn999:vladaburian	0.938808515426692	3
-balajipro:LastEmperor:mkagenius	0.932206612295702	3
-balajipro:LastEmperor:mvaudel	0.928725692696771	3
-balajipro:LastEmperor:Ramzes2	0.933751327819909	3
-balajipro:LastEmperor:vladaburian	0.932546745384305	3
-balajipro:mkagenius:mvaudel	0.933892930152066	3
-balajipro:mkagenius:Ramzes2	0.939042297257954	3
-balajipro:mkagenius:vladaburian	0.937185851567471	3
-balajipro:mvaudel:Ramzes2	0.936150817592457	3
-balajipro:mvaudel:vladaburian	0.933718711022181	3
-balajipro:Ramzes2:vladaburian	0.940505471841628	3
-benchmark:gardn999:LastEmperor	0.934865233844479	3
-benchmark:gardn999:mkagenius	0.936159137828371	3
-benchmark:gardn999:mvaudel	0.935414401712773	3
-benchmark:gardn999:Ramzes2	0.937455388038051	3
-benchmark:gardn999:vladaburian	0.934170100476194	3
-benchmark:LastEmperor:mkagenius	0.93495008294813	3
-benchmark:LastEmperor:mvaudel	0.933850506452997	3
-benchmark:LastEmperor:Ramzes2	0.936662205809032	3
-benchmark:LastEmperor:vladaburian	0.933553082590795	3
-benchmark:mkagenius:mvaudel	0.934066300797381	3
-benchmark:mkagenius:Ramzes2	0.936633302903979	3
-benchmark:mkagenius:vladaburian	0.933410396727049	3
-benchmark:mvaudel:Ramzes2	0.935382655871877	3
-benchmark:mvaudel:vladaburian	0.932307018205072	3
-benchmark:Ramzes2:vladaburian	0.934407781113952	3
-gardn999:LastEmperor:mkagenius	0.936083794805315	3
-gardn999:LastEmperor:mvaudel	0.935525997480624	3
-gardn999:LastEmperor:Ramzes2	0.93791834093389	3
-gardn999:LastEmperor:vladaburian	0.937510085322215	3
-gardn999:mkagenius:mvaudel	0.937905851133924	3
-gardn999:mkagenius:Ramzes2	0.940125075033422	3
-gardn999:mkagenius:vladaburian	0.938773593522861	3
-gardn999:mvaudel:Ramzes2	0.940832208429584	3
-gardn999:mvaudel:vladaburian	0.938349137911885	3
-gardn999:Ramzes2:vladaburian	0.940575739819572	3
-LastEmperor:mkagenius:mvaudel	0.936332302525912	3
-LastEmperor:mkagenius:Ramzes2	0.938846904245672	3
-LastEmperor:mkagenius:vladaburian	0.937272948444923	3
-LastEmperor:mvaudel:Ramzes2	0.938876802444747	3
-LastEmperor:mvaudel:vladaburian	0.936006291310794	3
-LastEmperor:Ramzes2:vladaburian	0.940402271115362	3
-mkagenius:mvaudel:Ramzes2	0.937914505964204	3
-mkagenius:mvaudel:vladaburian	0.9360521497578	3
-mkagenius:Ramzes2:vladaburian	0.938913864882127	3
-mvaudel:Ramzes2:vladaburian	0.938165141421459	3
-AliGebily:Ardavel:balajipro:benchmark	0.939646520575455	4
-AliGebily:Ardavel:balajipro:gardn999	0.941929228419298	4
-AliGebily:Ardavel:balajipro:LastEmperor	0.939386553307036	4
-AliGebily:Ardavel:balajipro:mkagenius	0.940514536855278	4
-AliGebily:Ardavel:balajipro:mvaudel	0.939029326877988	4
-AliGebily:Ardavel:balajipro:Ramzes2	0.942312817263119	4
-AliGebily:Ardavel:balajipro:vladaburian	0.941588526860974	4
-AliGebily:Ardavel:benchmark:gardn999	0.940362339739578	4
-AliGebily:Ardavel:benchmark:LastEmperor	0.940228911556238	4
-AliGebily:Ardavel:benchmark:mkagenius	0.939410596248415	4
-AliGebily:Ardavel:benchmark:mvaudel	0.938341855647603	4
-AliGebily:Ardavel:benchmark:Ramzes2	0.940086564188109	4
-AliGebily:Ardavel:benchmark:vladaburian	0.938356137089635	4
-AliGebily:Ardavel:gardn999:LastEmperor	0.941737803670171	4
-AliGebily:Ardavel:gardn999:mkagenius	0.941789771328701	4
-AliGebily:Ardavel:gardn999:mvaudel	0.941873788401904	4
-AliGebily:Ardavel:gardn999:Ramzes2	0.942413047409899	4
-AliGebily:Ardavel:gardn999:vladaburian	0.942452375385234	4
-AliGebily:Ardavel:LastEmperor:mkagenius	0.941084699483647	4
-AliGebily:Ardavel:LastEmperor:mvaudel	0.94067726105582	4
-AliGebily:Ardavel:LastEmperor:Ramzes2	0.94263961838565	4
-AliGebily:Ardavel:LastEmperor:vladaburian	0.942324957655401	4
-AliGebily:Ardavel:mkagenius:mvaudel	0.939311636445099	4
-AliGebily:Ardavel:mkagenius:Ramzes2	0.941443507630987	4
-AliGebily:Ardavel:mkagenius:vladaburian	0.940487432434374	4
-AliGebily:Ardavel:mvaudel:Ramzes2	0.941004805905284	4
-AliGebily:Ardavel:mvaudel:vladaburian	0.940072049778726	4
-AliGebily:Ardavel:Ramzes2:vladaburian	0.941523981030189	4
-AliGebily:balajipro:benchmark:gardn999	0.938773510278138	4
-AliGebily:balajipro:benchmark:LastEmperor	0.937049998859997	4
-AliGebily:balajipro:benchmark:mkagenius	0.93803439880964	4
-AliGebily:balajipro:benchmark:mvaudel	0.937079702465596	4
-AliGebily:balajipro:benchmark:Ramzes2	0.939238243105674	4
-AliGebily:balajipro:benchmark:vladaburian	0.937460669087623	4
-AliGebily:balajipro:gardn999:LastEmperor	0.937694509501528	4
-AliGebily:balajipro:gardn999:mkagenius	0.940151815937044	4
-AliGebily:balajipro:gardn999:mvaudel	0.940423927619283	4
-AliGebily:balajipro:gardn999:Ramzes2	0.941190780557493	4
-AliGebily:balajipro:gardn999:vladaburian	0.941341608363726	4
-AliGebily:balajipro:LastEmperor:mkagenius	0.937829975604699	4
-AliGebily:balajipro:LastEmperor:mvaudel	0.937662694912443	4
-AliGebily:balajipro:LastEmperor:Ramzes2	0.939979995587744	4
-AliGebily:balajipro:LastEmperor:vladaburian	0.939807721389607	4
-AliGebily:balajipro:mkagenius:mvaudel	0.937879076051538	4
-AliGebily:balajipro:mkagenius:Ramzes2	0.940560110784479	4
-AliGebily:balajipro:mkagenius:vladaburian	0.939619225130141	4
-AliGebily:balajipro:mvaudel:Ramzes2	0.940232569750863	4
-AliGebily:balajipro:mvaudel:vladaburian	0.939410333299982	4
-AliGebily:balajipro:Ramzes2:vladaburian	0.941301754094628	4
-AliGebily:benchmark:gardn999:LastEmperor	0.938317617968704	4
-AliGebily:benchmark:gardn999:mkagenius	0.9384585156574	4
-AliGebily:benchmark:gardn999:mvaudel	0.938580613489311	4
-AliGebily:benchmark:gardn999:Ramzes2	0.938933031349465	4
-AliGebily:benchmark:gardn999:vladaburian	0.93775546133533	4
-AliGebily:benchmark:LastEmperor:mkagenius	0.93806863786396	4
-AliGebily:benchmark:LastEmperor:mvaudel	0.938039383544156	4
-AliGebily:benchmark:LastEmperor:Ramzes2	0.939175155045794	4
-AliGebily:benchmark:LastEmperor:vladaburian	0.937741403067024	4
-AliGebily:benchmark:mkagenius:mvaudel	0.937055628639065	4
-AliGebily:benchmark:mkagenius:Ramzes2	0.938443114048425	4
-AliGebily:benchmark:mkagenius:vladaburian	0.936926336568345	4
-AliGebily:benchmark:mvaudel:Ramzes2	0.938237752070432	4
-AliGebily:benchmark:mvaudel:vladaburian	0.936536277454852	4
-AliGebily:benchmark:Ramzes2:vladaburian	0.937789247545234	4
-AliGebily:gardn999:LastEmperor:mkagenius	0.939526331778746	4
-AliGebily:gardn999:LastEmperor:mvaudel	0.940600411692307	4
-AliGebily:gardn999:LastEmperor:Ramzes2	0.940716997069762	4
-AliGebily:gardn999:LastEmperor:vladaburian	0.941061183166193	4
-AliGebily:gardn999:mkagenius:mvaudel	0.940146204037163	4
-AliGebily:gardn999:mkagenius:Ramzes2	0.940546680129503	4
-AliGebily:gardn999:mkagenius:vladaburian	0.940177950153023	4
-AliGebily:gardn999:mvaudel:Ramzes2	0.941204967197464	4
-AliGebily:gardn999:mvaudel:vladaburian	0.941031783207039	4
-AliGebily:gardn999:Ramzes2:vladaburian	0.940941672990064	4
-AliGebily:LastEmperor:mkagenius:mvaudel	0.938858131271332	4
-AliGebily:LastEmperor:mkagenius:Ramzes2	0.940497734781691	4
-AliGebily:LastEmperor:mkagenius:vladaburian	0.939792091098393	4
-AliGebily:LastEmperor:mvaudel:Ramzes2	0.941024994872667	4
-AliGebily:LastEmperor:mvaudel:vladaburian	0.940469202666872	4
-AliGebily:LastEmperor:Ramzes2:vladaburian	0.941397072851609	4
-AliGebily:mkagenius:mvaudel:Ramzes2	0.939638089625755	4
-AliGebily:mkagenius:mvaudel:vladaburian	0.938594887515402	4
-AliGebily:mkagenius:Ramzes2:vladaburian	0.939865346067053	4
-AliGebily:mvaudel:Ramzes2:vladaburian	0.939933918086006	4
-Ardavel:balajipro:benchmark:gardn999	0.939548939570821	4
-Ardavel:balajipro:benchmark:LastEmperor	0.936898391311209	4
-Ardavel:balajipro:benchmark:mkagenius	0.938447209681243	4
-Ardavel:balajipro:benchmark:mvaudel	0.9365393792765	4
-Ardavel:balajipro:benchmark:Ramzes2	0.940450984985328	4
-Ardavel:balajipro:benchmark:vladaburian	0.93855217361959	4
-Ardavel:balajipro:gardn999:LastEmperor	0.936816437544867	4
-Ardavel:balajipro:gardn999:mkagenius	0.940374280353037	4
-Ardavel:balajipro:gardn999:mvaudel	0.938733106148779	4
-Ardavel:balajipro:gardn999:Ramzes2	0.942765555371539	4
-Ardavel:balajipro:gardn999:vladaburian	0.941339275511892	4
-Ardavel:balajipro:LastEmperor:mkagenius	0.937528285533	4
-Ardavel:balajipro:LastEmperor:mvaudel	0.935947829808424	4
-Ardavel:balajipro:LastEmperor:Ramzes2	0.940023965690241	4
-Ardavel:balajipro:LastEmperor:vladaburian	0.938785174203283	4
-Ardavel:balajipro:mkagenius:mvaudel	0.937241840405207	4
-Ardavel:balajipro:mkagenius:Ramzes2	0.941431262853857	4
-Ardavel:balajipro:mkagenius:vladaburian	0.939863989640676	4
-Ardavel:balajipro:mvaudel:Ramzes2	0.939366011889382	4
-Ardavel:balajipro:mvaudel:vladaburian	0.937905795807403	4
-Ardavel:balajipro:Ramzes2:vladaburian	0.942289408289228	4
-Ardavel:benchmark:gardn999:LastEmperor	0.939388492025805	4
-Ardavel:benchmark:gardn999:mkagenius	0.940036869944705	4
-Ardavel:benchmark:gardn999:mvaudel	0.939273085346299	4
-Ardavel:benchmark:gardn999:Ramzes2	0.941380356088846	4
-Ardavel:benchmark:gardn999:vladaburian	0.93949670704724	4
-Ardavel:benchmark:LastEmperor:mkagenius	0.938855002138104	4
-Ardavel:benchmark:LastEmperor:mvaudel	0.937927663446086	4
-Ardavel:benchmark:LastEmperor:Ramzes2	0.940773826340065	4
-Ardavel:benchmark:LastEmperor:vladaburian	0.939130236653618	4
-Ardavel:benchmark:mkagenius:mvaudel	0.937328586926006	4
-Ardavel:benchmark:mkagenius:Ramzes2	0.940271486864379	4
-Ardavel:benchmark:mkagenius:vladaburian	0.938012214651677	4
-Ardavel:benchmark:mvaudel:Ramzes2	0.939081390456868	4
-Ardavel:benchmark:mvaudel:vladaburian	0.937089857834154	4
-Ardavel:benchmark:Ramzes2:vladaburian	0.93915753902723	4
-Ardavel:gardn999:LastEmperor:mkagenius	0.940167512406649	4
-Ardavel:gardn999:LastEmperor:mvaudel	0.939741737275531	4
-Ardavel:gardn999:LastEmperor:Ramzes2	0.942303656755986	4
-Ardavel:gardn999:LastEmperor:vladaburian	0.941290134401782	4
-Ardavel:gardn999:mkagenius:mvaudel	0.940382134099341	4
-Ardavel:gardn999:mkagenius:Ramzes2	0.942718894135247	4
-Ardavel:gardn999:mkagenius:vladaburian	0.941401852384424	4
-Ardavel:gardn999:mvaudel:Ramzes2	0.942524613131754	4
-Ardavel:gardn999:mvaudel:vladaburian	0.940889551284157	4
-Ardavel:gardn999:Ramzes2:vladaburian	0.943265122858774	4
-Ardavel:LastEmperor:mkagenius:mvaudel	0.938820529895369	4
-Ardavel:LastEmperor:mkagenius:Ramzes2	0.941688487643656	4
-Ardavel:LastEmperor:mkagenius:vladaburian	0.940384593453334	4
-Ardavel:LastEmperor:mvaudel:Ramzes2	0.940983529036791	4
-Ardavel:LastEmperor:mvaudel:vladaburian	0.939452447453773	4
-Ardavel:LastEmperor:Ramzes2:vladaburian	0.942695022620625	4
-Ardavel:mkagenius:mvaudel:Ramzes2	0.940099919627407	4
-Ardavel:mkagenius:mvaudel:vladaburian	0.93854493101537	4
-Ardavel:mkagenius:Ramzes2:vladaburian	0.941304241010471	4
-Ardavel:mvaudel:Ramzes2:vladaburian	0.940555906658467	4
-balajipro:benchmark:gardn999:LastEmperor	0.935686367788488	4
-balajipro:benchmark:gardn999:mkagenius	0.937914041569152	4
-balajipro:benchmark:gardn999:mvaudel	0.93723894950107	4
-balajipro:benchmark:gardn999:Ramzes2	0.939813109567132	4
-balajipro:benchmark:gardn999:vladaburian	0.938097241617124	4
-balajipro:benchmark:LastEmperor:mkagenius	0.935725384594208	4
-balajipro:benchmark:LastEmperor:mvaudel	0.935091623969363	4
-balajipro:benchmark:LastEmperor:Ramzes2	0.937826876805208	4
-balajipro:benchmark:LastEmperor:vladaburian	0.93654464831894	4
-balajipro:benchmark:mkagenius:mvaudel	0.935713000537541	4
-balajipro:benchmark:mkagenius:Ramzes2	0.938838008431156	4
-balajipro:benchmark:mkagenius:vladaburian	0.936706601058833	4
-balajipro:benchmark:mvaudel:Ramzes2	0.937798252134367	4
-balajipro:benchmark:mvaudel:vladaburian	0.935792503565526	4
-balajipro:benchmark:Ramzes2:vladaburian	0.938360068524679	4
-balajipro:gardn999:LastEmperor:mkagenius	0.936124159237486	4
-balajipro:gardn999:LastEmperor:mvaudel	0.935227585171748	4
-balajipro:gardn999:LastEmperor:Ramzes2	0.938158271069179	4
-balajipro:gardn999:LastEmperor:vladaburian	0.937466422089906	4
-balajipro:gardn999:mkagenius:mvaudel	0.93828978691319	4
-balajipro:gardn999:mkagenius:Ramzes2	0.940966340154624	4
-balajipro:gardn999:mkagenius:vladaburian	0.940119812319838	4
-balajipro:gardn999:mvaudel:Ramzes2	0.940972015276243	4
-balajipro:gardn999:mvaudel:vladaburian	0.93914678818505	4
-balajipro:gardn999:Ramzes2:vladaburian	0.942243025807165	4
-balajipro:LastEmperor:mkagenius:mvaudel	0.936117646403775	4
-balajipro:LastEmperor:mkagenius:Ramzes2	0.938537004545444	4
-balajipro:LastEmperor:mkagenius:vladaburian	0.937702158360276	4
-balajipro:LastEmperor:mvaudel:Ramzes2	0.938166393244695	4
-balajipro:LastEmperor:mvaudel:vladaburian	0.936580534074744	4
-balajipro:LastEmperor:Ramzes2:vladaburian	0.940485875430892	4
-balajipro:mkagenius:mvaudel:Ramzes2	0.938752192992633	4
-balajipro:mkagenius:mvaudel:vladaburian	0.937269749421583	4
-balajipro:mkagenius:Ramzes2:vladaburian	0.940605812003216	4
-balajipro:mvaudel:Ramzes2:vladaburian	0.939996148325989	4
-benchmark:gardn999:LastEmperor:mkagenius	0.937405560022923	4
-benchmark:gardn999:LastEmperor:mvaudel	0.937600239448323	4
-benchmark:gardn999:LastEmperor:Ramzes2	0.939284230797301	4
-benchmark:gardn999:LastEmperor:vladaburian	0.937914835622348	4
-benchmark:gardn999:mkagenius:mvaudel	0.937672672046391	4
-benchmark:gardn999:mkagenius:Ramzes2	0.939441139096022	4
-benchmark:gardn999:mkagenius:vladaburian	0.937530953334015	4
-benchmark:gardn999:mvaudel:Ramzes2	0.939549639636639	4
-benchmark:gardn999:mvaudel:vladaburian	0.937406292359665	4
-benchmark:gardn999:Ramzes2:vladaburian	0.938999482193634	4
-benchmark:LastEmperor:mkagenius:mvaudel	0.936524720281327	4
-benchmark:LastEmperor:mkagenius:Ramzes2	0.938768670806701	4
-benchmark:LastEmperor:mkagenius:vladaburian	0.936733309562542	4
-benchmark:LastEmperor:mvaudel:Ramzes2	0.938606616063706	4
-benchmark:LastEmperor:mvaudel:vladaburian	0.93657966308982	4
-benchmark:LastEmperor:Ramzes2:vladaburian	0.938570942001279	4
-benchmark:mkagenius:mvaudel:Ramzes2	0.937936525072307	4
-benchmark:mkagenius:mvaudel:vladaburian	0.935904841784701	4
-benchmark:mkagenius:Ramzes2:vladaburian	0.937614420403954	4
-benchmark:mvaudel:Ramzes2:vladaburian	0.937124930202561	4
-gardn999:LastEmperor:mkagenius:mvaudel	0.938520029103837	4
-gardn999:LastEmperor:mkagenius:Ramzes2	0.940238524149305	4
-gardn999:LastEmperor:mkagenius:vladaburian	0.939616459476801	4
-gardn999:LastEmperor:mvaudel:Ramzes2	0.940974936595299	4
-gardn999:LastEmperor:mvaudel:vladaburian	0.939552182942387	4
-gardn999:LastEmperor:Ramzes2:vladaburian	0.941747260479504	4
-gardn999:mkagenius:mvaudel:Ramzes2	0.940933251823838	4
-gardn999:mkagenius:mvaudel:vladaburian	0.939572735295097	4
-gardn999:mkagenius:Ramzes2:vladaburian	0.941136122452408	4
-gardn999:mvaudel:Ramzes2:vladaburian	0.941650505534545	4
-LastEmperor:mkagenius:mvaudel:Ramzes2	0.939509806651569	4
-LastEmperor:mkagenius:mvaudel:vladaburian	0.938140178645296	4
-LastEmperor:mkagenius:Ramzes2:vladaburian	0.940574268623876	4
-LastEmperor:mvaudel:Ramzes2:vladaburian	0.940829219663029	4
-mkagenius:mvaudel:Ramzes2:vladaburian	0.939367228493397	4
-AliGebily:Ardavel:balajipro:benchmark:gardn999	0.941063977303323	5
-AliGebily:Ardavel:balajipro:benchmark:LastEmperor	0.93991881262322	5
-AliGebily:Ardavel:balajipro:benchmark:mkagenius	0.939978723988343	5
-AliGebily:Ardavel:balajipro:benchmark:mvaudel	0.938666501583335	5
-AliGebily:Ardavel:balajipro:benchmark:Ramzes2	0.941164964919725	5
-AliGebily:Ardavel:balajipro:benchmark:vladaburian	0.940081991597688	5
-AliGebily:Ardavel:balajipro:gardn999:LastEmperor	0.940194550871793	5
-AliGebily:Ardavel:balajipro:gardn999:mkagenius	0.941856997228728	5
-AliGebily:Ardavel:balajipro:gardn999:mvaudel	0.940961802000386	5
-AliGebily:Ardavel:balajipro:gardn999:Ramzes2	0.943393308288094	5
-AliGebily:Ardavel:balajipro:gardn999:vladaburian	0.942675764850095	5
-AliGebily:Ardavel:balajipro:LastEmperor:mkagenius	0.940346660091868	5
-AliGebily:Ardavel:balajipro:LastEmperor:mvaudel	0.938947334348576	5
-AliGebily:Ardavel:balajipro:LastEmperor:Ramzes2	0.942462548799901	5
-AliGebily:Ardavel:balajipro:LastEmperor:vladaburian	0.941492692652546	5
-AliGebily:Ardavel:balajipro:mkagenius:mvaudel	0.939363400488931	5
-AliGebily:Ardavel:balajipro:mkagenius:Ramzes2	0.942078608843076	5
-AliGebily:Ardavel:balajipro:mkagenius:vladaburian	0.94139564877269	5
-AliGebily:Ardavel:balajipro:mvaudel:Ramzes2	0.941121914183789	5
-AliGebily:Ardavel:balajipro:mvaudel:vladaburian	0.939906055512509	5
-AliGebily:Ardavel:balajipro:Ramzes2:vladaburian	0.94289932762805	5
-AliGebily:Ardavel:benchmark:gardn999:LastEmperor	0.941267339948824	5
-AliGebily:Ardavel:benchmark:gardn999:mkagenius	0.940786208666902	5
-AliGebily:Ardavel:benchmark:gardn999:mvaudel	0.94065648001466	5
-AliGebily:Ardavel:benchmark:gardn999:Ramzes2	0.941469976437628	5
-AliGebily:Ardavel:benchmark:gardn999:vladaburian	0.94043749531961	5
-AliGebily:Ardavel:benchmark:LastEmperor:mkagenius	0.940282747757815	5
-AliGebily:Ardavel:benchmark:LastEmperor:mvaudel	0.939888778393263	5
-AliGebily:Ardavel:benchmark:LastEmperor:Ramzes2	0.941217005623227	5
-AliGebily:Ardavel:benchmark:LastEmperor:vladaburian	0.940405613087516	5
-AliGebily:Ardavel:benchmark:mkagenius:mvaudel	0.939068294496843	5
-AliGebily:Ardavel:benchmark:mkagenius:Ramzes2	0.940699307448107	5
-AliGebily:Ardavel:benchmark:mkagenius:vladaburian	0.939601271510438	5
-AliGebily:Ardavel:benchmark:mvaudel:Ramzes2	0.940288566417855	5
-AliGebily:Ardavel:benchmark:mvaudel:vladaburian	0.939252633964105	5
-AliGebily:Ardavel:benchmark:Ramzes2:vladaburian	0.940340141654657	5
-AliGebily:Ardavel:gardn999:LastEmperor:mkagenius	0.942003592703694	5
-AliGebily:Ardavel:gardn999:LastEmperor:mvaudel	0.942175199068868	5
-AliGebily:Ardavel:gardn999:LastEmperor:Ramzes2	0.943269485609805	5
-AliGebily:Ardavel:gardn999:LastEmperor:vladaburian	0.942897435711001	5
-AliGebily:Ardavel:gardn999:mkagenius:mvaudel	0.941850282584259	5
-AliGebily:Ardavel:gardn999:mkagenius:Ramzes2	0.942608389880616	5
-AliGebily:Ardavel:gardn999:mkagenius:vladaburian	0.942457128672937	5
-AliGebily:Ardavel:gardn999:mvaudel:Ramzes2	0.943065104274059	5
-AliGebily:Ardavel:gardn999:mvaudel:vladaburian	0.942153257752028	5
-AliGebily:Ardavel:gardn999:Ramzes2:vladaburian	0.943069839940922	5
-AliGebily:Ardavel:LastEmperor:mkagenius:mvaudel	0.940615194775064	5
-AliGebily:Ardavel:LastEmperor:mkagenius:Ramzes2	0.942198285528942	5
-AliGebily:Ardavel:LastEmperor:mkagenius:vladaburian	0.941765039132751	5
-AliGebily:Ardavel:LastEmperor:mvaudel:Ramzes2	0.94240286111534	5
-AliGebily:Ardavel:LastEmperor:mvaudel:vladaburian	0.941259095311213	5
-AliGebily:Ardavel:LastEmperor:Ramzes2:vladaburian	0.943169678947589	5
-AliGebily:Ardavel:mkagenius:mvaudel:Ramzes2	0.941338644113444	5
-AliGebily:Ardavel:mkagenius:mvaudel:vladaburian	0.940405140616658	5
-AliGebily:Ardavel:mkagenius:Ramzes2:vladaburian	0.941978311381316	5
-AliGebily:Ardavel:mvaudel:Ramzes2:vladaburian	0.941858801516594	5
-AliGebily:balajipro:benchmark:gardn999:LastEmperor	0.938821473892957	5
-AliGebily:balajipro:benchmark:gardn999:mkagenius	0.939462619831161	5
-AliGebily:balajipro:benchmark:gardn999:mvaudel	0.939447052964798	5
-AliGebily:balajipro:benchmark:gardn999:Ramzes2	0.940499327275056	5
-AliGebily:balajipro:benchmark:gardn999:vladaburian	0.939515068381809	5
-AliGebily:balajipro:benchmark:LastEmperor:mkagenius	0.938462273922515	5
-AliGebily:balajipro:benchmark:LastEmperor:mvaudel	0.938299157528665	5
-AliGebily:balajipro:benchmark:LastEmperor:Ramzes2	0.939931545517485	5
-AliGebily:balajipro:benchmark:LastEmperor:vladaburian	0.93921959010165	5
-AliGebily:balajipro:benchmark:mkagenius:mvaudel	0.937880691979137	5
-AliGebily:balajipro:benchmark:mkagenius:Ramzes2	0.93999326831796	5
-AliGebily:balajipro:benchmark:mkagenius:vladaburian	0.938792743991846	5
-AliGebily:balajipro:benchmark:mvaudel:Ramzes2	0.939403721063604	5
-AliGebily:balajipro:benchmark:mvaudel:vladaburian	0.938236123984789	5
-AliGebily:balajipro:benchmark:Ramzes2:vladaburian	0.939984865687017	5
-AliGebily:balajipro:gardn999:LastEmperor:mkagenius	0.939151201755192	5
-AliGebily:balajipro:gardn999:LastEmperor:mvaudel	0.938737692372109	5
-AliGebily:balajipro:gardn999:LastEmperor:Ramzes2	0.94062876408565	5
-AliGebily:balajipro:gardn999:LastEmperor:vladaburian	0.940549700714667	5
-AliGebily:balajipro:gardn999:mkagenius:mvaudel	0.94044785188975	5
-AliGebily:balajipro:gardn999:mkagenius:Ramzes2	0.941707995098557	5
-AliGebily:balajipro:gardn999:mkagenius:vladaburian	0.941368466608067	5
-AliGebily:balajipro:gardn999:mvaudel:Ramzes2	0.942335560386168	5
-AliGebily:balajipro:gardn999:mvaudel:vladaburian	0.94148773593813	5
-AliGebily:balajipro:gardn999:Ramzes2:vladaburian	0.942553977464627	5
-AliGebily:balajipro:LastEmperor:mkagenius:mvaudel	0.939302163501525	5
-AliGebily:balajipro:LastEmperor:mkagenius:Ramzes2	0.940804043487135	5
-AliGebily:balajipro:LastEmperor:mkagenius:vladaburian	0.94036817126588	5
-AliGebily:balajipro:LastEmperor:mvaudel:Ramzes2	0.94085028184069	5
-AliGebily:balajipro:LastEmperor:mvaudel:vladaburian	0.939746200027919	5
-AliGebily:balajipro:LastEmperor:Ramzes2:vladaburian	0.942474829675159	5
-AliGebily:balajipro:mkagenius:mvaudel:Ramzes2	0.940214739639587	5
-AliGebily:balajipro:mkagenius:mvaudel:vladaburian	0.939610884779049	5
-AliGebily:balajipro:mkagenius:Ramzes2:vladaburian	0.94153434156792	5
-AliGebily:balajipro:mvaudel:Ramzes2:vladaburian	0.941529720256382	5
-AliGebily:benchmark:gardn999:LastEmperor:mkagenius	0.939461165032309	5
-AliGebily:benchmark:gardn999:LastEmperor:mvaudel	0.939922809938888	5
-AliGebily:benchmark:gardn999:LastEmperor:Ramzes2	0.940368107870389	5
-AliGebily:benchmark:gardn999:LastEmperor:vladaburian	0.939639169254156	5
-AliGebily:benchmark:gardn999:mkagenius:mvaudel	0.939254542309061	5
-AliGebily:benchmark:gardn999:mkagenius:Ramzes2	0.940186923817618	5
-AliGebily:benchmark:gardn999:mkagenius:vladaburian	0.939081201620681	5
-AliGebily:benchmark:gardn999:mvaudel:Ramzes2	0.940444705640737	5
-AliGebily:benchmark:gardn999:mvaudel:vladaburian	0.93905577922838	5
-AliGebily:benchmark:gardn999:Ramzes2:vladaburian	0.939820073914306	5
-AliGebily:benchmark:LastEmperor:mkagenius:mvaudel	0.938517401729294	5
-AliGebily:benchmark:LastEmperor:mkagenius:Ramzes2	0.939943633482435	5
-AliGebily:benchmark:LastEmperor:mkagenius:vladaburian	0.93882744360813	5
-AliGebily:benchmark:LastEmperor:mvaudel:Ramzes2	0.939939509917939	5
-AliGebily:benchmark:LastEmperor:mvaudel:vladaburian	0.93871299307661	5
-AliGebily:benchmark:LastEmperor:Ramzes2:vladaburian	0.939831732075311	5
-AliGebily:benchmark:mkagenius:mvaudel:Ramzes2	0.939033367585489	5
-AliGebily:benchmark:mkagenius:mvaudel:vladaburian	0.938034379160618	5
-AliGebily:benchmark:mkagenius:Ramzes2:vladaburian	0.939101033277947	5
-AliGebily:benchmark:mvaudel:Ramzes2:vladaburian	0.938934796803652	5
-AliGebily:gardn999:LastEmperor:mkagenius:mvaudel	0.940584573980819	5
-AliGebily:gardn999:LastEmperor:mkagenius:Ramzes2	0.941474927567358	5
-AliGebily:gardn999:LastEmperor:mkagenius:vladaburian	0.94117042819762	5
-AliGebily:gardn999:LastEmperor:mvaudel:Ramzes2	0.942356530102531	5
-AliGebily:gardn999:LastEmperor:mvaudel:vladaburian	0.94183146903954	5
-AliGebily:gardn999:LastEmperor:Ramzes2:vladaburian	0.942314087733468	5
-AliGebily:gardn999:mkagenius:mvaudel:Ramzes2	0.941478794309008	5
-AliGebily:gardn999:mkagenius:mvaudel:vladaburian	0.941169695468245	5
-AliGebily:gardn999:mkagenius:Ramzes2:vladaburian	0.941592912701761	5
-AliGebily:gardn999:mvaudel:Ramzes2:vladaburian	0.942191800252256	5
-AliGebily:LastEmperor:mkagenius:mvaudel:Ramzes2	0.940628386911255	5
-AliGebily:LastEmperor:mkagenius:mvaudel:vladaburian	0.94013535770485	5
-AliGebily:LastEmperor:mkagenius:Ramzes2:vladaburian	0.941571587752894	5
-AliGebily:LastEmperor:mvaudel:Ramzes2:vladaburian	0.942114707120249	5
-AliGebily:mkagenius:mvaudel:Ramzes2:vladaburian	0.940600415200012	5
-Ardavel:balajipro:benchmark:gardn999:LastEmperor	0.938325064658826	5
-Ardavel:balajipro:benchmark:gardn999:mkagenius	0.939883824072158	5
-Ardavel:balajipro:benchmark:gardn999:mvaudel	0.938449074941859	5
-Ardavel:balajipro:benchmark:gardn999:Ramzes2	0.941741757617919	5
-Ardavel:balajipro:benchmark:gardn999:vladaburian	0.940265177031565	5
-Ardavel:balajipro:benchmark:LastEmperor:mkagenius	0.938299857401684	5
-Ardavel:balajipro:benchmark:LastEmperor:mvaudel	0.936692274866255	5
-Ardavel:balajipro:benchmark:LastEmperor:Ramzes2	0.940126744510338	5
-Ardavel:balajipro:benchmark:LastEmperor:vladaburian	0.93878812792566	5
-Ardavel:balajipro:benchmark:mkagenius:mvaudel	0.937566107452344	5
-Ardavel:balajipro:benchmark:mkagenius:Ramzes2	0.940722985769926	5
-Ardavel:balajipro:benchmark:mkagenius:vladaburian	0.939335272976035	5
-Ardavel:balajipro:benchmark:mvaudel:Ramzes2	0.939270744011634	5
-Ardavel:balajipro:benchmark:mvaudel:vladaburian	0.937530072347318	5
-Ardavel:balajipro:benchmark:Ramzes2:vladaburian	0.940926348640802	5
-Ardavel:balajipro:gardn999:LastEmperor:mkagenius	0.938804582161995	5
-Ardavel:balajipro:gardn999:LastEmperor:mvaudel	0.937167354920899	5
-Ardavel:balajipro:gardn999:LastEmperor:Ramzes2	0.940501090775678	5
-Ardavel:balajipro:gardn999:LastEmperor:vladaburian	0.939742179378558	5
-Ardavel:balajipro:gardn999:mkagenius:mvaudel	0.939239619998163	5
-Ardavel:balajipro:gardn999:mkagenius:Ramzes2	0.942433226374249	5
-Ardavel:balajipro:gardn999:mkagenius:vladaburian	0.941342394149338	5
-Ardavel:balajipro:gardn999:mvaudel:Ramzes2	0.941386687454802	5
-Ardavel:balajipro:gardn999:mvaudel:vladaburian	0.939875853794836	5
-Ardavel:balajipro:gardn999:Ramzes2:vladaburian	0.943333098812245	5
-Ardavel:balajipro:LastEmperor:mkagenius:mvaudel	0.937543001204491	5
-Ardavel:balajipro:LastEmperor:mkagenius:Ramzes2	0.940595046554649	5
-Ardavel:balajipro:LastEmperor:mkagenius:vladaburian	0.939632309313424	5
-Ardavel:balajipro:LastEmperor:mvaudel:Ramzes2	0.939303705486602	5
-Ardavel:balajipro:LastEmperor:mvaudel:vladaburian	0.937906834813704	5
-Ardavel:balajipro:LastEmperor:Ramzes2:vladaburian	0.941905518229212	5
-Ardavel:balajipro:mkagenius:mvaudel:Ramzes2	0.939868401449677	5
-Ardavel:balajipro:mkagenius:mvaudel:vladaburian	0.938473364952308	5
-Ardavel:balajipro:mkagenius:Ramzes2:vladaburian	0.942133161702762	5
-Ardavel:balajipro:mvaudel:Ramzes2:vladaburian	0.940259938681392	5
-Ardavel:benchmark:gardn999:LastEmperor:mkagenius	0.940246465729422	5
-Ardavel:benchmark:gardn999:LastEmperor:mvaudel	0.939475340481356	5
-Ardavel:benchmark:gardn999:LastEmperor:Ramzes2	0.941913847539294	5
-Ardavel:benchmark:gardn999:LastEmperor:vladaburian	0.940462907572989	5
-Ardavel:benchmark:gardn999:mkagenius:mvaudel	0.93979704249427	5
-Ardavel:benchmark:gardn999:mkagenius:Ramzes2	0.941692642017087	5
-Ardavel:benchmark:gardn999:mkagenius:vladaburian	0.940230519101934	5
-Ardavel:benchmark:gardn999:mvaudel:Ramzes2	0.941592109089227	5
-Ardavel:benchmark:gardn999:mvaudel:vladaburian	0.939752311798735	5
-Ardavel:benchmark:gardn999:Ramzes2:vladaburian	0.94136623666494	5
-Ardavel:benchmark:LastEmperor:mkagenius:mvaudel	0.938566851499619	5
-Ardavel:benchmark:LastEmperor:mkagenius:Ramzes2	0.940785935749359	5
-Ardavel:benchmark:LastEmperor:mkagenius:vladaburian	0.939368537082786	5
-Ardavel:benchmark:LastEmperor:mvaudel:Ramzes2	0.940428647116829	5
-Ardavel:benchmark:LastEmperor:mvaudel:vladaburian	0.93859981227018	5
-Ardavel:benchmark:LastEmperor:Ramzes2:vladaburian	0.940962272359135	5
-Ardavel:benchmark:mkagenius:mvaudel:Ramzes2	0.939832651596925	5
-Ardavel:benchmark:mkagenius:mvaudel:vladaburian	0.938511845413857	5
-Ardavel:benchmark:mkagenius:Ramzes2:vladaburian	0.940383570115702	5
-Ardavel:benchmark:mvaudel:Ramzes2:vladaburian	0.939634208899873	5
-Ardavel:gardn999:LastEmperor:mkagenius:mvaudel	0.940245827138892	5
-Ardavel:gardn999:LastEmperor:mkagenius:Ramzes2	0.942393244058432	5
-Ardavel:gardn999:LastEmperor:mkagenius:vladaburian	0.941476522215395	5
-Ardavel:gardn999:LastEmperor:mvaudel:Ramzes2	0.942390746110641	5
-Ardavel:gardn999:LastEmperor:mvaudel:vladaburian	0.941067143244873	5
-Ardavel:gardn999:LastEmperor:Ramzes2:vladaburian	0.943320823832706	5
-Ardavel:gardn999:mkagenius:mvaudel:Ramzes2	0.942506189494051	5
-Ardavel:gardn999:mkagenius:mvaudel:vladaburian	0.941009946016183	5
-Ardavel:gardn999:mkagenius:Ramzes2:vladaburian	0.942927873801977	5
-Ardavel:gardn999:mvaudel:Ramzes2:vladaburian	0.942571297007991	5
-Ardavel:LastEmperor:mkagenius:mvaudel:Ramzes2	0.941025498570068	5
-Ardavel:LastEmperor:mkagenius:mvaudel:vladaburian	0.939712532909453	5
-Ardavel:LastEmperor:mkagenius:Ramzes2:vladaburian	0.942191166088124	5
-Ardavel:LastEmperor:mvaudel:Ramzes2:vladaburian	0.941630901632191	5
-Ardavel:mkagenius:mvaudel:Ramzes2:vladaburian	0.941050050164627	5
-balajipro:benchmark:gardn999:LastEmperor:mkagenius	0.937668782914998	5
-balajipro:benchmark:gardn999:LastEmperor:mvaudel	0.936785978159346	5
-balajipro:benchmark:gardn999:LastEmperor:Ramzes2	0.939292325783016	5
-balajipro:benchmark:gardn999:LastEmperor:vladaburian	0.938543051703208	5
-balajipro:benchmark:gardn999:mkagenius:mvaudel	0.937990202954635	5
-balajipro:benchmark:gardn999:mkagenius:Ramzes2	0.940130350330694	5
-balajipro:benchmark:gardn999:mkagenius:vladaburian	0.938815585852373	5
-balajipro:benchmark:gardn999:mvaudel:Ramzes2	0.939988844032576	5
-balajipro:benchmark:gardn999:mvaudel:vladaburian	0.938230529088638	5
-balajipro:benchmark:gardn999:Ramzes2:vladaburian	0.940236392499359	5
-balajipro:benchmark:LastEmperor:mkagenius:mvaudel	0.936939351576345	5
-balajipro:benchmark:LastEmperor:mkagenius:Ramzes2	0.938926732937731	5
-balajipro:benchmark:LastEmperor:mkagenius:vladaburian	0.937863761382722	5
-balajipro:benchmark:LastEmperor:mvaudel:Ramzes2	0.938565963785439	5
-balajipro:benchmark:LastEmperor:mvaudel:vladaburian	0.936863848037424	5
-balajipro:benchmark:LastEmperor:Ramzes2:vladaburian	0.939607957707753	5
-balajipro:benchmark:mkagenius:mvaudel:Ramzes2	0.938635555203457	5
-balajipro:benchmark:mkagenius:mvaudel:vladaburian	0.937360755406153	5
-balajipro:benchmark:mkagenius:Ramzes2:vladaburian	0.939497734861194	5
-balajipro:benchmark:mvaudel:Ramzes2:vladaburian	0.938895125348876	5
-balajipro:gardn999:LastEmperor:mkagenius:mvaudel	0.937772730714141	5
-balajipro:gardn999:LastEmperor:mkagenius:Ramzes2	0.939562613262749	5
-balajipro:gardn999:LastEmperor:mkagenius:vladaburian	0.939123654275933	5
-balajipro:gardn999:LastEmperor:mvaudel:Ramzes2	0.939063992279154	5
-balajipro:gardn999:LastEmperor:mvaudel:vladaburian	0.938192980701027	5
-balajipro:gardn999:LastEmperor:Ramzes2:vladaburian	0.940913712848934	5
-balajipro:gardn999:mkagenius:mvaudel:Ramzes2	0.9407164951638	5
-balajipro:gardn999:mkagenius:mvaudel:vladaburian	0.939444394475572	5
-balajipro:gardn999:mkagenius:Ramzes2:vladaburian	0.941709862348979	5
-balajipro:gardn999:mvaudel:Ramzes2:vladaburian	0.94208341745805	5
-balajipro:LastEmperor:mkagenius:mvaudel:Ramzes2	0.939556244534798	5
-balajipro:LastEmperor:mkagenius:mvaudel:vladaburian	0.938051518306027	5
-balajipro:LastEmperor:mkagenius:Ramzes2:vladaburian	0.940603113238238	5
-balajipro:LastEmperor:mvaudel:Ramzes2:vladaburian	0.940276576399245	5
-balajipro:mkagenius:mvaudel:Ramzes2:vladaburian	0.940332573606524	5
-benchmark:gardn999:LastEmperor:mkagenius:mvaudel	0.938390155602892	5
-benchmark:gardn999:LastEmperor:mkagenius:Ramzes2	0.940045173422006	5
-benchmark:gardn999:LastEmperor:mkagenius:vladaburian	0.938705604055261	5
-benchmark:gardn999:LastEmperor:mvaudel:Ramzes2	0.940422714609024	5
-benchmark:gardn999:LastEmperor:mvaudel:vladaburian	0.938450171931869	5
-benchmark:gardn999:LastEmperor:Ramzes2:vladaburian	0.940183644877208	5
-benchmark:gardn999:mkagenius:mvaudel:Ramzes2	0.940160227670239	5
-benchmark:gardn999:mkagenius:mvaudel:vladaburian	0.938579736044125	5
-benchmark:gardn999:mkagenius:Ramzes2:vladaburian	0.940040155379767	5
-benchmark:gardn999:mvaudel:Ramzes2:vladaburian	0.939827119793558	5
-benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2	0.939147248124289	5
-benchmark:LastEmperor:mkagenius:mvaudel:vladaburian	0.937748948051738	5
-benchmark:LastEmperor:mkagenius:Ramzes2:vladaburian	0.939349246601554	5
-benchmark:LastEmperor:mvaudel:Ramzes2:vladaburian	0.939063066089935	5
-benchmark:mkagenius:mvaudel:Ramzes2:vladaburian	0.938588805723636	5
-gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.940819146303207	5
-gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.939725402417592	5
-gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.94161299264499	5
-gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.942255765631186	5
-gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.941815978715342	5
-LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.940701178664589	5
-AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor	0.941128238051637	6
-AliGebily:Ardavel:balajipro:benchmark:gardn999:mkagenius	0.941436994068488	6
-AliGebily:Ardavel:balajipro:benchmark:gardn999:mvaudel	0.941184705832494	6
-AliGebily:Ardavel:balajipro:benchmark:gardn999:Ramzes2	0.942582480904195	6
-AliGebily:Ardavel:balajipro:benchmark:gardn999:vladaburian	0.941754987213182	6
-AliGebily:Ardavel:balajipro:benchmark:LastEmperor:mkagenius	0.94050247264747	6
-AliGebily:Ardavel:balajipro:benchmark:LastEmperor:mvaudel	0.940089795260269	6
-AliGebily:Ardavel:balajipro:benchmark:LastEmperor:Ramzes2	0.942064330926647	6
-AliGebily:Ardavel:balajipro:benchmark:LastEmperor:vladaburian	0.941345356321975	6
-AliGebily:Ardavel:balajipro:benchmark:mkagenius:mvaudel	0.939715275039156	6
-AliGebily:Ardavel:balajipro:benchmark:mkagenius:Ramzes2	0.941675540374553	6
-AliGebily:Ardavel:balajipro:benchmark:mkagenius:vladaburian	0.940652148445569	6
-AliGebily:Ardavel:balajipro:benchmark:mvaudel:Ramzes2	0.94119164137439	6
-AliGebily:Ardavel:balajipro:benchmark:mvaudel:vladaburian	0.940248464975197	6
-AliGebily:Ardavel:balajipro:benchmark:Ramzes2:vladaburian	0.941774645075854	6
-AliGebily:Ardavel:balajipro:gardn999:LastEmperor:mkagenius	0.941443140539696	6
-AliGebily:Ardavel:balajipro:gardn999:LastEmperor:mvaudel	0.941218744708015	6
-AliGebily:Ardavel:balajipro:gardn999:LastEmperor:Ramzes2	0.943024351072994	6
-AliGebily:Ardavel:balajipro:gardn999:LastEmperor:vladaburian	0.94248135841511	6
-AliGebily:Ardavel:balajipro:gardn999:mkagenius:mvaudel	0.94175490878589	6
-AliGebily:Ardavel:balajipro:gardn999:mkagenius:Ramzes2	0.943186751332007	6
-AliGebily:Ardavel:balajipro:gardn999:mkagenius:vladaburian	0.94270122395968	6
-AliGebily:Ardavel:balajipro:gardn999:mvaudel:Ramzes2	0.943366902379108	6
-AliGebily:Ardavel:balajipro:gardn999:mvaudel:vladaburian	0.942438169516544	6
-AliGebily:Ardavel:balajipro:gardn999:Ramzes2:vladaburian	0.944013370892722	6
-AliGebily:Ardavel:balajipro:LastEmperor:mkagenius:mvaudel	0.940508591854599	6
-AliGebily:Ardavel:balajipro:LastEmperor:mkagenius:Ramzes2	0.942373796910768	6
-AliGebily:Ardavel:balajipro:LastEmperor:mkagenius:vladaburian	0.941872102984073	6
-AliGebily:Ardavel:balajipro:LastEmperor:mvaudel:Ramzes2	0.942202639201079	6
-AliGebily:Ardavel:balajipro:LastEmperor:mvaudel:vladaburian	0.941307785145363	6
-AliGebily:Ardavel:balajipro:LastEmperor:Ramzes2:vladaburian	0.943639623205285	6
-AliGebily:Ardavel:balajipro:mkagenius:mvaudel:Ramzes2	0.941588709881789	6
-AliGebily:Ardavel:balajipro:mkagenius:mvaudel:vladaburian	0.940924284167232	6
-AliGebily:Ardavel:balajipro:mkagenius:Ramzes2:vladaburian	0.942745041951308	6
-AliGebily:Ardavel:balajipro:mvaudel:Ramzes2:vladaburian	0.94244521110541	6
-AliGebily:Ardavel:benchmark:gardn999:LastEmperor:mkagenius	0.941593213921008	6
-AliGebily:Ardavel:benchmark:gardn999:LastEmperor:mvaudel	0.941775169128036	6
-AliGebily:Ardavel:benchmark:gardn999:LastEmperor:Ramzes2	0.942556102313908	6
-AliGebily:Ardavel:benchmark:gardn999:LastEmperor:vladaburian	0.941964848997784	6
-AliGebily:Ardavel:benchmark:gardn999:mkagenius:mvaudel	0.941142524736174	6
-AliGebily:Ardavel:benchmark:gardn999:mkagenius:Ramzes2	0.942034495751448	6
-AliGebily:Ardavel:benchmark:gardn999:mkagenius:vladaburian	0.941231889611952	6
-AliGebily:Ardavel:benchmark:gardn999:mvaudel:Ramzes2	0.942247407992806	6
-AliGebily:Ardavel:benchmark:gardn999:mvaudel:vladaburian	0.941264126516833	6
-AliGebily:Ardavel:benchmark:gardn999:Ramzes2:vladaburian	0.942047590030374	6
-AliGebily:Ardavel:benchmark:LastEmperor:mkagenius:mvaudel	0.940339510376	6
-AliGebily:Ardavel:benchmark:LastEmperor:mkagenius:Ramzes2	0.941748162429798	6
-AliGebily:Ardavel:benchmark:LastEmperor:mkagenius:vladaburian	0.940869491783615	6
-AliGebily:Ardavel:benchmark:LastEmperor:mvaudel:Ramzes2	0.941792322677507	6
-AliGebily:Ardavel:benchmark:LastEmperor:mvaudel:vladaburian	0.940877785500952	6
-AliGebily:Ardavel:benchmark:LastEmperor:Ramzes2:vladaburian	0.94187671828094	6
-AliGebily:Ardavel:benchmark:mkagenius:mvaudel:Ramzes2	0.940986410186887	6
-AliGebily:Ardavel:benchmark:mkagenius:mvaudel:vladaburian	0.93998472985198	6
-AliGebily:Ardavel:benchmark:mkagenius:Ramzes2:vladaburian	0.941171124588568	6
-AliGebily:Ardavel:benchmark:mvaudel:Ramzes2:vladaburian	0.940937861674532	6
-AliGebily:Ardavel:gardn999:LastEmperor:mkagenius:mvaudel	0.942235545608727	6
-AliGebily:Ardavel:gardn999:LastEmperor:mkagenius:Ramzes2	0.943138768615216	6
-AliGebily:Ardavel:gardn999:LastEmperor:mkagenius:vladaburian	0.942830189536079	6
-AliGebily:Ardavel:gardn999:LastEmperor:mvaudel:Ramzes2	0.943716315354198	6
-AliGebily:Ardavel:gardn999:LastEmperor:mvaudel:vladaburian	0.943028949672879	6
-AliGebily:Ardavel:gardn999:LastEmperor:Ramzes2:vladaburian	0.944032333305472	6
-AliGebily:Ardavel:gardn999:mkagenius:mvaudel:Ramzes2	0.942864913146207	6
-AliGebily:Ardavel:gardn999:mkagenius:mvaudel:vladaburian	0.94236033222183	6
-AliGebily:Ardavel:gardn999:mkagenius:Ramzes2:vladaburian	0.94314341218093	6
-AliGebily:Ardavel:gardn999:mvaudel:Ramzes2:vladaburian	0.943468976116637	6
-AliGebily:Ardavel:LastEmperor:mkagenius:mvaudel:Ramzes2	0.942120628359936	6
-AliGebily:Ardavel:LastEmperor:mkagenius:mvaudel:vladaburian	0.941571212804394	6
-AliGebily:Ardavel:LastEmperor:mkagenius:Ramzes2:vladaburian	0.942897833327188	6
-AliGebily:Ardavel:LastEmperor:mvaudel:Ramzes2:vladaburian	0.943138477068563	6
-AliGebily:Ardavel:mkagenius:mvaudel:Ramzes2:vladaburian	0.941960192119139	6
-AliGebily:balajipro:benchmark:gardn999:LastEmperor:mkagenius	0.939774040951332	6
-AliGebily:balajipro:benchmark:gardn999:LastEmperor:mvaudel	0.939952955395487	6
-AliGebily:balajipro:benchmark:gardn999:LastEmperor:Ramzes2	0.940989653934812	6
-AliGebily:balajipro:benchmark:gardn999:LastEmperor:vladaburian	0.940597897204139	6
-AliGebily:balajipro:benchmark:gardn999:mkagenius:mvaudel	0.940065331000671	6
-AliGebily:balajipro:benchmark:gardn999:mkagenius:Ramzes2	0.941196535367931	6
-AliGebily:balajipro:benchmark:gardn999:mkagenius:vladaburian	0.940338536372365	6
-AliGebily:balajipro:benchmark:gardn999:mvaudel:Ramzes2	0.94149086859227	6
-AliGebily:balajipro:benchmark:gardn999:mvaudel:vladaburian	0.940497755554926	6
-AliGebily:balajipro:benchmark:gardn999:Ramzes2:vladaburian	0.941418011196293	6
-AliGebily:balajipro:benchmark:LastEmperor:mkagenius:mvaudel	0.939108699498363	6
-AliGebily:balajipro:benchmark:LastEmperor:mkagenius:Ramzes2	0.940630267558035	6
-AliGebily:balajipro:benchmark:LastEmperor:mkagenius:vladaburian	0.939717882580726	6
-AliGebily:balajipro:benchmark:LastEmperor:mvaudel:Ramzes2	0.940664389795545	6
-AliGebily:balajipro:benchmark:LastEmperor:mvaudel:vladaburian	0.939800950042894	6
-AliGebily:balajipro:benchmark:LastEmperor:Ramzes2:vladaburian	0.941086615980727	6
-AliGebily:balajipro:benchmark:mkagenius:mvaudel:Ramzes2	0.9401715666906	6
-AliGebily:balajipro:benchmark:mkagenius:mvaudel:vladaburian	0.93919608115368	6
-AliGebily:balajipro:benchmark:mkagenius:Ramzes2:vladaburian	0.940661198910531	6
-AliGebily:balajipro:benchmark:mvaudel:Ramzes2:vladaburian	0.94047592366852	6
-AliGebily:balajipro:gardn999:LastEmperor:mkagenius:mvaudel	0.94040978764321	6
-AliGebily:balajipro:gardn999:LastEmperor:mkagenius:Ramzes2	0.941570968048347	6
-AliGebily:balajipro:gardn999:LastEmperor:mkagenius:vladaburian	0.941462312524791	6
-AliGebily:balajipro:gardn999:LastEmperor:mvaudel:Ramzes2	0.942099321762933	6
-AliGebily:balajipro:gardn999:LastEmperor:mvaudel:vladaburian	0.941379661559814	6
-AliGebily:balajipro:gardn999:LastEmperor:Ramzes2:vladaburian	0.942775063996109	6
-AliGebily:balajipro:gardn999:mkagenius:mvaudel:Ramzes2	0.942068101703937	6
-AliGebily:balajipro:gardn999:mkagenius:mvaudel:vladaburian	0.941603948888383	6
-AliGebily:balajipro:gardn999:mkagenius:Ramzes2:vladaburian	0.942456291204995	6
-AliGebily:balajipro:gardn999:mvaudel:Ramzes2:vladaburian	0.943164110892229	6
-AliGebily:balajipro:LastEmperor:mkagenius:mvaudel:Ramzes2	0.941014358025173	6
-AliGebily:balajipro:LastEmperor:mkagenius:mvaudel:vladaburian	0.940476555457956	6
-AliGebily:balajipro:LastEmperor:mkagenius:Ramzes2:vladaburian	0.941995437892652	6
-AliGebily:balajipro:LastEmperor:mvaudel:Ramzes2:vladaburian	0.942414066641635	6
-AliGebily:balajipro:mkagenius:mvaudel:Ramzes2:vladaburian	0.941470486890801	6
-AliGebily:benchmark:gardn999:LastEmperor:mkagenius:mvaudel	0.940285858659641	6
-AliGebily:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2	0.941126414580034	6
-AliGebily:benchmark:gardn999:LastEmperor:mkagenius:vladaburian	0.940384730255014	6
-AliGebily:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2	0.941611389277081	6
-AliGebily:benchmark:gardn999:LastEmperor:mvaudel:vladaburian	0.940777996694083	6
-AliGebily:benchmark:gardn999:LastEmperor:Ramzes2:vladaburian	0.941326280601369	6
-AliGebily:benchmark:gardn999:mkagenius:mvaudel:Ramzes2	0.941033025100486	6
-AliGebily:benchmark:gardn999:mkagenius:mvaudel:vladaburian	0.940097522002068	6
-AliGebily:benchmark:gardn999:mkagenius:Ramzes2:vladaburian	0.940824906000897	6
-AliGebily:benchmark:gardn999:mvaudel:Ramzes2:vladaburian	0.941036277411264	6
-AliGebily:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2	0.940459963016222	6
-AliGebily:benchmark:LastEmperor:mkagenius:mvaudel:vladaburian	0.939505533668823	6
-AliGebily:benchmark:LastEmperor:mkagenius:Ramzes2:vladaburian	0.940597447230555	6
-AliGebily:benchmark:LastEmperor:mvaudel:Ramzes2:vladaburian	0.940688381893071	6
-AliGebily:benchmark:mkagenius:mvaudel:Ramzes2:vladaburian	0.939923216066126	6
-AliGebily:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.942074993600461	6
-AliGebily:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.941731546354763	6
-AliGebily:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.94236216015284	6
-AliGebily:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.943314394183142	6
-AliGebily:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.942258752659051	6
-AliGebily:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.941734745865093	6
-Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius	0.939810107582606	6
-Ardavel:balajipro:benchmark:gardn999:LastEmperor:mvaudel	0.939209187921781	6
-Ardavel:balajipro:benchmark:gardn999:LastEmperor:Ramzes2	0.941515621533125	6
-Ardavel:balajipro:benchmark:gardn999:LastEmperor:vladaburian	0.940607429574065	6
-Ardavel:balajipro:benchmark:gardn999:mkagenius:mvaudel	0.939976081065888	6
-Ardavel:balajipro:benchmark:gardn999:mkagenius:Ramzes2	0.942022218820648	6
-Ardavel:balajipro:benchmark:gardn999:mkagenius:vladaburian	0.940927733030061	6
-Ardavel:balajipro:benchmark:gardn999:mvaudel:Ramzes2	0.941730721404588	6
-Ardavel:balajipro:benchmark:gardn999:mvaudel:vladaburian	0.94037356565861	6
-Ardavel:balajipro:benchmark:gardn999:Ramzes2:vladaburian	0.94235248124188	6
-Ardavel:balajipro:benchmark:LastEmperor:mkagenius:mvaudel	0.938855307807916	6
-Ardavel:balajipro:benchmark:LastEmperor:mkagenius:Ramzes2	0.940890514632455	6
-Ardavel:balajipro:benchmark:LastEmperor:mkagenius:vladaburian	0.939970111726428	6
-Ardavel:balajipro:benchmark:LastEmperor:mvaudel:Ramzes2	0.940419469915165	6
-Ardavel:balajipro:benchmark:LastEmperor:mvaudel:vladaburian	0.939189053734763	6
-Ardavel:balajipro:benchmark:LastEmperor:Ramzes2:vladaburian	0.941706887136936	6
-Ardavel:balajipro:benchmark:mkagenius:mvaudel:Ramzes2	0.940249254339119	6
-Ardavel:balajipro:benchmark:mkagenius:mvaudel:vladaburian	0.939200500068393	6
-Ardavel:balajipro:benchmark:mkagenius:Ramzes2:vladaburian	0.941402990165356	6
-Ardavel:balajipro:benchmark:mvaudel:Ramzes2:vladaburian	0.940701219980054	6
-Ardavel:balajipro:gardn999:LastEmperor:mkagenius:mvaudel	0.939678820849415	6
-Ardavel:balajipro:gardn999:LastEmperor:mkagenius:Ramzes2	0.941787272969428	6
-Ardavel:balajipro:gardn999:LastEmperor:mkagenius:vladaburian	0.94119474326809	6
-Ardavel:balajipro:gardn999:LastEmperor:mvaudel:Ramzes2	0.941520281070211	6
-Ardavel:balajipro:gardn999:LastEmperor:mvaudel:vladaburian	0.940440067177355	6
-Ardavel:balajipro:gardn999:LastEmperor:Ramzes2:vladaburian	0.942831799902311	6
-Ardavel:balajipro:gardn999:mkagenius:mvaudel:Ramzes2	0.942280658617853	6
-Ardavel:balajipro:gardn999:mkagenius:mvaudel:vladaburian	0.941062296649875	6
-Ardavel:balajipro:gardn999:mkagenius:Ramzes2:vladaburian	0.943168972724216	6
-Ardavel:balajipro:gardn999:mvaudel:Ramzes2:vladaburian	0.94287602671886	6
-Ardavel:balajipro:LastEmperor:mkagenius:mvaudel:Ramzes2	0.940900201886324	6
-Ardavel:balajipro:LastEmperor:mkagenius:mvaudel:vladaburian	0.939838566163712	6
-Ardavel:balajipro:LastEmperor:mkagenius:Ramzes2:vladaburian	0.942218283785822	6
-Ardavel:balajipro:LastEmperor:mvaudel:Ramzes2:vladaburian	0.941675944849457	6
-Ardavel:balajipro:mkagenius:mvaudel:Ramzes2:vladaburian	0.941430833566178	6
-Ardavel:benchmark:gardn999:LastEmperor:mkagenius:mvaudel	0.940529844061172	6
-Ardavel:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2	0.942074432199624	6
-Ardavel:benchmark:gardn999:LastEmperor:mkagenius:vladaburian	0.941036016265321	6
-Ardavel:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2	0.942231402853553	6
-Ardavel:benchmark:gardn999:LastEmperor:mvaudel:vladaburian	0.940887209540375	6
-Ardavel:benchmark:gardn999:LastEmperor:Ramzes2:vladaburian	0.94241169392989	6
-Ardavel:benchmark:gardn999:mkagenius:mvaudel:Ramzes2	0.941776970606047	6
-Ardavel:benchmark:gardn999:mkagenius:mvaudel:vladaburian	0.940553398973065	6
-Ardavel:benchmark:gardn999:mkagenius:Ramzes2:vladaburian	0.941947785442068	6
-Ardavel:benchmark:gardn999:mvaudel:Ramzes2:vladaburian	0.941773206197228	6
-Ardavel:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2	0.940769679028631	6
-Ardavel:benchmark:LastEmperor:mkagenius:mvaudel:vladaburian	0.939698781367818	6
-Ardavel:benchmark:LastEmperor:mkagenius:Ramzes2:vladaburian	0.94142634690918	6
-Ardavel:benchmark:LastEmperor:mvaudel:Ramzes2:vladaburian	0.94119526065184	6
-Ardavel:benchmark:mkagenius:mvaudel:Ramzes2:vladaburian	0.940608636317378	6
-Ardavel:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.942652525478363	6
-Ardavel:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.941567554510013	6
-Ardavel:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.9431709209405	6
-Ardavel:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.943355190161445	6
-Ardavel:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.942841883450675	6
-Ardavel:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.941977048038515	6
-balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel	0.938579994887614	6
-balajipro:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2	0.940199435725608	6
-balajipro:benchmark:gardn999:LastEmperor:mkagenius:vladaburian	0.939521396410071	6
-balajipro:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2	0.940295403101828	6
-balajipro:benchmark:gardn999:LastEmperor:mvaudel:vladaburian	0.939106939964912	6
-balajipro:benchmark:gardn999:LastEmperor:Ramzes2:vladaburian	0.940974327200868	6
-balajipro:benchmark:gardn999:mkagenius:mvaudel:Ramzes2	0.940550939141971	6
-balajipro:benchmark:gardn999:mkagenius:mvaudel:vladaburian	0.939419230153851	6
-balajipro:benchmark:gardn999:mkagenius:Ramzes2:vladaburian	0.940946995064945	6
-balajipro:benchmark:gardn999:mvaudel:Ramzes2:vladaburian	0.941082208342662	6
-balajipro:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2	0.939517178746257	6
-balajipro:benchmark:LastEmperor:mkagenius:mvaudel:vladaburian	0.938486911162867	6
-balajipro:benchmark:LastEmperor:mkagenius:Ramzes2:vladaburian	0.940217169472591	6
-balajipro:benchmark:LastEmperor:mvaudel:Ramzes2:vladaburian	0.940190535414785	6
-balajipro:benchmark:mkagenius:mvaudel:Ramzes2:vladaburian	0.939826391340175	6
-balajipro:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.94065843865083	6
-balajipro:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.939846342271543	6
-balajipro:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.941763794047264	6
-balajipro:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.941725594079668	6
-balajipro:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.942039216422187	6
-balajipro:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.940898657160671	6
-benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.940734919931879	6
-benchmark:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.939599024049843	6
-benchmark:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.940961375083856	6
-benchmark:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.941263772980754	6
-benchmark:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.940763284926484	6
-benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.940011786443566	6
-gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.942136487713995	6
-AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius	0.941174585883897	7
-AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:mvaudel	0.941031463000209	7
-AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:Ramzes2	0.942475592389198	7
-AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:vladaburian	0.941933890978341	7
-AliGebily:Ardavel:balajipro:benchmark:gardn999:mkagenius:mvaudel	0.94116678963053	7
-AliGebily:Ardavel:balajipro:benchmark:gardn999:mkagenius:Ramzes2	0.942459110532976	7
-AliGebily:Ardavel:balajipro:benchmark:gardn999:mkagenius:vladaburian	0.941803129507336	7
-AliGebily:Ardavel:balajipro:benchmark:gardn999:mvaudel:Ramzes2	0.942461227306158	7
-AliGebily:Ardavel:balajipro:benchmark:gardn999:mvaudel:vladaburian	0.941440682179603	7
-AliGebily:Ardavel:balajipro:benchmark:gardn999:Ramzes2:vladaburian	0.942662164275452	7
-AliGebily:Ardavel:balajipro:benchmark:LastEmperor:mkagenius:mvaudel	0.940243382006425	7
-AliGebily:Ardavel:balajipro:benchmark:LastEmperor:mkagenius:Ramzes2	0.941771327336573	7
-AliGebily:Ardavel:balajipro:benchmark:LastEmperor:mkagenius:vladaburian	0.94126188339756	7
-AliGebily:Ardavel:balajipro:benchmark:LastEmperor:mvaudel:Ramzes2	0.941509048308168	7
-AliGebily:Ardavel:balajipro:benchmark:LastEmperor:mvaudel:vladaburian	0.940558432178174	7
-AliGebily:Ardavel:balajipro:benchmark:LastEmperor:Ramzes2:vladaburian	0.942497133581483	7
-AliGebily:Ardavel:balajipro:benchmark:mkagenius:mvaudel:Ramzes2	0.941066998940592	7
-AliGebily:Ardavel:balajipro:benchmark:mkagenius:mvaudel:vladaburian	0.940328755896547	7
-AliGebily:Ardavel:balajipro:benchmark:mkagenius:Ramzes2:vladaburian	0.941854281374455	7
-AliGebily:Ardavel:balajipro:benchmark:mvaudel:Ramzes2:vladaburian	0.941508907805308	7
-AliGebily:Ardavel:balajipro:gardn999:LastEmperor:mkagenius:mvaudel	0.941246903907666	7
-AliGebily:Ardavel:balajipro:gardn999:LastEmperor:mkagenius:Ramzes2	0.942837048714191	7
-AliGebily:Ardavel:balajipro:gardn999:LastEmperor:mkagenius:vladaburian	0.942192164067927	7
-AliGebily:Ardavel:balajipro:gardn999:LastEmperor:mvaudel:Ramzes2	0.943008087956302	7
-AliGebily:Ardavel:balajipro:gardn999:LastEmperor:mvaudel:vladaburian	0.942174352592252	7
-AliGebily:Ardavel:balajipro:gardn999:LastEmperor:Ramzes2:vladaburian	0.943751939595838	7
-AliGebily:Ardavel:balajipro:gardn999:mkagenius:mvaudel:Ramzes2	0.942985086217383	7
-AliGebily:Ardavel:balajipro:gardn999:mkagenius:mvaudel:vladaburian	0.942117346938027	7
-AliGebily:Ardavel:balajipro:gardn999:mkagenius:Ramzes2:vladaburian	0.943639319461727	7
-AliGebily:Ardavel:balajipro:gardn999:mvaudel:Ramzes2:vladaburian	0.943500578586677	7
-AliGebily:Ardavel:balajipro:LastEmperor:mkagenius:mvaudel:Ramzes2	0.941810264952586	7
-AliGebily:Ardavel:balajipro:LastEmperor:mkagenius:mvaudel:vladaburian	0.941123050005536	7
-AliGebily:Ardavel:balajipro:LastEmperor:mkagenius:Ramzes2:vladaburian	0.942970865894027	7
-AliGebily:Ardavel:balajipro:LastEmperor:mvaudel:Ramzes2:vladaburian	0.942635348008327	7
-AliGebily:Ardavel:balajipro:mkagenius:mvaudel:Ramzes2:vladaburian	0.942230902304769	7
-AliGebily:Ardavel:benchmark:gardn999:LastEmperor:mkagenius:mvaudel	0.941647604655199	7
-AliGebily:Ardavel:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2	0.942462389924605	7
-AliGebily:Ardavel:benchmark:gardn999:LastEmperor:mkagenius:vladaburian	0.941863310876068	7
-AliGebily:Ardavel:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2	0.942716486755543	7
-AliGebily:Ardavel:benchmark:gardn999:LastEmperor:mvaudel:vladaburian	0.941827423965003	7
-AliGebily:Ardavel:benchmark:gardn999:LastEmperor:Ramzes2:vladaburian	0.942631315764483	7
-AliGebily:Ardavel:benchmark:gardn999:mkagenius:mvaudel:Ramzes2	0.942111213948647	7
-AliGebily:Ardavel:benchmark:gardn999:mkagenius:mvaudel:vladaburian	0.941325160055024	7
-AliGebily:Ardavel:benchmark:gardn999:mkagenius:Ramzes2:vladaburian	0.942125294887559	7
-AliGebily:Ardavel:benchmark:gardn999:mvaudel:Ramzes2:vladaburian	0.942161733676791	7
-AliGebily:Ardavel:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2	0.94142447480344	7
-AliGebily:Ardavel:benchmark:LastEmperor:mkagenius:mvaudel:vladaburian	0.940815604345637	7
-AliGebily:Ardavel:benchmark:LastEmperor:mkagenius:Ramzes2:vladaburian	0.941953763056351	7
-AliGebily:Ardavel:benchmark:LastEmperor:mvaudel:Ramzes2:vladaburian	0.941952392368721	7
-AliGebily:Ardavel:benchmark:mkagenius:mvaudel:Ramzes2:vladaburian	0.941206023789811	7
-AliGebily:Ardavel:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.943254939259299	7
-AliGebily:Ardavel:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.942533380128536	7
-AliGebily:Ardavel:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.943659089117237	7
-AliGebily:Ardavel:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.943793699897816	7
-AliGebily:Ardavel:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.943257549385089	7
-AliGebily:Ardavel:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.942588001845722	7
-AliGebily:balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel	0.940066665884888	7
-AliGebily:balajipro:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2	0.941190967072993	7
-AliGebily:balajipro:benchmark:gardn999:LastEmperor:mkagenius:vladaburian	0.940650229541758	7
-AliGebily:balajipro:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2	0.941555268797463	7
-AliGebily:balajipro:benchmark:gardn999:LastEmperor:mvaudel:vladaburian	0.940678500034872	7
-AliGebily:balajipro:benchmark:gardn999:LastEmperor:Ramzes2:vladaburian	0.941773685220242	7
-AliGebily:balajipro:benchmark:gardn999:mkagenius:mvaudel:Ramzes2	0.941501880545189	7
-AliGebily:balajipro:benchmark:gardn999:mkagenius:mvaudel:vladaburian	0.940589150176998	7
-AliGebily:balajipro:benchmark:gardn999:mkagenius:Ramzes2:vladaburian	0.941697392092013	7
-AliGebily:balajipro:benchmark:gardn999:mvaudel:Ramzes2:vladaburian	0.941827651125572	7
-AliGebily:balajipro:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2	0.940595908186975	7
-AliGebily:balajipro:benchmark:LastEmperor:mkagenius:mvaudel:vladaburian	0.939864718806044	7
-AliGebily:balajipro:benchmark:LastEmperor:mkagenius:Ramzes2:vladaburian	0.941259389194801	7
-AliGebily:balajipro:benchmark:LastEmperor:mvaudel:Ramzes2:vladaburian	0.94133153208858	7
-AliGebily:balajipro:benchmark:mkagenius:mvaudel:Ramzes2:vladaburian	0.94070235448678	7
-AliGebily:balajipro:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.941753347582051	7
-AliGebily:balajipro:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.941180970584078	7
-AliGebily:balajipro:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.942490905151768	7
-AliGebily:balajipro:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.943027180093536	7
-AliGebily:balajipro:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.942821531741341	7
-AliGebily:balajipro:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.941863172874245	7
-AliGebily:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.941546379090671	7
-AliGebily:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.940743339195899	7
-AliGebily:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.941716253689778	7
-AliGebily:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.941941622925178	7
-AliGebily:benchmark:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.941324124496116	7
-AliGebily:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.940927712585889	7
-AliGebily:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.94279838822819	7
-Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel	0.939609178245887	7
-Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2	0.94142065552084	7
-Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:vladaburian	0.940613407117216	7
-Ardavel:balajipro:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2	0.941077709694515	7
-Ardavel:balajipro:benchmark:gardn999:LastEmperor:mvaudel:vladaburian	0.940184743074994	7
-Ardavel:balajipro:benchmark:gardn999:LastEmperor:Ramzes2:vladaburian	0.942165120854711	7
-Ardavel:balajipro:benchmark:gardn999:mkagenius:mvaudel:Ramzes2	0.94148479509496	7
-Ardavel:balajipro:benchmark:gardn999:mkagenius:mvaudel:vladaburian	0.940458130104927	7
-Ardavel:balajipro:benchmark:gardn999:mkagenius:Ramzes2:vladaburian	0.94227594432568	7
-Ardavel:balajipro:benchmark:gardn999:mvaudel:Ramzes2:vladaburian	0.941991213424047	7
-Ardavel:balajipro:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2	0.940455864900766	7
-Ardavel:balajipro:benchmark:LastEmperor:mkagenius:mvaudel:vladaburian	0.939532186314599	7
-Ardavel:balajipro:benchmark:LastEmperor:mkagenius:Ramzes2:vladaburian	0.941494738953289	7
-Ardavel:balajipro:benchmark:LastEmperor:mvaudel:Ramzes2:vladaburian	0.941010698859855	7
-Ardavel:balajipro:benchmark:mkagenius:mvaudel:Ramzes2:vladaburian	0.940672811700121	7
-Ardavel:balajipro:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.941376828094633	7
-Ardavel:balajipro:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.940615975423108	7
-Ardavel:balajipro:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.942432391403124	7
-Ardavel:balajipro:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.942533055260212	7
-Ardavel:balajipro:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.942549657793818	7
-Ardavel:balajipro:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.941425828049384	7
-Ardavel:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.941901087513926	7
-Ardavel:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.940792215214025	7
-Ardavel:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.942298967005404	7
-Ardavel:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.942275311132962	7
-Ardavel:benchmark:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.94180897463285	7
-Ardavel:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.9410397358018	7
-Ardavel:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.942860856624302	7
-balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.940244553134117	7
-balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.939275183056619	7
-balajipro:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.940843372570808	7
-balajipro:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.940997357159015	7
-balajipro:benchmark:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.941031510552071	7
-balajipro:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.940166452426412	7
-balajipro:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.941286046264873	7
-benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.941189487781276	7
-AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel	0.941403134749228	8
-AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2	0.942570742846115	8
-AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:vladaburian	0.942012715449119	8
-AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2	0.942735397467201	8
-AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:mvaudel:vladaburian	0.94199096870896	8
-AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:Ramzes2:vladaburian	0.943123697384032	8
-AliGebily:Ardavel:balajipro:benchmark:gardn999:mkagenius:mvaudel:Ramzes2	0.942437899589272	8
-AliGebily:Ardavel:balajipro:benchmark:gardn999:mkagenius:mvaudel:vladaburian	0.941721444936973	8
-AliGebily:Ardavel:balajipro:benchmark:gardn999:mkagenius:Ramzes2:vladaburian	0.942749512892935	8
-AliGebily:Ardavel:balajipro:benchmark:gardn999:mvaudel:Ramzes2:vladaburian	0.942850708789382	8
-AliGebily:Ardavel:balajipro:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2	0.941595702309533	8
-AliGebily:Ardavel:balajipro:benchmark:LastEmperor:mkagenius:mvaudel:vladaburian	0.94106573954815	8
-AliGebily:Ardavel:balajipro:benchmark:LastEmperor:mkagenius:Ramzes2:vladaburian	0.942359543873741	8
-AliGebily:Ardavel:balajipro:benchmark:LastEmperor:mvaudel:Ramzes2:vladaburian	0.942376367242222	8
-AliGebily:Ardavel:balajipro:benchmark:mkagenius:mvaudel:Ramzes2:vladaburian	0.941709753463095	8
-AliGebily:Ardavel:balajipro:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.942968989842478	8
-AliGebily:Ardavel:balajipro:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.942245285992181	8
-AliGebily:Ardavel:balajipro:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.943525457852522	8
-AliGebily:Ardavel:balajipro:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.943756707319705	8
-AliGebily:Ardavel:balajipro:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.943394454167752	8
-AliGebily:Ardavel:balajipro:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.942630249028305	8
-AliGebily:Ardavel:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.942646986825489	8
-AliGebily:Ardavel:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.942014348383245	8
-AliGebily:Ardavel:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.942793248895234	8
-AliGebily:Ardavel:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.943070352227671	8
-AliGebily:Ardavel:benchmark:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.942405459106647	8
-AliGebily:Ardavel:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.941994424910536	8
-AliGebily:Ardavel:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.943606569629818	8
-AliGebily:balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.941598242366599	8
-AliGebily:balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.940983169411759	8
-AliGebily:balajipro:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.941914732547481	8
-AliGebily:balajipro:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.942363179588597	8
-AliGebily:balajipro:benchmark:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.941952077350656	8
-AliGebily:balajipro:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.941331878648038	8
-AliGebily:balajipro:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.942737777439068	8
-AliGebily:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.942053595409298	8
-Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.941639002601014	8
-Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.94082001252113	8
-Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.942241591769185	8
-Ardavel:balajipro:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.942301791198826	8
-Ardavel:balajipro:benchmark:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.942110276262028	8
-Ardavel:balajipro:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.941311907135285	8
-Ardavel:balajipro:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.942531021297693	8
-Ardavel:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.942323590682768	8
-balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.941248003072214	8
-AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.942450415583317	9
-AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.941697951444814	9
-AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.942937009319593	9
-AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.942977183312293	9
-AliGebily:Ardavel:balajipro:benchmark:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.942658093582375	9
-AliGebily:Ardavel:balajipro:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.942027786859206	9
-AliGebily:Ardavel:balajipro:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.943206474803914	9
-AliGebily:Ardavel:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.942829871647695	9
-AliGebily:balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.94209844907186	9
-Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.941928023495243	9
-AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.942865493218176	10
+algos	auc	nalgo	pr
+AliGebily:Ardavel	0.937801891203838	2	0.815374378959003
+AliGebily:balajipro	0.934908333895539	2	0.81301260526212
+AliGebily:benchmark	0.928030207632955	2	0.776217253170041
+AliGebily:gardn999	0.935918616611089	2	0.815693724798675
+AliGebily:LastEmperor	0.933048107478986	2	0.808931877954396
+AliGebily:mkagenius	0.934993395714907	2	0.785397607648301
+AliGebily:mvaudel	0.932178619354009	2	0.790406160660369
+AliGebily:Ramzes2	0.93407275928463	2	0.78452206916793
+AliGebily:vladaburian	0.933548748154362	2	0.798646916079587
+Ardavel:balajipro	0.934359986715323	2	0.830115830019362
+Ardavel:benchmark	0.930748882518549	2	0.79576069396248
+Ardavel:gardn999	0.939443138240823	2	0.840695162486593
+Ardavel:LastEmperor	0.932025078896925	2	0.826247656370307
+Ardavel:mkagenius	0.936377341239711	2	0.803924250743426
+Ardavel:mvaudel	0.932478678124643	2	0.80915614305971
+Ardavel:Ramzes2	0.937513012043559	2	0.803432773399269
+Ardavel:vladaburian	0.93577308038117	2	0.82059629764936
+balajipro:benchmark	0.926786006561238	2	0.78926435904701
+balajipro:gardn999	0.934434222554221	2	0.832599773747547
+balajipro:LastEmperor	0.921943967859358	2	0.808695997636243
+balajipro:mkagenius	0.931873276639821	2	0.79633514279452
+balajipro:mvaudel	0.928391907743758	2	0.804520684782767
+balajipro:Ramzes2	0.935342064681569	2	0.800903090328122
+balajipro:vladaburian	0.93348810864292	2	0.820092510707197
+benchmark:gardn999	0.930258550448272	2	0.798140493385592
+benchmark:LastEmperor	0.924072611766246	2	0.783146411869413
+benchmark:mkagenius	0.927635848297176	2	0.767733646381457
+benchmark:mvaudel	0.924877871262448	2	0.774518082018934
+benchmark:Ramzes2	0.928472972803123	2	0.770497847090993
+benchmark:vladaburian	0.925731801160733	2	0.777907004562947
+gardn999:LastEmperor	0.929843697835576	2	0.825212585314313
+gardn999:mkagenius	0.935798290953261	2	0.805601996796314
+gardn999:mvaudel	0.934796769185588	2	0.819706304942261
+gardn999:Ramzes2	0.93653542350759	2	0.804690399365753
+gardn999:vladaburian	0.936863045852777	2	0.827717324933407
+LastEmperor:mkagenius	0.928377963956923	2	0.790759868413621
+LastEmperor:mvaudel	0.92598581470486	2	0.802180482567126
+LastEmperor:Ramzes2	0.932886270618873	2	0.796098014277394
+LastEmperor:vladaburian	0.930947210455304	2	0.815615106537597
+mkagenius:mvaudel	0.929556039226444	2	0.774827761773983
+mkagenius:Ramzes2	0.93487339715491	2	0.779227186599968
+mkagenius:vladaburian	0.933012424794953	2	0.78729456944509
+mvaudel:Ramzes2	0.932672692958205	2	0.781254037431748
+mvaudel:vladaburian	0.930792636293432	2	0.797569633653958
+Ramzes2:vladaburian	0.933747278786063	2	0.787518887472666
+AliGebily:Ardavel:balajipro	0.939328747992621	3	0.841275518216549
+AliGebily:Ardavel:benchmark	0.93726784083022	3	0.813788318102279
+AliGebily:Ardavel:gardn999	0.941294289723861	3	0.843637672770254
+AliGebily:Ardavel:LastEmperor	0.94087733859236	3	0.842439136860434
+AliGebily:Ardavel:mkagenius	0.939730513052124	3	0.819350968373477
+AliGebily:Ardavel:mvaudel	0.937835038141916	3	0.829252917342332
+AliGebily:Ardavel:Ramzes2	0.940287456376585	3	0.815974745768283
+AliGebily:Ardavel:vladaburian	0.939978988016732	3	0.836674069894428
+AliGebily:balajipro:benchmark	0.935476654810934	3	0.8111148986889
+AliGebily:balajipro:gardn999	0.938598237460353	3	0.841359079093466
+AliGebily:balajipro:LastEmperor	0.933341734499609	3	0.829446907764552
+AliGebily:balajipro:mkagenius	0.937923746014905	3	0.81709676793132
+AliGebily:balajipro:mvaudel	0.935974954962274	3	0.831117740715586
+AliGebily:balajipro:Ramzes2	0.939505332707163	3	0.815729120947308
+AliGebily:balajipro:vladaburian	0.939386899649356	3	0.839415394637541
+AliGebily:benchmark:gardn999	0.935619478957603	3	0.811915661556472
+AliGebily:benchmark:LastEmperor	0.935593088478029	3	0.809954321960137
+AliGebily:benchmark:mkagenius	0.93541182843538	3	0.799257829032057
+AliGebily:benchmark:mvaudel	0.934044219205498	3	0.80384174056488
+AliGebily:benchmark:Ramzes2	0.935976173048962	3	0.799093968062841
+AliGebily:benchmark:vladaburian	0.93350286819225	3	0.800412481604989
+AliGebily:gardn999:LastEmperor	0.936951794575668	3	0.836303802826943
+AliGebily:gardn999:mkagenius	0.938759036880288	3	0.819255516219872
+AliGebily:gardn999:mvaudel	0.93983323997031	3	0.838424298913117
+AliGebily:gardn999:Ramzes2	0.938803089936489	3	0.814530458222122
+AliGebily:gardn999:vladaburian	0.939052627688126	3	0.837191233208356
+AliGebily:LastEmperor:mkagenius	0.938107400545513	3	0.815985664377134
+AliGebily:LastEmperor:mvaudel	0.93849669540246	3	0.834395852116569
+AliGebily:LastEmperor:Ramzes2	0.93939588024069	3	0.814722771885124
+AliGebily:LastEmperor:vladaburian	0.939919071252699	3	0.83817888324766
+AliGebily:mkagenius:mvaudel	0.936648817157502	3	0.807139025495016
+AliGebily:mkagenius:Ramzes2	0.938130991588106	3	0.801670643064595
+AliGebily:mkagenius:vladaburian	0.937891882247136	3	0.808025898787608
+AliGebily:mvaudel:Ramzes2	0.938334502468581	3	0.807279987320507
+AliGebily:mvaudel:vladaburian	0.937670261705038	3	0.827141111947584
+AliGebily:Ramzes2:vladaburian	0.938337118399265	3	0.808156334125278
+Ardavel:balajipro:benchmark	0.93609744114413	3	0.834117823380423
+Ardavel:balajipro:gardn999	0.937716555864708	3	0.841693685082745
+Ardavel:balajipro:LastEmperor	0.93147574603079	3	0.827626087829217
+Ardavel:balajipro:mkagenius	0.937284283121649	3	0.837648543298106
+Ardavel:balajipro:mvaudel	0.933610223588711	3	0.827212627779607
+Ardavel:balajipro:Ramzes2	0.940128423398034	3	0.840455617286244
+Ardavel:balajipro:vladaburian	0.937796212225707	3	0.839360602439203
+Ardavel:benchmark:gardn999	0.938713565903032	3	0.839100278226053
+Ardavel:benchmark:LastEmperor	0.937052986074072	3	0.834836918654707
+Ardavel:benchmark:mkagenius	0.937451338583756	3	0.814185852429802
+Ardavel:benchmark:mvaudel	0.934389759107586	3	0.819264816932122
+Ardavel:benchmark:Ramzes2	0.938565888041963	3	0.814830390912156
+Ardavel:benchmark:vladaburian	0.935142987110696	3	0.821203195546916
+Ardavel:gardn999:LastEmperor	0.937279881530922	3	0.839018221133397
+Ardavel:gardn999:mkagenius	0.940821241115496	3	0.843284147578868
+Ardavel:gardn999:mvaudel	0.938252994115106	3	0.836794275196848
+Ardavel:gardn999:Ramzes2	0.942745329360672	3	0.843943530802499
+Ardavel:gardn999:vladaburian	0.941104335546695	3	0.845810556195054
+Ardavel:LastEmperor:mkagenius	0.938579276727854	3	0.838144340495532
+Ardavel:LastEmperor:mvaudel	0.935288565392009	3	0.829885849194997
+Ardavel:LastEmperor:Ramzes2	0.941240428652125	3	0.84132380477186
+Ardavel:LastEmperor:vladaburian	0.9393335553857	3	0.840702539657172
+Ardavel:mkagenius:mvaudel	0.935777592795589	3	0.820612946887746
+Ardavel:mkagenius:Ramzes2	0.941033211818728	3	0.820471221170959
+Ardavel:mkagenius:vladaburian	0.938779466950071	3	0.828938288333164
+Ardavel:mvaudel:Ramzes2	0.93821625187941	3	0.82527828868248
+Ardavel:mvaudel:vladaburian	0.935790063608518	3	0.823522425246011
+Ardavel:Ramzes2:vladaburian	0.940717068829237	3	0.8342723987362
+balajipro:benchmark:gardn999	0.936131243021121	3	0.836324017048092
+balajipro:benchmark:LastEmperor	0.930665750285925	3	0.823482966977187
+balajipro:benchmark:mkagenius	0.935081864807912	3	0.810484864680774
+balajipro:benchmark:mvaudel	0.932030994662158	3	0.82064466514495
+balajipro:benchmark:Ramzes2	0.936744803946869	3	0.812294985414791
+balajipro:benchmark:vladaburian	0.93343607509422	3	0.819864636774657
+balajipro:gardn999:LastEmperor	0.931358621617183	3	0.825871253289168
+balajipro:gardn999:mkagenius	0.937613499132775	3	0.839039592404939
+balajipro:gardn999:mvaudel	0.934380439462105	3	0.834018398152792
+balajipro:gardn999:Ramzes2	0.939786433045843	3	0.841891665266217
+balajipro:gardn999:vladaburian	0.938808515426692	3	0.843023758689889
+balajipro:LastEmperor:mkagenius	0.932206612295702	3	0.826667202202951
+balajipro:LastEmperor:mvaudel	0.928725692696771	3	0.821760047039864
+balajipro:LastEmperor:Ramzes2	0.933751327819909	3	0.829422970954592
+balajipro:LastEmperor:vladaburian	0.932546745384305	3	0.827324619559406
+balajipro:mkagenius:mvaudel	0.933892930152066	3	0.822362321834215
+balajipro:mkagenius:Ramzes2	0.939042297257954	3	0.818271092107334
+balajipro:mkagenius:vladaburian	0.937185851567471	3	0.828185075899241
+balajipro:mvaudel:Ramzes2	0.936150817592457	3	0.825409255644785
+balajipro:mvaudel:vladaburian	0.933718711022181	3	0.824872563613451
+balajipro:Ramzes2:vladaburian	0.940505471841628	3	0.8375417437948
+benchmark:gardn999:LastEmperor	0.934865233844479	3	0.832150781581844
+benchmark:gardn999:mkagenius	0.936159137828371	3	0.814030733418145
+benchmark:gardn999:mvaudel	0.935414401712773	3	0.827445712886162
+benchmark:gardn999:Ramzes2	0.937455388038051	3	0.814513592966013
+benchmark:gardn999:vladaburian	0.934170100476194	3	0.821647263292849
+benchmark:LastEmperor:mkagenius	0.93495008294813	3	0.809141167598879
+benchmark:LastEmperor:mvaudel	0.933850506452997	3	0.821981832153799
+benchmark:LastEmperor:Ramzes2	0.936662205809032	3	0.811561114094237
+benchmark:LastEmperor:vladaburian	0.933553082590795	3	0.819017933407132
+benchmark:mkagenius:mvaudel	0.934066300797381	3	0.802345925146534
+benchmark:mkagenius:Ramzes2	0.936633302903979	3	0.800810167656058
+benchmark:mkagenius:vladaburian	0.933410396727049	3	0.799019349245016
+benchmark:mvaudel:Ramzes2	0.935382655871877	3	0.801665178366338
+benchmark:mvaudel:vladaburian	0.932307018205072	3	0.81065858243816
+benchmark:Ramzes2:vladaburian	0.934407781113952	3	0.800447317269439
+gardn999:LastEmperor:mkagenius	0.936083794805315	3	0.833627714178212
+gardn999:LastEmperor:mvaudel	0.935525997480624	3	0.834241692649083
+gardn999:LastEmperor:Ramzes2	0.93791834093389	3	0.837231665904283
+gardn999:LastEmperor:vladaburian	0.937510085322215	3	0.838631987235954
+gardn999:mkagenius:mvaudel	0.937905851133924	3	0.829727127076273
+gardn999:mkagenius:Ramzes2	0.940125075033422	3	0.821002015025787
+gardn999:mkagenius:vladaburian	0.938773593522861	3	0.831366029326927
+gardn999:mvaudel:Ramzes2	0.940832208429584	3	0.834200097340352
+gardn999:mvaudel:vladaburian	0.938349137911885	3	0.833985352487078
+gardn999:Ramzes2:vladaburian	0.940575739819572	3	0.836599646112478
+LastEmperor:mkagenius:mvaudel	0.936332302525912	3	0.825316484322911
+LastEmperor:mkagenius:Ramzes2	0.938846904245672	3	0.816921371488126
+LastEmperor:mkagenius:vladaburian	0.937272948444923	3	0.827181778747422
+LastEmperor:mvaudel:Ramzes2	0.938876802444747	3	0.828914397643056
+LastEmperor:mvaudel:vladaburian	0.936006291310794	3	0.827635556323458
+LastEmperor:Ramzes2:vladaburian	0.940402271115362	3	0.8364426483071
+mkagenius:mvaudel:Ramzes2	0.937914505964204	3	0.805581357135072
+mkagenius:mvaudel:vladaburian	0.9360521497578	3	0.816525132959466
+mkagenius:Ramzes2:vladaburian	0.938913864882127	3	0.808331224919644
+mvaudel:Ramzes2:vladaburian	0.938165141421459	3	0.821756159480349
+AliGebily:Ardavel:balajipro:benchmark	0.939646520575455	4	0.830046727513066
+AliGebily:Ardavel:balajipro:gardn999	0.941929228419298	4	0.848479966948088
+AliGebily:Ardavel:balajipro:LastEmperor	0.939386553307036	4	0.843190542661696
+AliGebily:Ardavel:balajipro:mkagenius	0.940514536855278	4	0.833973609094607
+AliGebily:Ardavel:balajipro:mvaudel	0.939029326877988	4	0.838515049076552
+AliGebily:Ardavel:balajipro:Ramzes2	0.942312817263119	4	0.832819821442703
+AliGebily:Ardavel:balajipro:vladaburian	0.941588526860974	4	0.845779487743464
+AliGebily:Ardavel:benchmark:gardn999	0.940362339739578	4	0.831206054348207
+AliGebily:Ardavel:benchmark:LastEmperor	0.940228911556238	4	0.830203099998039
+AliGebily:Ardavel:benchmark:mkagenius	0.939410596248415	4	0.816526157881589
+AliGebily:Ardavel:benchmark:mvaudel	0.938341855647603	4	0.821300595848518
+AliGebily:Ardavel:benchmark:Ramzes2	0.940086564188109	4	0.815591850117233
+AliGebily:Ardavel:benchmark:vladaburian	0.938356137089635	4	0.821579263262445
+AliGebily:Ardavel:gardn999:LastEmperor	0.941737803670171	4	0.846899723129838
+AliGebily:Ardavel:gardn999:mkagenius	0.941789771328701	4	0.835914952605275
+AliGebily:Ardavel:gardn999:mvaudel	0.941873788401904	4	0.843361120020277
+AliGebily:Ardavel:gardn999:Ramzes2	0.942413047409899	4	0.832486689213283
+AliGebily:Ardavel:gardn999:vladaburian	0.942452375385234	4	0.846715729509776
+AliGebily:Ardavel:LastEmperor:mkagenius	0.941084699483647	4	0.833744670879506
+AliGebily:Ardavel:LastEmperor:mvaudel	0.94067726105582	4	0.840367032639211
+AliGebily:Ardavel:LastEmperor:Ramzes2	0.94263961838565	4	0.832501762554587
+AliGebily:Ardavel:LastEmperor:vladaburian	0.942324957655401	4	0.845692521916358
+AliGebily:Ardavel:mkagenius:mvaudel	0.939311636445099	4	0.824482746340658
+AliGebily:Ardavel:mkagenius:Ramzes2	0.941443507630987	4	0.818074764369813
+AliGebily:Ardavel:mkagenius:vladaburian	0.940487432434374	4	0.827861043284321
+AliGebily:Ardavel:mvaudel:Ramzes2	0.941004805905284	4	0.824536939002065
+AliGebily:Ardavel:mvaudel:vladaburian	0.940072049778726	4	0.835326790854016
+AliGebily:Ardavel:Ramzes2:vladaburian	0.941523981030189	4	0.827031634055941
+AliGebily:balajipro:benchmark:gardn999	0.938773510278138	4	0.829571586539522
+AliGebily:balajipro:benchmark:LastEmperor	0.937049998859997	4	0.825618086512514
+AliGebily:balajipro:benchmark:mkagenius	0.93803439880964	4	0.814801459404543
+AliGebily:balajipro:benchmark:mvaudel	0.937079702465596	4	0.821552484530831
+AliGebily:balajipro:benchmark:Ramzes2	0.939238243105674	4	0.814897170676013
+AliGebily:balajipro:benchmark:vladaburian	0.937460669087623	4	0.821451543938813
+AliGebily:balajipro:gardn999:LastEmperor	0.937694509501528	4	0.84044283263465
+AliGebily:balajipro:gardn999:mkagenius	0.940151815937044	4	0.834716045751789
+AliGebily:balajipro:gardn999:mvaudel	0.940423927619283	4	0.844120437753822
+AliGebily:balajipro:gardn999:Ramzes2	0.941190780557493	4	0.832103082056517
+AliGebily:balajipro:gardn999:vladaburian	0.941341608363726	4	0.847483763824212
+AliGebily:balajipro:LastEmperor:mkagenius	0.937829975604699	4	0.829358483257794
+AliGebily:balajipro:LastEmperor:mvaudel	0.937662694912443	4	0.838094386689676
+AliGebily:balajipro:LastEmperor:Ramzes2	0.939979995587744	4	0.830103926689046
+AliGebily:balajipro:LastEmperor:vladaburian	0.939807721389607	4	0.843497448933442
+AliGebily:balajipro:mkagenius:mvaudel	0.937879076051538	4	0.824571202167208
+AliGebily:balajipro:mkagenius:Ramzes2	0.940560110784479	4	0.817483988651479
+AliGebily:balajipro:mkagenius:vladaburian	0.939619225130141	4	0.827680956588544
+AliGebily:balajipro:mvaudel:Ramzes2	0.940232569750863	4	0.825191859331989
+AliGebily:balajipro:mvaudel:vladaburian	0.939410333299982	4	0.837266540777572
+AliGebily:balajipro:Ramzes2:vladaburian	0.941301754094628	4	0.828298734635607
+AliGebily:benchmark:gardn999:LastEmperor	0.938317617968704	4	0.827055730298118
+AliGebily:benchmark:gardn999:mkagenius	0.9384585156574	4	0.816170748770268
+AliGebily:benchmark:gardn999:mvaudel	0.938580613489311	4	0.825286003241556
+AliGebily:benchmark:gardn999:Ramzes2	0.938933031349465	4	0.814431308278349
+AliGebily:benchmark:gardn999:vladaburian	0.93775546133533	4	0.821846318103192
+AliGebily:benchmark:LastEmperor:mkagenius	0.93806863786396	4	0.813953074848215
+AliGebily:benchmark:LastEmperor:mvaudel	0.938039383544156	4	0.822190704017444
+AliGebily:benchmark:LastEmperor:Ramzes2	0.939175155045794	4	0.814039176948943
+AliGebily:benchmark:LastEmperor:vladaburian	0.937741403067024	4	0.820776677206586
+AliGebily:benchmark:mkagenius:mvaudel	0.937055628639065	4	0.808289883715005
+AliGebily:benchmark:mkagenius:Ramzes2	0.938443114048425	4	0.804440971326562
+AliGebily:benchmark:mkagenius:vladaburian	0.936926336568345	4	0.80684269249828
+AliGebily:benchmark:mvaudel:Ramzes2	0.938237752070432	4	0.808566619125011
+AliGebily:benchmark:mvaudel:vladaburian	0.936536277454852	4	0.814902017097565
+AliGebily:benchmark:Ramzes2:vladaburian	0.937789247545234	4	0.807258629757845
+AliGebily:gardn999:LastEmperor:mkagenius	0.939526331778746	4	0.831584281253168
+AliGebily:gardn999:LastEmperor:mvaudel	0.940600411692307	4	0.843220978045309
+AliGebily:gardn999:LastEmperor:Ramzes2	0.940716997069762	4	0.830019552413073
+AliGebily:gardn999:LastEmperor:vladaburian	0.941061183166193	4	0.844864264218497
+AliGebily:gardn999:mkagenius:mvaudel	0.940146204037163	4	0.829298069495712
+AliGebily:gardn999:mkagenius:Ramzes2	0.940546680129503	4	0.817390482653662
+AliGebily:gardn999:mkagenius:vladaburian	0.940177950153023	4	0.828707822215482
+AliGebily:gardn999:mvaudel:Ramzes2	0.941204967197464	4	0.827238971687356
+AliGebily:gardn999:mvaudel:vladaburian	0.941031783207039	4	0.840474228558775
+AliGebily:gardn999:Ramzes2:vladaburian	0.940941672990064	4	0.827079492347161
+AliGebily:LastEmperor:mkagenius:mvaudel	0.938858131271332	4	0.825281536236172
+AliGebily:LastEmperor:mkagenius:Ramzes2	0.940497734781691	4	0.81646635879277
+AliGebily:LastEmperor:mkagenius:vladaburian	0.939792091098393	4	0.826959096009124
+AliGebily:LastEmperor:mvaudel:Ramzes2	0.941024994872667	4	0.825814919924147
+AliGebily:LastEmperor:mvaudel:vladaburian	0.940469202666872	4	0.837936285696935
+AliGebily:LastEmperor:Ramzes2:vladaburian	0.941397072851609	4	0.827362922380117
+AliGebily:mkagenius:mvaudel:Ramzes2	0.939638089625755	4	0.810131577657226
+AliGebily:mkagenius:mvaudel:vladaburian	0.938594887515402	4	0.819730010917295
+AliGebily:mkagenius:Ramzes2:vladaburian	0.939865346067053	4	0.81040376447775
+AliGebily:mvaudel:Ramzes2:vladaburian	0.939933918086006	4	0.82031909915422
+Ardavel:balajipro:benchmark:gardn999	0.939548939570821	4	0.843812289431064
+Ardavel:balajipro:benchmark:LastEmperor	0.936898391311209	4	0.837614197964055
+Ardavel:balajipro:benchmark:mkagenius	0.938447209681243	4	0.828493204061136
+Ardavel:balajipro:benchmark:mvaudel	0.9365393792765	4	0.833015374068067
+Ardavel:balajipro:benchmark:Ramzes2	0.940450984985328	4	0.829098251728596
+Ardavel:balajipro:benchmark:vladaburian	0.93855217361959	4	0.837001260286478
+Ardavel:balajipro:gardn999:LastEmperor	0.936816437544867	4	0.839322763825724
+Ardavel:balajipro:gardn999:mkagenius	0.940374280353037	4	0.845783622418028
+Ardavel:balajipro:gardn999:mvaudel	0.938733106148779	4	0.842066485264421
+Ardavel:balajipro:gardn999:Ramzes2	0.942765555371539	4	0.848475489305672
+Ardavel:balajipro:gardn999:vladaburian	0.941339275511892	4	0.848746614061607
+Ardavel:balajipro:LastEmperor:mkagenius	0.937528285533	4	0.839104749378001
+Ardavel:balajipro:LastEmperor:mvaudel	0.935947829808424	4	0.835901309390989
+Ardavel:balajipro:LastEmperor:Ramzes2	0.940023965690241	4	0.842766428690013
+Ardavel:balajipro:LastEmperor:vladaburian	0.938785174203283	4	0.842003246594468
+Ardavel:balajipro:mkagenius:mvaudel	0.937241840405207	4	0.833640792933405
+Ardavel:balajipro:mkagenius:Ramzes2	0.941431262853857	4	0.833116541577594
+Ardavel:balajipro:mkagenius:vladaburian	0.939863989640676	4	0.840627280518768
+Ardavel:balajipro:mvaudel:Ramzes2	0.939366011889382	4	0.836967287815689
+Ardavel:balajipro:mvaudel:vladaburian	0.937905795807403	4	0.83629349602843
+Ardavel:balajipro:Ramzes2:vladaburian	0.942289408289228	4	0.844574758886837
+Ardavel:benchmark:gardn999:LastEmperor	0.939388492025805	4	0.842150383124991
+Ardavel:benchmark:gardn999:mkagenius	0.940036869944705	4	0.831537997507745
+Ardavel:benchmark:gardn999:mvaudel	0.939273085346299	4	0.838331875468763
+Ardavel:benchmark:gardn999:Ramzes2	0.941380356088846	4	0.830769932330424
+Ardavel:benchmark:gardn999:vladaburian	0.93949670704724	4	0.83884912247758
+Ardavel:benchmark:LastEmperor:mkagenius	0.938855002138104	4	0.828501112316832
+Ardavel:benchmark:LastEmperor:mvaudel	0.937927663446086	4	0.834631337508123
+Ardavel:benchmark:LastEmperor:Ramzes2	0.940773826340065	4	0.828913397365969
+Ardavel:benchmark:LastEmperor:vladaburian	0.939130236653618	4	0.837227987621292
+Ardavel:benchmark:mkagenius:mvaudel	0.937328586926006	4	0.818455847869473
+Ardavel:benchmark:mkagenius:Ramzes2	0.940271486864379	4	0.816576551893184
+Ardavel:benchmark:mkagenius:vladaburian	0.938012214651677	4	0.819898103238446
+Ardavel:benchmark:mvaudel:Ramzes2	0.939081390456868	4	0.820177840732615
+Ardavel:benchmark:mvaudel:vladaburian	0.937089857834154	4	0.8264525626081
+Ardavel:benchmark:Ramzes2:vladaburian	0.93915753902723	4	0.820500935031513
+Ardavel:gardn999:LastEmperor:mkagenius	0.940167512406649	4	0.843548646280241
+Ardavel:gardn999:LastEmperor:mvaudel	0.939741737275531	4	0.842793399605829
+Ardavel:gardn999:LastEmperor:Ramzes2	0.942303656755986	4	0.846414186822447
+Ardavel:gardn999:LastEmperor:vladaburian	0.941290134401782	4	0.84709801585875
+Ardavel:gardn999:mkagenius:mvaudel	0.940382134099341	4	0.8391662199035
+Ardavel:gardn999:mkagenius:Ramzes2	0.942718894135247	4	0.835451404847741
+Ardavel:gardn999:mkagenius:vladaburian	0.941401852384424	4	0.843034061659721
+Ardavel:gardn999:mvaudel:Ramzes2	0.942524613131754	4	0.842343441990932
+Ardavel:gardn999:mvaudel:vladaburian	0.940889551284157	4	0.841815362818653
+Ardavel:gardn999:Ramzes2:vladaburian	0.943265122858774	4	0.846047034300344
+Ardavel:LastEmperor:mkagenius:mvaudel	0.938820529895369	4	0.83549925250525
+Ardavel:LastEmperor:mkagenius:Ramzes2	0.941688487643656	4	0.832471126818904
+Ardavel:LastEmperor:mkagenius:vladaburian	0.940384593453334	4	0.840501330701615
+Ardavel:LastEmperor:mvaudel:Ramzes2	0.940983529036791	4	0.838859593898564
+Ardavel:LastEmperor:mvaudel:vladaburian	0.939452447453773	4	0.83805826325348
+Ardavel:LastEmperor:Ramzes2:vladaburian	0.942695022620625	4	0.844583609716856
+Ardavel:mkagenius:mvaudel:Ramzes2	0.940099919627407	4	0.822956668122037
+Ardavel:mkagenius:mvaudel:vladaburian	0.93854493101537	4	0.829357877044592
+Ardavel:mkagenius:Ramzes2:vladaburian	0.941304241010471	4	0.826366001794101
+Ardavel:mvaudel:Ramzes2:vladaburian	0.940555906658467	4	0.83357100354255
+balajipro:benchmark:gardn999:LastEmperor	0.935686367788488	4	0.835673539592946
+balajipro:benchmark:gardn999:mkagenius	0.937914041569152	4	0.828425644537069
+balajipro:benchmark:gardn999:mvaudel	0.93723894950107	4	0.836782947681341
+balajipro:benchmark:gardn999:Ramzes2	0.939813109567132	4	0.829177282369094
+balajipro:benchmark:gardn999:vladaburian	0.938097241617124	4	0.837902571880476
+balajipro:benchmark:LastEmperor:mkagenius	0.935725384594208	4	0.823325258070736
+balajipro:benchmark:LastEmperor:mvaudel	0.935091623969363	4	0.831603588722959
+balajipro:benchmark:LastEmperor:Ramzes2	0.937826876805208	4	0.824796806210691
+balajipro:benchmark:LastEmperor:vladaburian	0.93654464831894	4	0.833510396470137
+balajipro:benchmark:mkagenius:mvaudel	0.935713000537541	4	0.81784322379479
+balajipro:benchmark:mkagenius:Ramzes2	0.938838008431156	4	0.814691076073432
+balajipro:benchmark:mkagenius:vladaburian	0.936706601058833	4	0.818481624139445
+balajipro:benchmark:mvaudel:Ramzes2	0.937798252134367	4	0.819632475223233
+balajipro:benchmark:mvaudel:vladaburian	0.935792503565526	4	0.827242727877534
+balajipro:benchmark:Ramzes2:vladaburian	0.938360068524679	4	0.820601325300824
+balajipro:gardn999:LastEmperor:mkagenius	0.936124159237486	4	0.836100049588035
+balajipro:gardn999:LastEmperor:mvaudel	0.935227585171748	4	0.835155415119192
+balajipro:gardn999:LastEmperor:Ramzes2	0.938158271069179	4	0.840552504840002
+balajipro:gardn999:LastEmperor:vladaburian	0.937466422089906	4	0.839685172912729
+balajipro:gardn999:mkagenius:mvaudel	0.93828978691319	4	0.838218535313253
+balajipro:gardn999:mkagenius:Ramzes2	0.940966340154624	4	0.833840798975241
+balajipro:gardn999:mkagenius:vladaburian	0.940119812319838	4	0.842298078222055
+balajipro:gardn999:mvaudel:Ramzes2	0.940972015276243	4	0.842496145881324
+balajipro:gardn999:mvaudel:vladaburian	0.93914678818505	4	0.841991784879797
+balajipro:gardn999:Ramzes2:vladaburian	0.942243025807165	4	0.847075655422607
+balajipro:LastEmperor:mkagenius:mvaudel	0.936117646403775	4	0.833366730044415
+balajipro:LastEmperor:mkagenius:Ramzes2	0.938537004545444	4	0.828185092328015
+balajipro:LastEmperor:mkagenius:vladaburian	0.937702158360276	4	0.837011292119421
+balajipro:LastEmperor:mvaudel:Ramzes2	0.938166393244695	4	0.83642430528781
+balajipro:LastEmperor:mvaudel:vladaburian	0.936580534074744	4	0.835484638284124
+balajipro:LastEmperor:Ramzes2:vladaburian	0.940485875430892	4	0.842892152530839
+balajipro:mkagenius:mvaudel:Ramzes2	0.938752192992633	4	0.822212348337686
+balajipro:mkagenius:mvaudel:vladaburian	0.937269749421583	4	0.829781463784797
+balajipro:mkagenius:Ramzes2:vladaburian	0.940605812003216	4	0.826562634597396
+balajipro:mvaudel:Ramzes2:vladaburian	0.939996148325989	4	0.835393963206459
+benchmark:gardn999:LastEmperor:mkagenius	0.937405560022923	4	0.825979105022997
+benchmark:gardn999:LastEmperor:mvaudel	0.937600239448323	4	0.835722834373894
+benchmark:gardn999:LastEmperor:Ramzes2	0.939284230797301	4	0.82697728681065
+benchmark:gardn999:LastEmperor:vladaburian	0.937914835622348	4	0.836109821966802
+benchmark:gardn999:mkagenius:mvaudel	0.937672672046391	4	0.822461007888291
+benchmark:gardn999:mkagenius:Ramzes2	0.939441139096022	4	0.816615566480533
+benchmark:gardn999:mkagenius:vladaburian	0.937530953334015	4	0.820528373080023
+benchmark:gardn999:mvaudel:Ramzes2	0.939549639636639	4	0.823812900481621
+benchmark:gardn999:mvaudel:vladaburian	0.937406292359665	4	0.830812909379191
+benchmark:gardn999:Ramzes2:vladaburian	0.938999482193634	4	0.821673322432611
+benchmark:LastEmperor:mkagenius:mvaudel	0.936524720281327	4	0.818526097335181
+benchmark:LastEmperor:mkagenius:Ramzes2	0.938768670806701	4	0.813894143795882
+benchmark:LastEmperor:mkagenius:vladaburian	0.936733309562542	4	0.817618203774464
+benchmark:LastEmperor:mvaudel:Ramzes2	0.938606616063706	4	0.820205173929984
+benchmark:LastEmperor:mvaudel:vladaburian	0.93657966308982	4	0.827434871541885
+benchmark:LastEmperor:Ramzes2:vladaburian	0.938570942001279	4	0.820098687299463
+benchmark:mkagenius:mvaudel:Ramzes2	0.937936525072307	4	0.807147171541625
+benchmark:mkagenius:mvaudel:vladaburian	0.935904841784701	4	0.81169513809078
+benchmark:mkagenius:Ramzes2:vladaburian	0.937614420403954	4	0.806310553422529
+benchmark:mvaudel:Ramzes2:vladaburian	0.937124930202561	4	0.812955414757807
+gardn999:LastEmperor:mkagenius:mvaudel	0.938520029103837	4	0.837035585818248
+gardn999:LastEmperor:mkagenius:Ramzes2	0.940238524149305	4	0.830943637012023
+gardn999:LastEmperor:mkagenius:vladaburian	0.939616459476801	4	0.839873433881297
+gardn999:LastEmperor:mvaudel:Ramzes2	0.940974936595299	4	0.841493231110461
+gardn999:LastEmperor:mvaudel:vladaburian	0.939552182942387	4	0.841364983306703
+gardn999:LastEmperor:Ramzes2:vladaburian	0.941747260479504	4	0.844566862581815
+gardn999:mkagenius:mvaudel:Ramzes2	0.940933251823838	4	0.827174827914222
+gardn999:mkagenius:mvaudel:vladaburian	0.939572735295097	4	0.834136071274186
+gardn999:mkagenius:Ramzes2:vladaburian	0.941136122452408	4	0.827731838362504
+gardn999:mvaudel:Ramzes2:vladaburian	0.941650505534545	4	0.838715155939719
+LastEmperor:mkagenius:mvaudel:Ramzes2	0.939509806651569	4	0.822713660300985
+LastEmperor:mkagenius:mvaudel:vladaburian	0.938140178645296	4	0.830496504112283
+LastEmperor:mkagenius:Ramzes2:vladaburian	0.940574268623876	4	0.82568034287737
+LastEmperor:mvaudel:Ramzes2:vladaburian	0.940829219663029	4	0.835943009641514
+mkagenius:mvaudel:Ramzes2:vladaburian	0.939367228493397	4	0.817377086810751
+AliGebily:Ardavel:balajipro:benchmark:gardn999	0.941063977303323	5	0.844347832256415
+AliGebily:Ardavel:balajipro:benchmark:LastEmperor	0.93991881262322	5	0.841898347996344
+AliGebily:Ardavel:balajipro:benchmark:mkagenius	0.939978723988343	5	0.826338175151946
+AliGebily:Ardavel:balajipro:benchmark:mvaudel	0.938666501583335	5	0.836245392722362
+AliGebily:Ardavel:balajipro:benchmark:Ramzes2	0.941164964919725	5	0.826455225674676
+AliGebily:Ardavel:balajipro:benchmark:vladaburian	0.940081991597688	5	0.840093762474245
+AliGebily:Ardavel:balajipro:gardn999:LastEmperor	0.940194550871793	5	0.845168388949586
+AliGebily:Ardavel:balajipro:gardn999:mkagenius	0.941856997228728	5	0.84656515805322
+AliGebily:Ardavel:balajipro:gardn999:mvaudel	0.940961802000386	5	0.845914761939473
+AliGebily:Ardavel:balajipro:gardn999:Ramzes2	0.943393308288094	5	0.847926127878212
+AliGebily:Ardavel:balajipro:gardn999:vladaburian	0.942675764850095	5	0.850666660859578
+AliGebily:Ardavel:balajipro:LastEmperor:mkagenius	0.940346660091868	5	0.843694852853513
+AliGebily:Ardavel:balajipro:LastEmperor:mvaudel	0.938947334348576	5	0.841637114619669
+AliGebily:Ardavel:balajipro:LastEmperor:Ramzes2	0.942462548799901	5	0.846097466360604
+AliGebily:Ardavel:balajipro:LastEmperor:vladaburian	0.941492692652546	5	0.847102069212552
+AliGebily:Ardavel:balajipro:mkagenius:mvaudel	0.939363400488931	5	0.838414164236358
+AliGebily:Ardavel:balajipro:mkagenius:Ramzes2	0.942078608843076	5	0.830596177677244
+AliGebily:Ardavel:balajipro:mkagenius:vladaburian	0.94139564877269	5	0.843358007997811
+AliGebily:Ardavel:balajipro:mvaudel:Ramzes2	0.941121914183789	5	0.840127668657733
+AliGebily:Ardavel:balajipro:mvaudel:vladaburian	0.939906055512509	5	0.840973592507788
+AliGebily:Ardavel:balajipro:Ramzes2:vladaburian	0.94289932762805	5	0.845227109140777
+AliGebily:Ardavel:benchmark:gardn999:LastEmperor	0.941267339948824	5	0.844083767484324
+AliGebily:Ardavel:benchmark:gardn999:mkagenius	0.940786208666902	5	0.828733699295454
+AliGebily:Ardavel:benchmark:gardn999:mvaudel	0.94065648001466	5	0.839870348253118
+AliGebily:Ardavel:benchmark:gardn999:Ramzes2	0.941469976437628	5	0.827136111505755
+AliGebily:Ardavel:benchmark:gardn999:vladaburian	0.94043749531961	5	0.839820545574515
+AliGebily:Ardavel:benchmark:LastEmperor:mkagenius	0.940282747757815	5	0.826161578854359
+AliGebily:Ardavel:benchmark:LastEmperor:mvaudel	0.939888778393263	5	0.837768995585496
+AliGebily:Ardavel:benchmark:LastEmperor:Ramzes2	0.941217005623227	5	0.825934304415305
+AliGebily:Ardavel:benchmark:LastEmperor:vladaburian	0.940405613087516	5	0.839619253743322
+AliGebily:Ardavel:benchmark:mkagenius:mvaudel	0.939068294496843	5	0.820462067629901
+AliGebily:Ardavel:benchmark:mkagenius:Ramzes2	0.940699307448107	5	0.818952910899435
+AliGebily:Ardavel:benchmark:mkagenius:vladaburian	0.939601271510438	5	0.821007156693558
+AliGebily:Ardavel:benchmark:mvaudel:Ramzes2	0.940288566417855	5	0.821914552033002
+AliGebily:Ardavel:benchmark:mvaudel:vladaburian	0.939252633964105	5	0.83277306343228
+AliGebily:Ardavel:benchmark:Ramzes2:vladaburian	0.940340141654657	5	0.821308839827299
+AliGebily:Ardavel:gardn999:LastEmperor:mkagenius	0.942003592703694	5	0.845740318769115
+AliGebily:Ardavel:gardn999:LastEmperor:mvaudel	0.942175199068868	5	0.847063617652499
+AliGebily:Ardavel:gardn999:LastEmperor:Ramzes2	0.943269485609805	5	0.847091523173521
+AliGebily:Ardavel:gardn999:LastEmperor:vladaburian	0.942897435711001	5	0.850205478631716
+AliGebily:Ardavel:gardn999:mkagenius:mvaudel	0.941850282584259	5	0.842317154912426
+AliGebily:Ardavel:gardn999:mkagenius:Ramzes2	0.942608389880616	5	0.831785410735473
+AliGebily:Ardavel:gardn999:mkagenius:vladaburian	0.942457128672937	5	0.844214235970442
+AliGebily:Ardavel:gardn999:mvaudel:Ramzes2	0.943065104274059	5	0.84313683286
+AliGebily:Ardavel:gardn999:mvaudel:vladaburian	0.942153257752028	5	0.845235735577506
+AliGebily:Ardavel:gardn999:Ramzes2:vladaburian	0.943069839940922	5	0.844086631552811
+AliGebily:Ardavel:LastEmperor:mkagenius:mvaudel	0.940615194775064	5	0.839525547767259
+AliGebily:Ardavel:LastEmperor:mkagenius:Ramzes2	0.942198285528942	5	0.829975720107019
+AliGebily:Ardavel:LastEmperor:mkagenius:vladaburian	0.941765039132751	5	0.842812789863704
+AliGebily:Ardavel:LastEmperor:mvaudel:Ramzes2	0.94240286111534	5	0.841299988615988
+AliGebily:Ardavel:LastEmperor:mvaudel:vladaburian	0.941259095311213	5	0.842395854808895
+AliGebily:Ardavel:LastEmperor:Ramzes2:vladaburian	0.943169678947589	5	0.844717774209859
+AliGebily:Ardavel:mkagenius:mvaudel:Ramzes2	0.941338644113444	5	0.825420771247954
+AliGebily:Ardavel:mkagenius:mvaudel:vladaburian	0.940405140616658	5	0.835637288597443
+AliGebily:Ardavel:mkagenius:Ramzes2:vladaburian	0.941978311381316	5	0.827165966092268
+AliGebily:Ardavel:mvaudel:Ramzes2:vladaburian	0.941858801516594	5	0.838026999711131
+AliGebily:balajipro:benchmark:gardn999:LastEmperor	0.938821473892957	5	0.840793496602134
+AliGebily:balajipro:benchmark:gardn999:mkagenius	0.939462619831161	5	0.826837044371682
+AliGebily:balajipro:benchmark:gardn999:mvaudel	0.939447052964798	5	0.839292233355239
+AliGebily:balajipro:benchmark:gardn999:Ramzes2	0.940499327275056	5	0.825860700752641
+AliGebily:balajipro:benchmark:gardn999:vladaburian	0.939515068381809	5	0.83985465573848
+AliGebily:balajipro:benchmark:LastEmperor:mkagenius	0.938462273922515	5	0.823175116715795
+AliGebily:balajipro:benchmark:LastEmperor:mvaudel	0.938299157528665	5	0.836108713289728
+AliGebily:balajipro:benchmark:LastEmperor:Ramzes2	0.939931545517485	5	0.823719827928465
+AliGebily:balajipro:benchmark:LastEmperor:vladaburian	0.93921959010165	5	0.838857445063871
+AliGebily:balajipro:benchmark:mkagenius:mvaudel	0.937880691979137	5	0.819568857531035
+AliGebily:balajipro:benchmark:mkagenius:Ramzes2	0.93999326831796	5	0.818385062982052
+AliGebily:balajipro:benchmark:mkagenius:vladaburian	0.938792743991846	5	0.820910445643635
+AliGebily:balajipro:benchmark:mvaudel:Ramzes2	0.939403721063604	5	0.821208317689758
+AliGebily:balajipro:benchmark:mvaudel:vladaburian	0.938236123984789	5	0.833644786415922
+AliGebily:balajipro:benchmark:Ramzes2:vladaburian	0.939984865687017	5	0.821753427735963
+AliGebily:balajipro:gardn999:LastEmperor:mkagenius	0.939151201755192	5	0.841487038275007
+AliGebily:balajipro:gardn999:LastEmperor:mvaudel	0.938737692372109	5	0.841667694441653
+AliGebily:balajipro:gardn999:LastEmperor:Ramzes2	0.94062876408565	5	0.844281787441315
+AliGebily:balajipro:gardn999:LastEmperor:vladaburian	0.940549700714667	5	0.845929816842514
+AliGebily:balajipro:gardn999:mkagenius:mvaudel	0.94044785188975	5	0.8417859581606
+AliGebily:balajipro:gardn999:mkagenius:Ramzes2	0.941707995098557	5	0.831338873997249
+AliGebily:balajipro:gardn999:mkagenius:vladaburian	0.941368466608067	5	0.84456408665926
+AliGebily:balajipro:gardn999:mvaudel:Ramzes2	0.942335560386168	5	0.844142140016475
+AliGebily:balajipro:gardn999:mvaudel:vladaburian	0.94148773593813	5	0.84613266207453
+AliGebily:balajipro:gardn999:Ramzes2:vladaburian	0.942553977464627	5	0.845262296884747
+AliGebily:balajipro:LastEmperor:mkagenius:mvaudel	0.939302163501525	5	0.838808712165042
+AliGebily:balajipro:LastEmperor:mkagenius:Ramzes2	0.940804043487135	5	0.82824157598676
+AliGebily:balajipro:LastEmperor:mkagenius:vladaburian	0.94036817126588	5	0.842498861902537
+AliGebily:balajipro:LastEmperor:mvaudel:Ramzes2	0.94085028184069	5	0.840536976928572
+AliGebily:balajipro:LastEmperor:mvaudel:vladaburian	0.939746200027919	5	0.84146904020838
+AliGebily:balajipro:LastEmperor:Ramzes2:vladaburian	0.942474829675159	5	0.845563138608737
+AliGebily:balajipro:mkagenius:mvaudel:Ramzes2	0.940214739639587	5	0.824568856111071
+AliGebily:balajipro:mkagenius:mvaudel:vladaburian	0.939610884779049	5	0.83592628057299
+AliGebily:balajipro:mkagenius:Ramzes2:vladaburian	0.94153434156792	5	0.827141753457904
+AliGebily:balajipro:mvaudel:Ramzes2:vladaburian	0.941529720256382	5	0.839821670795439
+AliGebily:benchmark:gardn999:LastEmperor:mkagenius	0.939461165032309	5	0.826017838125913
+AliGebily:benchmark:gardn999:LastEmperor:mvaudel	0.939922809938888	5	0.839229567368846
+AliGebily:benchmark:gardn999:LastEmperor:Ramzes2	0.940368107870389	5	0.825075666418336
+AliGebily:benchmark:gardn999:LastEmperor:vladaburian	0.939639169254156	5	0.838935162525989
+AliGebily:benchmark:gardn999:mkagenius:mvaudel	0.939254542309061	5	0.822686670708329
+AliGebily:benchmark:gardn999:mkagenius:Ramzes2	0.940186923817618	5	0.819054140135492
+AliGebily:benchmark:gardn999:mkagenius:vladaburian	0.939081201620681	5	0.821847547518079
+AliGebily:benchmark:gardn999:mvaudel:Ramzes2	0.940444705640737	5	0.823289289985123
+AliGebily:benchmark:gardn999:mvaudel:vladaburian	0.93905577922838	5	0.834581565984135
+AliGebily:benchmark:gardn999:Ramzes2:vladaburian	0.939820073914306	5	0.821766224677331
+AliGebily:benchmark:LastEmperor:mkagenius:mvaudel	0.938517401729294	5	0.819477352500504
+AliGebily:benchmark:LastEmperor:mkagenius:Ramzes2	0.939943633482435	5	0.817587766533563
+AliGebily:benchmark:LastEmperor:mkagenius:vladaburian	0.93882744360813	5	0.820005181315533
+AliGebily:benchmark:LastEmperor:mvaudel:Ramzes2	0.939939509917939	5	0.821366708251356
+AliGebily:benchmark:LastEmperor:mvaudel:vladaburian	0.93871299307661	5	0.833158145536293
+AliGebily:benchmark:LastEmperor:Ramzes2:vladaburian	0.939831732075311	5	0.820980825888286
+AliGebily:benchmark:mkagenius:mvaudel:Ramzes2	0.939033367585489	5	0.812682140295231
+AliGebily:benchmark:mkagenius:mvaudel:vladaburian	0.938034379160618	5	0.815394139751811
+AliGebily:benchmark:mkagenius:Ramzes2:vladaburian	0.939101033277947	5	0.812486043206446
+AliGebily:benchmark:mvaudel:Ramzes2:vladaburian	0.938934796803652	5	0.816060487748664
+AliGebily:gardn999:LastEmperor:mkagenius:mvaudel	0.940584573980819	5	0.841094067303238
+AliGebily:gardn999:LastEmperor:mkagenius:Ramzes2	0.941474927567358	5	0.830537384663305
+AliGebily:gardn999:LastEmperor:mkagenius:vladaburian	0.94117042819762	5	0.843095849042095
+AliGebily:gardn999:LastEmperor:mvaudel:Ramzes2	0.942356530102531	5	0.843504799598563
+AliGebily:gardn999:LastEmperor:mvaudel:vladaburian	0.94183146903954	5	0.845594861881914
+AliGebily:gardn999:LastEmperor:Ramzes2:vladaburian	0.942314087733468	5	0.844195354802916
+AliGebily:gardn999:mkagenius:mvaudel:Ramzes2	0.941478794309008	5	0.827370922027939
+AliGebily:gardn999:mkagenius:mvaudel:vladaburian	0.941169695468245	5	0.838099927776075
+AliGebily:gardn999:mkagenius:Ramzes2:vladaburian	0.941592912701761	5	0.827552221848248
+AliGebily:gardn999:mvaudel:Ramzes2:vladaburian	0.942191800252256	5	0.839928108981989
+AliGebily:LastEmperor:mkagenius:mvaudel:Ramzes2	0.940628386911255	5	0.824322965773985
+AliGebily:LastEmperor:mkagenius:mvaudel:vladaburian	0.94013535770485	5	0.835572690263617
+AliGebily:LastEmperor:mkagenius:Ramzes2:vladaburian	0.941571587752894	5	0.826126066644752
+AliGebily:LastEmperor:mvaudel:Ramzes2:vladaburian	0.942114707120249	5	0.839661231889162
+AliGebily:mkagenius:mvaudel:Ramzes2:vladaburian	0.940600415200012	5	0.821185101341892
+Ardavel:balajipro:benchmark:gardn999:LastEmperor	0.938325064658826	5	0.841607850403855
+Ardavel:balajipro:benchmark:gardn999:mkagenius	0.939883824072158	5	0.842328310173998
+Ardavel:balajipro:benchmark:gardn999:mvaudel	0.938449074941859	5	0.841268768458267
+Ardavel:balajipro:benchmark:gardn999:Ramzes2	0.941741757617919	5	0.844648421068324
+Ardavel:balajipro:benchmark:gardn999:vladaburian	0.940265177031565	5	0.845524591700545
+Ardavel:balajipro:benchmark:LastEmperor:mkagenius	0.938299857401684	5	0.83920778339225
+Ardavel:balajipro:benchmark:LastEmperor:mvaudel	0.936692274866255	5	0.837199128108978
+Ardavel:balajipro:benchmark:LastEmperor:Ramzes2	0.940126744510338	5	0.841528191517694
+Ardavel:balajipro:benchmark:LastEmperor:vladaburian	0.93878812792566	5	0.840941140825703
+Ardavel:balajipro:benchmark:mkagenius:mvaudel	0.937566107452344	5	0.832546897131572
+Ardavel:balajipro:benchmark:mkagenius:Ramzes2	0.940722985769926	5	0.827682579317569
+Ardavel:balajipro:benchmark:mkagenius:vladaburian	0.939335272976035	5	0.836240773707033
+Ardavel:balajipro:benchmark:mvaudel:Ramzes2	0.939270744011634	5	0.83590668991128
+Ardavel:balajipro:benchmark:mvaudel:vladaburian	0.937530072347318	5	0.834627997726286
+Ardavel:balajipro:benchmark:Ramzes2:vladaburian	0.940926348640802	5	0.840382138753395
+Ardavel:balajipro:gardn999:LastEmperor:mkagenius	0.938804582161995	5	0.842615934131555
+Ardavel:balajipro:gardn999:LastEmperor:mvaudel	0.937167354920899	5	0.83984162457062
+Ardavel:balajipro:gardn999:LastEmperor:Ramzes2	0.940501090775678	5	0.845547262691237
+Ardavel:balajipro:gardn999:LastEmperor:vladaburian	0.939742179378558	5	0.844813104384341
+Ardavel:balajipro:gardn999:mkagenius:mvaudel	0.939239619998163	5	0.842843281890354
+Ardavel:balajipro:gardn999:mkagenius:Ramzes2	0.942433226374249	5	0.846865354819387
+Ardavel:balajipro:gardn999:mkagenius:vladaburian	0.941342394149338	5	0.848249138931829
+Ardavel:balajipro:gardn999:mvaudel:Ramzes2	0.941386687454802	5	0.84521332008937
+Ardavel:balajipro:gardn999:mvaudel:vladaburian	0.939875853794836	5	0.844862405462702
+Ardavel:balajipro:gardn999:Ramzes2:vladaburian	0.943333098812245	5	0.850655313460046
+Ardavel:balajipro:LastEmperor:mkagenius:mvaudel	0.937543001204491	5	0.839261474646502
+Ardavel:balajipro:LastEmperor:mkagenius:Ramzes2	0.940595046554649	5	0.843719626371273
+Ardavel:balajipro:LastEmperor:mkagenius:vladaburian	0.939632309313424	5	0.843473838405311
+Ardavel:balajipro:LastEmperor:mvaudel:Ramzes2	0.939303705486602	5	0.840518579363122
+Ardavel:balajipro:LastEmperor:mvaudel:vladaburian	0.937906834813704	5	0.840092211832162
+Ardavel:balajipro:LastEmperor:Ramzes2:vladaburian	0.941905518229212	5	0.846713080165444
+Ardavel:balajipro:mkagenius:mvaudel:Ramzes2	0.939868401449677	5	0.837141338721425
+Ardavel:balajipro:mkagenius:mvaudel:vladaburian	0.938473364952308	5	0.836771385572586
+Ardavel:balajipro:mkagenius:Ramzes2:vladaburian	0.942133161702762	5	0.843528786353016
+Ardavel:balajipro:mvaudel:Ramzes2:vladaburian	0.940259938681392	5	0.839916636354413
+Ardavel:benchmark:gardn999:LastEmperor:mkagenius	0.940246465729422	5	0.842032693820796
+Ardavel:benchmark:gardn999:LastEmperor:mvaudel	0.939475340481356	5	0.842347420240377
+Ardavel:benchmark:gardn999:LastEmperor:Ramzes2	0.941913847539294	5	0.844476760073936
+Ardavel:benchmark:gardn999:LastEmperor:vladaburian	0.940462907572989	5	0.845192455262072
+Ardavel:benchmark:gardn999:mkagenius:mvaudel	0.93979704249427	5	0.836288849163413
+Ardavel:benchmark:gardn999:mkagenius:Ramzes2	0.941692642017087	5	0.830105123089028
+Ardavel:benchmark:gardn999:mkagenius:vladaburian	0.940230519101934	5	0.837464902706899
+Ardavel:benchmark:gardn999:mvaudel:Ramzes2	0.941592109089227	5	0.839699720829594
+Ardavel:benchmark:gardn999:mvaudel:vladaburian	0.939752311798735	5	0.838788987404482
+Ardavel:benchmark:gardn999:Ramzes2:vladaburian	0.94136623666494	5	0.840055903938617
+Ardavel:benchmark:LastEmperor:mkagenius:mvaudel	0.938566851499619	5	0.833402181898422
+Ardavel:benchmark:LastEmperor:mkagenius:Ramzes2	0.940785935749359	5	0.827331259027919
+Ardavel:benchmark:LastEmperor:mkagenius:vladaburian	0.939368537082786	5	0.835803851367627
+Ardavel:benchmark:LastEmperor:mvaudel:Ramzes2	0.940428647116829	5	0.837122565105384
+Ardavel:benchmark:LastEmperor:mvaudel:vladaburian	0.93859981227018	5	0.835242342877314
+Ardavel:benchmark:LastEmperor:Ramzes2:vladaburian	0.940962272359135	5	0.839708231891596
+Ardavel:benchmark:mkagenius:mvaudel:Ramzes2	0.939832651596925	5	0.821005556114148
+Ardavel:benchmark:mkagenius:mvaudel:vladaburian	0.938511845413857	5	0.828408285724406
+Ardavel:benchmark:mkagenius:Ramzes2:vladaburian	0.940383570115702	5	0.821965385682436
+Ardavel:benchmark:mvaudel:Ramzes2:vladaburian	0.939634208899873	5	0.831531995128821
+Ardavel:gardn999:LastEmperor:mkagenius:mvaudel	0.940245827138892	5	0.843971941680792
+Ardavel:gardn999:LastEmperor:mkagenius:Ramzes2	0.942393244058432	5	0.846111847245179
+Ardavel:gardn999:LastEmperor:mkagenius:vladaburian	0.941476522215395	5	0.847339984430881
+Ardavel:gardn999:LastEmperor:mvaudel:Ramzes2	0.942390746110641	5	0.846249718244661
+Ardavel:gardn999:LastEmperor:mvaudel:vladaburian	0.941067143244873	5	0.846230587552302
+Ardavel:gardn999:LastEmperor:Ramzes2:vladaburian	0.943320823832706	5	0.84983882768482
+Ardavel:gardn999:mkagenius:mvaudel:Ramzes2	0.942506189494051	5	0.841660503288782
+Ardavel:gardn999:mkagenius:mvaudel:vladaburian	0.941009946016183	5	0.841614793466766
+Ardavel:gardn999:mkagenius:Ramzes2:vladaburian	0.942927873801977	5	0.844021672738523
+Ardavel:gardn999:mvaudel:Ramzes2:vladaburian	0.942571297007991	5	0.844073866927875
+Ardavel:LastEmperor:mkagenius:mvaudel:Ramzes2	0.941025498570068	5	0.838303742462882
+Ardavel:LastEmperor:mkagenius:mvaudel:vladaburian	0.939712532909453	5	0.837943691286111
+Ardavel:LastEmperor:mkagenius:Ramzes2:vladaburian	0.942191166088124	5	0.842566282270858
+Ardavel:LastEmperor:mvaudel:Ramzes2:vladaburian	0.941630901632191	5	0.841143911974077
+Ardavel:mkagenius:mvaudel:Ramzes2:vladaburian	0.941050050164627	5	0.834553124582577
+balajipro:benchmark:gardn999:LastEmperor:mkagenius	0.937668782914998	5	0.838081567014863
+balajipro:benchmark:gardn999:LastEmperor:mvaudel	0.936785978159346	5	0.837727827889681
+balajipro:benchmark:gardn999:LastEmperor:Ramzes2	0.939292325783016	5	0.841278599035067
+balajipro:benchmark:gardn999:LastEmperor:vladaburian	0.938543051703208	5	0.841784005173694
+balajipro:benchmark:gardn999:mkagenius:mvaudel	0.937990202954635	5	0.83461090797602
+balajipro:benchmark:gardn999:mkagenius:Ramzes2	0.940130350330694	5	0.827909663582389
+balajipro:benchmark:gardn999:mkagenius:vladaburian	0.938815585852373	5	0.836401843985376
+balajipro:benchmark:gardn999:mvaudel:Ramzes2	0.939988844032576	5	0.839241213524894
+balajipro:benchmark:gardn999:mvaudel:vladaburian	0.938230529088638	5	0.83771909591569
+balajipro:benchmark:gardn999:Ramzes2:vladaburian	0.940236392499359	5	0.839681790221374
+balajipro:benchmark:LastEmperor:mkagenius:mvaudel	0.936939351576345	5	0.831585665513192
+balajipro:benchmark:LastEmperor:mkagenius:Ramzes2	0.938926732937731	5	0.824035862343088
+balajipro:benchmark:LastEmperor:mkagenius:vladaburian	0.937863761382722	5	0.833944978644873
+balajipro:benchmark:LastEmperor:mvaudel:Ramzes2	0.938565963785439	5	0.835603360989332
+balajipro:benchmark:LastEmperor:mvaudel:vladaburian	0.936863848037424	5	0.833438092654583
+balajipro:benchmark:LastEmperor:Ramzes2:vladaburian	0.939607957707753	5	0.838614075234448
+balajipro:benchmark:mkagenius:mvaudel:Ramzes2	0.938635555203457	5	0.820058649073475
+balajipro:benchmark:mkagenius:mvaudel:vladaburian	0.937360755406153	5	0.828824374628803
+balajipro:benchmark:mkagenius:Ramzes2:vladaburian	0.939497734861194	5	0.821317330734317
+balajipro:benchmark:mvaudel:Ramzes2:vladaburian	0.938895125348876	5	0.832902058302754
+balajipro:gardn999:LastEmperor:mkagenius:mvaudel	0.937772730714141	5	0.839187837283598
+balajipro:gardn999:LastEmperor:mkagenius:Ramzes2	0.939562613262749	5	0.841992377623262
+balajipro:gardn999:LastEmperor:mkagenius:vladaburian	0.939123654275933	5	0.84277114443061
+balajipro:gardn999:LastEmperor:mvaudel:Ramzes2	0.939063992279154	5	0.841774126402624
+balajipro:gardn999:LastEmperor:mvaudel:vladaburian	0.938192980701027	5	0.840932434044636
+balajipro:gardn999:LastEmperor:Ramzes2:vladaburian	0.940913712848934	5	0.846169397245424
+balajipro:gardn999:mkagenius:mvaudel:Ramzes2	0.9407164951638	5	0.840808810662813
+balajipro:gardn999:mkagenius:mvaudel:vladaburian	0.939444394475572	5	0.840115295423786
+balajipro:gardn999:mkagenius:Ramzes2:vladaburian	0.941709862348979	5	0.844286941865467
+balajipro:gardn999:mvaudel:Ramzes2:vladaburian	0.94208341745805	5	0.845433996683064
+balajipro:LastEmperor:mkagenius:mvaudel:Ramzes2	0.939556244534798	5	0.83785363945688
+balajipro:LastEmperor:mkagenius:mvaudel:vladaburian	0.938051518306027	5	0.836298630272465
+balajipro:LastEmperor:mkagenius:Ramzes2:vladaburian	0.940603113238238	5	0.841753179419725
+balajipro:LastEmperor:mvaudel:Ramzes2:vladaburian	0.940276576399245	5	0.840505444370452
+balajipro:mkagenius:mvaudel:Ramzes2:vladaburian	0.940332573606524	5	0.83512205883935
+benchmark:gardn999:LastEmperor:mkagenius:mvaudel	0.938390155602892	5	0.834161864050719
+benchmark:gardn999:LastEmperor:mkagenius:Ramzes2	0.940045173422006	5	0.827172902356882
+benchmark:gardn999:LastEmperor:mkagenius:vladaburian	0.938705604055261	5	0.835435721638366
+benchmark:gardn999:LastEmperor:mvaudel:Ramzes2	0.940422714609024	5	0.839351616462621
+benchmark:gardn999:LastEmperor:mvaudel:vladaburian	0.938450171931869	5	0.837184475923483
+benchmark:gardn999:LastEmperor:Ramzes2:vladaburian	0.940183644877208	5	0.838943819005921
+benchmark:gardn999:mkagenius:mvaudel:Ramzes2	0.940160227670239	5	0.823708170292887
+benchmark:gardn999:mkagenius:mvaudel:vladaburian	0.938579736044125	5	0.830804958442607
+benchmark:gardn999:mkagenius:Ramzes2:vladaburian	0.940040155379767	5	0.822799292405187
+benchmark:gardn999:mvaudel:Ramzes2:vladaburian	0.939827119793558	5	0.834008094487457
+benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2	0.939147248124289	5	0.820154091520555
+benchmark:LastEmperor:mkagenius:mvaudel:vladaburian	0.937748948051738	5	0.828715961464299
+benchmark:LastEmperor:mkagenius:Ramzes2:vladaburian	0.939349246601554	5	0.820673154464201
+benchmark:LastEmperor:mvaudel:Ramzes2:vladaburian	0.939063066089935	5	0.832323376595772
+benchmark:mkagenius:mvaudel:Ramzes2:vladaburian	0.938588805723636	5	0.815188736047212
+gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.940819146303207	5	0.840362638765966
+gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.939725402417592	5	0.839866748854546
+gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.94161299264499	5	0.843004612310611
+gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.942255765631186	5	0.844960361789307
+gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.941815978715342	5	0.837392535576577
+LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.940701178664589	5	0.834659929543385
+AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor	0.941128238051637	6	0.846267279629941
+AliGebily:Ardavel:balajipro:benchmark:gardn999:mkagenius	0.941436994068488	6	0.837794000072046
+AliGebily:Ardavel:balajipro:benchmark:gardn999:mvaudel	0.941184705832494	6	0.844600447644147
+AliGebily:Ardavel:balajipro:benchmark:gardn999:Ramzes2	0.942582480904195	6	0.837476565722717
+AliGebily:Ardavel:balajipro:benchmark:gardn999:vladaburian	0.941754987213182	6	0.846714890806609
+AliGebily:Ardavel:balajipro:benchmark:LastEmperor:mkagenius	0.94050247264747	6	0.835560593591787
+AliGebily:Ardavel:balajipro:benchmark:LastEmperor:mvaudel	0.940089795260269	6	0.842286440106179
+AliGebily:Ardavel:balajipro:benchmark:LastEmperor:Ramzes2	0.942064330926647	6	0.836256856257639
+AliGebily:Ardavel:balajipro:benchmark:LastEmperor:vladaburian	0.941345356321975	6	0.845530656619183
+AliGebily:Ardavel:balajipro:benchmark:mkagenius:mvaudel	0.939715275039156	6	0.830710468286125
+AliGebily:Ardavel:balajipro:benchmark:mkagenius:Ramzes2	0.941675540374553	6	0.826993209983111
+AliGebily:Ardavel:balajipro:benchmark:mkagenius:vladaburian	0.940652148445569	6	0.832716726085399
+AliGebily:Ardavel:balajipro:benchmark:mvaudel:Ramzes2	0.94119164137439	6	0.831865491045255
+AliGebily:Ardavel:balajipro:benchmark:mvaudel:vladaburian	0.940248464975197	6	0.839632472811081
+AliGebily:Ardavel:balajipro:benchmark:Ramzes2:vladaburian	0.941774645075854	6	0.833477181390427
+AliGebily:Ardavel:balajipro:gardn999:LastEmperor:mkagenius	0.941443140539696	6	0.847440306696623
+AliGebily:Ardavel:balajipro:gardn999:LastEmperor:mvaudel	0.941218744708015	6	0.847194076788386
+AliGebily:Ardavel:balajipro:gardn999:LastEmperor:Ramzes2	0.943024351072994	6	0.849722020876134
+AliGebily:Ardavel:balajipro:gardn999:LastEmperor:vladaburian	0.94248135841511	6	0.850700016100223
+AliGebily:Ardavel:balajipro:gardn999:mkagenius:mvaudel	0.94175490878589	6	0.845930704467325
+AliGebily:Ardavel:balajipro:gardn999:mkagenius:Ramzes2	0.943186751332007	6	0.841422198253584
+AliGebily:Ardavel:balajipro:gardn999:mkagenius:vladaburian	0.94270122395968	6	0.848991774556794
+AliGebily:Ardavel:balajipro:gardn999:mvaudel:Ramzes2	0.943366902379108	6	0.84758888915165
+AliGebily:Ardavel:balajipro:gardn999:mvaudel:vladaburian	0.942438169516544	6	0.848483965372242
+AliGebily:Ardavel:balajipro:gardn999:Ramzes2:vladaburian	0.944013370892722	6	0.850213881723555
+AliGebily:Ardavel:balajipro:LastEmperor:mkagenius:mvaudel	0.940508591854599	6	0.843442303579896
+AliGebily:Ardavel:balajipro:LastEmperor:mkagenius:Ramzes2	0.942373796910768	6	0.83960074362565
+AliGebily:Ardavel:balajipro:LastEmperor:mkagenius:vladaburian	0.941872102984073	6	0.8470070035101
+AliGebily:Ardavel:balajipro:LastEmperor:mvaudel:Ramzes2	0.942202639201079	6	0.845083242303286
+AliGebily:Ardavel:balajipro:LastEmperor:mvaudel:vladaburian	0.941307785145363	6	0.845768889546829
+AliGebily:Ardavel:balajipro:LastEmperor:Ramzes2:vladaburian	0.943639623205285	6	0.849266292306729
+AliGebily:Ardavel:balajipro:mkagenius:mvaudel:Ramzes2	0.941588709881789	6	0.835072228393938
+AliGebily:Ardavel:balajipro:mkagenius:mvaudel:vladaburian	0.940924284167232	6	0.841493204220973
+AliGebily:Ardavel:balajipro:mkagenius:Ramzes2:vladaburian	0.942745041951308	6	0.83827867286682
+AliGebily:Ardavel:balajipro:mvaudel:Ramzes2:vladaburian	0.94244521110541	6	0.843823249991447
+AliGebily:Ardavel:benchmark:gardn999:LastEmperor:mkagenius	0.941593213921008	6	0.837302887708204
+AliGebily:Ardavel:benchmark:gardn999:LastEmperor:mvaudel	0.941775169128036	6	0.845041442406981
+AliGebily:Ardavel:benchmark:gardn999:LastEmperor:Ramzes2	0.942556102313908	6	0.837045580210691
+AliGebily:Ardavel:benchmark:gardn999:LastEmperor:vladaburian	0.941964848997784	6	0.846256497864166
+AliGebily:Ardavel:benchmark:gardn999:mkagenius:mvaudel	0.941142524736174	6	0.833675115745381
+AliGebily:Ardavel:benchmark:gardn999:mkagenius:Ramzes2	0.942034495751448	6	0.827955085689669
+AliGebily:Ardavel:benchmark:gardn999:mkagenius:vladaburian	0.941231889611952	6	0.833816916672954
+AliGebily:Ardavel:benchmark:gardn999:mvaudel:Ramzes2	0.942247407992806	6	0.83392325478734
+AliGebily:Ardavel:benchmark:gardn999:mvaudel:vladaburian	0.941264126516833	6	0.841450271677159
+AliGebily:Ardavel:benchmark:gardn999:Ramzes2:vladaburian	0.942047590030374	6	0.833528585399784
+AliGebily:Ardavel:benchmark:LastEmperor:mkagenius:mvaudel	0.940339510376	6	0.83106953606133
+AliGebily:Ardavel:benchmark:LastEmperor:mkagenius:Ramzes2	0.941748162429798	6	0.826538654122714
+AliGebily:Ardavel:benchmark:LastEmperor:mkagenius:vladaburian	0.940869491783615	6	0.832444060464696
+AliGebily:Ardavel:benchmark:LastEmperor:mvaudel:Ramzes2	0.941792322677507	6	0.832362635654272
+AliGebily:Ardavel:benchmark:LastEmperor:mvaudel:vladaburian	0.940877785500952	6	0.839909069791382
+AliGebily:Ardavel:benchmark:LastEmperor:Ramzes2:vladaburian	0.94187671828094	6	0.832906545524034
+AliGebily:Ardavel:benchmark:mkagenius:mvaudel:Ramzes2	0.940986410186887	6	0.822299134871788
+AliGebily:Ardavel:benchmark:mkagenius:mvaudel:vladaburian	0.93998472985198	6	0.827188581242661
+AliGebily:Ardavel:benchmark:mkagenius:Ramzes2:vladaburian	0.941171124588568	6	0.822440759099265
+AliGebily:Ardavel:benchmark:mvaudel:Ramzes2:vladaburian	0.940937861674532	6	0.828165178179897
+AliGebily:Ardavel:gardn999:LastEmperor:mkagenius:mvaudel	0.942235545608727	6	0.846034047147776
+AliGebily:Ardavel:gardn999:LastEmperor:mkagenius:Ramzes2	0.943138768615216	6	0.840817183880598
+AliGebily:Ardavel:gardn999:LastEmperor:mkagenius:vladaburian	0.942830189536079	6	0.848246158786966
+AliGebily:Ardavel:gardn999:LastEmperor:mvaudel:Ramzes2	0.943716315354198	6	0.847684382279814
+AliGebily:Ardavel:gardn999:LastEmperor:mvaudel:vladaburian	0.943028949672879	6	0.848846601339384
+AliGebily:Ardavel:gardn999:LastEmperor:Ramzes2:vladaburian	0.944032333305472	6	0.849554348215852
+AliGebily:Ardavel:gardn999:mkagenius:mvaudel:Ramzes2	0.942864913146207	6	0.837558871125177
+AliGebily:Ardavel:gardn999:mkagenius:mvaudel:vladaburian	0.94236033222183	6	0.843854576059243
+AliGebily:Ardavel:gardn999:mkagenius:Ramzes2:vladaburian	0.94314341218093	6	0.838666813551835
+AliGebily:Ardavel:gardn999:mvaudel:Ramzes2:vladaburian	0.943468976116637	6	0.845332601607913
+AliGebily:Ardavel:LastEmperor:mkagenius:mvaudel:Ramzes2	0.942120628359936	6	0.835293473979971
+AliGebily:Ardavel:LastEmperor:mkagenius:mvaudel:vladaburian	0.941571212804394	6	0.841714537432547
+AliGebily:Ardavel:LastEmperor:mkagenius:Ramzes2:vladaburian	0.942897833327188	6	0.8375237460717
+AliGebily:Ardavel:LastEmperor:mvaudel:Ramzes2:vladaburian	0.943138477068563	6	0.844119000457093
+AliGebily:Ardavel:mkagenius:mvaudel:Ramzes2:vladaburian	0.941960192119139	6	0.832470275749984
+AliGebily:balajipro:benchmark:gardn999:LastEmperor:mkagenius	0.939774040951332	6	0.834750636439075
+AliGebily:balajipro:benchmark:gardn999:LastEmperor:mvaudel	0.939952955395487	6	0.842626325420147
+AliGebily:balajipro:benchmark:gardn999:LastEmperor:Ramzes2	0.940989653934812	6	0.835108316357328
+AliGebily:balajipro:benchmark:gardn999:LastEmperor:vladaburian	0.940597897204139	6	0.844857640993772
+AliGebily:balajipro:benchmark:gardn999:mkagenius:mvaudel	0.940065331000671	6	0.832964305171691
+AliGebily:balajipro:benchmark:gardn999:mkagenius:Ramzes2	0.941196535367931	6	0.827181169203527
+AliGebily:balajipro:benchmark:gardn999:mkagenius:vladaburian	0.940338536372365	6	0.833338901201633
+AliGebily:balajipro:benchmark:gardn999:mvaudel:Ramzes2	0.94149086859227	6	0.834029978694151
+AliGebily:balajipro:benchmark:gardn999:mvaudel:vladaburian	0.940497755554926	6	0.841765242774474
+AliGebily:balajipro:benchmark:gardn999:Ramzes2:vladaburian	0.941418011196293	6	0.833566118552985
+AliGebily:balajipro:benchmark:LastEmperor:mkagenius:mvaudel	0.939108699498363	6	0.829937568118046
+AliGebily:balajipro:benchmark:LastEmperor:mkagenius:Ramzes2	0.940630267558035	6	0.825048954520658
+AliGebily:balajipro:benchmark:LastEmperor:mkagenius:vladaburian	0.939717882580726	6	0.831308566998244
+AliGebily:balajipro:benchmark:LastEmperor:mvaudel:Ramzes2	0.940664389795545	6	0.831554340114589
+AliGebily:balajipro:benchmark:LastEmperor:mvaudel:vladaburian	0.939800950042894	6	0.839450748349135
+AliGebily:balajipro:benchmark:LastEmperor:Ramzes2:vladaburian	0.941086615980727	6	0.832586472700754
+AliGebily:balajipro:benchmark:mkagenius:mvaudel:Ramzes2	0.9401715666906	6	0.821791082306864
+AliGebily:balajipro:benchmark:mkagenius:mvaudel:vladaburian	0.93919608115368	6	0.827223105771725
+AliGebily:balajipro:benchmark:mkagenius:Ramzes2:vladaburian	0.940661198910531	6	0.822395293458675
+AliGebily:balajipro:benchmark:mvaudel:Ramzes2:vladaburian	0.94047592366852	6	0.828825512474477
+AliGebily:balajipro:gardn999:LastEmperor:mkagenius:mvaudel	0.94040978764321	6	0.844000569677917
+AliGebily:balajipro:gardn999:LastEmperor:mkagenius:Ramzes2	0.941570968048347	6	0.83922959627763
+AliGebily:balajipro:gardn999:LastEmperor:mkagenius:vladaburian	0.941462312524791	6	0.847159395800031
+AliGebily:balajipro:gardn999:LastEmperor:mvaudel:Ramzes2	0.942099321762933	6	0.846752489532741
+AliGebily:balajipro:gardn999:LastEmperor:mvaudel:vladaburian	0.941379661559814	6	0.847533958255805
+AliGebily:balajipro:gardn999:LastEmperor:Ramzes2:vladaburian	0.942775063996109	6	0.849379254598014
+AliGebily:balajipro:gardn999:mkagenius:mvaudel:Ramzes2	0.942068101703937	6	0.837560165494817
+AliGebily:balajipro:gardn999:mkagenius:mvaudel:vladaburian	0.941603948888383	6	0.843941836909894
+AliGebily:balajipro:gardn999:mkagenius:Ramzes2:vladaburian	0.942456291204995	6	0.838764165312538
+AliGebily:balajipro:gardn999:mvaudel:Ramzes2:vladaburian	0.943164110892229	6	0.846406080252499
+AliGebily:balajipro:LastEmperor:mkagenius:mvaudel:Ramzes2	0.941014358025173	6	0.834455547668255
+AliGebily:balajipro:LastEmperor:mkagenius:mvaudel:vladaburian	0.940476555457956	6	0.841135114825572
+AliGebily:balajipro:LastEmperor:mkagenius:Ramzes2:vladaburian	0.941995437892652	6	0.837126427386651
+AliGebily:balajipro:LastEmperor:mvaudel:Ramzes2:vladaburian	0.942414066641635	6	0.844363281169269
+AliGebily:balajipro:mkagenius:mvaudel:Ramzes2:vladaburian	0.941470486890801	6	0.83273522487876
+AliGebily:benchmark:gardn999:LastEmperor:mkagenius:mvaudel	0.940285858659641	6	0.832493707045294
+AliGebily:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2	0.941126414580034	6	0.826471199900312
+AliGebily:benchmark:gardn999:LastEmperor:mkagenius:vladaburian	0.940384730255014	6	0.832589279617208
+AliGebily:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2	0.941611389277081	6	0.833666243917213
+AliGebily:benchmark:gardn999:LastEmperor:mvaudel:vladaburian	0.940777996694083	6	0.841233121253252
+AliGebily:benchmark:gardn999:LastEmperor:Ramzes2:vladaburian	0.941326280601369	6	0.832760004434961
+AliGebily:benchmark:gardn999:mkagenius:mvaudel:Ramzes2	0.941033025100486	6	0.823684140283915
+AliGebily:benchmark:gardn999:mkagenius:mvaudel:vladaburian	0.940097522002068	6	0.829065694918299
+AliGebily:benchmark:gardn999:mkagenius:Ramzes2:vladaburian	0.940824906000897	6	0.822857185730499
+AliGebily:benchmark:gardn999:mvaudel:Ramzes2:vladaburian	0.941036277411264	6	0.82974772390332
+AliGebily:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2	0.940459963016222	6	0.821467530146597
+AliGebily:benchmark:LastEmperor:mkagenius:mvaudel:vladaburian	0.939505533668823	6	0.826910121347252
+AliGebily:benchmark:LastEmperor:mkagenius:Ramzes2:vladaburian	0.940597447230555	6	0.821782247955894
+AliGebily:benchmark:LastEmperor:mvaudel:Ramzes2:vladaburian	0.940688381893071	6	0.828419314279846
+AliGebily:benchmark:mkagenius:mvaudel:Ramzes2:vladaburian	0.939923216066126	6	0.817620414886141
+AliGebily:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.942074993600461	6	0.836980932125011
+AliGebily:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.941731546354763	6	0.843330080625109
+AliGebily:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.94236216015284	6	0.837704758222028
+AliGebily:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.943314394183142	6	0.845825312731504
+AliGebily:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.942258752659051	6	0.834215758469973
+AliGebily:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.941734745865093	6	0.83221573902185
+Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius	0.939810107582606	6	0.843716503585323
+Ardavel:balajipro:benchmark:gardn999:LastEmperor:mvaudel	0.939209187921781	6	0.843265559576956
+Ardavel:balajipro:benchmark:gardn999:LastEmperor:Ramzes2	0.941515621533125	6	0.846543360541879
+Ardavel:balajipro:benchmark:gardn999:LastEmperor:vladaburian	0.940607429574065	6	0.846525648611067
+Ardavel:balajipro:benchmark:gardn999:mkagenius:mvaudel	0.939976081065888	6	0.841650643409234
+Ardavel:balajipro:benchmark:gardn999:mkagenius:Ramzes2	0.942022218820648	6	0.838120016683623
+Ardavel:balajipro:benchmark:gardn999:mkagenius:vladaburian	0.940927733030061	6	0.844349709433058
+Ardavel:balajipro:benchmark:gardn999:mvaudel:Ramzes2	0.941730721404588	6	0.844461084476226
+Ardavel:balajipro:benchmark:gardn999:mvaudel:vladaburian	0.94037356565861	6	0.844087464845995
+Ardavel:balajipro:benchmark:gardn999:Ramzes2:vladaburian	0.94235248124188	6	0.84685139169635
+Ardavel:balajipro:benchmark:LastEmperor:mkagenius:mvaudel	0.938855307807916	6	0.83937729862722
+Ardavel:balajipro:benchmark:LastEmperor:mkagenius:Ramzes2	0.940890514632455	6	0.835526534646311
+Ardavel:balajipro:benchmark:LastEmperor:mkagenius:vladaburian	0.939970111726428	6	0.842354158557268
+Ardavel:balajipro:benchmark:LastEmperor:mvaudel:Ramzes2	0.940419469915165	6	0.841763045898317
+Ardavel:balajipro:benchmark:LastEmperor:mvaudel:vladaburian	0.939189053734763	6	0.841041850483867
+Ardavel:balajipro:benchmark:LastEmperor:Ramzes2:vladaburian	0.941706887136936	6	0.845213202574618
+Ardavel:balajipro:benchmark:mkagenius:mvaudel:Ramzes2	0.940249254339119	6	0.830633583190538
+Ardavel:balajipro:benchmark:mkagenius:mvaudel:vladaburian	0.939200500068393	6	0.836271978138231
+Ardavel:balajipro:benchmark:mkagenius:Ramzes2:vladaburian	0.941402990165356	6	0.833013869042764
+Ardavel:balajipro:benchmark:mvaudel:Ramzes2:vladaburian	0.940701219980054	6	0.839432296379903
+Ardavel:balajipro:gardn999:LastEmperor:mkagenius:mvaudel	0.939678820849415	6	0.844534774498064
+Ardavel:balajipro:gardn999:LastEmperor:mkagenius:Ramzes2	0.941787272969428	6	0.847774179896175
+Ardavel:balajipro:gardn999:LastEmperor:mkagenius:vladaburian	0.94119474326809	6	0.848091741026263
+Ardavel:balajipro:gardn999:LastEmperor:mvaudel:Ramzes2	0.941520281070211	6	0.846929599171372
+Ardavel:balajipro:gardn999:LastEmperor:mvaudel:vladaburian	0.940440067177355	6	0.846629441272612
+Ardavel:balajipro:gardn999:LastEmperor:Ramzes2:vladaburian	0.942831799902311	6	0.850625532736251
+Ardavel:balajipro:gardn999:mkagenius:mvaudel:Ramzes2	0.942280658617853	6	0.845557043543664
+Ardavel:balajipro:gardn999:mkagenius:mvaudel:vladaburian	0.941062296649875	6	0.84541409261524
+Ardavel:balajipro:gardn999:mkagenius:Ramzes2:vladaburian	0.943168972724216	6	0.849214289173881
+Ardavel:balajipro:gardn999:mvaudel:Ramzes2:vladaburian	0.94287602671886	6	0.848130161812194
+Ardavel:balajipro:LastEmperor:mkagenius:mvaudel:Ramzes2	0.940900201886324	6	0.842821662676772
+Ardavel:balajipro:LastEmperor:mkagenius:mvaudel:vladaburian	0.939838566163712	6	0.842346889111339
+Ardavel:balajipro:LastEmperor:mkagenius:Ramzes2:vladaburian	0.942218283785822	6	0.846786319604594
+Ardavel:balajipro:LastEmperor:mvaudel:Ramzes2:vladaburian	0.941675944849457	6	0.845030409360527
+Ardavel:balajipro:mkagenius:mvaudel:Ramzes2:vladaburian	0.941430833566178	6	0.84124611143244
+Ardavel:benchmark:gardn999:LastEmperor:mkagenius:mvaudel	0.940529844061172	6	0.84188661879201
+Ardavel:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2	0.942074432199624	6	0.837728557133035
+Ardavel:benchmark:gardn999:LastEmperor:mkagenius:vladaburian	0.941036016265321	6	0.843981695772061
+Ardavel:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2	0.942231402853553	6	0.8449302705734
+Ardavel:benchmark:gardn999:LastEmperor:mvaudel:vladaburian	0.940887209540375	6	0.844277483306552
+Ardavel:benchmark:gardn999:LastEmperor:Ramzes2:vladaburian	0.94241169392989	6	0.846326484666559
+Ardavel:benchmark:gardn999:mkagenius:mvaudel:Ramzes2	0.941776970606047	6	0.833747937803205
+Ardavel:benchmark:gardn999:mkagenius:mvaudel:vladaburian	0.940553398973065	6	0.838628471803811
+Ardavel:benchmark:gardn999:mkagenius:Ramzes2:vladaburian	0.941947785442068	6	0.83402620700864
+Ardavel:benchmark:gardn999:mvaudel:Ramzes2:vladaburian	0.941773206197228	6	0.841188494854924
+Ardavel:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2	0.940769679028631	6	0.830947264587775
+Ardavel:benchmark:LastEmperor:mkagenius:mvaudel:vladaburian	0.939698781367818	6	0.836570904734042
+Ardavel:benchmark:LastEmperor:mkagenius:Ramzes2:vladaburian	0.94142634690918	6	0.832480257032164
+Ardavel:benchmark:LastEmperor:mvaudel:Ramzes2:vladaburian	0.94119526065184	6	0.839420218948992
+Ardavel:benchmark:mkagenius:mvaudel:Ramzes2:vladaburian	0.940608636317378	6	0.826994170744202
+Ardavel:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.942652525478363	6	0.845696127819039
+Ardavel:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.941567554510013	6	0.845666496321422
+Ardavel:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.9431709209405	6	0.848204882675459
+Ardavel:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.943355190161445	6	0.848276542944477
+Ardavel:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.942841883450675	6	0.843629917381624
+Ardavel:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.941977048038515	6	0.841286885963131
+balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel	0.938579994887614	6	0.839057892412176
+balajipro:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2	0.940199435725608	6	0.834914021636154
+balajipro:benchmark:gardn999:LastEmperor:mkagenius:vladaburian	0.939521396410071	6	0.841957979678735
+balajipro:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2	0.940295403101828	6	0.842657798629283
+balajipro:benchmark:gardn999:LastEmperor:mvaudel:vladaburian	0.939106939964912	6	0.841714029690902
+balajipro:benchmark:gardn999:LastEmperor:Ramzes2:vladaburian	0.940974327200868	6	0.844922198449458
+balajipro:benchmark:gardn999:mkagenius:mvaudel:Ramzes2	0.940550939141971	6	0.832845031691532
+balajipro:benchmark:gardn999:mkagenius:mvaudel:vladaburian	0.939419230153851	6	0.837931391192828
+balajipro:benchmark:gardn999:mkagenius:Ramzes2:vladaburian	0.940946995064945	6	0.833408981148711
+balajipro:benchmark:gardn999:mvaudel:Ramzes2:vladaburian	0.941082208342662	6	0.841622660490544
+balajipro:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2	0.939517178746257	6	0.829707470224844
+balajipro:benchmark:LastEmperor:mkagenius:mvaudel:vladaburian	0.938486911162867	6	0.835687510937656
+balajipro:benchmark:LastEmperor:mkagenius:Ramzes2:vladaburian	0.940217169472591	6	0.831221752195493
+balajipro:benchmark:LastEmperor:mvaudel:Ramzes2:vladaburian	0.940190535414785	6	0.839063672651736
+balajipro:benchmark:mkagenius:mvaudel:Ramzes2:vladaburian	0.939826391340175	6	0.82690128124886
+balajipro:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.94065843865083	6	0.843783344060723
+balajipro:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.939846342271543	6	0.843404651558166
+balajipro:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.941763794047264	6	0.847280602090128
+balajipro:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.941725594079668	6	0.847308896773305
+balajipro:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.942039216422187	6	0.843701841069299
+balajipro:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.940898657160671	6	0.840680972914029
+benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.940734919931879	6	0.832589938509031
+benchmark:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.939599024049843	6	0.837689481307545
+benchmark:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.940961375083856	6	0.832902568395937
+benchmark:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.941263772980754	6	0.841148527419841
+benchmark:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.940763284926484	6	0.828914956432706
+benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.940011786443566	6	0.826598749220046
+gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.942136487713995	6	0.843074454363104
+AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius	0.941174585883897	7	0.844536685490025
+AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:mvaudel	0.941031463000209	7	0.845336770198829
+AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:Ramzes2	0.942475592389198	7	0.846331325274216
+AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:vladaburian	0.941933890978341	7	0.848382854870359
+AliGebily:Ardavel:balajipro:benchmark:gardn999:mkagenius:mvaudel	0.94116678963053	7	0.842359451742816
+AliGebily:Ardavel:balajipro:benchmark:gardn999:mkagenius:Ramzes2	0.942459110532976	7	0.834300721893759
+AliGebily:Ardavel:balajipro:benchmark:gardn999:mkagenius:vladaburian	0.941803129507336	7	0.844598103871644
+AliGebily:Ardavel:balajipro:benchmark:gardn999:mvaudel:Ramzes2	0.942461227306158	7	0.843909815077608
+AliGebily:Ardavel:balajipro:benchmark:gardn999:mvaudel:vladaburian	0.941440682179603	7	0.845622549359477
+AliGebily:Ardavel:balajipro:benchmark:gardn999:Ramzes2:vladaburian	0.942662164275452	7	0.845076242062652
+AliGebily:Ardavel:balajipro:benchmark:LastEmperor:mkagenius:mvaudel	0.940243382006425	7	0.840551424211976
+AliGebily:Ardavel:balajipro:benchmark:LastEmperor:mkagenius:Ramzes2	0.941771327336573	7	0.832045098683013
+AliGebily:Ardavel:balajipro:benchmark:LastEmperor:mkagenius:vladaburian	0.94126188339756	7	0.843525800387338
+AliGebily:Ardavel:balajipro:benchmark:LastEmperor:mvaudel:Ramzes2	0.941509048308168	7	0.841902024211669
+AliGebily:Ardavel:balajipro:benchmark:LastEmperor:mvaudel:vladaburian	0.940558432178174	7	0.842915789724857
+AliGebily:Ardavel:balajipro:benchmark:LastEmperor:Ramzes2:vladaburian	0.942497133581483	7	0.845456506790458
+AliGebily:Ardavel:balajipro:benchmark:mkagenius:mvaudel:Ramzes2	0.941066998940592	7	0.829007504900299
+AliGebily:Ardavel:balajipro:benchmark:mkagenius:mvaudel:vladaburian	0.940328755896547	7	0.8380172529719
+AliGebily:Ardavel:balajipro:benchmark:mkagenius:Ramzes2:vladaburian	0.941854281374455	7	0.830316704874601
+AliGebily:Ardavel:balajipro:benchmark:mvaudel:Ramzes2:vladaburian	0.941508907805308	7	0.840804598202774
+AliGebily:Ardavel:balajipro:gardn999:LastEmperor:mkagenius:mvaudel	0.941246903907666	7	0.846646315797954
+AliGebily:Ardavel:balajipro:gardn999:LastEmperor:mkagenius:Ramzes2	0.942837048714191	7	0.847726168827252
+AliGebily:Ardavel:balajipro:gardn999:LastEmperor:mkagenius:vladaburian	0.942192164067927	7	0.849648375087187
+AliGebily:Ardavel:balajipro:gardn999:LastEmperor:mvaudel:Ramzes2	0.943008087956302	7	0.84866622730626
+AliGebily:Ardavel:balajipro:gardn999:LastEmperor:mvaudel:vladaburian	0.942174352592252	7	0.849058055779723
+AliGebily:Ardavel:balajipro:gardn999:LastEmperor:Ramzes2:vladaburian	0.943751939595838	7	0.851644970377882
+AliGebily:Ardavel:balajipro:gardn999:mkagenius:mvaudel:Ramzes2	0.942985086217383	7	0.845431705414399
+AliGebily:Ardavel:balajipro:gardn999:mkagenius:mvaudel:vladaburian	0.942117346938027	7	0.84699289952143
+AliGebily:Ardavel:balajipro:gardn999:mkagenius:Ramzes2:vladaburian	0.943639319461727	7	0.847397021019249
+AliGebily:Ardavel:balajipro:gardn999:mvaudel:Ramzes2:vladaburian	0.943500578586677	7	0.848792565313288
+AliGebily:Ardavel:balajipro:LastEmperor:mkagenius:mvaudel:Ramzes2	0.941810264952586	7	0.84325146862945
+AliGebily:Ardavel:balajipro:LastEmperor:mkagenius:mvaudel:vladaburian	0.941123050005536	7	0.844224110130686
+AliGebily:Ardavel:balajipro:LastEmperor:mkagenius:Ramzes2:vladaburian	0.942970865894027	7	0.846766921457946
+AliGebily:Ardavel:balajipro:LastEmperor:mvaudel:Ramzes2:vladaburian	0.942635348008327	7	0.846424966292886
+AliGebily:Ardavel:balajipro:mkagenius:mvaudel:Ramzes2:vladaburian	0.942230902304769	7	0.842395470368595
+AliGebily:Ardavel:benchmark:gardn999:LastEmperor:mkagenius:mvaudel	0.941647604655199	7	0.84263759301698
+AliGebily:Ardavel:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2	0.942462389924605	7	0.83396945522792
+AliGebily:Ardavel:benchmark:gardn999:LastEmperor:mkagenius:vladaburian	0.941863310876068	7	0.843987671320996
+AliGebily:Ardavel:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2	0.942716486755543	7	0.843906020398278
+AliGebily:Ardavel:benchmark:gardn999:LastEmperor:mvaudel:vladaburian	0.941827423965003	7	0.845742147037929
+AliGebily:Ardavel:benchmark:gardn999:LastEmperor:Ramzes2:vladaburian	0.942631315764483	7	0.844650134138039
+AliGebily:Ardavel:benchmark:gardn999:mkagenius:mvaudel:Ramzes2	0.942111213948647	7	0.83138988294855
+AliGebily:Ardavel:benchmark:gardn999:mkagenius:mvaudel:vladaburian	0.941325160055024	7	0.839334002577956
+AliGebily:Ardavel:benchmark:gardn999:mkagenius:Ramzes2:vladaburian	0.942125294887559	7	0.831047846127629
+AliGebily:Ardavel:benchmark:gardn999:mvaudel:Ramzes2:vladaburian	0.942161733676791	7	0.841056224007375
+AliGebily:Ardavel:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2	0.94142447480344	7	0.829157602511226
+AliGebily:Ardavel:benchmark:LastEmperor:mkagenius:mvaudel:vladaburian	0.940815604345637	7	0.83798129602815
+AliGebily:Ardavel:benchmark:LastEmperor:mkagenius:Ramzes2:vladaburian	0.941953763056351	7	0.8298945371225
+AliGebily:Ardavel:benchmark:LastEmperor:mvaudel:Ramzes2:vladaburian	0.941952392368721	7	0.841072125517472
+AliGebily:Ardavel:benchmark:mkagenius:mvaudel:Ramzes2:vladaburian	0.941206023789811	7	0.826141221841873
+AliGebily:Ardavel:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.943254939259299	7	0.845159456150299
+AliGebily:Ardavel:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.942533380128536	7	0.846877875567284
+AliGebily:Ardavel:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.943659089117237	7	0.846916057265448
+AliGebily:Ardavel:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.943793699897816	7	0.848628906497513
+AliGebily:Ardavel:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.943257549385089	7	0.843586052093052
+AliGebily:Ardavel:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.942588001845722	7	0.842329276396555
+AliGebily:balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel	0.940066665884888	7	0.840723305537119
+AliGebily:balajipro:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2	0.941190967072993	7	0.83193183967778
+AliGebily:balajipro:benchmark:gardn999:LastEmperor:mkagenius:vladaburian	0.940650229541758	7	0.8424616552807
+AliGebily:balajipro:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2	0.941555268797463	7	0.8430477958853
+AliGebily:balajipro:benchmark:gardn999:LastEmperor:mvaudel:vladaburian	0.940678500034872	7	0.843996661175562
+AliGebily:balajipro:benchmark:gardn999:LastEmperor:Ramzes2:vladaburian	0.941773685220242	7	0.844001223306918
+AliGebily:balajipro:benchmark:gardn999:mkagenius:mvaudel:Ramzes2	0.941501880545189	7	0.830981104805476
+AliGebily:balajipro:benchmark:gardn999:mkagenius:mvaudel:vladaburian	0.940589150176998	7	0.839785643720734
+AliGebily:balajipro:benchmark:gardn999:mkagenius:Ramzes2:vladaburian	0.941697392092013	7	0.831302449839935
+AliGebily:balajipro:benchmark:gardn999:mvaudel:Ramzes2:vladaburian	0.941827651125572	7	0.841863999044296
+AliGebily:balajipro:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2	0.940595908186975	7	0.828199720713909
+AliGebily:balajipro:benchmark:LastEmperor:mkagenius:mvaudel:vladaburian	0.939864718806044	7	0.837803369190253
+AliGebily:balajipro:benchmark:LastEmperor:mkagenius:Ramzes2:vladaburian	0.941259389194801	7	0.829265286591318
+AliGebily:balajipro:benchmark:LastEmperor:mvaudel:Ramzes2:vladaburian	0.94133153208858	7	0.841176357383235
+AliGebily:balajipro:benchmark:mkagenius:mvaudel:Ramzes2:vladaburian	0.94070235448678	7	0.825770054583616
+AliGebily:balajipro:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.941753347582051	7	0.844156170566831
+AliGebily:balajipro:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.941180970584078	7	0.84577490366628
+AliGebily:balajipro:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.942490905151768	7	0.846747625001788
+AliGebily:balajipro:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.943027180093536	7	0.848622676800207
+AliGebily:balajipro:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.942821531741341	7	0.843852563985461
+AliGebily:balajipro:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.941863172874245	7	0.842040200859065
+AliGebily:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.941546379090671	7	0.830690844009108
+AliGebily:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.940743339195899	7	0.838949543735188
+AliGebily:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.941716253689778	7	0.830729640946294
+AliGebily:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.941941622925178	7	0.84164870451096
+AliGebily:benchmark:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.941324124496116	7	0.827228930918182
+AliGebily:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.940927712585889	7	0.825425964416835
+AliGebily:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.94279838822819	7	0.8431478016553
+Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel	0.939609178245887	7	0.843228380464345
+Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2	0.94142065552084	7	0.844861879008798
+Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:vladaburian	0.940613407117216	7	0.845927329444773
+Ardavel:balajipro:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2	0.941077709694515	7	0.84506906648223
+Ardavel:balajipro:benchmark:gardn999:LastEmperor:mvaudel:vladaburian	0.940184743074994	7	0.844834120805721
+Ardavel:balajipro:benchmark:gardn999:LastEmperor:Ramzes2:vladaburian	0.942165120854711	7	0.84840565815209
+Ardavel:balajipro:benchmark:gardn999:mkagenius:mvaudel:Ramzes2	0.94148479509496	7	0.842210504757243
+Ardavel:balajipro:benchmark:gardn999:mkagenius:mvaudel:vladaburian	0.940458130104927	7	0.842870526052518
+Ardavel:balajipro:benchmark:gardn999:mkagenius:Ramzes2:vladaburian	0.94227594432568	7	0.844523984486058
+Ardavel:balajipro:benchmark:gardn999:mvaudel:Ramzes2:vladaburian	0.941991213424047	7	0.84585148545883
+Ardavel:balajipro:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2	0.940455864900766	7	0.840212568844268
+Ardavel:balajipro:benchmark:LastEmperor:mkagenius:mvaudel:vladaburian	0.939532186314599	7	0.839854738738115
+Ardavel:balajipro:benchmark:LastEmperor:mkagenius:Ramzes2:vladaburian	0.941494738953289	7	0.843473070779121
+Ardavel:balajipro:benchmark:LastEmperor:mvaudel:Ramzes2:vladaburian	0.941010698859855	7	0.84318884271989
+Ardavel:balajipro:benchmark:mkagenius:mvaudel:Ramzes2:vladaburian	0.940672811700121	7	0.83789413668067
+Ardavel:balajipro:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.941376828094633	7	0.846431667172694
+Ardavel:balajipro:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.940615975423108	7	0.84626314375965
+Ardavel:balajipro:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.942432391403124	7	0.84984378076923
+Ardavel:balajipro:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.942533055260212	7	0.848941735804174
+Ardavel:balajipro:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.942549657793818	7	0.846986306222979
+Ardavel:balajipro:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.941425828049384	7	0.844021227910513
+Ardavel:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.941901087513926	7	0.842588822581641
+Ardavel:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.940792215214025	7	0.842415146505136
+Ardavel:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.942298967005404	7	0.844105390979657
+Ardavel:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.942275311132962	7	0.846056006015768
+Ardavel:benchmark:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.94180897463285	7	0.839351911898126
+Ardavel:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.9410397358018	7	0.837829266106176
+Ardavel:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.942860856624302	7	0.846767936787012
+balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.940244553134117	7	0.840536797574016
+balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.939275183056619	7	0.840109906783979
+balajipro:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.940843372570808	7	0.842592659822381
+balajipro:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.940997357159015	7	0.844102795764892
+balajipro:benchmark:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.941031510552071	7	0.839579083988936
+balajipro:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.940166452426412	7	0.837465043237813
+balajipro:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.941286046264873	7	0.845393256670223
+benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.941189487781276	7	0.839208902568819
+AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel	0.941403134749228	8	0.845199562095332
+AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2	0.942570742846115	8	0.840601224901242
+AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:vladaburian	0.942012715449119	8	0.84733063509502
+AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2	0.942735397467201	8	0.846942793216933
+AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:mvaudel:vladaburian	0.94199096870896	8	0.847815245117961
+AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:Ramzes2:vladaburian	0.943123697384032	8	0.848899172552263
+AliGebily:Ardavel:balajipro:benchmark:gardn999:mkagenius:mvaudel:Ramzes2	0.942437899589272	8	0.838534179622705
+AliGebily:Ardavel:balajipro:benchmark:gardn999:mkagenius:mvaudel:vladaburian	0.941721444936973	8	0.844131709113835
+AliGebily:Ardavel:balajipro:benchmark:gardn999:mkagenius:Ramzes2:vladaburian	0.942749512892935	8	0.83944780109151
+AliGebily:Ardavel:balajipro:benchmark:gardn999:mvaudel:Ramzes2:vladaburian	0.942850708789382	8	0.845944157343406
+AliGebily:Ardavel:balajipro:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2	0.941595702309533	8	0.836394232198482
+AliGebily:Ardavel:balajipro:benchmark:LastEmperor:mkagenius:mvaudel:vladaburian	0.94106573954815	8	0.842316612527688
+AliGebily:Ardavel:balajipro:benchmark:LastEmperor:mkagenius:Ramzes2:vladaburian	0.942359543873741	8	0.838266197522171
+AliGebily:Ardavel:balajipro:benchmark:LastEmperor:mvaudel:Ramzes2:vladaburian	0.942376367242222	8	0.844822645419546
+AliGebily:Ardavel:balajipro:benchmark:mkagenius:mvaudel:Ramzes2:vladaburian	0.941709753463095	8	0.834519104446411
+AliGebily:Ardavel:balajipro:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.942968989842478	8	0.847745797648981
+AliGebily:Ardavel:balajipro:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.942245285992181	8	0.848598692244098
+AliGebily:Ardavel:balajipro:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.943525457852522	8	0.85013109384752
+AliGebily:Ardavel:balajipro:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.943756707319705	8	0.850485249876323
+AliGebily:Ardavel:balajipro:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.943394454167752	8	0.847396657521405
+AliGebily:Ardavel:balajipro:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.942630249028305	8	0.845763633422775
+AliGebily:Ardavel:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.942646986825489	8	0.838502425369504
+AliGebily:Ardavel:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.942014348383245	8	0.843895618503009
+AliGebily:Ardavel:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.942793248895234	8	0.838999475967225
+AliGebily:Ardavel:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.943070352227671	8	0.845929547412539
+AliGebily:Ardavel:benchmark:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.942405459106647	8	0.835836278408538
+AliGebily:Ardavel:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.941994424910536	8	0.834381469792347
+AliGebily:Ardavel:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.943606569629818	8	0.847112558312513
+AliGebily:balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.941598242366599	8	0.837492168044841
+AliGebily:balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.940983169411759	8	0.84299711168738
+AliGebily:balajipro:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.941914732547481	8	0.838196370155363
+AliGebily:balajipro:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.942363179588597	8	0.845597990619426
+AliGebily:balajipro:benchmark:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.941952077350656	8	0.836054218520713
+AliGebily:balajipro:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.941331878648038	8	0.833958856645744
+AliGebily:balajipro:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.942737777439068	8	0.846806373064228
+AliGebily:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.942053595409298	8	0.835491218277228
+Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.941639002601014	8	0.845127858622258
+Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.94082001252113	8	0.845123235811576
+Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.942241591769185	8	0.84748390404787
+Ardavel:balajipro:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.942301791198826	8	0.847851572424653
+Ardavel:balajipro:benchmark:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.942110276262028	8	0.844267648992106
+Ardavel:balajipro:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.941311907135285	8	0.842317341111456
+Ardavel:balajipro:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.942531021297693	8	0.848541199555091
+Ardavel:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.942323590682768	8	0.84402649198414
+balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.941248003072214	8	0.843033239111395
+AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2	0.942450415583317	9	0.844744774670325
+AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:vladaburian	0.941697951444814	9	0.846488682583313
+AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:Ramzes2:vladaburian	0.942937009319593	9	0.846707444532715
+AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:mvaudel:Ramzes2:vladaburian	0.942977183312293	9	0.848172858790452
+AliGebily:Ardavel:balajipro:benchmark:gardn999:mkagenius:mvaudel:Ramzes2:vladaburian	0.942658093582375	9	0.843682312722148
+AliGebily:Ardavel:balajipro:benchmark:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.942027786859206	9	0.842856029946679
+AliGebily:Ardavel:balajipro:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.943206474803914	9	0.848821986614655
+AliGebily:Ardavel:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.942829871647695	9	0.843690759702708
+AliGebily:balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.94209844907186	9	0.843735404706716
+Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.941928023495243	9	0.846408279375519
+AliGebily:Ardavel:balajipro:benchmark:gardn999:LastEmperor:mkagenius:mvaudel:Ramzes2:vladaburian	0.942865493218176	10	0.846766356715389
