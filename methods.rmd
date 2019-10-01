@@ -1,13 +1,13 @@
 Methods
 ========
 
-Towards developing an open innovation competition, we first transformed the deconvolution problem into a supervised classification task. Using the L1000 assay, we profiled six 384-well plates, each containing different sets of compound and shRNA treatments (see Supporting Info, \ref{data-gen}). We did it twice by varying the detection mode used for acquiring the data between two methods. The first method, called UNI, associates each gene to one single analyte color, which leads to higher costs, but it does not require deconvolution.
-The second method, called DUO, associates sets of two genes per analyte color, which reduces costs but requires deconvolution to transform the composite gene-expression signal into two separate gene-specific expression values.
-We then used the data obtained from the UNI method (one gene per analyte type) as the "ground truth" for the competition; and the data obtained from the DUO method (two genes per analyte type) as the input to predict the equivalent UNI data. The datasets are now publicly available [LINK to REPO]. 
+Towards developing an open innovation competition, we first transformed the deconvolution problem into a supervised classification task. Using the L1000 assay, we profiled six 384-well plates, each containing different sets of compound and shRNA treatments (see Supporting Info, \ref{data-gen}). The same samples were detected using two different methods. The first method, called UNI, associates each gene to one single bead color, which leads to higher costs, but does not require deconvolution.
+The second method, called DUO, meaures two different genes on the same bead color, which reduces costs but requires deconvolution to transform the composite signal into two separate gene-specific expression values.
+We then used the data obtained from the UNI method (one gene per bead color) as the "ground truth" for the competition; and the data obtained from the DUO method (two genes per bead color) as the input to predict the equivalent UNI data. The datasets are now publicly available [LINK to REPO]. 
 
 <!-- To do so, the genes are mixed in 1:2 ratio so that the composite signal should have two peaks: a bigger peak for the cluster to the gene for which a larger proportion of beads are present, and a smaller peak representing the other gene.  -->
 
-We randomly split the generated data into training, testing, and holdout datasets of equal size (2 plates each). All the contestants had access to the training data to develop and validate their solutions offline. The testing data were used to evaluate solutions during the contest and populate the live leaderboard. Holdout data were used to evaluate competitors’ final submissions and guard against over-fitting. Prizes were awarded based on performance on the holdout dataset. 
+We randomly split the generated data into training, testing, and holdout datasets of equal size (2 plates each). All the contestants had access to the training data to develop and their solutions offline. The testing data were used to evaluate solutions during the contest and populate the live leaderboard. Holdout data were used to evaluate competitors’ final submissions and guard against over-fitting. Prizes were awarded based on performance on the holdout dataset. 
 
 <!-- FOOTNOTE: Since the L1000 assay returns gene-expression profiles for 978 genes, we combined data from two plates to match the amount of data produced.  -->
 
