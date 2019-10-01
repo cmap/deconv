@@ -46,6 +46,117 @@ speed_acc <- merge(speed_acc, soln_desc, by="handle")
 #   ggtitle("Accuracy vs. Speed")
 ```
 
+
+ ## Median difference  
+
+```{r accuracy-fig, fig.cap = cap, echo = FALSE, fig.width = 7, fig.height = 7, cache = TRUE}
+cap <- "\\label{fig:accuracy-fig}**Accuracy.** \
+          Top panels show empirical CDF of the distribution of the genewise spearman correlation ($\\rho$) \
+          between the ground-truth gene-expressions (as detected by UNI) and \
+          predictions obtained by the competitors and the benchmark through the deconvolution of DUO data, \
+          for the subset of the shRNA (**A.**) and compounds experiments (**B.**). \
+          The competitors' eCDFs are right-shifted compared to the benchmark, \
+          indicating more accurate predictions. \
+          Bottom panels show box plots  of the distribution of the genewise difference in spearman correlation \
+          of the gene-expression values obtained by the competitors and the benchmark \
+          through the deconvolution of DUO data (outliers excluded), \
+          for the shRNA experimetns (**C.**) and the compound experiments (**D.**).\
+          Results show the median size of the accuracy improvements was modest, \
+          ranging between 2 and 3 percentage points."
+ds_cor <- parse.gctx("data/UNI_DUO_gene_spearman_correlations_holdout_n20x976.gctx")
+
+panel <- function(x, ...) {
+  x <- x[, order(apply(x, 2, median))]
+  txt <- gsub(".*:", "", colnames(x))
+  b <- boxplot(x, outline = F, names = txt, las = 2, notch = T, lty=1, ...)
+  grid(nx=NA, ny=NULL, col = gray(.25))
+  boxplot(x, outline = F, names = txt, las = 2, notch = T, lty=1, add=T, col = rgb(1, .5, 0, .5), ...)
+}
+panel.bottom <- function(x, ...) {
+  plot(NA, NA, ann = FALSE, axes = FALSE, xlim = c(0, 1), ylim = c(0, 1))
+  ecdf.list <- apply(x, 2, function(x) ecdf(ifelse(x<0,0,x)))
+  sapply(ecdf.list[-4], lines, col = gray(.85), pch = "")
+  lines(ecdf.list[[4]], col = "brown", pch = "")
+  axis(1, at = c(0, 0.5, 1))
+  axis(2, at = c(0, 0.5, 1))
+  box()
+  legend("topleft", lty=1, col = c("brown", gray(.75)), c("benchmark", "competitors"), bty = "n")
+  title(...)
+}
+par(mfrow = c(2, 2), mar = c(4, 3, 2, 1) + 0.1)
+panel.bottom (ds_cor@mat[, 1:10], main = "A. shRNA", xlab = expression(rho))
+panel.bottom (ds_cor@mat[, 11:20], main = "B. compounds", xlab = expression(rho))
+par(mar = c(6, 3, 2, 1) + 0.1)
+panel (ds_cor@mat[, 1:10]  - ds_cor@mat[, 4], main = "C. shRNA")
+panel (ds_cor@mat[, 11:20]  - ds_cor@mat[, 14], main = "D. compounds")
+```
+
+## Inter-replicate variance 
+
+```{r, include = FALSE}
+(ds <- parse.gctx("data/DECONV_holdout_n8228x976.gctx"))
+annot <- fread("data/holdout_sample_annotations.txt")
+gene_annot <- fread("data/barcode_to_gene_map.txt", colClasses = c("gene_id"="character"))
+ds <- annotate.gct(ds, annot, dim="col", keyfield="id")
+ds <- annotate.gct(ds, gene_annot, dim="row", keyfield="gene_id")
+```
+
+```{r comp-mean-var, include = FALSE, cache = TRUE}
+handles <- unique(ds@cdesc$handle)
+perts <- unique(ds@cdesc$pert_id)
+gene_id <- ds@rdesc$gene_id
+n.perts <- length(perts) # 121
+n.genes <- length(gene_id) # 976
+high <- ds@rdesc$high_prop == 1
+n.high <- sum(high) # 488 
+library(parallel)
+out <- mclapply(handles, function(h) {
+  out.var <- out.mean <- array(NA, c(n.genes, n.perts))
+  obs <- numeric(length(perts))
+  for (j in 1:length(perts)) {
+     cids <- which(ds@cdesc$pert_id==perts[j] & ds@cdesc$handle==h)
+     mat <- subset.gct(ds, cid=cids, rid=gene_id)@mat
+     #cids.gt <- which(ds@cdesc$pert_id==perts[j] & ds@cdesc$handle=="ground-truth")
+     #mat.gt <- subset.gct(ds, cid=cids, rid=gene_id)@mat
+     out.mean[, j] <-  apply(log(mat), 1, mean)
+     out.var[, j] <-  apply(log(mat), 1, var)     
+     obs[j] <-  length(cids)    
+  }
+  list(mean = out.mean, var = out.var, n = obs)
+})
+names(out) <- handles
+```
+
+## Variance by experiments 
+
+```{r var-ratio, fig.width=7, fig.cap=cap, echo = FALSE}
+cap <- "\\label{fig:inter-replicate-variance}Inter-replicate variance."
+panel <- function(x, margin = 1, ...) {
+  y <- apply(x, margin, mean)
+  lines(ecdf(y), pch = "", ...)
+  axis(1, at = c(0, 0.05, 0.1))
+  axis(2, at = c(0, 0.5, 1))
+  box()
+}
+
+par( mfrow = c(1, 2))
+plot(NA, NA, xlim = c(0, .1), ylim = c(0, 1), ann = FALSE, axes = FALSE)
+for (j in names(out)){
+  panel(out[[j]]$var[high, ], col = gray(.75))
+  panel(out[["benchmark"]]$var[high, ], col = "brown", lwd = 2)
+#   panel(out[["ground-truth"]]$var[high, ], col = "orange", lwd = 2)
+  title(main = "High bead proportion")
+}
+plot(NA, NA, xlim = c(0, .1), ylim = c(0, 1), ann = FALSE, axes = FALSE)
+for (j in names(out)){
+  panel(out[[j]]$var[!high, ], col = gray(.75))
+  panel(out[["benchmark"]]$var[!high, ], col = "brown", lwd = 2)
+#   panel(out[["ground-truth"]]$var[!high, ], col = "orange", lwd = 2)
+  title(main = "Low bead proportion")
+  legend("bottomright", lty=1, col=c("brown", gray(.75)), c("benchmark", "competitors"), bty = "n")
+}
+```
+
 ```{r setup, include = FALSE}
 impute <- function(x, value) ifelse(is.na(x), value, x)
 n <- nrow(speed_acc)

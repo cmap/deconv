@@ -1,3 +1,4 @@
+
 ```{r results-setup, include=FALSE}
 options(digits=2)
 library(data.table)
@@ -47,17 +48,18 @@ kable(soln_desc[1:9], caption = "\\label{tab:soln_desc}Summary of contestant sol
 
 We tested the accuracy and speed of the competitors' solutions on the holdout L1000 data obtained by applying the DUO detection method (two genes per analyte color) and utilizing as the ground truth the data obtained by employing the UNI detection method (one gene per analyte color).
 
-We computed the gene-level rank correlation with the ground truth for each of the top nine algorithms and the benchmark. 
-Overall, the correlation with the ground truth was high for all the solutions (r = xxxx). All the competitors' solutions improved in this metric over the k-means benchmark (Fig, XXXX), although the observed improvements were modest (2-3 percent).
+*Correlation.*  We computed the gene-level rank correlation with the ground truth for each of the top nine algorithms and the benchmark. Overall, the correlation with the ground truth was high for all the solutions ($\rho$ > `r min(speed_acc$cor)`). All the competitors had a distribution of the genewise rank correlation that was right-shifted compared to the k-means benchmark, indicating more accurate predictions (\Fig{accuracy-fig}). Indeed, the median rank correlation of the competitors that was significantly higher than the equivalent for the benchmark, although the size of the observed improvements was modest (2-3 percentage points). 
 
-Next, we tested differences in the probability of detection of extreme modulated genes (genes with abs higher than xxx). 
-All algorithms achieved a good detection performance (AUC = xxx). Also in this case, we observe improvements, although modest, from all the competitors' solutions (between xxx and xxx percent). 
+*Extreme modulations.* Of particular interest was to test the accuracy of the competitors' solutions on the differential expression (DE) values, which are obtained by applying a series of transformations to the data after the deconvolution [see @subramanian2017next for the details].   We focused on the improvements in the detection of, so called, “extreme modulations.” These are genes that notably up- or down-regulated by perturbation and hence exhibit an exceedingly high (or low) DE values relative to a set threshold. Using the Area under the ROC (using UNI detections of extremely modulated genes as the ground-truth), we found that all the competitors achieved a good detection performance (AUC = xxx); and, also in this case, we observe improvements, although modest, from all the competitors' solutions (between xxx and xxx percent). [ADD AND DISCUSS FIGURE / how about moving TSNE results here -- just as a robustness check that no obvious clustering occurs at differential expression level -- meaning quality is ok -- ?]
+
 <!-- The benchmark achieved a good performance on accuracy (an AUC of `r bench.auc[1]` and `r bench.auc[2]` and a correlation of `r bench.cor[1]` and `r bench.cor[2]` for plate 1 and 2, respectively) with a corresponding runtime of about 4 minutes per plate (`r bench.sec[1]` and `r bench.sec[2]` seconds). All the contestants achieved improvements in the rank correlation over the benchmark mwere modest `r percent(coef(ols.cor), digits=1)`  (95% CI, `r percent(ci[1, "cor"],1)` to `r percent(ci[2, "cor"],1)`) -->
 
-We further tested differences in the probability oof detection of the extreme modulations for knockdown genes (explain). For this comparison, we computed the metric also for the UNI data, and compared performance of... 
-We observe a high  performance in accuracy. xxx we computed the KD success frequency for each algorithm and the benchmark. This metric is the fraction of the 376 landmark-targeting shRNA experiments in the holdout data for which the predictions met these success criteria. We used the $UNI$ ground-truth data to estimate the maximum achievable KD success frequency, which in this case was 0.8. We observe that all but 2 of the top 9 contestant algorithms achieve a higher KD success frequency than the benchmark solution (\Fig{kd_barplot}). These results suggest that the algorithm improvements, as assessed by the accuracy metrics used in the contest, translate to improvements in biologically relevent metrics used in common applications of L1000 data.
+*Gene knockdowns.* We further tested differences in the probability oof detection of the extreme modulations for knockdown genes (explain). For this comparison, we computed the metric also for the UNI data, and compared performance of...  We observe a high  performance in accuracy. xxx we computed the KD success frequency for each algorithm and the benchmark. This metric is the fraction of the 376 landmark-targeting shRNA experiments in the holdout data for which the predictions met these success criteria. We used the $UNI$ ground-truth data to estimate the maximum achievable KD success frequency, which in this case was 0.8. We observe that all but 2 of the top 9 contestant algorithms achieve a higher KD success frequency than the benchmark solution (\Fig{kd_barplot}). These results suggest that the algorithm improvements, as assessed by the accuracy metrics used in the contest, translate to improvements in biologically relevent metrics used in common applications of L1000 data.
 
-Finally, speed improvements over the k-means benchmark were substantial (\Fig{acc-vs-speed}). The fastest algorithm took as little as `r min(speed_acc$sec)` seconds per plate (xxx% improvment), and the slowest took xxx seconds (xxx% improvement). 
+*Inter-replicate variance.* Agreement between experimental replicates is crucial xxx [ref] 
+"The inter-replicate variation of gene expression-quantities is of the utmost importance to biologists because lower variance means higher reproducibility." [refXXX]. Our data contain several replicates which enabled us to study improvements in inter-replicability variance.   See figure \Fig{inter-replicate-variance}. 
+
+*Speed.* Speed improvements over the benchmark were substantial (\Fig{speed}). The benchmark took about 4 minutes per plates. In contrast, the fastest algorithm took as little as `r min(speed_acc$sec)` seconds per plate (a 60x speedup compared to the benchmark), and the slowest was well below one minute per plate. We observed no particular trade-off between speed and accuracy. The fastest algorithm ("ardavel"), that was based a gaussian mixture model, achieved a good level of accuracy as well, and ranked second overall. On the other hand, the algorithm with the best performance in terms of accuracy ("gardn999"), which was based on a decision tree regression, also achieved a decent speed performance compared to the benchmark. Thus, at least within the context of the implemented solutions, we found a negligible trade-off between speed and accuracy.
 
 <!-- 
 Also, we observe no significant difference in performance between the plates, with all the submissions achieving similar scores in both plates; and no accuracy-vs-speed trade-off, as the empirical relationship between accuracy and speed improvements is essentially flat. 
@@ -69,15 +71,8 @@ Also, we observe no significant difference in performance between the plates, wi
 Only two submissions (out of nine) a performance that was better in AUC and correlation but worse than the benchmark on the KD success metric. These submissions, both based on k-means, ranked sixth and eighth in the final leaderboard.
  -->
 
-Further examination based on the underlying methods used by the top solutions suggests that parametric models, such as mixture models, are both fast and relatively accurate, although non-parametric models, such as regression forests and k-means, tend to be more accurate.  The fastest algorithm was indeed based on a parametric model, i.e., gaussian mixture model, which achieves a good level of accuracy on these data. This solution ranked second overall and achieved the greatest speed improvmenet in both plates. The most accurate algorithm was instead based on a random forest. This solution ranked first overall and achieved the best performance in both AUC and correlation measures, as well as it was among the top three approaches in the KD measure. 
+<!-- Further examination based on the underlying methods used by the top solutions suggests that parametric models, such as mixture models, are both fast and relatively accurate, although non-parametric models, such as regression forests and k-means, tend to be more accurate.  The fastest algorithm was indeed based on a parametric model, i.e., gaussian mixture model, which achieves a good level of accuracy on these data. This solution ranked second overall and achieved the greatest speed improvmenet in both plates. The most accurate algorithm was instead based on a random forest. This solution ranked first overall and achieved the best performance in both AUC and correlation measures, as well as it was among the top three approaches in the KD measure.  -->
 
-
-\color{red}
-
-Todos:
-- Update equations to use Latex
-
-\color{black}
 
 
 ### Reduction variation across replicate samples

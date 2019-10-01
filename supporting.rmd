@@ -7,7 +7,7 @@ Supporting information
 TODO: update equations to use Latex
 \color{black}
 
-## Data generation for contest
+## Data generation for contest {#data-gen}
 
 To generate data for this contest, we profiled six 384-well perturbagen plates, each containing mutually exclusive sets of compound and shRNA treatments. Multiple treatment types were used to avoid potentially over-fitting to any one. The compound and shRNA perturbagen plates were arbitrarily grouped into pairs, and to avoid any potential 'information leakage' each pair was profiled in a different cell line. The resulting lysates were amplified by ligation mediated amplification (LMA, Subramanian 2017). The amplicon was then split and detected in both $UNI$ and $DUO$ detection modes. The three pairs of data were arbitrarily assigned to training, testing, and holdout categories, where in each case the $UNI$ data served as the ground truth. Training data were made available for all the contestants to develop and validate their solutions offline. The testing data were used to evaluate solutions during the contestn and populate the live leaderboard. Holdout data were used evaluate competitors' final submissions and guard against over-fitting. Prizes were awareded based on performance on the holdout dataset.
 
@@ -39,9 +39,7 @@ Known problems with the current approach are that k-means is generally a biased 
 
 Additionally, because half the landmark genes are measured using two-fold less bead than the other half, these low-proportion genes are subject to increased variability, which the benchmark k-means solution does not mitigate. Hence, there is an unequal noise distribution in the benchmark's deconvoluted expression profiles. 
 
-
-
-## Scoring configuation
+## Scoring function {#scoring-function}
 
 Contest submissions were scored based on accuracy and speed.
 
