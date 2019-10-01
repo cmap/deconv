@@ -577,6 +577,17 @@ ggplot(tmp, aes(x=sec, y=auc)) +
   ylab("AUC score")
 ```
 
+```{r ensemble_plot_pr, echo=F}
+ggplot(tmp, aes(x=sec, y=pr)) +
+  geom_point(aes(size=nalgo), alpha=0.6) +
+  geom_point(data=tmp[nalgo==1],
+             aes(x=sec, y=pr, color=algos)) +
+  scale_size_continuous(breaks = seq(1, 9, 2), name="num. algos") +
+  scale_color_discrete(name="handle") +
+  xlab("cumulative runtime (sec)") +
+  ylab("Precision-recall AUC")
+```
+
 
 ```{r ensemble_plot2_cor, echo=F}
 ggplot(tmp, aes(x=nalgo, y=cor, group=nalgo)) +
@@ -596,8 +607,14 @@ ggplot(tmp, aes(x=nalgo, y=auc, group=nalgo)) +
   ylab("AUC score")
 ```
 
-TODO: how does this look for precision metric?
-
+```{r ensemble_plot2_pr, echo=F}
+ggplot(tmp, aes(x=nalgo, y=pr, group=nalgo)) +
+  geom_boxplot() +
+  geom_jitter(width=0.25, alpha=0.6) +
+  scale_x_continuous(breaks=2:10) +
+  xlab("# of algos combined") +
+  ylab("Precision-recall AUC")
+```
 
 ```{r, echo=F}
 # ggplot(tmp, aes(x=cor, y=auc, size=nalgo)) + 
