@@ -91,6 +91,27 @@ panel (ds_cor@mat[, 1:10]  - ds_cor@mat[, 4], main = "C. shRNA")
 panel (ds_cor@mat[, 11:20]  - ds_cor@mat[, 14], main = "D. compounds")
 ```
 
+# KD accuracy & recall 
+
+```{r kd-comparison, fig.width = 7, fig.cap = cap, echo = FALSE}
+cap <- "\\label{fig:kd}**Gene knockdown.** Precision and fraction of gene knockdown recalled by each algorithm. \
+          Precision is low because ... "
+kd.sorted <- sort(with(speed_acc, tapply(kd_success_freq, handle, mean, na.rm=T)))
+kd_precision.sort <- sort(with(speed_acc, tapply(kd_precision, handle, mean, na.rm=T)))
+par(mfrow = c(1, 2), mar = c(6, 4, 3, 1)+.1)
+plot(kd.sorted, ann = FALSE, axes = FALSE, ylim = c(0.5, 1), pch = 19)
+axis(1, at = 1:length(kd.sorted), names(kd.sorted), las = 2)
+axis(2, at = c(0, 0.5, 0.75, 1))
+box()
+title("Recall")
+plot(kd_precision.sort, ann = FALSE, axes = FALSE, ylim = c(0, 0.1), pch = 19)
+axis(1, at = 1:length(kd_precision.sort), names(kd_precision.sort), las = 2)
+axis(2, at = c(0, 0.05, 0.1))
+box()
+title("Precision*")
+```
+
+
 ## Inter-replicate variance 
 
 ```{r, include = FALSE}
@@ -254,7 +275,7 @@ mtext(at=c(0,0), "B.", adj=0, font=2)
 
 ## Gene knockdowns
 
-```{r kd_barplot, echo=F, fig.cap=cap, fig.width=6}
+```{r kd_barplot, echo=F, fig.cap=cap, fig.width=6, include = FALSE}
 cap <- "\\label{kd_barplot}**KD success frequency.** Bars represent the fraction of landmark-targeting shRNAs experiments in which the DE values indicated successful knockdown (KD). Success criteria are a z-score of less than -2 and a gene-wise rank of less than 10. Results are shown for the one plate of shRNA holdout data, containing 376 landmark-targeting shRNA experiments."
 
 # speed_acc <- fread("data/holdout_score_time.txt", na.strings = "n/a")
