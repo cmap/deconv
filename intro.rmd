@@ -9,7 +9,7 @@ We report the results of an open innovation competition that impvored upon the s
  -->
 
 
-The creation of large perturbational datasets to aid our understanding of human disease and to accelerate the discovery of novel therapeutics hinges on techniques based on multianalyte assays.  However, a major limitation of multianalyte assays lies in the extent and type of the available analytes. In the context of RNA profiling, the CMap group has developed an assay, called L1000, that integrates traditional methods and statistical analysis to overcome this limitation and infer differential expressions for multiple genes from the same analyte type [@subramanian2017next]. 
+The creation of large perturbational datasets to aid our understanding of human disease and to accelerate the discovery of novel therapeutics hinges on techniques based on multianalyte assays.  A major limitation of multianalyte assays lies in the extent and type of the available analytes. [maybe quantify it. e.g., at most 500 (?) different types per chip, which limits the number of genes simultaneously examined]. In the context of RNA profiling, the CMap group has developed an assay, called L1000, that integrates traditional methods and statistical analysis to overcome this limitation and infer differential expressions for multiple genes from the same analyte type [@subramanian2017next]. 
 
 <!-- The algorithm D-peak is based on k-means algorithm, a general and flexible tool to conduct non-parametric regression that is very popular in biology, as well as in many other fields.  -->
 
