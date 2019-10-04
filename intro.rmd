@@ -20,7 +20,7 @@ The creation of large perturbational datasets to aid our understanding of human 
 
 A central component of this approach is to statistically deconvolve and compare gene type-specific expression profiles for sets of two genes in mixed-gene samples. Similar deconvolution problems are ubiquitous in biology and several solutions have been proposed in a variety of different contexts. Examples include algorithms to identify cell type–specific gene expression differences in complex tissues [@shen2010cell] or dynamic changes in cell populations [@lu2003expression], or ways to discover the target proteins of small molecules [Jung, 2015].
 
-CMap’s current deconvolution algorithm (called dpeak) is based on the k-means clustering algorithm, which automatically partitions a set of gene-expression measurements into $k$ clusters by minimizing the within-cluster sum of squares, and then assigns the two largest clusters to each gene type within each matched pair of genes. 
+CMap’s current deconvolution algorithm (called dpeak) is based on the k-means clustering algorithm, which is a flexible and powerful non-parametric tool widely used in biology, as well as in many other fields. This approach automatically partitions a set of gene-expression measurements into $k$ clusters by minimizing the within-cluster sum of squares, and then assigns the two largest clusters to each gene type within each matched pair of genes. 
 <!--  of the pair, using additional information about differences in the bead proportions of the genes (within each pair, one gene has a higher proportion of beads than the other). -->
 
 <!-- mean of the largest cluster to the gene in higher proportion and the mean value of the second largest cluster to the gene in lower proportion -->
