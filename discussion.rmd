@@ -1,15 +1,6 @@
 Discussion
 ==========
 
-A major limitation of multianalytes assays is their limited number of available analyte types. 
-In the context of RNA profiling, the CMap group has developed a framework that integrates statistical analysis with traditional multianalyte methods to infer differential expressions for multiple genes from the same analyte type. 
-We report the results of an open innovation competition that impvored upon the state-of-the-art by integrating machine-learning techniques to address the deconvultion problem. 
-
-Multianalite assays enable xxx and yyy, which is great for reason x, y, and z. 
-However, the extent and type of available analyties provides an inherrent limitation to applications based on multianaltyes assays.  To overcome this limitation, CMap developed L1000 an assay that does xxxx. The algorithm D-peak is based on k-means algorithm, a general and flexible tool to conduct non-parametric regression that is very popular in biology, as well as in many other fields. 
-
-The current algorithm works well, but has some limitations. 
-
 Motivated by recent successes in the use of machine learning techniques to do x, y and ,z, we hypothesized that better deconvolution approaches could be developed. To test this hypthesis, we first generated a novel experimental dataset with differential-expression measurements obtained by two different detection methods. The first that involves deconvoltion, which we used as the ground-truth, and another that measures 2 genes per analyte, which was used a training dataset. Then, we run an open innovation competition to enable a cost-effective xxx of the space of possible solutions using these experimental data. We report the results of the this challenge.  
 
 
