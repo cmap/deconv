@@ -58,7 +58,7 @@ Brief Communications include received/accepted dates. They may be accompanied by
 \color{black}
 
 ```{r sections, echo=FALSE}
-childs <- c("intro.rmd", "methods.rmd", "results.rmd", "disc.rmd", "figures.rmd", "supporting.rmd")
+childs <- c("intro.rmd", "methods.rmd", "results.rmd", "discussion.rmd", "figures.rmd", "supporting.rmd")
 ```
 
 ```{r child=childs}
