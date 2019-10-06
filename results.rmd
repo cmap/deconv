@@ -46,7 +46,7 @@ kable(soln_desc[1:9], caption = "\\label{tab:soln_desc}Summary of contestant sol
 
 ## Overall accuracy and speed
 
-We tested the accuracy and speed of the competitors' solutions on the holdout L1000 data obtained by applying the DUO detection method (two genes per bead color) and utilizing as the ground truth the data obtained by employing the UNI detection method (one gene per bead color).
+We tested the accuracy and speed of the competitors' solutions by applying their algorithms to the DUO holdout data (two genes per bead color) and comparing to the equivalent UNI data (one gene per bead color) as ground truth.
 
 *Correlation.*  We computed the gene-level rank correlation with the ground truth for each of the top nine algorithms and the benchmark. Overall, the correlation with the ground truth was high for all the solutions ($\rho$ > `r min(speed_acc$cor)`). All the competitors had a distribution of the genewise rank correlation that was right-shifted compared to the k-means benchmark, indicating more accurate predictions (\Fig{accuracy-fig}). Indeed, the median rank correlation of the competitors that was significantly higher than the equivalent for the benchmark, although the size of the observed improvements was modest (2-3 percentage points). 
 

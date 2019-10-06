@@ -11,7 +11,7 @@ We randomly split the generated data into training, testing, and holdout dataset
 
 <!-- FOOTNOTE: Since the L1000 assay returns gene-expression profiles for 978 genes, we combined data from two plates to match the amount of data produced.  -->
 
-To evaluate submissions, we developed a scoring function that combines standard measures of accuracy based on the distance (e.g., correlation) between the predicted values and the ground truth, as well as computational speed (see Supporting Info, \ref{scoring-function}).
+To evaluate submissions, we developed a scoring function that combines standard measures of accuracy based on the agreement between the predicted values and the ground truth, as well as computational speed (see Supporting Info, \ref{scoring-function}).
 
 The competition run on the platform Topcoder (Wipro, India) for 10 days. A total of $23,000 in cash prizes was offered to competitors as incentive to be divided among the top 9 submissions (prize split: $8000, $6000, $4000, $2000, $1000, $800, $600, $400, $100). 
 
