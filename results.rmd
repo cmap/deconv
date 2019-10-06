@@ -4,6 +4,9 @@ options(digits=2)
 library(data.table)
 library(dplyr, warn=FALSE)
 library(knitr)
+```
+
+```{r datasets, include = FALSE}
 speed_acc <- fread("data/holdout_score_time.txt", na.strings="n/a")
 soln_desc <- fread("data/solution_descriptions.txt", na.strings="n/a")
 speed_acc <- merge(speed_acc, soln_desc, by="handle")
@@ -36,7 +39,6 @@ speed_acc$sec / bench.sec[plate_id]
 The contest attracted 294 participants, who made 820 code submissions with an average of about 18 submissions per participant. The top finishers in the contest employed a variety of different analysis approaches, including descision tree regressors (DTR), Gaussian mixture models (GMM), convolutional neural networks (CNN), and customized versions of k-means, all with notably improved performance relative to the benchmark. Table \ref{tab:soln_desc} lists the top 9 finishers and the languages and algorithms each used.
 
 ```{r soln_desc, echo=F, warning=F}
-# display table of solution description
 soln_desc <- fread("data/solution_descriptions.txt", na.strings = "n/a")
 setnames(soln_desc, "method_short", "category")
 kable(soln_desc[1:9], caption = "\\label{tab:soln_desc}Summary of contestant solutions")
@@ -44,15 +46,16 @@ kable(soln_desc[1:9], caption = "\\label{tab:soln_desc}Summary of contestant sol
 
 <!--  Fig. 1. Participation stats (Submission counts) -->
 
-## Overall accuracy and speed
+## Accuracy and speed
 
-We tested the accuracy and speed of the competitors' solutions on the holdout L1000 data obtained by applying the DUO detection method (two genes per bead color) and utilizing as the ground truth the data obtained by employing the UNI detection method (one gene per bead color).
+We tested the accuracy and speed of the competitors' solutions on the holdout L1000 data obtained by applying the DUO detection method (two genes per bead color) and utilizing the data obtained by employing the UNI detection method (one gene per bead color) as the ground truth.
 
-*Correlation.*  We computed the gene-level rank correlation with the ground truth for each of the top nine algorithms and the benchmark. Overall, the correlation with the ground truth was high for all the solutions ($\rho$ > `r min(speed_acc$cor)`). All the competitors had a distribution of the genewise rank correlation that was right-shifted compared to the k-means benchmark, indicating more accurate predictions (\Fig{accuracy-fig}). Indeed, the median rank correlation of the competitors that was significantly higher than the equivalent for the benchmark, although the size of the observed improvements was modest (2-3 percentage points). 
+*Correlation.*  The Spearman rank correlations between gene-level expressions of the ground truth and those of each of the top nine algorithms and the benchmark were high overall ($\rho$ > `r min(speed_acc$cor)`). For both shRNA and compound experiments, the empirical distribution of the solutions made by the competitors was right-shifted compared to the k-means benchmark, indicating more accurate predictions (\Fig{accuracy-fig}, A and B); the median Spearman rank correlation of the competitors was significantly higher than the equivalent for the benchmark (\Fig{accuracy-fig}, C and D), although the size of the observed improvements was modest (2-3 percentage points).
 
-*Extreme modulations.* Of particular interest was to test the accuracy of the competitors' solutions on differential expression (DE) values, which are obtained by applying a series of transformations to the data after the deconvolution [see @subramanian2017next for the details].  We focused on the improvements in the detection of, so called, “extreme modulations.” These are genes that notably up- or down-regulated by perturbation and hence exhibit an exceedingly high (or low) DE values relative to a set threshold. Using the Area under the ROC (using UNI detections of extremely modulated genes as the ground-truth), we found that all the competitors achieved a good detection performance (mean AUC = `r round(mean(speed_acc[!handle %in% c("benchmark", "ground-truth")]$auc), 2)`); and, also in this case, we observe modest improvements, from all the competitors' solutions (between xxx and xxx percent). [ADD AND DISCUSS FIGURE / how about moving TSNE results here -- just as a robustness check that no obvious clustering occurs at differential expression level -- meaning quality is ok -- ?]
+*Extreme modulations.* We tested the accuracy of the competitors' solutions on the detection of, so called, “extreme modulations.”  These are genes that are notably up- or down-regulated by perturbation, relative to the absence of perturbagens treatment and, hence, exhibit an exceedingly high (or low) differential expression (DE) values. 
+We obtained the DE values by using a robust z-score procedure (as described by @subramanian2017next) and evaluated the detection accuracy of each solution by computing the corresponding area under the curve (AUC); all the solutions achieved a good detection accuracy (AUC > `r  min(speed_acc$auc)`). Again, the competitors' solutions achieved signicant improvements relative to the benchmark (\Fig{auc}).
 
-<!-- The benchmark achieved a good performance on accuracy (an AUC of `r bench.auc[1]` and `r bench.auc[2]` and a correlation of `r bench.cor[1]` and `r bench.cor[2]` for plate 1 and 2, respectively) with a corresponding runtime of about 4 minutes per plate (`r bench.sec[1]` and `r bench.sec[2]` seconds). All the contestants achieved improvements in the rank correlation over the benchmark mwere modest `r percent(coef(ols.cor), digits=1)`  (95% CI, `r percent(ci[1, "cor"],1)` to `r percent(ci[2, "cor"],1)`) -->
+*Clustering.* Given the variety of methods represented amongst the prize-winning solutions, we sought to assess whether there were notable differences in the predictions generated. Using the holdout dataset, we generated a two-dimensional projection of the $UNI$ ground truth data and $DUO$-derived benchmark and contenstant predictions for both $DECONV$ and $DE$ data using t-distributed stochastic neighbor embedding (t-SNE, @maaten2008visualizing). We observe that in $DECONV$ data the samples primarily cluster by pertubagen type, with the exeption of the ground truth $UNI$ data, which appears distinct from the deconvoluted samples (\Fig{tsne_figure} A and B). Separating the samples by algorithm reveals commonalities in the predictions generated by similar algorithms (\Fig{tsne_figure} C). For example, the decision tree regressor (DTR) algorithms have similar 'footprints' in the projection, as do the k-means and Gaussian mixture model (GMM) algorithms. This suggests that in general similar algorithms generate predictions with similar properties. After the standard transformation to $DE$ data we observe that the t-SNE projection is much more homogenous, indicating that perturbagen type and algorithm-specific affects have been greatly reduced (\Fig{tsne_figure} D). This is reassuring, given that in production mode downstream analysis of this data will be based on $DE$. It also suggests that integrating multiple deconvolution algorithms into an ensemble method might be feasible. 
 
 *Gene knockdowns.* We further tested differences in the probability oof detection of the extreme modulations for knockdown genes (explain). For this comparison, we computed the metric also for the UNI data, and compared performance of...  We observe a high  performance in accuracy. xxx we computed the KD success frequency for each algorithm and the benchmark. This metric is the fraction of the 376 landmark-targeting shRNA experiments in the holdout data for which the predictions met these success criteria. We used the $UNI$ ground-truth data to estimate the maximum achievable KD success frequency, which in this case was 0.8. We observe that all but 2 of the top 9 contestant algorithms achieve a higher KD success frequency than the benchmark solution (\Fig{kd}). These results suggest that the algorithm improvements, as assessed by the accuracy metrics used in the contest, translate to improvements in biologically relevent metrics used in common applications of L1000 data.
 
@@ -73,8 +76,6 @@ Only two submissions (out of nine) a performance that was better in AUC and corr
 
 <!-- Further examination based on the underlying methods used by the top solutions suggests that parametric models, such as mixture models, are both fast and relatively accurate, although non-parametric models, such as regression forests and k-means, tend to be more accurate.  The fastest algorithm was indeed based on a parametric model, i.e., gaussian mixture model, which achieves a good level of accuracy on these data. This solution ranked second overall and achieved the greatest speed improvmenet in both plates. The most accurate algorithm was instead based on a random forest. This solution ranked first overall and achieved the best performance in both AUC and correlation measures, as well as it was among the top three approaches in the KD measure.  -->
 
-
-
 ### Reduction variation across replicate samples
 
 One of the issues with the benchmark k-means solution is that it does little to mitigate the discrepancy in prediction accuracy between the genes measued with high and low bead proportions. 
@@ -86,16 +87,6 @@ Todos:
 - barplot of average variance per algo, showing that winning algo has lowest variance and discrepancy b/w hi/lo bead is minimized
 
 \color{black}
-
-## Clustering submissions
-
-### 2D projection
-
-Given the variety of methods represented amongst the prize-winning solutions, we sought to assess whether there were notable differences in the predictions generated. Using the holdout dataset, we generated a two-dimensional projection of the $UNI$ ground truth data and $DUO$-derived benchmark and contenstant predictions for both $DECONV$ and $DE$ data using t-distributed stochastic neighbor embedding (t-SNE, van der Maaten et al [ref]). Each point represents a single ground truth or predicted sample.
-
-We observe that in $DECONV$ data the samples primarily cluster by pertubagen type, with the exeption of the ground truth $UNI$ data, which appears distinct from the deconvoluted samples (\Fig{tsne_figure} A and B). Separating the samples by algorithm reveals commonalities in the predictions generated by similar algorithms (\Fig{tsne_figure} C). For example, the decision tree regressor (DTR) algorithms have similar 'footprints' in the projection, as do the k-means and Gaussian mixture model (GMM) algorithms. This suggests that in general similar algorithms generate predictions with similar properties.
-
-After the standard transformation to $DE$ data we observe that the t-SNE projection is much more homogenous, indicating that perturbagen type and algorithm-specific affects have been greatly reduced (\Fig{tsne_figure} D). This is reassuring, given that in production mode downstream analysis of this data will be based on $DE$. It also suggests that integrating multiple deconvolution algorithms into an ensemble method might be feasible. 
 
 ### Clustering by gene-Level performance
 
