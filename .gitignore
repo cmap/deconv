@@ -2,7 +2,7 @@
 .Rproj.user
 *.Rproj
 *.log
-*.pdf
+
 *.tex
 *_cache/
 tmp/
