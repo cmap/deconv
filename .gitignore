@@ -3,6 +3,7 @@
 *.Rproj
 *.log
 
+main_files/
 *.tex
 *_cache/
 tmp/
