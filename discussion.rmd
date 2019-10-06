@@ -15,7 +15,17 @@ We built an algorithm that combines the top methods selected by gene based on th
 On the holdout, we found that the ensamble further improved accuracy relative to xxxx.
 
 
-Future work. 
+## Inspection of methods.
+
+- gardn999. This was the winner, who holds a PhD In Physics from the University of Kansas. His solution was a Random Forest based on a total of 60 "features." These features included the actual values (50 variables?) and "various relationships of the averaged quantities in the Barcode, Experiment and Set for which the Pair belongs." The model was training using a total of 10 trees, to improve computational speed. Accuracy could be improved by increasing the number of trees. 
+
+- Ardavel used the EM algorithm for each pair and for a plate-wide distribution of expression and cluster size that is used for adjusted (especially of low-proportion genes); as well as further per-plate per-well adjustements. Find that it is better to do not assume a priory a probability of cluster size (i.e., 2:1 ratio), but it is better to estimate it from the data. Found many 3 peaked. Realized that plate-wide information was crucial to improve the solution, indicating where to swap the peaks and indicate false peaks. 
+
+- mkgenious used basic k-means tools tailered to the data to increase speed and accuracy. In other words, this was a fine-tuned implementation of the benchmark. 
+
+- Ramsez2  focused on the prediction of extreme modulations using as input 32bins histogram of the measurements for each pair. Neural Net predicts low and high values separately (2 subnetworks same architecture but trained separately). See figure. Used MSE loss and cross-entropy with Adam optmizer. 
+
+## Future work. 
 
 - We have created a dataset of over 120 shRNA and compound experiments with measurements for about 1000 genes. This dataset constitutes a public resource to all the researchers in this area who are interested in testing their deconvoltuion appproaches. 
 - However, it remains to be seen performance on combining thre or more genes with single analytes. This is future work. 
