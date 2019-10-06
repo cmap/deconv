@@ -1,0 +1,42 @@
+Discussion
+==========
+
+Motivated by recent successes in the use of machine learning techniques to do x, y and ,z, we hypothesized that better deconvolution approaches could be developed. To test this hypthesis, we first generated a novel experimental dataset with differential-expression measurements obtained by two different detection methods. The first that involves deconvoltion, which we used as the ground-truth, and another that measures 2 genes per analyte, which was used a training dataset. Then, we run an open innovation competition to enable a cost-effective xxx of the space of possible solutions using these experimental data. We report the results of the this challenge.  
+
+
+The top three approaches as they emerged from the challenge included different machine-learning methods such as Random Forests, ConvNet, and Gaussian Mixtures. We evaluted these methods on the holdout data. 
+The developed methods achieved significant improvements in accuracy (correlation) of baseline gene expression values, as well as a better performacne in the detection of extremely modulated genes (e.g., xxxx). Compared to the benchmark, these developed methods were more consistent across replicates (a smaller inter-replicate variability), thus leading to more reliable predictions overall. 
+
+We evaluated the computational speed of all the approaches. Overall, we find small speed vs accuracy tradeoff. 
+Parametric methods, such as Gaussian Mixture, achieved 60x speedup compared to the benchmark, without losing on the accuracy. Machine-learning methods, such Random Forest, achieved greater accuracy but were slower. Yet, the ratio of accuracy over speed improvement was relatively small. 
+
+Motivated by the success of ensamble methods, we evaluated possible complementarity between the different approaches. 
+We built an algorithm that combines the top methods selected by gene based on the results on the training data. 
+On the holdout, we found that the ensamble further improved accuracy relative to xxxx.
+
+
+Future work. 
+
+- We have created a dataset of over 120 shRNA and compound experiments with measurements for about 1000 genes. This dataset constitutes a public resource to all the researchers in this area who are interested in testing their deconvoltuion appproaches. 
+- However, it remains to be seen performance on combining thre or more genes with single analytes. This is future work. 
+- Next, we will apply these resutls to over one million experiments  and explore cost svings achieved by having a lower number of replicates
+
+
+
+## Older notes 
+
+Summary of the results presented in the methods section. 
+
+Discussion generality of the solutions
+
+- Novel? Have any of these solutions previously been applied to deconvolution problems?
+- Specific to this problem or general to others?
+
+Discuss implications of these methods for CMap production
+
+- Preliminary results on past data conversion
+- Directions for pipeline integration and generation of future data
+- Cost savings
+- Implementation strategy and outcomes
+- Increase in data processing throughput
+
