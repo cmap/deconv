@@ -91,6 +91,49 @@ panel (ds_cor@mat[, 1:10]  - ds_cor@mat[, 4], main = "C. shRNA")
 panel (ds_cor@mat[, 11:20]  - ds_cor@mat[, 14], main = "D. compounds")
 ```
 
+```{r best-genes-by-handle, include = FALSE}
+ds_cor <- parse.gctx("data/UNI_DUO_gene_spearman_correlations_holdout_n20x976.gctx")
+plates <- unique(ds_cor@cdesc$plate)
+genes <- ds_cor@rdesc$id
+get_best_cor <- function(rid,cid, ds = ds_cor){
+  ds_sub <- subset.gct(ds_cor, rid = rid, cid=cid)
+  j <- order(ds_sub@mat)
+  ds_sub@cdesc$handle[j]
+}
+m <- array(NA, c(length(genes),2,10))
+for (g in 1:length(genes)) {
+  m[g,1,] <- get_best_cor(rid = genes[g], cid=ds_cor@cdesc$plate == plates[1])
+  m[g,2,] <- get_best_cor(rid = genes[g], cid=ds_cor@cdesc$plate == plates[2])
+}
+best_genes_by_handle <- m
+```
+
+```{r plot-best-genes-by-handle, echo = FALSE, fig.width=7.1,fig.height=4,fig.cap=cap}
+cap <- "Distribution of the number of genes swith the highest Spearman rank correlation \
+        overall for each algorithm, as computed on the holdout dataset."
+x1 <- sort(xtabs(~best_genes_by_handle[,1,10]))#dpk
+x2 <- xtabs(~best_genes_by_handle[,2,10])[names(x1)]#litmus
+par(mfrow=c(1,2), mar = c(6, 4, 3, 1)+.1)
+plot(as.numeric(x1), pch = 1, ann = FALSE, axes = FALSE, ylim = range(c(x1,x2)))
+points(as.numeric(x2), pch = 16)
+axis(1, at=1:10,names(x1),las=2)
+axis(2, at=c(0,100,200,300,400))
+box()
+legend("topleft", pch = c(1, 16), c("shRNA","compounds"), cex=.75, bty = "n")
+title(main = "D. first best predictors", ylab =expression(paste("# genes with highest ",rho)))
+# second best
+x1 <- sort(xtabs(~best_genes_by_handle[,1,9]))#dpk
+x2 <- xtabs(~best_genes_by_handle[,2,9])[names(x1)]#litmus
+par(mar = c(6, 4, 3, 1)+.1)
+plot(as.numeric(x1), pch = 1, ann = FALSE, axes = FALSE, ylim = range(c(x1,x2)))
+points(as.numeric(x2), pch = 16)
+axis(1, at=1:10,names(x1),las=2)
+axis(2, at=c(50,100,150))
+box()
+legend("topleft", pch = c(1, 16), c("shRNA","compounds"), cex=.75, bty = "n")
+title(main = "E. second best predictors", ylab =expression(paste("# genes with highest ",rho)))
+```
+
 # KD accuracy & recall 
 
 ```{r kd-comparison, fig.width = 7, fig.cap = cap, echo = FALSE}
