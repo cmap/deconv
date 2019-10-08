@@ -5,6 +5,7 @@
 
 library(data.table)
 library(cmapR)
+library(pROC)
 
 # NB: requires access to Broad FS
 
@@ -64,3 +65,37 @@ ensemble_corr <- cor(t(ensemble_ds@mat), t(gt_ds@mat), method="spearman")
 
 
 # todo - does picking the best algo based on correlation also improve AUC scores?
+# let's check
+
+# de data
+de_ds <- parse.gctx("/cmap/projects/crowdsourcing/contest_03_dpeak/results/DE_all_n24772x976.gctx",
+                    cid=annot[pert_plate=="DPK.CP003"]$id)
+de_ds <- annotate.gct(de_ds, annot, dim="col")
+de_ds_sub <- subset.gct(de_ds, cid=which(de_ds@cdesc$pert_plate=="DPK.CP003"))
+
+algo2ds <- lapply(names(algo2gene), function(x) {
+  tmp <- subset.gct(de_ds_sub, rid=algo2gene[[x]],
+                    cid=which(de_ds_sub@cdesc$handle==x))
+  tmp@cid <- colnames(tmp@mat) <- tmp@cdesc$pert_well
+  tmp@cdesc <- data.frame(id=tmp@cid)
+  tmp
+})
+names(algo2ds) <- names(algo2gene)
+
+ensemble_ds <- Reduce(function(x, y) {
+  merge.gct(x, y, dim="row", matrix_only = T)
+}, algo2ds)
+ensemble_ds@cdesc <- data.frame(id=ensemble_ds@cid)
+
+# save
+write.gctx(ensemble_ds, "data/DPK.CP003_PC3_24H_X1_B42_DE_best_cor_per_gene")
+
+gt_ds <- subset.gct(de_ds, cid=which(de_ds@cdesc$handle=="ground-truth"))
+gt_ds@cid <- colnames(gt_ds@mat) <- gt_ds@cdesc$pert_well
+gt_ds@cdesc <- data.frame(id=gt_ds@cid)
+ensemble_ds <- subset.gct(ensemble_ds, rid=gt_ds@rid, cid=gt_ds@cid)
+
+# compute AUC
+auc_up <- roc(response=as.vector(gt_ds@mat >= 2), predictor=as.vector(ensemble_ds@mat))$auc
+auc_down <- roc(response=as.vector(gt_ds@mat <= -2), predictor=as.vector(ensemble_ds@mat))$auc
+auc_avg <- mean(c(auc_up, auc_down))
