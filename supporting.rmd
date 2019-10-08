@@ -33,6 +33,17 @@ annot %>%
   knitr::kable()
 ```
 
+## S3 Table {-}
+
+**Top finishers.**  This table lists the top 9 finishers and the languages and algorithms each used.
+
+```{r soln_desc, echo=F, warning=F}
+library(data.table)
+soln_desc <- fread("data/solution_descriptions.txt", na.strings = "n/a")
+setnames(soln_desc, "method_short", "category")
+knitr::kable(soln_desc[1:9], caption = "\\label{tab:soln_desc}Summary of contestant solutions")
+```
+
 ## S1 Appendix {-}
 
 **Scoring function.** This appendix describes the scoring function used in the contest to evaluate the performance of the competitors' submissions.
