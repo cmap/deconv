@@ -36,10 +36,10 @@ speed_acc$sec / bench.sec[plate_id]
 
 The contest attracted 294 participants, who made 820 code submissions with an average of about 18 submissions per participant. The top finishers in the contest employed a variety of different analysis approaches, including descision tree regressors (DTR), Gaussian mixture models (GMM), convolutional neural networks (CNN), and customized versions of k-means, all with notably improved performance relative to the benchmark (\nameref{s3-table} provides descriptives of the approaches used by the top finishers).
 
-The winning approach, developed by `gardn999`, was a random forest algorithm that combined the predictions of 10 different trees. Each tree was trained using 60 different features of the data. These features included the actual distribution of the values for each bead type (binned into 50 different variables), as well as various plate- and experiment-level variables for which the data point belongs. 
+The winning approach (`gardn999`) was a random forest algorithm that combined the predictions of 10 different trees. Each tree was trained using 60 different features of the data. These features included the actual distribution of the values for each bead type (binned into 50 different variables), as well as various plate- and experiment-level variables for which the data point belongs. 
 
-The second best appraoach, 
-
+The second best approach (`Ardavel`) was a em xxx . 
+ 
 <!--  Fig. 1. Participation stats (Submission counts) -->
 
 ## Accuracy and speed

@@ -42,7 +42,8 @@ header-includes:
 
 
 ```{r sections, include = FALSE}
-childs <- c("instructions.rmd", "intro.rmd", "methods.rmd"
+# "instructions.rmd" 
+childs <- c("intro.rmd", "methods.rmd"
           , "results.rmd", "discussion.rmd", "figures.rmd", "supporting.rmd")
 ```
 
