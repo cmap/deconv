@@ -1,19 +1,24 @@
 Methods
 ========
 
+We run the competition on the platform Topcoder (Wipro, India) for a total of 10 days. A prize purse of $23,000 in cash was offered to competitors as incentive to be divided among the top 9 submissions ($8000, $6000, $4000, $2000, $1000, $800, $600, $400, $100).
+
+To generate data for this contest, we profiled six 384-well perturbagen plates, each containing mutually exclusive sets of compound and short-hairpin (shRNA) treatments (see \nameref{s1-table.} and \nameref{s2-table.} for a complete list of the perturbagens). Multiple treatment types were used to avoid potentially over-fitting to any one. The compound and shRNA perturbagen plates were arbitrarily grouped into pairs, and to avoid any potential 'information leakage' each pair was profiled in a different cell line. The resulting lysates were amplified by Ligation Mediated Amplification (LMA, @subramanian2017next). The amplicon was then split and detected in both $UNI$ and $DUO$ detection modes. 
+
+We randomly split the three pairs of data, as described above, into training, testing, and holdout subsets. The training data were available for all the contestants to develop and validate their solutions offline. The testing data were used to evaluate solutions during the contest and populate the live leaderboard. The holdout data were used to evaluate competitors' final submissions and guard against over-fitting. (Prizes were awarded based on performance on the holdout dataset.) In each category, the $UNI$ data served as the ground truth. 
+<!--   -->
+
+<!-- The datasets used for this contest are publicly available (Supporting Info, XXXX).  -->
+
+To evaluate the submissions, we developed a scoring function based on a combination of two different accuracy metrics, such as the Spearman rank correlation between the values and the ground truth and the area under the curve (AUC) as a  measure of aggregated classification performance in the prediction of extreme modulated genes in the UNI dataset using DUO as input. The scoring function also included the computational speed. (See \nameref{s1-appendix} for the details.)
+
+<!-- 
 Towards developing an open innovation competition, we first transformed the deconvolution problem into a supervised classification task. Using the L1000 assay, we profiled six 384-well plates, each containing different sets of compound and shRNA treatments (see Supporting Info, \ref{data-gen}). The same samples were detected using two different methods. The first method, called UNI, associates each gene to one single bead color, which leads to higher costs, but does not require deconvolution.
 The second method, called DUO, meaures two different genes on the same bead color, which reduces costs but requires deconvolution to transform the composite signal into two separate gene-specific expression values.
 We then used the data obtained from the UNI method (one gene per bead color) as the "ground truth" for the competition; and the data obtained from the DUO method (two genes per bead color) as the input to predict the equivalent UNI data. The datasets are now publicly available [LINK to REPO]. 
 
+ -->
 <!-- To do so, the genes are mixed in 1:2 ratio so that the composite signal should have two peaks: a bigger peak for the cluster to the gene for which a larger proportion of beads are present, and a smaller peak representing the other gene.  -->
-
-We randomly split the generated data into training, testing, and holdout datasets of equal size (2 plates each). All the contestants had access to the training data to develop and their solutions offline. The testing data were used to evaluate solutions during the contest and populate the live leaderboard. Holdout data were used to evaluate competitors’ final submissions and guard against over-fitting. Prizes were awarded based on performance on the holdout dataset. 
-
-<!-- FOOTNOTE: Since the L1000 assay returns gene-expression profiles for 978 genes, we combined data from two plates to match the amount of data produced.  -->
-
-To evaluate submissions, we developed a scoring function that combines standard measures of accuracy based on the agreement between the predicted values and the ground truth, as well as computational speed (see Supporting Info, \ref{scoring-function}).
-
-The competition run on the platform Topcoder (Wipro, India) for 10 days. A total of $23,000 in cash prizes was offered to competitors as incentive to be divided among the top 9 submissions (prize split: $8000, $6000, $4000, $2000, $1000, $800, $600, $400, $100). 
 
 <!-- (spearman rank correlation between algorithmic predictions and the ground-truth data, and AUC between extreme-modulations predicted based on DUO data and observed extreme modulations in UNI data) -->
 
@@ -50,6 +55,3 @@ For the $DUO$ detection method, the gene-specific proportions are such that each
 <!-- from problem statement
 Each measurement produces an intensity histogram (a list of integers), which characterizes expression of two distinct genes in the sample (for a total of 488 x 2 = 976 genes). In the ideal case, each histogram consists of two peaks (see Figure 1), each corresponding to a single gene. The genes are mixed in 2:1 ratio, thus the areas under the peaks have 2:1 ratio, which allows us to associate each peak with the specific gene. The median position of each peak corresponds to the gene's expression level, and that's what you need to determine in this challenge.
 -->
-
-
-

@@ -1,3 +1,5 @@
+\pagenumbering{gobble}
+
 # Figures
 
 ```{r plot-setup-and-libraries, include = FALSE}
@@ -47,31 +49,26 @@ speed_acc <- merge(speed_acc, soln_desc, by="handle")
 ```
 
 
- ## Median difference  
+ ## Spearman rank correlation
 
-```{r accuracy-fig, fig.cap = cap, echo = FALSE, fig.width = 7, fig.height = 7, cache = TRUE}
+```{r accuracy-fig, fig.cap = cap, echo = FALSE, fig.width = 7, fig.height = 8.5, cache = TRUE}
 cap <- "\\label{fig:accuracy-fig}**Accuracy.** \
           Top panels show empirical CDF of the distribution of the genewise spearman correlation ($\\rho$) \
           between the ground-truth gene-expressions (as detected by UNI) and \
-          predictions obtained by the competitors and the benchmark through the deconvolution of DUO data, \
-          for the subset of the shRNA (**A.**) and compounds experiments (**B.**). \
-          The competitors' eCDFs are right-shifted compared to the benchmark, \
+          predictions obtained by the competitors and the benchmark through the deconvolution of DUO data \
+          for the subset of shRNA (**A**) and compound experiments (**B**). \
+          The competitors' CDFs are right-shifted compared to the benchmark, \
           indicating more accurate predictions. \
-          Bottom panels show box plots  of the distribution of the genewise difference in spearman correlation \
-          of the gene-expression values obtained by the competitors and the benchmark \
-          through the deconvolution of DUO data (outliers excluded), \
-          for the shRNA experimetns (**C.**) and the compound experiments (**D.**).\
-          Results show the median size of the accuracy improvements was modest, \
-          ranging between 2 and 3 percentage points."
+          Middle panels show the sample mean of the correlation coefficients ($\\bar\\rho$) \
+          with 95% confidence intervals for the shRNA (**C**) and compound experiments (**D**).\
+          The competitors (x-axis) are ordered by their final ranking in the contest.\
+          Compared to the benchmark, the mean correlation was significantly higher for nearly all top competitors.\
+          Bottom panels show the number of genes with the highest Spearman rank correlation for each algorithm.\
+          The combination of the top two ranked solutions (gardn999 and Ardavel) achieved \
+          the highest correlation in more than half of the genes in both experiments (**E** and **F**)."
 ds_cor <- parse.gctx("data/UNI_DUO_gene_spearman_correlations_holdout_n20x976.gctx")
-
-panel <- function(x, ...) {
-  x <- x[, order(apply(x, 2, median))]
-  txt <- gsub(".*:", "", colnames(x))
-  b <- boxplot(x, outline = F, names = txt, las = 2, notch = T, lty=1, ...)
-  grid(nx=NA, ny=NULL, col = gray(.25))
-  boxplot(x, outline = F, names = txt, las = 2, notch = T, lty=1, add=T, col = rgb(1, .5, 0, .5), ...)
-}
+plates <- unique(ds_cor@cdesc$plate)
+handles <- unique(ds_cor@cdesc$handle)
 panel.bottom <- function(x, ...) {
   plot(NA, NA, ann = FALSE, axes = FALSE, xlim = c(0, 1), ylim = c(0, 1))
   ecdf.list <- apply(x, 2, function(x) ecdf(ifelse(x<0,0,x)))
@@ -83,56 +80,55 @@ panel.bottom <- function(x, ...) {
   legend("topleft", lty=1, col = c("brown", gray(.75)), c("benchmark", "competitors"), bty = "n")
   title(...)
 }
-par(mfrow = c(2, 2), mar = c(4, 3, 2, 1) + 0.1)
-panel.bottom (ds_cor@mat[, 1:10], main = "A. shRNA", xlab = expression(rho))
-panel.bottom (ds_cor@mat[, 11:20], main = "B. compounds", xlab = expression(rho))
-par(mar = c(6, 3, 2, 1) + 0.1)
-panel (ds_cor@mat[, 1:10]  - ds_cor@mat[, 4], main = "C. shRNA")
-panel (ds_cor@mat[, 11:20]  - ds_cor@mat[, 14], main = "D. compounds")
+par(mfrow = c(3, 2), mar = c(4, 4, 2, 1) + 0.1)
+# top panel
+panel.bottom (ds_cor@mat[, 1:10], main = "A. shRNAs", xlab = expression(rho), ylab = expression(F(rho)))
+panel.bottom (ds_cor@mat[, 11:20], main = "B. compounds", xlab = expression(rho)
+  , ylab = expression(F(rho)))
+# middle panel
+par(mar = c(6, 4, 2, 1) + 0.1)
+rank.order <- unique(speed_acc[, c("rank", "handle")]) %>% arrange(rank) %>% pull(handle)
+k <- c(4, 8, 3, 9, 10, 1, 7, 2, 6, 5)
+for (p in plates) {
+  ds_sub <- subset.gct(ds_cor, cid = ds_cor@cdesc$plate == p)
+  n <- ncol(ds_sub@mat)
+  mean.cor <- apply(ds_sub@mat, 2, mean)
+  se.cor <- apply(ds_sub@mat, 2, function(x) sqrt(var(x)/length(x)))
+  hi.cor <- mean.cor + se.cor
+  lo.cor <- mean.cor - se.cor
+  hi.cor.long <- mean.cor + 2*se.cor
+  lo.cor.long <- mean.cor - 2*se.cor
+  k <- match(rank.order, gsub(".*:", "", names(mean.cor)))
+  COL <- c("orange")
+  plot(NA, NA, xlim = c(1,n), ylim = range(c(1.02*hi.cor.long,0.98*lo.cor.long)), axes = FALSE, ann = FALSE)
+#   segments(x0=1:n, y0 = hi.cor[k], y1 = lo.cor[k], lwd = 3, col = COL)
+  arrows(x0=1:n, y0 = hi.cor.long[k], y1 = lo.cor.long[k], code = 3, angle = 90, length = 0.05, col = COL)
+  points(x = 1:n, y = mean.cor[k], pch = 19, col = COL)
+  axis(1, at =1:n, ds_sub@cdesc$handle[k], las=2)
+  axis(2, at = range(mean.cor), format(range(mean.cor), digits = 2))
+  abline(h = mean.cor[k[10]], lty = 3, col = gray(.75))
+  box()
+  title(main = ifelse(grepl("DPK", p), "C. shRNAs", "D. compounds")
+      , ylab = expression(bar(rho)))
+  legend ("topright", col = c(COL, gray(.75)), lty = c(1, 3), c("95% CI", "benchmark"), bty = "n")
+}
+# bottom panel 
+for (p in plates) {
+  ds_sub <- subset.gct(ds_cor, cid = ds_cor@cdesc$plate == p)
+  best <- apply(ds_sub@mat, 1, which.max)
+  best.count <- table(best)
+  names(best.count) <- ds_sub@cdesc$handle
+  k <- match(rank.order, gsub(".*:", "", names(best.count)))
+  b <- barplot(best.count[k], border = NA, las = 2, ylim = c(0, 380), col = rgb(0,0,1, 0.65), yaxt = "n")
+  txt <- paste0(format(100*best.count[k]/sum(best.count), digits = 0),"%")
+  axis(2, at = c(0, 100, 200, 300))
+  text(x = b, y = best.count[k],txt, pos=3)
+  box()
+  title(main = ifelse(grepl("DPK", p), "E. shRNAs", "F. compounds"), ylab = "# genes")
+}
+
 ```
 
-```{r best-genes-by-handle, include = FALSE}
-ds_cor <- parse.gctx("data/UNI_DUO_gene_spearman_correlations_holdout_n20x976.gctx")
-plates <- unique(ds_cor@cdesc$plate)
-genes <- ds_cor@rdesc$id
-get_best_cor <- function(rid,cid, ds = ds_cor){
-  ds_sub <- subset.gct(ds_cor, rid = rid, cid=cid)
-  j <- order(ds_sub@mat)
-  ds_sub@cdesc$handle[j]
-}
-m <- array(NA, c(length(genes),2,10))
-for (g in 1:length(genes)) {
-  m[g,1,] <- get_best_cor(rid = genes[g], cid=ds_cor@cdesc$plate == plates[1])
-  m[g,2,] <- get_best_cor(rid = genes[g], cid=ds_cor@cdesc$plate == plates[2])
-}
-best_genes_by_handle <- m
-```
-
-```{r plot-best-genes-by-handle, echo = FALSE, fig.width=7.1,fig.height=4,fig.cap=cap}
-cap <- "Distribution of the number of genes swith the highest Spearman rank correlation \
-        overall for each algorithm, as computed on the holdout dataset."
-x1 <- sort(xtabs(~best_genes_by_handle[,1,10]))#dpk
-x2 <- xtabs(~best_genes_by_handle[,2,10])[names(x1)]#litmus
-par(mfrow=c(1,2), mar = c(6, 4, 3, 1)+.1)
-plot(as.numeric(x1), pch = 1, ann = FALSE, axes = FALSE, ylim = range(c(x1,x2)))
-points(as.numeric(x2), pch = 16)
-axis(1, at=1:10,names(x1),las=2)
-axis(2, at=c(0,100,200,300,400))
-box()
-legend("topleft", pch = c(1, 16), c("shRNA","compounds"), cex=.75, bty = "n")
-title(main = "D. first best predictors", ylab =expression(paste("# genes with highest ",rho)))
-# second best
-x1 <- sort(xtabs(~best_genes_by_handle[,1,9]))#dpk
-x2 <- xtabs(~best_genes_by_handle[,2,9])[names(x1)]#litmus
-par(mar = c(6, 4, 3, 1)+.1)
-plot(as.numeric(x1), pch = 1, ann = FALSE, axes = FALSE, ylim = range(c(x1,x2)))
-points(as.numeric(x2), pch = 16)
-axis(1, at=1:10,names(x1),las=2)
-axis(2, at=c(50,100,150))
-box()
-legend("topleft", pch = c(1, 16), c("shRNA","compounds"), cex=.75, bty = "n")
-title(main = "E. second best predictors", ylab =expression(paste("# genes with highest ",rho)))
-```
 
 # KD accuracy & recall 
 
@@ -153,7 +149,6 @@ axis(2, at = c(0, 0.05, 0.1))
 box()
 title("Precision*")
 ```
-
 
 ## Inter-replicate variance 
 
