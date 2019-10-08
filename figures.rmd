@@ -1,4 +1,3 @@
-
 \pagenumbering{gobble}
 
 # Figures
@@ -50,7 +49,7 @@ speed_acc <- merge(speed_acc, soln_desc, by="handle")
 ```
 
 
- ## Median difference  
+ ## Spearman rank correlation
 
 ```{r accuracy-fig, fig.cap = cap, echo = FALSE, fig.width = 7, fig.height = 8.5, cache = TRUE}
 cap <- "\\label{fig:accuracy-fig}**Accuracy.** \
@@ -150,7 +149,6 @@ axis(2, at = c(0, 0.05, 0.1))
 box()
 title("Precision*")
 ```
-
 
 ## Inter-replicate variance 
 
