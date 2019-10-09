@@ -34,12 +34,21 @@ speed_acc$sec / bench.sec[plate_id]
 
 # Results
 
-The contest attracted 294 participants, who made 820 code submissions with an average of about 18 submissions per participant. The top finishers in the contest employed a variety of different analysis approaches, including descision tree regressors (DTR), Gaussian mixture models (GMM), convolutional neural networks (CNN), and customized versions of k-means, all with notably improved performance relative to the benchmark (\nameref{s3-table} provides descriptives of the approaches used by the top finishers).
+The contest attracted 294 participants, who made 820 code submissions with an average of about 18 submissions per participant. The top finishers in the contest employed a variety of different analysis approaches, including descision tree regressors (DTR), Gaussian mixture models (GMM), convolutional neural networks (CNN), and customized versions of k-means, all with notably improved performance relative to the benchmark (\nameref{s3-table} provides descriptives of the best solutions). The top four solutions are outlined below. 
 
-The winning approach (`gardn999`) was a random forest algorithm that combined the predictions of 10 different trees. Each tree was trained using 60 different features of the data. These features included the actual distribution of the values for each bead type (binned into 50 different variables), as well as various plate- and experiment-level variables for which the data point belongs. 
+The winning approach (developed by `gardn999`, a competitor from the United States with a degree in Physics from the University of Kansas) was a random forest algorithm that combined the predictions of 10 different trees. Each tree was trained using 60 different features of the data. These features included the actual data of the distribution of the measurements for each bead type (binned into 50 different variables), as well as various plate- and experiment-level variables for which the data point belongs. 
 
-The second best approach (`Ardavel`) was a em xxx . 
+The second best approach (developed by `Ardavel`, a competitor from Poland with a Master degree in Computer Science from The Lodz University of Technology) was based on a several steps. First, the algorithm identifies two clusters using the Expectation-Maximization method, assuming the presence of two lognormal distributions. Then, it fits a plate-wide distribution with respect to the estimated expressions and cluster sizes for each gene; adjusts the assignment of peaks to the low- and high-proportion genes; and, finally, uses a combination of per-well and plate-wide data to further refine the result (merging the estimated clusters and finding new ones that could have been omitted).
+
+The third best approach (developed by `mkagenius`, a competitor from India with a bachelor degree in Computer Science) was based on standard k-means algorithm, with fine adjustments to avoid local minima, minimize the impact of outliers, and improve speed.
  
+Finally, the fourth best approach (developed by `Ramzes2`, a competitor from Ukraine with a bachelor in Computer Science from the Cherkasy National University) was based on a Convolutional Neural Network. 
+
+> As the input for the neural network, I used 32 bins histogram of the measured values  (fitlered in some way). 
+The neural network contains 2 parts. The first part is the classic U-net architecture [need ref.] with the depth 3. (transforming histogram and then reconstructuing ... ). The output of this network is then used to 
+The output of this network is used for predicting low and high values separately using 
+two subnetworks with the same architecture but weights are trained separately. Two outputs: bins classification which bin is high/low? prediction of exact value shift if gene located in this exact bin (32 values from 0 to 1) - trained to predict the accurate location of the gene inside bin for the correct bin, 0 for all bins to the right, 1 for all bins to the left from the correct bin. Having ...prediction of exact value shift if gene located in this exact bin (32 values from 0 to 1) - trained to predict the accurate location of the gene inside bin for the correct bin, 0 for all bins to the right, 1 for all bins to the left from the correct bin. Trained with MSE loss using Adam. 
+  
 <!--  Fig. 1. Participation stats (Submission counts) -->
 
 ## Accuracy and speed
