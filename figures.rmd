@@ -2,7 +2,7 @@
 
 # Figures
 
-```{r plot-setup-and-libraries, include = FALSE}
+```{r setup-and-libraries, include = FALSE}
 library(data.table)
 library(ggplot2)
 library(ggrepel)
@@ -12,9 +12,8 @@ library(dplyr, warn=F)
 ```
 
 ## Scoring accuracy
-![**Schematic illustrating accuracy components of scoring function**. The accuracy component is computed as the product of gene-wise Spearman correlations with ground truth and the area under the curve AUC of extreme modulations.](figures/deconvolution_contest Fig2_Final_revised.png)
 
-## Accuracy vs. Speed
+![**Schematic illustrating accuracy components of scoring function**. The accuracy component is computed as the product of gene-wise Spearman correlations with ground truth and the area under the curve AUC of extreme modulations.](figures/deconvolution_contest Fig2_Final_revised.png)
 
 ```{r acc-vs-speed-data, include = FALSE}
 speed_acc <- fread("data/holdout_score_time.txt", na.strings="n/a")
@@ -22,32 +21,7 @@ soln_desc <- fread("data/solution_descriptions.txt", na.strings="n/a")
 speed_acc <- merge(speed_acc, soln_desc, by="handle")
 ```
 
-```{r, echo=FALSE}
-# compute composite accuracy
-# in contest, aggregate score was computed as:
-# SCORE = MAX_SCORE * (MAX(CORp, 0))2 * AUCp2 * exp(- Tsolution / (3 * Tbenchmark) )
-# speed_acc[, acc := cor^2 * auc^2]
-```
-
-```{r speed_acc, include=FALSE}
-# plot
-# let's just show one plate for now
-# levs <- c("DTR", "GMM", "k-means", "CNN", "other")
-# speed_acc$method_short <- factor(speed_acc$method_short,
-#                                  levels=levs)
-# ggplot(speed_acc[grepl("^DPK", plate)],
-#        aes(x=sec, y=acc, label=rank)) +
-#   geom_point(aes(color=method_short), size=2) +
-#   geom_text_repel() +
-#   scale_color_discrete(name="Method class") +
-#   xlab("Time (seconds)") +
-#   ylab("Accuracy") +
-#   theme_classic() +
-#   ggtitle("Accuracy vs. Speed")
-```
-
-
- ## Spearman rank correlation
+## Spearman rank correlation
 
 ```{r accuracy-fig, fig.cap = cap, echo = FALSE, fig.width = 7, fig.height = 8.5, cache = TRUE}
 cap <- "\\label{fig:accuracy-fig}**Accuracy.** \
@@ -128,14 +102,11 @@ for (p in plates) {
 
 ## AUC plots 
 
-```{r, include = FALSE}
+```{r setup-auc, include = FALSE}
 library(cmapR)
 ds_gardn999_auc <- parse.gctx("data/DPK.CP003_PC3_24H_X1_B42_DE_gardn999.gct")
 ds_uni_auc <- parse.gctx("data/DPK.CP003_PC3_24H_X1_B42_DE_UNI.gct")
 ds_bench_auc <- parse.gctx("data/DPK.CP003_PC3_24H_X1_B42_DE_benchmark.gct")
-```
-
-```{r compute-auc, include = FALSE}
 comp_roc <- function(ds_uni, ds_duo, type = c("high", "low")) {
   require(pROC)
   y <- switch(type
@@ -145,14 +116,23 @@ comp_roc <- function(ds_uni, ds_duo, type = c("high", "low")) {
   x <- as.vector(ds_duo@mat)
   pROC::roc(y,x, smoothed = TRUE)
 }
-# high <- comp_roc(ds_uni_auc, ds_gardn999_auc, type = "high")
-# low <- comp_roc(ds_uni_auc, ds_gardn999_auc, type = "low")
-# high.bench <- comp_roc(ds_uni_auc, ds_bench_auc, type = "high")
-# low.bench <- comp_roc(ds_uni_auc, ds_bench_auc, type = "low")
 ```
 
+
 ```{r auc-plots, cache = TRUE, echo = FALSE, fig.width = 7.1, fig.height = 7, fig.cap = cap}
-cap <- "ROC, AUC and KD detection."
+cap <- "\\label{fig:auc}**AUC.** Top panels show the receiver-operator characteristic (ROC) curves \
+        for the levels of (**A**) up- and (**B**) down-regulated genes (based on UNI data) \
+        detected by the top competitor and the benchmark. The winner's ROC curve is higher \
+        compared to the one of the benchmark, indicating a more accurate detection.\
+        Curves based on random subsamples of 200 genes are used to visualize uncertainty around \
+        the ROC curves based on all the 976 genes.\
+        Panel **C** shows the difference in AUC, area under the curve, values between \
+        the benchmark and each of the sumbmissions, stratified by experiment type.\
+        Panel **D** shows the levels of recall (true positive rate) and precision \
+        for the detection of knockdown genes in the shRNA experiments. \
+        All top solutions exhibit higher precision and recall compared to the benchmark. \
+        (Note that the very low level precision of the algorithms should raise no concerns because \
+          the count of false positive is likely inflated by possible downstream effects of the knockdown)."
 # Plot params
 par(mfrow = c(2, 2), mar = c(4, 4, 3, 2) + 0.1)
 n.rep <- 20
@@ -230,28 +210,11 @@ with(speed_acc, abline(h = kd_success_freq[handle=="benchmark"], col = gray(.75)
 title(main = "D. Knockdown detection", xlab = "precision (TP/TP+FP)", ylab = "recall (TP/TP+FN)")
 ```
 
-
-```{r kd-comparison, include = FALSE}
-cap <- "\\label{fig:kd}**Gene knockdown.** Precision and fraction of gene knockdown recalled by each algorithm. \
-          Precision is low because ... "
-kd.sorted <- sort(with(speed_acc, tapply(kd_success_freq, handle, mean, na.rm=T)))
-kd_precision.sort <- sort(with(speed_acc, tapply(kd_precision, handle, mean, na.rm=T)))
-par(mfrow = c(1, 2), mar = c(6, 4, 3, 1)+.1)
-plot(kd.sorted, ann = FALSE, axes = FALSE, ylim = c(0.5, 1), pch = 19)
-axis(1, at = 1:length(kd.sorted), names(kd.sorted), las = 2)
-axis(2, at = c(0, 0.5, 0.75, 1))
-box()
-title("Recall")
-plot(kd_precision.sort, ann = FALSE, axes = FALSE, ylim = c(0, 0.1), pch = 19)
-axis(1, at = 1:length(kd_precision.sort), names(kd_precision.sort), las = 2)
-axis(2, at = c(0, 0.05, 0.1))
-box()
-title("Precision*")
-```
+\clearpage 
 
 ## Inter-replicate variance 
 
-```{r, include = FALSE}
+```{r variance-setup, include = FALSE}
 (ds <- parse.gctx("data/DECONV_holdout_n8228x976.gctx"))
 annot <- fread("data/holdout_sample_annotations.txt")
 gene_annot <- fread("data/barcode_to_gene_map.txt", colClasses = c("gene_id"="character"))
@@ -259,7 +222,7 @@ ds <- annotate.gct(ds, annot, dim="col", keyfield="id")
 ds <- annotate.gct(ds, gene_annot, dim="row", keyfield="gene_id")
 ```
 
-```{r comp-mean-var, include = FALSE, cache = TRUE}
+```{r compute-variance, include = FALSE, cache = TRUE}
 handles <- unique(ds@cdesc$handle)
 perts <- unique(ds@cdesc$pert_id)
 gene_id <- ds@rdesc$gene_id
@@ -285,10 +248,15 @@ out <- mclapply(handles, function(h) {
 names(out) <- handles
 ```
 
-## Variance by experiments 
-
-```{r var-ratio, fig.width=7, fig.cap=cap, echo = FALSE}
-cap <- "\\label{fig:inter-replicate-variance}Inter-replicate variance."
+```{r variance-ratio, fig.width=7, fig.height = 3.5, fig.cap=cap, echo = FALSE}
+cap <- "\\label{fig:inter-replicate-variance} Figure shows empirical CDF of the distribution \
+        of the sample variance ($s^2$) of the logarithm of the gene values \
+        for each combination of gene and perturbagen.\
+        The gene-perturbagen variance is based on a sample that ranges between 4 to 11 replicates\
+         of the same perturbagen experiment on a given plate.\
+         Data are then stratified for genes with (**A**) high and (**B**) low bead proportions.\
+         The CDF of the benchmark is on the right, indicating higher inter-replicate variance compared to the \
+         distribution of the competitors."
 panel <- function(x, margin = 1, ...) {
   y <- apply(x, margin, mean)
   lines(ecdf(y), pch = "", ...)
@@ -296,20 +264,19 @@ panel <- function(x, margin = 1, ...) {
   axis(2, at = c(0, 0.5, 1))
   box()
 }
-par( mfrow = c(1, 2))
+par( mfrow = c(1, 2), mar = c(4,4,3,2) + .2)
 plot(NA, NA, xlim = c(0, .1), ylim = c(0, 1), ann = FALSE, axes = FALSE)
 for (j in names(out)){
   panel(out[[j]]$var[high, ], col = gray(.75))
   panel(out[["benchmark"]]$var[high, ], col = "brown", lwd = 2)
-#   panel(out[["ground-truth"]]$var[high, ], col = "orange", lwd = 2)
-  title(main = "High bead proportion")
+  title(main = "A. high bead prop.", xlab = expression("s" ^2), ylab = expression(paste("F(s" ^2, ")")))
+  legend("bottomright", lty=1, col=c("brown", gray(.75)), c("benchmark", "competitors"), bty = "n")
 }
 plot(NA, NA, xlim = c(0, .1), ylim = c(0, 1), ann = FALSE, axes = FALSE)
 for (j in names(out)){
   panel(out[[j]]$var[!high, ], col = gray(.75))
   panel(out[["benchmark"]]$var[!high, ], col = "brown", lwd = 2)
-#   panel(out[["ground-truth"]]$var[!high, ], col = "orange", lwd = 2)
-  title(main = "Low bead proportion")
+  title(main = "B. low bead prop.", xlab = expression("s" ^2), ylab = expression(paste("F(s" ^2, ")")))
   legend("bottomright", lty=1, col=c("brown", gray(.75)), c("benchmark", "competitors"), bty = "n")
 }
 ```
@@ -319,6 +286,9 @@ impute <- function(x, value) ifelse(is.na(x), value, x)
 n <- nrow(speed_acc)
 attach(speed_acc)
 ```
+
+
+\clearpage 
 
 # Runtime and speedups 
 
@@ -344,6 +314,7 @@ axis(1, at = 1:10, levels(handle_f), las=2)
 legend("topright", pch = c(1, 16), c("shRNA","compounds"), cex=.75, bty = "n")
 ```
 
+\clearpage 
 
 ## Clustering of solutions
 
@@ -442,34 +413,9 @@ cowplot::plot_grid(p_deconv_color_type,
                    labels=LETTERS[1:4])
 ```
 
-
  
 
-## Complementarity
-
-```{r best_algo_per_gene_bar, include = FALSE}
-corr_ds <- parse.gctx("data/UNI_DUO_gene_spearman_correlations_holdout_n20x976.gctx")
-plates <- unique(corr_ds@cdesc$plate)
-par(mar=c(8, 4, 4, 2)+0.1, mfrow=c(1, 2))
-for (p in plates) {
-  this_ds <- subset.gct(corr_ds, cid=which(corr_ds@cdesc$plate==p &
-                                             corr_ds@cdesc$handle != "ground-truth"))
-  best_idx <- apply(this_ds@mat, 1, which.max)
-  tbl <- table(this_ds@cdesc$handle[best_idx])
-  tbl <- sort(tbl, decreasing = F)
-  maxval <- max(tbl)
-  offset_factor <- 0.1
-  offset <- offset_factor * maxval
-  cols <- rep("gray", length(tbl))
-  cols[names(tbl)=="benchmark"] <- "red"
-  bp <- barplot(tbl, las=3, col=cols,
-           ylab="Number of genes",
-           main=ifelse(grepl("^DPK", p), "compounds", "shRNA"),
-           ylim=c(0, maxval + (2 * offset)))
-  text(bp, tbl + offset, labels=tbl, col="red")
-}
-```
-
+\clearpage 
 
 ## Ensembles
 
@@ -556,8 +502,9 @@ ggplot(tmp, aes(x=nalgo, y=pr, group=nalgo)) +
   ylab("Precision-recall AUC")
 ```
 
-```{r ensemble_final, fig.width = 7.1, fig.height = 7, echo = FALSE}
-# 
+```{r ensemble_final, fig.width = 7.1, fig.height = 7, echo = FALSE, fig.cap = cap}
+cap <- "**Ensemble** Top panels show the performance in the **A** correlation metric and **B** the AUC metric of the ensemble based on the median prediction of all possible combinations of a given size of the top 10 algorithms (including the benchmark). The median performance of the ensemble tends to increase with its size. However, the maximum performance in both metrics tends to plateau (or even decrease) after the ensamble reaches a size equal to 3.\
+Panel **C** shows the association between the performance metrics for all the ensembles. The metrics are highly correlated. We reported the estimated slopes of a linea regression, indicating that the correlation is stronger for ensembles with size 4 or higher."
 bp.cor <- boxplot(cor ~ nalgo, data = ens, plot = FALSE)
 bp.auc <- boxplot(auc ~ nalgo, data = ens, plot = FALSE)
 par(mfrow = c(2, 2), mar = c(4,4,3,2) + .1)

@@ -68,9 +68,9 @@ Given the variety of methods represented amongst the prize-winning solutions, we
 
 We further tested differences in the probability oof detection of the extreme modulations for knockdown genes (explain). For this comparison, we computed the metric also for the UNI data, and compared performance of...  We observe a high  performance in accuracy. xxx we computed the KD success frequency for each algorithm and the benchmark. This metric is the fraction of the 376 landmark-targeting shRNA experiments in the holdout data for which the predictions met these success criteria. We used the $UNI$ ground-truth data to estimate the maximum achievable KD success frequency, which in this case was 0.8. We observe that all but 2 of the top 9 contestant algorithms achieve a higher KD success frequency than the benchmark solution (\Fig{kd}). These results suggest that the algorithm improvements, as assessed by the accuracy metrics used in the contest, translate to improvements in biologically relevent metrics used in common applications of L1000 data.
 
-###  Inter-replicate variance
+### Reduction variation across replicate samples
 
-Agreement between experimental replicates is crucial xxx [ref]  "The inter-replicate variation of gene expression-quantities is of the utmost importance to biologists because lower variance means higher reproducibility." [refXXX]. Our data contain several replicates which enabled us to study improvements in inter-replicability variance.   See figure \Fig{inter-replicate-variance}. 
+One of the issues with the benchmark k-means solution is that it does little to mitigate the discrepancy in prediction accuracy between the genes measued with high and low bead proportions. However, agreement between experimental replicates is crucial xxx [ref]  "The inter-replicate variation of gene expression-quantities is of the utmost importance to biologists because lower variance means higher reproducibility." [refXXX]. Our data contain several replicates which enabled us to study improvements in inter-replicability variance.   See figure \Fig{inter-replicate-variance}. 
 
 ### Computational time
 
@@ -88,9 +88,6 @@ Only two submissions (out of nine) a performance that was better in AUC and corr
 
 <!-- Further examination based on the underlying methods used by the top solutions suggests that parametric models, such as mixture models, are both fast and relatively accurate, although non-parametric models, such as regression forests and k-means, tend to be more accurate.  The fastest algorithm was indeed based on a parametric model, i.e., gaussian mixture model, which achieves a good level of accuracy on these data. This solution ranked second overall and achieved the greatest speed improvmenet in both plates. The most accurate algorithm was instead based on a random forest. This solution ranked first overall and achieved the best performance in both AUC and correlation measures, as well as it was among the top three approaches in the KD measure.  -->
 
-### Reduction variation across replicate samples
-
-One of the issues with the benchmark k-means solution is that it does little to mitigate the discrepancy in prediction accuracy between the genes measued with high and low bead proportions. 
 
 
 
