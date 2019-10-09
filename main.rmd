@@ -4,12 +4,11 @@ title: "Improving Deconvolution Methods in Biology \
         an Application to the Connectivity Map"
 
 author: 
-    - Author 1
-    - Author 2
+    - author 1
+    - author 2
     - ... 
 
-abstract: "Report results fo open innovation competition aimed at solving 
-           a gene-related deconvolution problem." 
+abstract: "Deconvolution problems are ubiquitous and have a long history in many areas of science and engineering. In the context of genetic research with human cell lines, the ability to extract signals of individual genes from mixed gene-type samples is of paramount importance. However, the validation of existing deconvolution methods is often difficult because of the lack of datasets for testing, as well as the costs involved in the development of alternative approaches. To address the problem, we used an assay, called L1000, to generate a novel dataset of the response of 1000 genes to various perturbagens (shRNA and compounds) both in mixed samples and individually. We then run an open competition to explore different approaches using the dataset with individual measurements to validate the deconvolution methods. The competition produced several approaches to the problem based on a wide variety of techniques including machine-learning algorithms, such as Convolutional Neural Networks and Random Forests, and more traditional approaches, such as Gaussian mixtures and k-means. All top solutions achieved notable improvements over the benchmark." 
 
 date: 'Last updated: `r format(Sys.Date(), "%b %d, %Y")`'
 

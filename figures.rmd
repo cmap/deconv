@@ -3,8 +3,6 @@
 # Figures
 
 ```{r plot-setup-and-libraries, include = FALSE}
-my.col <- c("dodgerblue","brown","orange")
-palette(my.col)
 library(data.table)
 library(ggplot2)
 library(ggrepel)
@@ -56,7 +54,7 @@ cap <- "\\label{fig:accuracy-fig}**Accuracy.** \
           Top panels show empirical CDF of the distribution of the genewise spearman correlation ($\\rho$) \
           between the ground-truth gene-expressions (as detected by UNI) and \
           predictions obtained by the competitors and the benchmark through the deconvolution of DUO data \
-          for the subset of shRNA (**A**) and compound experiments (**B**). \
+          for the shRNA (**A**) and compound experiments (**B**). \
           The competitors' CDFs are right-shifted compared to the benchmark, \
           indicating more accurate predictions. \
           Middle panels show the sample mean of the correlation coefficients ($\\bar\\rho$) \
@@ -126,13 +124,114 @@ for (p in plates) {
   box()
   title(main = ifelse(grepl("DPK", p), "E. shRNAs", "F. compounds"), ylab = "# genes")
 }
+```
 
+## AUC plots 
+
+```{r, include = FALSE}
+library(cmapR)
+ds_gardn999_auc <- parse.gctx("data/DPK.CP003_PC3_24H_X1_B42_DE_gardn999.gct")
+ds_uni_auc <- parse.gctx("data/DPK.CP003_PC3_24H_X1_B42_DE_UNI.gct")
+ds_bench_auc <- parse.gctx("data/DPK.CP003_PC3_24H_X1_B42_DE_benchmark.gct")
+```
+
+```{r compute-auc, include = FALSE}
+comp_roc <- function(ds_uni, ds_duo, type = c("high", "low")) {
+  require(pROC)
+  y <- switch(type
+        , low = as.vector(ds_uni@mat[ds_duo@rid, ds_duo@cid] <= -2)
+        , high = as.vector(ds_uni@mat[ds_duo@rid, ds_duo@cid] >= 2)
+        )
+  x <- as.vector(ds_duo@mat)
+  pROC::roc(y,x, smoothed = TRUE)
+}
+# high <- comp_roc(ds_uni_auc, ds_gardn999_auc, type = "high")
+# low <- comp_roc(ds_uni_auc, ds_gardn999_auc, type = "low")
+# high.bench <- comp_roc(ds_uni_auc, ds_bench_auc, type = "high")
+# low.bench <- comp_roc(ds_uni_auc, ds_bench_auc, type = "low")
+```
+
+```{r auc-plots, cache = TRUE, echo = FALSE, fig.width = 7.1, fig.height = 7, fig.cap = cap}
+cap <- "ROC, AUC and KD detection."
+# Plot params
+par(mfrow = c(2, 2), mar = c(4, 4, 3, 2) + 0.1)
+n.rep <- 20
+n.genes <- nrow(ds_uni_auc@mat)
+set.seed(1)
+gene_subs <- replicate(n.rep, sample(n.genes, size = 200)) # 100 subsets of 10 genes
+
+# Top panels
+for (type in c("high", "low")) {
+
+plot(NA,NA, xlim = c(0, 0.5), ylim = c(0.5, 1), axes = FALSE, ann = FALSE)
+## subsamples
+for (i in 1:n.rep) {
+   ds_sub <- subset.gct(ds_gardn999_auc, rid = gene_subs[, i])
+   est <- try(comp_roc(ds_uni_auc, ds_sub, type = type))
+   if (class(est) != "try-error")
+     lines(1-est$specificities, est$sensitivities, col = rgb(0,0,1,0.2))
+}
+for (i in 1:n.rep) {
+   ds_sub <- subset.gct(ds_bench_auc, rid = gene_subs[, i])
+   est <- try(comp_roc(ds_uni_auc, ds_sub, type = type))
+   if (class(est) != "try-error")
+     lines(1-est$specificities, est$sensitivities, lty = 2, col = rgb(1, 0, 0, 0.2))
+}
+## main lines 
+winner <- comp_roc(ds_uni_auc, ds_gardn999_auc, type = type)
+bench <- comp_roc(ds_uni_auc, ds_bench_auc, type = type)
+lines(1-winner$specificities, winner$sensitivities, col = "navy", lwd = 2)
+lines(1-bench$specificities, bench$sensitivities, col = "brown", lty = 2, lwd = 2)
+## annotations
+legend("bottomright", lty = 1:2, col = c("navy", "red"), c("winner", "benchmark"), bty = "n")
+axis(1, at = c(0, 0.5))
+axis(2, at = c(0.5, 1))
+box()
+txt <- ifelse(type == "high", "A. up-regulated genes (ROC)", "B. down-regulated genes (ROC)")
+title (xlab = "specificity (TN/TN+FP)", ylab = "recall (TP/TP+FN)", main = txt)
+}
+
+# Botom Panels 
+par.old <- par()$mar
+par(mar = c(6, 4, 3, 2) + .1)
+rank.order <- unique(speed_acc[, c("rank", "handle")]) %>% arrange(rank) %>% pull(handle)
+plates <- unique(speed_acc$plate)
+auc <- sapply(plates, function(p) {
+  x <- speed_acc$auc[speed_acc$plate == p]
+  names(x) <- speed_acc$handle[speed_acc$plate == p]
+  k <- match(rank.order, gsub(".*:", "", names(x)))
+  j <- which(names(x) == "benchmark")
+  100*(x / x[j] - 1)[k]
+})
+auc <- head(auc, 9)
+COL <- c(rgb(1,0,0,0.45), rgb(0,0,1, 0.45))
+b <- barplot(t(auc), beside = TRUE, border = "white", las = 3, yaxt = "n", col = COL)
+axis(2, at = c(0, max(auc)), format(c(0, max(auc)), digits = 2))
+#txt <- paste0(format(apply(auc, 1, mean),digits=0), "%")
+#text(x = apply(b, 2, mean), y = apply(auc, 1, max), txt, pos = 3)
+legend("topright", fill = COL, c("shRNA", "compounds"), border = "white", bty = "n")
+title(ylab = expression(paste(Delta, "auc"[plate])), main = "C. Difference in AUC")
+
+# Knockdown 
+par(mar = par.old)
+plot(NA, NA, ylim = c(0.68, 0.8), xlim = c(0.028, 0.038), ann = FALSE, axes = FALSE)
+x.axis <- with(na.omit(speed_acc), c(max(kd_precision), kd_precision[handle=="benchmark"]))
+y.axis <- with(na.omit(speed_acc), c(max(kd_success_freq), kd_success_freq[handle=="benchmark"]))
+axis(1, at = x.axis, format(x.axis, digits = 2))
+axis(2, at = y.axis, format(y.axis, digits = 2))
+box()
+rect(x.axis[2], y.axis[2], 1, 1, col = rgb(0,0,1, 0.05), border = "white")
+points(kd_success_freq ~ kd_precision, data = speed_acc, pch = 19, col = "orange")
+highlight.handles <- c("gardn999", "Ardavel", "mkagenius", "Ramzes2", "benchmark")
+with(speed_acc, text(x = kd_precision, y = kd_success_freq, ifelse(!handle %in% highlight.handles, "", handle), pos = 3))
+#with(speed_acc, text(x = kd_precision, y = kd_success_freq, ifelse(handle != "Ardavel","", handle), pos = 1))
+with(speed_acc, abline(v = kd_precision[handle=="benchmark"], col = gray(.75), lty = 3))
+with(speed_acc, abline(h = kd_success_freq[handle=="benchmark"], col = gray(.75), lty = 3))
+title(main = "D. Knockdown detection", xlab = "precision (TP/TP+FP)", ylab = "recall (TP/TP+FN)")
 ```
 
 
-# KD accuracy & recall 
-
-```{r kd-comparison, fig.width = 7, fig.cap = cap, echo = FALSE}
+```{r kd-comparison, include = FALSE}
 cap <- "\\label{fig:kd}**Gene knockdown.** Precision and fraction of gene knockdown recalled by each algorithm. \
           Precision is low because ... "
 kd.sorted <- sort(with(speed_acc, tapply(kd_success_freq, handle, mean, na.rm=T)))
@@ -197,7 +296,6 @@ panel <- function(x, margin = 1, ...) {
   axis(2, at = c(0, 0.5, 1))
   box()
 }
-
 par( mfrow = c(1, 2))
 plot(NA, NA, xlim = c(0, .1), ylim = c(0, 1), ann = FALSE, axes = FALSE)
 for (j in names(out)){
@@ -253,160 +351,6 @@ par(mar=c(6,2,2,2))
 plot(auc[plate==factor(plate)[1]], type="b", ylim=c(0.9,0.96))
 axis(1, at=1:10, handle[plate==factor(plate)[1]], las=2)
 ```
-
-```{r acc-vs-speed, fig.width=8, fig.height=3.5, fig.cap=cap, include = FALSE}
-cap <- "\\label{fig:acc-vs-speed}**Accuracy vs speed.** This figure shows the relationship between improvements in AUC (A.), correlation (B.) and fraction of correctly predicted knocked-down genes(C.) and improvements in speed for the top-nine solutions. These measures are computed for each of the plates on the holdout dataset. Labels at the dots indicate the rank of the submission in the final leaderboard (1 = first best, 2 = second best, etc.). Dashed lines indicate levels with no improvement over the benchmark. Dotted lines indicate (ols) association between accuracy and speed improvements. The name of the most accurate and fastest approach are highlighted in each panel."
-
-# compute measures
-bench <- handle=="benchmark"
-sec.bench <- sec[bench]
-auc.bench <- auc[bench]
-cor.bench <- cor[bench]
-kd.bench <- kd_success_freq[bench]
-auc.pc <- auc/auc.bench[factor(plate)]
-cor.pc <- cor/cor.bench[factor(plate)]
-sec.pc <- sec/sec.bench[factor(plate)]
-kd.pc <- kd_success_freq/kd.bench[factor(plate)]
-method2 <- method
-method2[grep("Gaussian", method)] <- "gaussian mixture"
-method2[grep("forest", method)] <- "rand. forest"
-
-# Plot
-panel <- function(x,y, xlim=c(0,5), ylim=c(0,0.08), xlab="speed increase (%)", legend=T, ...){
-  plot(y ~ x, xlim=xlim, ylim=ylim, xlab=xlab
-    , pch=c(15:16)[factor(plate)]
-    , col=c(1,2)[factor(plate)]
-    , subset=!bench
-    ,...)
-  # lable best method
-  j <- which.max(y)
-  y.offset <- +0.002; x.offset <- -1
-  segments(y0=y[j], x0=x[j], y1=y[j] + y.offset, x1=x[j]+x.offset)
-  text(y=y[j]+y.offset, x=x[j]+x.offset, labels=method2[j], pos=3)
-  # label fastest method
-  j <- which.max(x)
-  y.offset <- -0.001; x.offset <- -0.2
-  segments(y0=y[j], x0=x[j], y1=y[j] + y.offset, x1=x[j]+x.offset)
-  text(y=y[j]+y.offset, x=x[j]+x.offset, labels=method2[j], pos=1)
-  # legend
-  if(legend)
-    legend("topright", pch=15:16, col=1:2, legend=c("plate 1", "plate 2"), bty="n")
-  # rank labels
-  text(y=y[!bench],x=x[!bench],labels=rank[!bench],pos=3,xpd=T, col=gray(.75))
-  abline(h=0,lty=2)
-  abline(v=0,lty=2)
-  abline(lm(y[!bench] ~ x[!bench]), lty=3)
-}
-par(mfrow=c(1,2), mar=c(4,4,2,1)+0.1)
-panel(abs(log(sec.pc)),log(auc.pc), ylim=c(0,0.04), ylab="auc increase (%)")
-mtext(at=c(0,0), "A.", adj=0, font=2)
-panel(abs(log(sec.pc)),log(cor.pc), ylim=c(0,0.07), ylab="corr increase (%)")
-mtext(at=c(0,0), "B.", adj=0, font=2)
-#panel(abs(log(sec.pc)), log(kd.pc),ylim=c(-0.1,0.1), ylab="kd success (%)")
-#mtext(at=c(0,0), "C.", adj=0, font=2)
-
-# Ensambles 20 x 20
-# auc.ens <- sapply(auc, function(x) auc + (x - auc*x)*runif(1))
-# sec.ens <- sapply(sec, function(x) sec + x)
-# plot(auc.ens ~ log(sec.ens), pch=16)
-```
-
-## Gene knockdowns
-
-```{r kd_barplot, echo=F, fig.cap=cap, fig.width=6, include = FALSE}
-cap <- "\\label{kd_barplot}**KD success frequency.** Bars represent the fraction of landmark-targeting shRNAs experiments in which the DE values indicated successful knockdown (KD). Success criteria are a z-score of less than -2 and a gene-wise rank of less than 10. Results are shown for the one plate of shRNA holdout data, containing 376 landmark-targeting shRNA experiments."
-
-# speed_acc <- fread("data/holdout_score_time.txt", na.strings = "n/a")
-# soln_desc <- fread("data/solution_descriptions.txt", na.strings="n/a")
-soln_desc <- rbind(soln_desc, data.table(rank="ground-truth",
-                                         handle="ground-truth",
-                                         method="ground-truth",
-                                         method_short="GT"),
-                   use.names=T, fill=T)
-speed_acc <- merge(speed_acc, soln_desc, by="handle")
-levs <- c("DTR", "GMM", "k-means", "CNN", "other", "GT")
-speed_acc$method_short <- factor(speed_acc$method_short,
-                                 levels=levs)
-# make plot
-par(mar=c(6, 4, 4, 2) + 0.1, cex=0.9)
-with(speed_acc[!is.na(kd_success_freq)][
-  order(kd_success_freq, decreasing = F)
-], {
-  maxval <- max(kd_success_freq)
-  offset_factor <- 0.1
-  offset <- offset_factor * maxval
-  cols <- rep("gray", length(kd_success_freq))
-  cols[handle=="benchmark"] <- "red"
-  cols[handle=="ground-truth"] <- "black"
-  bp <- barplot(kd_success_freq, names.arg=handle, las=3, col=cols,
-           ylab="Fraction of successful KD predictions",
-           main="Gene Knockdown Success Frequency",
-           ylim=c(0, maxval + (2 * offset)))
-  text(bp, kd_success_freq + offset, labels=round(kd_success_freq, 2), col="red")
-})
-```
-
-## High / Low bead discrepancy
-
-```{r hi_lo_bead_input, include=FALSE, echo=F}
-# read the GCTX file as a GCT object
-# data are stored as a matrix with genes on rows and sample/algo combos on columns
-# (ds <- parse.gctx("data/DECONV_holdout_n8228x976.gctx"))
-# read annotations and apply to columns
-# annot <- fread("data/holdout_sample_annotations.txt")
-# gene_annot <- fread("data/barcode_to_gene_map.txt", colClasses = c("gene_id"="character"))
-# ds <- annotate.gct(ds, annot, dim="col", keyfield="id")
-# ds <- annotate.gct(ds, gene_annot, dim="row", keyfield="gene_id")
-```
-
-```{r plot-ecdf, echo=FALSE, fig.width=9,fig.height=9, fig.cap=cap}
-
-# datasets by handles
-# handles <- unique(ds@cdesc$handle)
-# all_ds <- lapply(handles, function(h) subset.gct(ds, cid=which(ds@cdesc$handle==h)))
-# names(all_ds) <- handles
-# 
-# # benchmark vs ground truth
-# gt_ds <- all_ds[["ground-truth"]]
-# bench_ds <- all_ds[["benchmark"]]
-# 
-# # compute stats
-# compute.stats <- function(mat) {
-#   out <- list()
-#   out$gene_level.mean <- apply(mat, 1, mean)
-#   out$gene_level.sd <- apply(mat, 1, sd)
-#   out$sample_level.mean <- apply(mat, 2, mean)
-#   out$sample_level.sd <- apply(mat, 2, sd)
-#   return(out)
-# }
-# all_ds.stats <- lapply(all_ds, function(x) compute.stats(x@mat))
-# 
-# # Compute stats for Uni and Duo benchmark
-# gt_ds.stats <- all_ds.stats[["ground-truth"]] 
-# bench_ds.stats <- all_ds.stats[["benchmark"]] 
-# 
-# # Plot differences
-# cap <- paste("Differences in estimates -- ", names(gt_ds.stats))
-# for (k in names(gt_ds.stats)) {
-#   par(mfrow=c(3,3), mar=c(4,2,2,2)+.1)
-#   for(j in setdiff(handles, c("ground-truth","benchmark"))) {
-#     ecdf(gt_ds.stats[[k]] %>% log) %>% plot(main=j, xlab=k, pch=".", col=1)
-#     ecdf(bench_ds.stats[[k]] %>% log) %>% lines(pch=".", col=2)
-#     ecdf(all_ds.stats[[j]][[k]] %>% log) %>% lines(pch=".", col=3)
-#     legend("topleft", col=1:3, lty=1, bty="n", c("Uni (no-deconv)", "Duo (k-means)", "Duo (comp.)"))
-#   }
-# }
-```
-
-```{r, echo=F}
-# example - plot raw expression values by high vs low bead in ground truth
-# row_groups <- with(gt_ds@rdesc, split(1:nrow(gt_ds), high_prop))
-# boxplot(list(
-#   low_prop = log(gt_ds@mat[row_groups[[1]], ]),
-#   high_prop = log(gt_ds@mat[row_groups[[2]], ])
-# ), ylab="raw expression")
-```
-
 
 ## Clustering of solutions
 
