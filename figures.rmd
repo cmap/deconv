@@ -344,13 +344,6 @@ axis(1, at = 1:10, levels(handle_f), las=2)
 legend("topright", pch = c(1, 16), c("shRNA","compounds"), cex=.75, bty = "n")
 ```
 
-## Accuracy 
-
-```{r, include=FALSE}
-par(mar=c(6,2,2,2))
-plot(auc[plate==factor(plate)[1]], type="b", ylim=c(0.9,0.96))
-axis(1, at=1:10, handle[plate==factor(plate)[1]], las=2)
-```
 
 ## Clustering of solutions
 
@@ -450,67 +443,11 @@ cowplot::plot_grid(p_deconv_color_type,
 ```
 
 
-```{r gene_clus_setup, echo=F}
-# corr_ds <- parse.gctx("data/UNI_DUO_gene_spearman_correlations_holdout_n20x976.gctx")
-# soln_desc <- fread("data/solution_descriptions.txt", na.strings="n/a")
-# corr_ds <- annotate.gct(corr_ds, soln_desc, dim="col", keyfield = "handle")
-```
-
-```{r gene_clus, echo=F, fig.cap=cap}
-# cap <- "\\label{gene_clus}**Clustering gene-level accuracy.** A clustered matrix of the gene-level correlations between algorithm predictions and UNI ground truth using DECONV data. Columns correspond to genes and rows to algorithms."
-# this_ds <- subset.gct(corr_ds, cid=grep("^DPK", corr_ds@cid))
-# N <- 100
-# m <- t(this_ds@mat)
-# rownames(m) <- this_ds@cdesc$handle
-# idx <- match(rownames(m), soln_desc$handle)
-# annot_df <- data.frame(method=soln_desc$method_short[idx])
-# annot_df$method <- factor(annot_df$method,
-#                           levels=levs)
-# rownames(annot_df) <- rownames(m)
-# # rownames(m) <- paste(soln_desc$method_short, rownames(m), sep=":")
-# x <- seq(min(m), max(m), length.out=N)
-# mypal <- c(
-#   colorRampPalette(c("blue", "white"))(sum(x < 0)),
-#   colorRampPalette(c("white", "red"))(sum(x >= 0))
-# )
-# pheatmap(m, color=mypal, scale="none",
-#          show_colnames = F,
-#          annotation_row=annot_df,
-#          annotation_names_row = F)
-```
-
-```{r, echo=F}
-# TODO: a figure showing the performance difference for the top 2 algos per gene
-# genes with a large difference are those that are correctly predicted by only one
-# algo, and hence might be the best candidates for improvement by ensemble approaches
-# best_cor_per_gene <- apply(m, 2, max)
-# best_algo_per_gene <- rownames(m)[apply(m, 2, which.max)]
-# diff_to_next_best <- apply(m, 2, function(x) max(x) - max(x[-which.max(x)]))
-# diff_to_median <- apply(m, 2, function(x) max(x) - median(x[-which.max(x)]))
-# par(pty="s")
-# plot(best_cor_per_gene, diff_to_median, col=rgb(0, 0, 0, 0.7),
-#      xlab="Max. Correlation", ylab="Delta from Median Correlation")
-# text_idx <- which(best_cor_per_gene >= 0.4 & diff_to_median >= 0.15)
-# text(best_cor_per_gene[text_idx],
-#      diff_to_median[text_idx],
-#      labels=best_algo_per_gene[text_idx],
-#      adj= -0.1, col="red")
-# df <- data.table(handle=best_algo_per_gene,
-#                  best_cor=best_cor_per_gene,
-#                  med_diff=diff_to_median)
-# ggplot(df, aes(x=best_cor, y=med_diff, label=handle)) +
-#   geom_point(alpha=0.5) +
-#   xlab("Max. correlation") +
-#   ylab("Delta from median correlation") +
-#   ggtitle("Algorithm-specific gene performance") +
-#   geom_text_repel(data=df[best_cor >= 0.4 & med_diff >= 0.15],
-#                   color="red")
-```
-
+ 
 
 ## Complementarity
 
-```{r best_algo_per_gene_bar, echo=F, fig.width=7}
+```{r best_algo_per_gene_bar, include = FALSE}
 corr_ds <- parse.gctx("data/UNI_DUO_gene_spearman_correlations_holdout_n20x976.gctx")
 plates <- unique(corr_ds@cdesc$plate)
 par(mar=c(8, 4, 4, 2)+0.1, mfrow=c(1, 2))
@@ -533,11 +470,11 @@ for (p in plates) {
 }
 ```
 
-TODO: barplot of # of genes for which each algo. gives best prediction
-- possible group by plate/low vs. high
 
-## Ensemble
+## Ensembles
+
 ```{r ensemble_setup, echo=F}
+library(data.table)
 # inputs
 speed_acc <- fread("data/holdout_score_time.txt", na.strings="n/a")
 ens_corr <- fread("data/DPK.CP003_PC3_24H_X1_B42_DECONV_correlation_scores.txt")
@@ -558,7 +495,7 @@ tmp <- rbind(ens[!grepl("benchmark", algos)],
              fill=T, use.names=T)
 ```
 
-```{r ensemble_plot_cor, echo=F}
+```{r ensemble_plot_cor, include = FALSE}
 ggplot(tmp, aes(x=sec, y=cor)) +
   geom_point(aes(size=nalgo), alpha=0.6) +
   geom_point(data=tmp[nalgo==1],
@@ -569,7 +506,7 @@ ggplot(tmp, aes(x=sec, y=cor)) +
   ylab("correlation score")
 ```
 
-```{r ensemble_plot_auc, echo=F}
+```{r ensemble_plot_auc, include = FALSE}
 ggplot(tmp, aes(x=sec, y=auc)) +
   geom_point(aes(size=nalgo), alpha=0.6) +
   geom_point(data=tmp[nalgo==1],
@@ -580,7 +517,7 @@ ggplot(tmp, aes(x=sec, y=auc)) +
   ylab("AUC score")
 ```
 
-```{r ensemble_plot_pr, echo=F}
+```{r ensemble_plot_pr, include = FALSE}
 ggplot(tmp, aes(x=sec, y=pr)) +
   geom_point(aes(size=nalgo), alpha=0.6) +
   geom_point(data=tmp[nalgo==1],
@@ -592,7 +529,7 @@ ggplot(tmp, aes(x=sec, y=pr)) +
 ```
 
 
-```{r ensemble_plot2_cor, echo=F}
+```{r ensemble_plot2_cor, include = FALSE}
 ggplot(tmp, aes(x=nalgo, y=cor, group=nalgo)) +
   geom_boxplot() +
   geom_jitter(width=0.25, alpha=0.6) +
@@ -601,7 +538,7 @@ ggplot(tmp, aes(x=nalgo, y=cor, group=nalgo)) +
   ylab("correlation score")
 ```
 
-```{r ensemble_plot2_auc, echo=F}
+```{r ensemble_plot2_auc, include = FALSE}
 ggplot(tmp, aes(x=nalgo, y=auc, group=nalgo)) +
   geom_boxplot() +
   geom_jitter(width=0.25, alpha=0.6) +
@@ -610,7 +547,7 @@ ggplot(tmp, aes(x=nalgo, y=auc, group=nalgo)) +
   ylab("AUC score")
 ```
 
-```{r ensemble_plot2_pr, echo=F}
+```{r ensemble_plot2_pr, include = FALSE}
 ggplot(tmp, aes(x=nalgo, y=pr, group=nalgo)) +
   geom_boxplot() +
   geom_jitter(width=0.25, alpha=0.6) +
@@ -619,10 +556,36 @@ ggplot(tmp, aes(x=nalgo, y=pr, group=nalgo)) +
   ylab("Precision-recall AUC")
 ```
 
-```{r, echo=F}
-# ggplot(tmp, aes(x=cor, y=auc, size=nalgo)) + 
-#   geom_point(alpha=0.6) +
-#   scale_size_continuous(breaks = seq(1, 9, 2), name="num. algos")
+```{r ensemble_final, fig.width = 7.1, fig.height = 7, echo = FALSE}
+# 
+bp.cor <- boxplot(cor ~ nalgo, data = ens, plot = FALSE)
+bp.auc <- boxplot(auc ~ nalgo, data = ens, plot = FALSE)
+par(mfrow = c(2, 2), mar = c(4,4,3,2) + .1)
+# left
+matplot(t(bp.cor$stats), type = "l", lty = c(3,2,1,2,3), col =1, ann = FALSE, axes = FALSE, ylim = c(0.55, 0.6))
+axis(1, at = 1:9, 2:10)
+axis(2, at = range(bp.cor$stats), format(range(bp.cor$stats), digits = 2))
+box()
+title(main = "A. correlation (ensembles)", xlab = "# algorithms", ylab = expression(rho))
+legend("bottomright", lty=1:3, c("50th percentile (median)", "25th/75th percentile", "max/min"), bty ="n")
+#
+matplot(t(bp.auc$stats), type = "l", col = 1, lty = c(3,2,1,2,3), ann = FALSE, axes = FALSE, ylim = c(0.92, 0.95))
+axis(1, at = 1:9, 2:10)
+axis(2, at = range(bp.auc$stats), format(range(bp.auc$stats), digits = 2))
+box()
+title(main = "B. AUC (ensembles)", xlab = "# algorithms", ylab = "AUC")
+legend("bottomright", lty=1:3, c("50th percentile (median)", "25th/75th percentile", "max/min"), bty ="n")
+#
+plot(cor ~ auc, data = ens, pch = 19, col = "orange", ylim = c(0.55, 0.6), xlim = c(0.92, 0.95))
+n.levels <- 2:6
+bhat <- array(NA, c(length(n.levels), 2))
+for(n in n.levels) {
+  abline(fit <- lm(cor ~ auc, data = ens, subset = nalgo == n), lty = n, col = gray(.75))
+  bhat[n - 1, ] <- coef(fit)
+}
+txt <- paste0(paste("#algo =", n.levels), " (slope = ", format(bhat[,2], digits=2), ")")
+legend("bottomright", lty=n.levels, txt, bty = "n")
+title(main = "C. correlation vs AUC")
 ```
 
 
