@@ -1,8 +1,6 @@
 ## Concluding remarks 
 
-- We have created a dataset of over 120 shRNA and compound experiments with measurements for about 1,000 genes. This dataset constitutes a public resource to all the researchers in this area who are interested in testing their deconvoltuion appproaches. 
-- This contest yeilded multiple and diverse deconvolution methods. One potential application is to leverage these algorithms to enable detection of three or more genes using the same analyte type.
-- Next, we will apply these resutls to over one million experiments  and explore cost svings achieved by having a lower number of replicates
+In summary, we have created a novel dataset of over 120 shRNA and compound experiments with measurements for about 1,000 genes. This dataset constitutes a public resource to all the researchers in this area who are interested in testing their deconvolution appproaches. Using an open innovation competition, we collected and evaluated multiple and diverse deconvolution methods. The best approach was based on a random forest, which achieved consistently the highest level of accuracy compared to all other solutions. Next, we will apply these resutls to over one million experiments that constitute the Connectivity Map, and explore cost svings achieved by having a lower number of replicates. Another potential application is to leverage these algorithms to enable detection of three or more genes using the same analyte type. 
 
 
 <!-- 
