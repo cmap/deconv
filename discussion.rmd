@@ -1,7 +1,7 @@
 ## Concluding remarks 
 
-- We have created a dataset of over 120 shRNA and compound experiments with measurements for about 1000 genes. This dataset constitutes a public resource to all the researchers in this area who are interested in testing their deconvoltuion appproaches. 
-- However, it remains to be seen performance on combining thre or more genes with single analytes. This is future work. 
+- We have created a dataset of over 120 shRNA and compound experiments with measurements for about 1,000 genes. This dataset constitutes a public resource to all the researchers in this area who are interested in testing their deconvoltuion appproaches. 
+- This contest yeilded multiple and diverse deconvolution methods. One potential application is to leverage these algorithms to enable detection of three or more genes using the same analyte type.
 - Next, we will apply these resutls to over one million experiments  and explore cost svings achieved by having a lower number of replicates
 
 
