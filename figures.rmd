@@ -9,6 +9,7 @@ library(ggplot2)
 library(ggrepel)
 library(cmapR)
 library(pheatmap)
+library(pROC)
 library(dplyr, warn=F)
 ```
 
@@ -24,7 +25,7 @@ speed_acc <- merge(speed_acc, soln_desc, by="handle")
 
 ## Spearman rank correlation
 
-```{r accuracy-fig, fig.cap = cap, echo = FALSE, fig.width = 7, fig.height = 8.5, cache = TRUE}
+```{r accuracy-fig, fig.cap = cap, include = FALSE, fig.width = 7, fig.height = 8.5, cache = TRUE}
 cap <- "\\label{fig:accuracy-fig}**Accuracy.** \
           Top panels show empirical CDF of the distribution of the genewise spearman correlation ($\\rho$) \
           between the ground-truth gene-expressions (as detected by UNI) and \
@@ -103,13 +104,13 @@ for (p in plates) {
 
 ## AUC plots 
 
-```{r setup-auc, include = FALSE}
-library(cmapR)
+```{r setup-auc, include = FALSE, warning=F}
+# library(cmapR)
 ds_gardn999_auc <- parse.gctx("data/DPK.CP003_PC3_24H_X1_B42_DE_gardn999.gct")
 ds_uni_auc <- parse.gctx("data/DPK.CP003_PC3_24H_X1_B42_DE_UNI.gct")
 ds_bench_auc <- parse.gctx("data/DPK.CP003_PC3_24H_X1_B42_DE_benchmark.gct")
 comp_roc <- function(ds_uni, ds_duo, type = c("high", "low")) {
-  require(pROC)
+  # require(pROC)
   y <- switch(type
         , low = as.vector(ds_uni@mat[ds_duo@rid, ds_duo@cid] <= -2)
         , high = as.vector(ds_uni@mat[ds_duo@rid, ds_duo@cid] >= 2)
