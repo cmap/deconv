@@ -12,9 +12,25 @@ We report the results of an open innovation competition that impvored upon the s
 Over the last decade, the ability to analyze multiple analytes simultaneously from the same biological sample has contributed to creating large perturbational datasets that are essential to accelerate the discovery of novel therapeutics. However, a fundamental limitation of traditional multianalyte assays lies in the restricted extent and type of available analytes
 -->
 
+Multiplex[ed] assays frequently use a single analyte to measure multiple populations ... 
+
+RNA profiling is an essential means to learn about the state of cells and tissues in response to perturbations; it helps detecting similarities between different cellular states that, in turn, provide clues about therapeutic intervention, help the elucidation of moas, etc. However, gaining an understanding of genetic transcriptome perturbations will require extensive experimentation, which can be costly to generate at scale.
+
+<!-- 
+RNA profiling is an excellent phenotype of cellular responses and tissue states, but can be costly to generate at the massive scale required for studies of regulatory circuits, genetic states or perturbation screens. Here, we draw on a series of advances over the last decade in the field of mathematics to establish a rigorous link between biological structure, data compressibility, and efficient data acquisition. We propose that very few random composite measurements – in which gene abundances are combined in a random linear combination – are needed to approximate the high-dimensional similarity between any pair of gene abundance profiles. We then show how finding latent, sparse representations of gene expression data would enable us to “decompress” a small number of random composite measurements and recover high-dimensional gene expression levels that were not measured (unobserved). We present a new algorithm for finding sparse, modular structure, which improves the ability to interpret samples in terms of small numbers of active modules, and show that the modular structure we find is sufficient to recover gene expression profiles from composite measurements (with ~100-fold fewer composite measurements than genes). Moreover, the knowledge that sparse, modular structures exist allows us to recover expression profiles from composite measurements, even without access to any training data. Finally, we present a proof-of-concept experiment for making composite measurements in the laboratory, involving the measurement of linear combinations of RNA abundances. Altogether, our results suggest new compressive modalities in experimental biology that can form a foundation for massive scaling in high-throughput measurements, while also offering new insights into the interpretation of high-dimensional data.
+ -->
+
+
+
+A central problem 
 Over the last decade, technological advances have made it possible to generate large perturbational datasets which in turn have helped accelerate therapeutic discovery. A large proportion of these technologies rely on using multiple analytes to measure biological signals. These assays are extremely powerful but in some applications are limited by the number of unique analytes they can detect.^[For example, Luminex's most advanced platform, called FLEXMAP 3D, can measure simultaneously a maximum of 500 bead types for an equal number of genes or proteins from a small sample.]
 
 This limitation is more prominent for gene-expression profiling, given the high number of genes involved. Within this context, the Connectivity Map (CMap) has developed an assay, called L1000, that integrates traditional multianalyte detection methods and statistical analyses to simultaneously measure the expression of multiple genes using the same analyte type, thus multiplying the capacity of existing technologies [@subramanian2017next].
+
+@cleary2017efficient proposes to use "compressed sensing to use low-level measurements or composite signals (from multiple genes) to recover high-level... 
+@deng2019scalable
+@hie2019efficient
+such as to measure differential gene expression for each gene in mixed cell-type samples [@shen2010cell], 
 
 <!-- The algorithm D-peak is based on k-means algorithm, a general and flexible tool to conduct non-parametric regression that is very popular in biology, as well as in many other fields.  -->
 <!-- The current algorithm works well, but has some limitations.  -->
