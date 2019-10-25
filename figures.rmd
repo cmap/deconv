@@ -13,15 +13,16 @@ library(pROC)
 library(dplyr, warn=F)
 ```
 
-## Scoring accuracy
-
-![**Schematic illustrating accuracy components of scoring function**. The accuracy component is computed as the product of gene-wise Spearman correlations with ground truth and the area under the curve AUC of extreme modulations.](figures/deconvolution_contest Fig2_Final_revised.png)
-
 ```{r acc-vs-speed-data, include = FALSE}
 speed_acc <- fread("data/holdout_score_time.txt", na.strings="n/a")
 soln_desc <- fread("data/solution_descriptions.txt", na.strings="n/a")
 speed_acc <- merge(speed_acc, soln_desc, by="handle")
 ```
+
+
+## Scoring accuracy
+
+![**Schematic illustrating accuracy components of scoring function**. The accuracy component is computed as the product of gene-wise Spearman correlations with ground truth and the area under the curve AUC of extreme modulations.](figures/deconvolution_contest Fig2_Final_revised.png)
 
 ## Spearman rank correlation
 
