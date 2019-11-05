@@ -17,7 +17,7 @@ such as to measure differential gene expression for each gene in mixed cell-type
 for studying the state of cells and tissues in response to perturbations
  -->
 
-Motivated by recent successes of machine learning techniques in biology, we hypothesized better deconvolution approaches could likely be developed. To test this hypothesis, we generated a novel experimental dataset of the response of approximately 1,000 genes to 122 different perturbagens (shRNA and compounds) within 4 to 10 replicates. Using the L1000 platform, we varied the detection mode for acquiring the data between two genes per analyte type (DUO) and one gene per analyte type (UNI). We then used the data to run an open innovation competition  [@lakhani2013prize; @blasco2019advancing] where we challenged competitors to provide different solutions for the deconvolution problem, as we describe below.
+We hypothesized that better deconvolution approaches could likely be developed by adapting existing machine learning techniques to L1000 data. To test this hypothesis, we generated a novel experimental dataset of the response of approximately 1,000 genes to 122 different perturbagens (shRNA and compounds) within 4 to 10 replicates. Using the L1000 platform, we varied the detection mode for acquiring the data between two genes per analyte type (DUO) and one gene per analyte type (UNI). We then used the data to run an open innovation competition  [@lakhani2013prize; @blasco2019advancing] where we challenged competitors to provide different solutions for the deconvolution problem, as we describe below.
 
 <!-- 
 ## Related literature 
