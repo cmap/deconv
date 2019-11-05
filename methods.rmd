@@ -1,51 +1,29 @@
 # Methods
 
-## L1000  
+## L1000's deconvolution approach  
 
-L1000 is a high-throughput gene expression assay that measures the mRNA transcript abundance of a subset of approximately 1000 genes highly representative of the state of human cells; thus capturing a large fraction of information at a small fraction of cost compared to other expression profiling technologies (e.g., RNA-seq). By doing so, L1000 contributed to the massive scale-up of the Connectivity Map (CMap), whereby genes, drugs, and disease states are connected by virtue of common gene-expression signatures, from its initial 564 Affymetrix profiles [@lamb2006connectivity] to the current 1.3 million L1000 profiles [@subramanian2017next].
+L1000 is a high-throughput gene expression assay that measures the mRNA transcript abundance of a subset of approximately 1000 genes highly representative of the state of human cells. This narrow focus is aimed to capture a large fraction of information at a small fraction of cost compared to other RNA sequencing technologies; and resulted in the massive scale-up of the Connectivity Map (CMap), whereby genes, drugs, and disease states are connected by virtue of common gene-expression signatures, from its initial 564 Affymetrix profiles [@lamb2006connectivity] to the current 1.3 million L1000 profiles [@subramanian2017next].
 
-To double the count of profiled genes in a single experiment, L1000's measurements are made using the 500 colors of Luminex beads such that two transcripts are identified by a single bead color. Consequently, a central component of this approach is the computational deconvolution of gene expression signals from multiple genes measured using the same analyte. Current L1000's deconvolution approach, called dpeak, is based on the k-means clustering algorithm. This is a method for cluster analysis, originally from signal processing [@lloyd1982least], that is popular in biology. The approach aims to partition a set of measurements (fluorescence intensity for each bead type) into $k$ clusters by minimizing the within-cluster sum of squares. Differentially expressed genes should have a distribution of measurements with two peaks; and the size of each peak will be a reflection of the proportion of beads used xxxx. By mixing genes in a 2:1 proportion,  the algorithm can tus assigns the clusters to each gene within the sample (see @subramanian2017next for the details). 
+L1000's measurements are made using the 500 colors of Luminex beads such that two transcripts are identified by a single bead color, to double the count of profiled genes in a single experiment. It follows that a central component of the L1000 assay is the computational deconvolution of gene-specific expression values from composite signals obtained by using the same analyte. The current L1000's deconvolution approach, called d-peak, is based on the k-means clustering algorithm. This is a method for cluster analysis, originally from signal processing [@lloyd1982least], that is popular in biology. The approach aims to partition a set of measurements (fluorescence intensity for each bead type) into $k$ clusters by minimizing the within-cluster sum of squares. Differentially expressed genes should have a distribution of measurements with two peaks, and the size of each peak will be a reflection of the proportion of used beads. By mixing genes in a 2:1 proportion,  the algorithm can thus assigns the clusters to each gene within the sample (see @subramanian2017next for the details). 
 
-The dpeak approach works well in practice but has several limitations as well; it tends to split clusters incorrectly when the distributions are not reasonably well separated, it is sensitive to outliers, and it is computationally demanding.^[An efficient k-means algorithm, such as Lloyd's, has a running time that scales as $O(kn)$ where $n$ is the number of observations and $k$ the number of clusters.]
-
- 
-<!-- 
-@cleary2017efficient proposes to use "compressed sensing to use low-level measurements or composite signals (from multiple genes) to recover high-level... 
-@deng2019scalable
-@hie2019efficient
-such as to measure differential gene expression for each gene in mixed cell-type samples [@shen2010cell], 
-for studying the state of cells and tissues in response to perturbations
- -->
+The d-peak approach works well in practice but has several limitations as well; it tends to split clusters incorrectly when the distributions are not reasonably well separated, it is sensitive to outliers, and it is computationally demanding.^[An efficient k-means algorithm, such as Lloyd's, has a running time that scales as $O(kn)$ where $n$ is the number of observations and $k$ the number of clusters.]
 
 We hypothesized that better deconvolution approaches could likely be developed by adapting existing machine learning techniques to L1000 data. To test this hypothesis, we generated a novel experimental dataset of the response of approximately 1,000 genes to 122 different perturbagens (shRNA and compounds) within 4 to 10 replicates. Using the L1000 platform, we varied the detection mode for acquiring the data between two genes per analyte type (DUO) and one gene per analyte type (UNI). We then used the data to run an open innovation competition  [@lakhani2013prize; @blasco2019advancing] where we challenged competitors to provide different solutions for the deconvolution problem, as we describe below.
 
-<!-- 
-## Related literature 
-@musa2017review review of cmap. 
-@down2008bayesian A Bayesian deconvolution strategy for immunoprecipitation-based DNA methylome analysis
-@liu2015compound used a fuzzy c-means Gaussian Mixture Model (GMM) to process raw L1000 data, showing better performance compared to KNN. This method is described below: 
-@zhong2012gene Gene expression deconvolution in linear space
-@hunt1971deconvolution one of the first deconv? 
-@preibisch2014efficient Efficient Bayesian-based multiview deconvolution
- -->
-
-<!-- 
-> To deconvolute such overlapped peaks, we assumed that the fluorophore intensities of each analyte type (corresponding to a specific mRNA type) had a Gaussian distribution. The distribution of the mixture of analytes GeneH(i) and GeneL(i) corresponding to the expression levels of GeneH and GeneL, respectively, should be subject to a bimodal Gaussian distribution, with the proportion of 1.25 to 0.75. We initialized the estimations of the two Gaussian distributions using buzzy c-means clustering [11] and estimated the GMM parameters using the Nelder-Mead method [12]. Thus, the overlapped peaks were deconvoluted as the two estimated Gaussian peaks and the expression levels of the two genes sharing the same analyte were extracted. Mathematical details are included in the Supplementary Methods (the GMM model).
- -->
 
 ## Dpeak's open innovation contest
 
 We ran the competition on the Topcoder platform (Wipro, India) for a total of 21 days. A prize purse of $23,000 in cash was offered to competitors as incentive to be divided among the top 9 submissions ($8000, $6000, $4000, $2000, $1000, $800, $600, $400, $100).
 
-To generate data for this contest, we profiled six 384-well perturbagen plates, each containing mutually exclusive sets of compound and short-hairpin (shRNA) treatments (see \nameref{s1-table.} and \nameref{s2-table.} for a complete list of the perturbagens). Multiple treatment types were used to avoid potentially over-fitting to any one. The compound and shRNA perturbagen plates were arbitrarily grouped into pairs, and to avoid any potential 'information leakage' each pair was profiled in a different cell line. The resulting lysates were amplified by Ligation Mediated Amplification (LMA, @subramanian2017next). The amplicon was then split and detected in both UNI and DUO detection modes, resulting in three pairs of data generated under comparable circumstances. 
+To generate data for this contest, we profiled six 384-well perturbagen plates, each containing mutually exclusive sets of compound and short-hairpin (shRNA) treatments (see \nameref{s1-table.} and \nameref{s2-table.} for a complete list of the perturbagens). Multiple treatment types were used to avoid potentially over-fitting to anyone. The compound and shRNA perturbagen plates were arbitrarily grouped into pairs, and to avoid any potential 'information leakage' each pair was profiled in a different cell line. The resulting lysates were amplified by Ligation Mediated Amplification (LMA, @subramanian2017next). The amplicon was then split and detected in both UNI and DUO detection modes, resulting in three pairs of data generated under comparable circumstances. 
 
 Next, we randomly split the three pairs of data, as described above, into training, testing, and holdout subsets. The training data were available for all the contestants to develop and validate their solutions offline. The testing data were used to evaluate solutions during the contest and populate the live leaderboard. The holdout data were used to evaluate competitors' final submissions and to guard against over-fitting. Prizes were awarded based on performance on the holdout dataset. In each category, the UNI data served as the ground truth. 
-<!--   -->
 
-<!-- The datasets used for this contest are publicly available (Supporting Info, XXXX).  -->
+We developed a scoring function to evaluate the submissions of the competitors. The function combined two different accuracy metrics and a measure of computational speed. The accuracy metrics were the Spearman rank correlation between the values and the ground truth, and the area under the receiver operating curve (ROC) as a measure of aggregated classification performance in the prediction of extreme modulated genes (See \nameref{s1-appendix} for the details).
 
-We developed a scoring function to evaluate the submissions of the competitors. The function combined two different accuracy metrics and a measure of computational speed. The accuracy metrics were the Spearman rank correlation between the values and the ground truth; and the area under the receiver operating curve (ROC) as a measure of aggregated classification performance in the prediction of extreme modulated genes (See \nameref{s1-appendix} for the details).
 
+<!-- ~~~~~~~~~~  -->
+<!-- OLDER NOTES -->
 <!-- 
 Towards developing an open innovation competition, we first transformed the deconvolution problem into a supervised classification task. Using the L1000 assay, we profiled six 384-well plates, each containing different sets of compound and shRNA treatments (see Supporting Info, \ref{data-gen}). The same samples were detected using two different methods. The first method, called UNI, associates each gene to one single bead color, which leads to higher costs, but does not require deconvolution.
 The second method, called DUO, meaures two different genes on the same bead color, which reduces costs but requires deconvolution to transform the composite signal into two separate gene-specific expression values.
@@ -89,3 +67,21 @@ For the $DUO$ detection method, the gene-specific proportions are such that each
 <!-- from problem statement
 Each measurement produces an intensity histogram (a list of integers), which characterizes expression of two distinct genes in the sample (for a total of 488 x 2 = 976 genes). In the ideal case, each histogram consists of two peaks (see Figure 1), each corresponding to a single gene. The genes are mixed in 2:1 ratio, thus the areas under the peaks have 2:1 ratio, which allows us to associate each peak with the specific gene. The median position of each peak corresponds to the gene's expression level, and that's what you need to determine in this challenge.
 -->
+
+<!-- 
+@cleary2017efficient proposes to use "compressed sensing to use low-level measurements or composite signals (from multiple genes) to recover high-level... 
+@deng2019scalable
+@hie2019efficient
+such as to measure differential gene expression for each gene in mixed cell-type samples [@shen2010cell], 
+for studying the state of cells and tissues in response to perturbations
+ -->
+ 
+<!-- 
+## Related literature 
+@musa2017review review of cmap. 
+@down2008bayesian A Bayesian deconvolution strategy for immunoprecipitation-based DNA methylome analysis
+@liu2015compound used a fuzzy c-means Gaussian Mixture Model (GMM) to process raw L1000 data, showing better performance compared to KNN. This method is described below: 
+@zhong2012gene Gene expression deconvolution in linear space
+@hunt1971deconvolution one of the first deconv? 
+@preibisch2014efficient Efficient Bayesian-based multiview deconvolution
+ -->
