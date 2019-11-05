@@ -1,33 +1,27 @@
 ---
 output: pdf_document
-mainfont: sans
+fontfamily: arev
 ---
 
 `r format(Sys.Date(), "%B %d, %Y")`
 
 Dear Dr. Doerr and Members of the Nature Methods Editorial Board,
 
-We are writing to enquire if our manuscript entitled "xxxx" will be appropriate for submission as a Brief Communication in Nature Methods.
+We are writing for a presubmission inquiry regarding the suitability of our manuscript, "Improving Deconvolution Methods in Biology through Open Innovation Competitions: an Application to the Connectivity Map," for publication as Brief Communication in Nature Methods.
 
-The premise of the article is that biomedical researchers frequently leverage the performance of multiplex assays by using a single analyte, or sensor, to measure multiple signals from distinct populations (cell types, tissues, and genes). So, they must deconvolute the composite data to identify and isolate measurements from each population. Machine learning techniques could be an effective solution. The key advantage is that, compared to more traditional methods, the learning algorithm automatically captures nonlinear patterns that are hard to model otherwise, especially in complex and massive datasets as those frequently used in biomedical research. However, rntering these new machine learning techniques in the field presents several challenges; especially validation, adaptation to specific datasets, and identification of the best machine-learning approaches to specific problems.
+Deconvolution problems are ubiquitous in many areas of science. In the context of biomedical research, the problem often consists of acquiring gene expression levels from distinct populations (cell types, tissues, and genes) using random composite measurements (e.g., using a single analyte, or sensor, with multiplex assays to measure signals from distinct cell types). Existing deconvolution approaches work well in many specific settings, but maybe suboptimal to the increasing availability of biological data. We hypothesize that (1) machine learning techniques can potentially improve the current ability to identify and isolate measurements from each population because these algorithms capture automatically nonlinear patterns that are hard to model otherwise, especially in complex and massive datasets as those frequently used in biomedical research; and (2) entering these new machine learning techniques in the field presents several challenges. Some of which is validation, adaptation to specific datasets, and identification of the best machine-learning approaches to specific problems.
 
-The paper tries to address these challenges in the context of the deconvolution of gene- specific differential gene expression from samples containing a mixture of multiple genes. Using the L1000 gene-expression assay [5], we generated a novel experimental dataset with the transcriptional response of approximately 1,000 genes to 122 different perturbagens (shRNA and compounds) with several replicates for a total of over 2,200 gene expression experiments. For each experiment, half of the data were obtained by using one single analyte to measure the differential gene expression of individual genes from a mixed sample of two genes (DUO data); and the other half was obtained by using one analyte per each gene (UNI data). This enabled us to evaluate empirically different deconvolution methods under nearly identical conditions. 
+To test these hypotheses, we generated a novel experimental dataset with the transcriptional response of approximately 1,000 genes to 122 different perturbagens (shRNA and compounds) with several replicates for a total of over 2,200 gene expression experiments; and based on these data, we explored different machine learning approaches through an open innovation competition. 
 
-Based on these data, we then explored different machine learning approaches through an open innovation competition [6, 7]. We run the contest on a crowdsourcing platform (Topcoder) which is popular in the United States. The contest challenged participants to use the novel dataset to 
+We show that (1) machine-learning approaches, such as Random Forests and Convolutional Networks, significantly improved the performance over the benchmark, which was based on widely-used k-means approach; (2) traditional methods such as gaussian-mixture models, however, can potentially outperform machine-learning approaches in prediction accuracy, as well as in computational speed; (3) the winning approach, which was based on a random forest, a popular machine-learning technique, achieved the highest “global” correlation with the ground-truth; the lowest inter-replicate variability and, compared to the benchmark, was able to detect more than a thousand additional differentially-expressed genes, while improving the detection precision at the same time. This provides evidence of the tremendous potential of using random-forest approaches for deconvolution methods in biology.
 
-The contest drew competitors from across the globe and resulted in a diversity of machine-learning approaches. The top approaches included machine-learning methods, such as Random Forests and Convolutional Neural Networks (CNNs), as well as more traditional Gaussian-mixture models. These approaches significantly improved over the L1000 benchmark in various measures of accuracy and computational speed, and likely have application beyond gene expression.
-Results show that the winning approach based on a random forest, a popular machine-learning technique, achieved (i) the highest “global” correlation between UNI and DUO data, (ii) the lowest inter-replicate variability and (iii), compared to the benchmark, was able to detect more than a thousand additional differentially-expressed genes, while improving the detection precision at the same time. This provides evidence of the tremendous potential of using machine-learning approaches for deconvolution methods in biology.
-
-We believe this work will bring much-needed  
-- move away from traditional methods towards more machine-learning 
-- the dataset could become a powerful research tool for many researchers willing to benchmark their solution 
-- the algorithms could be used to improve deconvolution methods apply beyond the xxx and could spur experimentation of these machine learning methods to other settings where more traditional xxx are the standard ... 
+We believe this work will bring much-needed insights into the field on how to conduct the experimentation of these machine learning methods, especially in settings where more traditional deconvolution approaches are the standard and can potentially represent "local" minima solutions to the problem. Additionally, researchers will find the generated dataset, which we are going to make publicly available upon publication, a powerful research tool for benchmarking their deconvolution methods, as well as a useful resource for more applications. 
 
 Thank you for your time and consideration; we look forward to your comments and feedback.
 
 Yours Sincerely,
 
-**Andrea Blasco**, **Michael Endres** and **Karim R. Lakhani**
+**Andrea Blasco** and **Karim R. Lakhani**
 
 Harvard Business School
 
@@ -35,13 +29,14 @@ Harvard Business School
 
 Broad Institute
 
-**Andrew I. Su**
-
-The Scripps Research Institute
-
 
 
 <!-- 
 A pre-submission inquiry letter should be clear and to-the-point. You should state that you are writing to inquire if your article will be appropriate for submission to the journal. Mention the topic of your article towards the beginning of the email and provide a short summary or abstract of the paper. To help the journal assess your study, include some information about the breadth and depth of your study, the nature of evidence provided, and why the journal might find your paper interesting. Each journal has its own processes and guidelines. If the journal has given an email address for pre-submission inquiries, I think you should send the inquiry only to that address. This contact person would probably be in charge of handling all such inquiries, and the Chief Editor might not be involved in this.
+ -->
+ 
+<!--   would like to submit a presubmission inquiry regarding suitability of our manuscript, "Subversion of cellular autophagy pathway by RNA viruses" by William T. Jackson, Thomas H. Giddings Jr., Sara Mulinyawe, Ron Kopito and Karla Kirkegaard for publication in PLoS Biology. Cellular autophagy is a field that is just entering a period of rapid discovery, because the mammalian homologs for the many yeast genes that affect autophagy have very recently been identified. Some of these have generated new markersfor this previously difficult-to-diagnose process. I recently attended the first Gordon Conference on autophagy, and the list of its roles in development, cancer and host responses to pathogens was impressive. It reminded me of 10-15 years ago, when the genes that affect apoptosis were first available as a result of nematode genetics, which ledto the identification and characterization of components of the apoptotic cascade.
+Image of page 1
+
  -->
 
