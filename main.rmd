@@ -68,11 +68,8 @@ childs <- c("intro.rmd", "methods.rmd", "results.rmd", "discussion.rmd", "figure
 ```{r child=childs}
 ``` 
 
-
-## Comments
-
-### Rinat's 
-
+<!-- 
+### Rinat's comments
 1. There is some odd figure ordering in the draft. Figure 1 is referenced only at the very last in Appendix (thus, should be an appendix figure); Then there are Figs 3, 6, 4, ??=5, and 7. Easy fix - just not to forget 
 2. Similarly, the table of contents of the section 4. Figures does not match the list of figures. It is also better to use Figure 1, Figure 2 in that list - instead of 4.1, 4.2, 4.3…
 3. As for the figures, I wonder if there is a better way to distinguish the algorithm performances than comparing their CDFs which are currently barely distinguishable on the plots. May be, showing the difference:
@@ -87,6 +84,7 @@ Again - just an idea. We can drop it and keep as it is.
 5. I wonder if on Figure 5 it is better to sort the contestants by their placement rather then by their runtime - that would better illustrate the statement of low correlation between performance and runtime. It would also make sense to add a category (Table S3) mark to this plot - as the runtimes may be heavily clustered by the method.
 Also, I would probably use the log-scale for Y-axes on those plots.
 Again - the draft looks really great! Great job!!!
+ -->
 
 
 References

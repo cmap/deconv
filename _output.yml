@@ -1,5 +1,5 @@
 pdf_document:
-  toc: true 
+  toc: false 
   number_sections: true
   template: templates/default.latex
   fig_height: 3.5 
