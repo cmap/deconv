@@ -4,18 +4,18 @@ title: "Improving Deconvolution Methods in Biology \
         an Application to the Connectivity Map"
 
 author: 
-    - "[INCOMPLETE, ORDER TBD]"
     - Andrea Blasco (Harvard)
     - Ted Natoli (Broad)
     - Rinat A. Sergeev (Harvard)
+    - Steven Randazzo (Harvard)
     - Jin H. Paik (Harvard)
     - Max Macaluso (Broad)
     - Rajiv Narayan (Broad)
-    - [...]
     - Karim R. Lakhani (Harvard)
     - Aravind Subramanian (Broad)
 
-abstract: "Deconvolution methods are ubiquitous in many areas of science and engineering.   A common problem of deconvolution algorithms is the validation of results using realistic datasets for testing, and the costs involved in tailoring different approaches to such datasets. We describe the deconvolution problem of an assay, L1000, that measures mRNA transcript abundance of approximately 1000 genes from human cells using 500 Luminex beads, such that two transcripts are identified by a single bead color. Using L1000, we generated a novel dataset of transcripts for various perturbagens (shRNA and compounds) where genes were measured both in tandem and individually. We then ran an open competition to elicit different deconvolution algorithms. The competition produced a wide variety of techniques including machine-learning algorithms, such as Convolutional Neural Networks and Random Forests, and more traditional approaches, such as Gaussian mixtures and k-means. All top solutions achieved notable improvements over the benchmark." 
+
+abstract: "How to isolate specific gene expressions of distinct populations (cell types, tissues, and genes) from composite measures obtained by a single analyte or sensor? This is a typical problem in biology, a consequence of the prohibitive cost of profiling each population separately, that has important implications for biomedical research. To improve upon existing solutions, we generated a novel dataset with the transcriptional response of approximately 1,000 genes to 122 different perturbagens (shRNA and compounds) and several replicates for a total of over 2,200 gene expression experiments; we then used these data to explore different machine learning approaches through an open innovation competition; and we found that: (1) Random Forests, Convolutional Networks, as well as more traditional Gaussian Mixture models consistently outperform other common approaches, such as k-means clustering, in prediction accuracy; and (2) the winning approach, which was a Random Forest, achieved the highest global correlation with the ground-truth, the lowest inter-replicate variability, and, compared to the benchmark, was able to detect more than a thousand additional differentially-expressed genes, while improving the detection precision at the same time. This provides evidence of the tremendous potential of using random-forest approaches for deconvolution problems in biology."
 
 date: 'Last updated: `r format(Sys.Date(), "%b %d, %Y")`'
 
@@ -26,15 +26,16 @@ keywords:
   - deconvolution
   - gene expressions
   - cell lines
+  - machine learning 
 
-titlepage: false 
+fontsize: 12pt
 linestretch: 1.25
 fontfamily: mathpazo
-# fontsize: 11pt
+geometry: margin=1.5in
+# titlepage: false 
 # colorlinks: true
 # urlcolor: cyan
 # citecolor: blue 
-geometry: margin=1.25in
 # endfloat: true
 bibliography: dpeak.bib
 biblatexoptions: "sorting=none"
@@ -54,22 +55,8 @@ TODOS:
     - assessing "global similarity" b/w predictions and ground truth.
     - assessubg EM detection
 - Figures: drop panel C
-- Address comments at the end of manuscript
- -->
+- Address comments below
 
-```{r global-options, include=FALSE}
-knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
-```
-
-```{r sections, include = FALSE}
-childs <- c("intro.rmd", "methods.rmd", "results.rmd", "discussion.rmd", "figures.rmd", "supporting.rmd")
-```
-
-```{r child=childs}
-``` 
-
-<!-- 
-### Rinat's comments
 1. There is some odd figure ordering in the draft. Figure 1 is referenced only at the very last in Appendix (thus, should be an appendix figure); Then there are Figs 3, 6, 4, ??=5, and 7. Easy fix - just not to forget 
 2. Similarly, the table of contents of the section 4. Figures does not match the list of figures. It is also better to use Figure 1, Figure 2 in that list - instead of 4.1, 4.2, 4.3…
 3. As for the figures, I wonder if there is a better way to distinguish the algorithm performances than comparing their CDFs which are currently barely distinguishable on the plots. May be, showing the difference:
@@ -86,6 +73,13 @@ Also, I would probably use the log-scale for Y-axes on those plots.
 Again - the draft looks really great! Great job!!!
  -->
 
+```{r global-options, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
+childs <- c("intro.rmd", "methods.rmd", "results.rmd", "discussion.rmd", "figures.rmd", "supporting.rmd")
+```
+
+```{r child=childs}
+``` 
 
 References
 ==========
