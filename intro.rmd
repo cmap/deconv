@@ -17,3 +17,30 @@ The second method, called DUO, acquired a composite measure of the gene expressi
 Leveraging this data set, we then explored different machine learning approaches through an open innovation competition, or contest, which we designed following insights from our previous work [@lakhani2013prize; @blasco2019advancing]. We run the contest on Topcoder, a popular crowdsourcing platform. The contest challenged participants to use the novel dataset to improve the deconvolution algorithm utilized by the L1000 platform. The contest drew about 300 competitors from across the globe and resulted in a diverse number of machine-learning approaches. The top approaches included machine-learning methods, such as Random Forests and Convolutional Neural Networks (CNNs), as well as more traditional Gaussian-mixture models. These approaches significantly performed better than the L1000 benchmark in various measures of accuracy and computational speed, and likely have application beyond gene expression.
 
 As we discuss in more detail below, results showed that a Random Forest approach, a popular machine-learning technique, achieved (i) the highest "global" correlation between UNI and DUO data, (ii) the lowest inter-replicate variability and (iii), compared to the benchmark, was able to detect more than a thousand additional differentially-expressed genes, while improving the detection precision at the same time. This provides evidence of the tremendous potential of using machine-learning approaches for deconvolution methods in biology. 
+
+
+<!-- 
+TO READ: 
+
+"DeconvSeq: deconvolution of cell mixture distribution in sequencing data" https://academic.oup.com/bioinformatics/advance-article-abstract/doi/10.1093/bioinformatics/btz444/5506629?redirectedFrom=fulltext
+
+"Evaluation of methods to assign cell type labels to cell clusters from single-cell RNA-sequencing data [version 3; peer review: 2 approved, 1 approved with reservations]"
+https://f1000research.com/articles/8-296
+
+Systematic comparative analysis of single cell RNA-sequencing methods
+https://www.biorxiv.org/content/10.1101/632216v1
+
+The Technology and Biology of Single-Cell RNA Sequencing
+https://www.sciencedirect.com/science/article/pii/S1097276515002610
+
+Fractional proliferation: a method to deconvolve cell population dynamics from single-cell data
+https://www.nature.com/articles/nmeth.2138
+
+
+Bulk tissue cell type deconvolution with multi-subject single-cell expression reference
+https://www.nature.com/articles/s41467-018-08023-x
+
+A Single-Cell Transcriptomic Map of the Human and Mouse Pancreas Reveals Inter- and Intra-cell Population Structure
+https://www.sciencedirect.com/science/article/pii/S2405471216302666
+
+-->
