@@ -15,7 +15,7 @@ author:
     - Aravind Subramanian (Broad)
 
 
-abstract: "How to isolate specific gene expressions of distinct populations (cell types, tissues, and genes) from composite measures obtained by a single analyte or sensor? This is a typical problem in biology, a consequence of the prohibitive cost of profiling each population separately, that has important implications for biomedical research. To improve upon existing solutions, we generated a novel dataset with the transcriptional response of approximately 1,000 genes to 122 different perturbagens (shRNA and compounds) and several replicates for a total of over 2,200 gene expression experiments; we then used these data to explore different machine learning approaches through an open innovation competition; and we found that: (1) Random Forests, Convolutional Networks, as well as more traditional Gaussian Mixture models consistently outperform other common approaches, such as k-means clustering, in prediction accuracy; and (2) the winning approach, which was a Random Forest, achieved the highest global correlation with the ground-truth, the lowest inter-replicate variability, and, compared to the benchmark, was able to detect more than a thousand additional differentially-expressed genes, while improving the detection precision at the same time. This provides evidence of the tremendous potential of using random-forest approaches for deconvolution problems in biology."
+abstract: "A central goal in biology is to understand and quantify the response of human cells to perturbations. This goal requires the creation of gene expression data at scale across a wide range of cell types. However, because of the prohibitive cost of profiling each gene or cell type separately, researchers often must deconvolute gene-expression profiles of distinct populations (cell types, tissues, and genes) from composite measures obtained by a single analyte, or sensor. To improve upon existing solutions,  we generated a novel dataset of transcripts for various perturbagens (shRNA and compounds) for a total of 2,200 gene expression experiments. We then run an open competition challenging participants to develop solutions using these data.  The contest attracted 300 competitors providing both machine learning (Convolutional Neural Networks and Random Forests) and more traditional approaches (Gaussian mixtures and k-means). Through the analysis of the top-performing methods, we found that: (1) machine-learning approaches tend to outperform in accuracy more traditional approaches, such as k-means clustering; (2) the second-placed approach, a Gaussian Mixture model, outperformed more sophisticated machine learning methods; and (3) the winning approach, a Random Forest, achieved the highest global correlation with the ground truth, the lowest inter-replicate variability, and, compared to the benchmark, was able to detect more than a thousand additional differentially-expressed genes, while improving the detection precision at the same time. This provides evidence of the tremendous potential of using random-forest approaches for deconvolution problems in biology."
 
 date: 'Last updated: `r format(Sys.Date(), "%b %d, %Y")`'
 
@@ -25,13 +25,12 @@ keywords:
   - crowdsourcing
   - deconvolution
   - gene expressions
-  - cell lines
-  - machine learning 
+  - machine learning
 
 fontsize: 12pt
 linestretch: 1.25
 fontfamily: mathpazo
-geometry: margin=1.5in
+geometry: margin=1.25in
 # titlepage: false 
 # colorlinks: true
 # urlcolor: cyan

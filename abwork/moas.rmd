@@ -1,0 +1,79 @@
+# Explore moas 
+
+```{r setup-and-libraries, include = FALSE}
+library(data.table)
+library(ggplot2)
+library(ggrepel)
+library(cmapR)
+library(pheatmap)
+library(pROC)
+library(dplyr, warn=F)
+```
+
+```{r datasets, include = FALSE}
+speed_acc <- fread("data/holdout_score_time.txt", na.strings="n/a")
+soln_desc <- fread("data/solution_descriptions.txt", na.strings="n/a")
+speed_acc <- merge(speed_acc, soln_desc, by="handle")
+ds_cor <- parse.gctx("data/UNI_DUO_gene_spearman_correlations_holdout_n20x976.gctx")
+# ds_gardn999_auc <- parse.gctx("data/DPK.CP003_PC3_24H_X1_B42_DE_gardn999.gct")
+# ds_uni_auc <- parse.gctx("data/DPK.CP003_PC3_24H_X1_B42_DE_UNI.gct")
+# ds_bench_auc <- parse.gctx("data/DPK.CP003_PC3_24H_X1_B42_DE_benchmark.gct")
+```
+
+```{r variance-setup, include = FALSE}
+(ds <- parse.gctx("data/DECONV_holdout_n8228x976.gctx"))
+annot <- fread("data/holdout_sample_annotations.txt")
+gene_annot <- fread("data/barcode_to_gene_map.txt", colClasses = c("gene_id"="character"))
+ds <- annotate.gct(ds, annot, dim="col", keyfield="id")
+ds <- annotate.gct(ds, gene_annot, dim="row", keyfield="gene_id")
+repurp <- read.table("data/Repurposing_Hub_export.txt", sep = "\t", comment.char = "", header = T, quote = "")
+repurp %>% glimpse
+```
+
+## ground truth 
+
+```{r}
+j <- ds@cdesc$handle == "ground-truth"
+ds_uni <- subset.gct(ds, cid = j)
+dim(ds_uni@mat) # 976 genes x 748 samples
+ds_uni@cdesc %>% glimpse
+```
+
+## winner  
+
+```{r}
+j <- ds@cdesc$handle == "gardn999"
+ds_gardn999 <- subset.gct(ds, cid = j)
+dim(ds_uni@mat) # 976 genes x 748 samples
+ds_uni@cdesc %>% glimpse
+```
+
+
+## Match MoAs
+
+```{r}
+pert_mfc_id <- unique(ds_uni@cdesc$pert_mfc_id)
+all_ids <- unlist(sapply(pert_mfc_id, grep, x=levels(repurp$Id)))
+```
+
+Very little data! Each drug has different MoA... 
+
+
+## Try to predict a drug using UNI
+
+```{r}
+library(glmnet)
+x <- t(ds_uni@mat)
+y <- ds_uni@cdesc$pert_mfc_id == "BRD-K50071428-001-03-3"
+fit_uni <- glmnet(x, y, family = "binomial")
+ 
+x <- t(ds_gardn999@mat)
+y <- ds_gardn999@cdesc$pert_mfc_id == "BRD-K50071428-001-03-3"
+fit_gardn999 <- glmnet(x, y, family = "binomial")
+
+par(mfrow = c(1, 2))
+plot(fit_uni, xvar = "dev", label = TRUE, xlim = c(0, 1.2), ylim = c(-0.02, 0.03), main = "UNI")
+plot(fit_gardn999, xvar = "dev", label = TRUE, xlim = c(0, 1.2),  ylim = c(-0.02,0.03), main = "Gardn999")
+``` 
+
+
