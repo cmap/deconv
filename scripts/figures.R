@@ -113,7 +113,9 @@ plot.inter.rep <- function(bead.proportion.high = FALSE) {
       abline(h = seq(0.2, 0.8, by = 0.2), lty = 3)
       if (j == 1) axis(2)
     }
-    title(ylab = "fraction of gene-pert. combination", xlab = "average inter-replicate variance", outer = T)
+    title(main = ifelse(k, "High bead proportion", "Low bead proportion")
+        , ylab = "fraction of gene-pert. combination"
+        , xlab = "average inter-replicate variance", outer = T)
   }
 }
 

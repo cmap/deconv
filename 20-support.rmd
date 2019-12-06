@@ -9,6 +9,44 @@ annot <- fread("data/holdout_sample_annotations.txt")
 gene_annot <- fread("data/barcode_to_gene_map.txt", colClasses = c("gene_id"="character"))
 ```
 
+\clearpage 
+
+## S1 Figure  {-}
+
+**eCDF of genewise Spearman's rank correlation.** This figure shows the empirical Cumulative Distribution Function (eCDF) of the genewise Spearman's rank correlation for the top-four performing approaches and the k-means benchmark. The top panels present the eCDFs corresponding to the shRNAs, whereas the bottom panels present the eCDFs corresponding to the compounds.
+
+\begin{figure}
+\centering
+\includegraphics{outcomes/figures/ecdf.corr-shrna.pdf}
+\includegraphics{outcomes/figures/ecdf.corr-compounds.pdf}
+\end{figure}
+
+\clearpage 
+
+## S2 Figure {-}
+
+**Improvements in genewise Spearman's rank correlation.** This figure shows the association between the genewise Spearman's rank correlation for the top-four performing approaches and the k-means benchmark; it also reports the fraction genes with a higher genewise Spearman's rank correlation than the benchmark. The top panels present the scatter plots corresponding to the shRNAs, whereas the bottom panels present the scatter plots corresponding to the compounds.
+
+\begin{figure}
+\centering
+\includegraphics{outcomes/figures/corr-shrna.pdf}
+\includegraphics{outcomes/figures/corr-compounds.pdf}
+\end{figure}
+
+\clearpage 
+
+## S3 Figure {-}
+
+**Improvements in inter-replicate variability.** This figure shows the empirical Cumulative Distribution Function (eCDF) of the genewise inter-replicate variance for the top-four performing approaches and the k-means benchmark. The top panels present the eCDFs corresponding to the genes in low bead proportion (recall genes are paired and mixed in 2:1 ratio within each pair), whereas the bottom panels present the eCDFs corresponding to the genes in high bead proportion.
+
+\begin{figure}
+\centering
+\includegraphics{outcomes/figures/inter-rep-low.pdf}
+\includegraphics{outcomes/figures/inter-rep-high.pdf}
+\end{figure}
+
+\clearpage 
+
 ## S1 Table. {-}
 
 **Compound perturbagens descriptives.** This table shows componud perturbagen names (`pert_iname`), unique id (`pert_id`), time of treatment (`pert_itime`), dose (`pert_idose`), and number of replicates (`num_replicates`). 
@@ -20,6 +58,8 @@ annot %>%
   rename(num_replicates = n) %>%
   knitr::kable()
 ```
+
+\clearpage 
 
 ## S2 Table. {-}
 
@@ -33,16 +73,20 @@ annot %>%
   knitr::kable()
 ```
 
+\clearpage 
+
 ## S3 Table {-}
 
-**Top finishers.**  This table lists the top 9 finishers and the languages and algorithms each used.
+**Top-nine performing solutions.**  This table lists the top-nine solutions and the languages and algorithms each used, as well as the average speedup per plate relative to the k-means benchmark.  
 
 ```{r soln_desc, echo=F, warning=F}
 library(data.table)
 soln_desc <- fread("data/solution_descriptions.txt", na.strings = "n/a")
 setnames(soln_desc, "method_short", "category")
-knitr::kable(soln_desc[1:9], caption = "\\label{tab:soln_desc}Summary of contestant solutions")
+knitr::kable(soln_desc[1:9])
 ```
+
+\clearpage 
 
 ## S1 Appendix {-}
 
@@ -78,7 +122,7 @@ $$
 $$ 
 where $T_\text{solution}$ is the run time in seconds for deconvoluting the data in each plate, and $T_{\text{benchmark}}$ is the deconvolution time required by the benchmark D-Peak implementation. 
 
-<!-- %%%%%%%%%%%%%%%%%%%%%%%% -->
+\clearpage
 
 ## S2 Appendix  {-}
 
@@ -86,7 +130,5 @@ where $T_\text{solution}$ is the run time in seconds for deconvoluting the data 
 
 In the first detection mode, called $UNI$, each of the 978 landmark genes is measured individually on one of the 500 Luminex bead colors. In order to capture all 978 genes, two detection plates are used, each measuring 489 landmarks. The two detection plates’ worth of data are then computationally combined to reconstruct the full 978-gene expression profile for each sample.
 
-By contrast, in the $DUO$ detection scheme two genes are measured using the same bead color. Each bead color produces an intensity histogram which characterizes the expression of the two distinct genes. In the ideal case, each histogram consists of two peaks each corresponding to a single gene. The genes are mixed in 2:1 ratio, thus the areas under the peaks have 2:1 ratio (see Figure 1), which enables the association of each peak with the specific gene. **The practical advantage of the DUO detection mode is that it uses half of the laboratory reagents as UNI mode, and hence $DUO$ is and has been the main detection mode used by CMap.**
-
-After $DUO$ detection, the expression values of the two genes are computationally extracted in a process called 'peak deconvolution,' described in the next section. 
+By contrast, in the $DUO$ detection scheme two genes are measured using the same bead color. Each bead color produces an intensity histogram which characterizes the expression of the two distinct genes. In the ideal case, each histogram consists of two peaks each corresponding to a single gene. The genes are mixed in 2:1 ratio, thus the areas under the peaks have 2:1 ratio (see Figure 1), which enables the association of each peak with the specific gene. The practical advantage of the DUO detection mode is that it uses half of the laboratory reagents as UNI mode, and hence $DUO$ is and has been the main detection mode used by CMap. After $DUO$ detection, the expression values of the two genes are computationally extracted in a process called 'peak deconvolution,' described in the next section. 
 
