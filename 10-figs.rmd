@@ -1,7 +1,6 @@
 \clearpage 
-\pagenumbering{gobble}
 
-# Figures
+# Tables and Figures
 
 ```{r setup-and-libraries, include = FALSE}
 library(data.table)
@@ -18,377 +17,28 @@ soln_desc <- fread("data/solution_descriptions.txt", na.strings="n/a")
 speed_acc <- merge(speed_acc, soln_desc, by="handle")
 ```
 
+## Table 1 {-}
 
-## Scoring accuracy
+**Top-nine performing solutions.**  This table lists the top-nine solutions and the languages and algorithms each used, as well as the average speedup per plate relative to the k-means benchmark.  
 
-![**Schematic illustrating accuracy components of scoring function**. The accuracy component is computed as the product of gene-wise Spearman correlations with ground truth and the area under the curve AUC of extreme modulations.](outcomes/figures/deconvolution_contest Fig2_Final_revised.png)
+```{r top-nine, echo=F, warning=F}
+setnames(soln_desc, "method_short", "category")
+knitr::kable(soln_desc[1:9])
+```
 
-## Spearman rank correlation
+\clearpage 
+
+## Figure 1 {-}
+
+**Schematic illustrating the computational problem, generated data, and scoring function**. Panel (**a**) provides a schematic description of the L1000 DUO detection mode and the associated deconvolution problem to be addressed by the contestants. Panel (**b**) shows the data generated for the contest comprising 6 different sets of perturbational experiments. The experiments consisted of 3 plates of compound (CP) and shRNA treatments (KD) in 3 cell lines.  Each plate was detected using DUO (2 genes per analyte) and UNI (one gene per analyte) with UNI serving as the ground truth. Contestants were given two plates of data for training their models offline. The second set of two plates was used during the contest for testing and to populate the live leaderboard, and the third set of two was used as holdout to determine the final contestant placements. Panel (**c**) illustrates the accuracy component of the scoring function that was used to evaluate the solutions submitted by the competitors. A solution's overall accuracy score was the product of the genewise Spearman's rank correlations with ground truth (DECONV data) and the area under the curve AUC of extreme modulations (DE data).
+
+![](outcomes/schematic-methods.pdf)
  
-```{r spearman-correlation-histograms, fig.cap = "ECDF", fig.width = 2*4, fig.height = 3, eval = F}
-ds_cor <- parse.gctx("data/UNI_DUO_gene_spearman_correlations_holdout_n20x976.gctx")
-n <- 4
-handles <- head(soln_desc$handle, n)
-method <- head(soln_desc$method_short, n)
-COL <- c(rgb(1,0,0,0.5), rgb(0,0,1,0.5))
-
-x.scale <- c(0, 1)
-y.scale <- c(0, 3.5)
-panel <- function(x) {
-  x.stat <- round(median(x),2)
-  plot.stepfun(ecdf(x), ann = F, col = COL[1], xlim = x.scale, axes = F, do.points = F)
-  abline(v = x.stat, lty = 2, lwd = 2)
-  mtext(side = 3, at = x.stat, text = bquote(bar(rho) == .(format(x.stat, digits = 3))))
-}
-extract.corr <- function(ds, handle, plate) {
-  j <- which(ds@cdesc$handle == handle & grepl(plate, ds@cdesc$plate))
-  ifelse(ds@mat[, j]<0,0,ds@mat[, j])
-}
-
-for (plate in c("DPK", "LIT")) {
-par(mfrow = c(1, n), mar = c(0,0,4,1), oma = c(4,4,3,0))
-  for (i in 1:n) { 
-    panel(extract.corr(ds_cor, handles[i], plate))
-    plot.stepfun(ecdf(extract.corr(ds_cor, "benchmark", plate)), col = COL[2], do.points = F, lty = 2, add = T)
-    abline(h = c(0.25,0.75,0.5), lty = 3, col = gray(.5))
-    axis(1, at =  c(0, 1, 0.5))
-    if (i %% n == 1) axis(2, at = c(0, 1, 0.5))
-    txt <- sprintf("%i, %s (%s)", i, handles[i], method[i])
-    title(txt, line = 3)
-    legend("topleft", col = COL, c("competitor", "benchmark"), bty = "n", pch = 19, text.font = 2)
-  }
-  title(main = ifelse(plate == "DPK", "shRNA", "Compounds"), xlab = "genewise Spearman's rank correlation", ylab = "fraction of genes", outer = T)
-}
-```
-
-## Second Plot of correlation 
-
-```{r spearman-correlation, fig.width = 2.75*4, fig.height = 3, fig.cap = "Global corr"}
-# data
-ds_cor <- parse.gctx("data/UNI_DUO_gene_spearman_correlations_holdout_n20x976.gctx")
-plates <- unique(ds_cor@cdesc$plate)
-handles <- unique(ds_cor@cdesc$handle)
-j <- soln_desc %>% filter(rank < 5)
-# parms
-par(mfrow=c(1, 4), mar = c(0,0,1,1), oma = c(4,4,0,0))
-x.scale <- c(0.2, 1)
-bottomcode <- function(x, value = 0) ifelse(x<value, value, x)
-# figure 
-bench <- which(ds_cor@cdesc$handle == "benchmark")
-for (i in 1:4) {
-  ok <- which(ds_cor@cdesc$handle == j$handle[i])
-  x <- ds_cor %>% subset.gct(cid = ok) 
-  y <- ds_cor %>% subset.gct(cid = bench) 
-  COL <- c(rgb(1,0,0,0.5), rgb(0,0,1,0.5))
-  z <- COL[factor(y@mat > x@mat)]
-  plot(y@mat, x@mat, cex = 2, pch = 21, col = "white", bg = z, ylim = c(0, 1), xlim = c(0, 1), axes = F)
-  abline(0, 1, lty = 2, lwd =2)
-  txt <- paste("%", sprintf("improved = %0.2f", mean(y@mat < x@mat)))
-  txt.2 <- paste("%", sprintf("not improved = %0.2f", 1-mean(y@mat < x@mat)))
-  legend("topleft", pch = 21, col = COL, pt.bg = COL, bty = "n", legend = c(txt, txt.2))
-  abline(h = seq(0.2, 0.8, by = 0.2), lty = 3)
-  if(i==1) axis(2)
-  axis(1)
-  title(main = sprintf("%s (%s)", j$handle[i], j$method_short[i]))
-}
-title(ylab = "competitor's genewise correlation"
-    , xlab = "benchmark's genewise rank correlation", outer = T)
-```
-
-```{r accuracy-fig, fig.cap = cap, echo = FALSE, fig.width = 7, fig.height = 8.5, cache = TRUE}
-cap <- "\\label{fig:accuracy-fig}**Accuracy.** \
-          Top panels show empirical CDF of the distribution of the genewise spearman correlation ($\\rho$) \
-          between the ground-truth gene-expressions (as detected by UNI) and \
-          predictions obtained by the competitors and the benchmark through the deconvolution of DUO data \
-          for the shRNA (**A**) and compound experiments (**B**). \
-          The competitors' CDFs are right-shifted compared to the benchmark, \
-          indicating more accurate predictions. \
-          Middle panels show the sample mean of the correlation coefficients ($\\bar\\rho$) \
-          with 95% confidence intervals for the shRNA (**C**) and compound experiments (**D**).\
-          The competitors (x-axis) are ordered by their final ranking in the contest.\
-          Compared to the benchmark, the mean correlation was significantly higher for nearly all top competitors.\
-          Bottom panels show the number of genes with the highest Spearman rank correlation for each algorithm.\
-          The combination of the top two ranked solutions (gardn999 and Ardavel) achieved \
-          the highest correlation in more than half of the genes in both experiments (**E** and **F**)."
-ds_cor <- parse.gctx("data/UNI_DUO_gene_spearman_correlations_holdout_n20x976.gctx")
-plates <- unique(ds_cor@cdesc$plate)
-handles <- unique(ds_cor@cdesc$handle)
-panel.bottom <- function(x, ...) {
-  plot(NA, NA, ann = FALSE, axes = FALSE, xlim = c(0, 1), ylim = c(0, 1))
-  ecdf.list <- apply(x, 2, function(x) ecdf(ifelse(x<0,0,x)))
-  sapply(ecdf.list[-4], lines, col = gray(.85), pch = "")
-  lines(ecdf.list[[4]], col = "brown", pch = "")
-  axis(1, at = c(0, 0.5, 1))
-  axis(2, at = c(0, 0.5, 1))
-  box()
-  legend("topleft", lty=1, col = c("brown", gray(.75)), c("benchmark", "competitors"), bty = "n")
-  title(...)
-}
-par(mfrow = c(3, 2), mar = c(4, 4, 2, 1) + 0.1)
-# top panel
-panel.bottom (ds_cor@mat[, 1:10], main = "A. shRNAs", xlab = expression(rho), ylab = expression(F(rho)))
-panel.bottom (ds_cor@mat[, 11:20], main = "B. compounds", xlab = expression(rho)
-  , ylab = expression(F(rho)))
-# middle panel
-par(mar = c(6, 4, 2, 1) + 0.1)
-rank.order <- unique(speed_acc[, c("rank", "handle")]) %>% arrange(rank) %>% pull(handle)
-k <- c(4, 8, 3, 9, 10, 1, 7, 2, 6, 5)
-for (p in plates) {
-  ds_sub <- subset.gct(ds_cor, cid = ds_cor@cdesc$plate == p)
-  n <- ncol(ds_sub@mat)
-  mean.cor <- apply(ds_sub@mat, 2, mean)
-  se.cor <- apply(ds_sub@mat, 2, function(x) sqrt(var(x)/length(x)))
-  hi.cor <- mean.cor + se.cor
-  lo.cor <- mean.cor - se.cor
-  hi.cor.long <- mean.cor + 2*se.cor
-  lo.cor.long <- mean.cor - 2*se.cor
-  k <- match(rank.order, gsub(".*:", "", names(mean.cor)))
-  COL <- c("orange")
-  plot(NA, NA, xlim = c(1,n), ylim = range(c(1.02*hi.cor.long,0.98*lo.cor.long)), axes = FALSE, ann = FALSE)
-#   segments(x0=1:n, y0 = hi.cor[k], y1 = lo.cor[k], lwd = 3, col = COL)
-  arrows(x0=1:n, y0 = hi.cor.long[k], y1 = lo.cor.long[k], code = 3, angle = 90, length = 0.05, col = COL)
-  points(x = 1:n, y = mean.cor[k], pch = 19, col = COL)
-  axis(1, at =1:n, ds_sub@cdesc$handle[k], las=2)
-  axis(2, at = range(mean.cor), format(range(mean.cor), digits = 2))
-  abline(h = mean.cor[k[10]], lty = 3, col = gray(.75))
-  box()
-  title(main = ifelse(grepl("DPK", p), "C. shRNAs", "D. compounds")
-      , ylab = expression(bar(rho)))
-  legend ("topright", col = c(COL, gray(.75)), lty = c(1, 3), c("95% CI", "benchmark"), bty = "n")
-}
-# bottom panel 
-for (p in plates) {
-  ds_sub <- subset.gct(ds_cor, cid = ds_cor@cdesc$plate == p)
-  best <- apply(ds_sub@mat, 1, which.max)
-  best.count <- table(best)
-  names(best.count) <- ds_sub@cdesc$handle
-  k <- match(rank.order, gsub(".*:", "", names(best.count)))
-  b <- barplot(best.count[k], border = NA, las = 2, ylim = c(0, 380), col = rgb(0,0,1, 0.65), yaxt = "n")
-  txt <- paste0(format(100*best.count[k]/sum(best.count), digits = 0),"%")
-  axis(2, at = c(0, 100, 200, 300))
-  text(x = b, y = best.count[k],txt, pos=3)
-  box()
-  title(main = ifelse(grepl("DPK", p), "E. shRNAs", "F. compounds"), ylab = "# genes")
-}
-```
-
-## AUC plots 
-
-```{r setup-auc, include = FALSE}
-library(cmapR)
-ds_gardn999_auc <- parse.gctx("data/DPK.CP003_PC3_24H_X1_B42_DE_gardn999.gct")
-ds_uni_auc <- parse.gctx("data/DPK.CP003_PC3_24H_X1_B42_DE_UNI.gct")
-ds_bench_auc <- parse.gctx("data/DPK.CP003_PC3_24H_X1_B42_DE_benchmark.gct")
-comp_roc <- function(ds_uni, ds_duo, type = c("high", "low")) {
-  require(pROC)
-  y <- switch(type
-        , low = as.vector(ds_uni@mat[ds_duo@rid, ds_duo@cid] <= -2)
-        , high = as.vector(ds_uni@mat[ds_duo@rid, ds_duo@cid] >= 2)
-        )
-  x <- as.vector(ds_duo@mat)
-  pROC::roc(y,x, smoothed = TRUE)
-}
-```
-
-
-```{r auc-plots, cache = TRUE, echo = FALSE, fig.width = 7.1, fig.height = 7, fig.cap = cap}
-cap <- "\\label{fig:auc}**AUC.** Top panels show the receiver-operator characteristic (ROC) curves \
-        for the levels of (**A**) up- and (**B**) down-regulated genes (based on UNI data) \
-        detected by the top competitor and the benchmark. The winner's ROC curve is higher \
-        compared to the one of the benchmark, indicating a more accurate detection.\
-        Curves based on random subsamples of 200 genes are used to visualize uncertainty around \
-        the ROC curves based on all the 976 genes.\
-        Panel **C** shows the difference in AUC, area under the curve, values between \
-        the benchmark and each of the sumbmissions, stratified by experiment type.\
-        Panel **D** shows the levels of recall (true positive rate) and precision \
-        for the detection of knockdown genes in the shRNA experiments. \
-        All top solutions exhibit higher precision and recall compared to the benchmark. \
-        (Note that the very low level precision of the algorithms should raise no concerns because \
-          the count of false positive is likely inflated by possible downstream effects of the knockdown)."
-# Plot params
-par(mfrow = c(2, 2), mar = c(4, 4, 3, 2) + 0.1)
-n.rep <- 20
-n.genes <- nrow(ds_uni_auc@mat)
-set.seed(1)
-gene_subs <- replicate(n.rep, sample(n.genes, size = 200)) # 100 subsets of 10 genes
-
-# Top panels
-for (type in c("high", "low")) {
-
-plot(NA,NA, xlim = c(0, 0.5), ylim = c(0.5, 1), axes = FALSE, ann = FALSE)
-## subsamples
-for (i in 1:n.rep) {
-   ds_sub <- subset.gct(ds_gardn999_auc, rid = gene_subs[, i])
-   est <- try(comp_roc(ds_uni_auc, ds_sub, type = type))
-   if (class(est) != "try-error")
-     lines(1-est$specificities, est$sensitivities, col = rgb(0,0,1,0.2))
-}
-for (i in 1:n.rep) {
-   ds_sub <- subset.gct(ds_bench_auc, rid = gene_subs[, i])
-   est <- try(comp_roc(ds_uni_auc, ds_sub, type = type))
-   if (class(est) != "try-error")
-     lines(1-est$specificities, est$sensitivities, lty = 2, col = rgb(1, 0, 0, 0.2))
-}
-## main lines 
-winner <- comp_roc(ds_uni_auc, ds_gardn999_auc, type = type)
-bench <- comp_roc(ds_uni_auc, ds_bench_auc, type = type)
-lines(1-winner$specificities, winner$sensitivities, col = "navy", lwd = 2)
-lines(1-bench$specificities, bench$sensitivities, col = "brown", lty = 2, lwd = 2)
-## annotations
-legend("bottomright", lty = 1:2, col = c("navy", "red"), c("winner", "benchmark"), bty = "n")
-axis(1, at = c(0, 0.5))
-axis(2, at = c(0.5, 1))
-box()
-txt <- ifelse(type == "high", "A. up-regulated genes (ROC)", "B. down-regulated genes (ROC)")
-title (xlab = "specificity (TN/TN+FP)", ylab = "recall (TP/TP+FN)", main = txt)
-}
-
-# Botom Panels 
-par.old <- par()$mar
-par(mar = c(6, 4, 3, 2) + .1)
-rank.order <- unique(speed_acc[, c("rank", "handle")]) %>% arrange(rank) %>% pull(handle)
-plates <- unique(speed_acc$plate)
-auc <- sapply(plates, function(p) {
-  x <- speed_acc$auc[speed_acc$plate == p]
-  names(x) <- speed_acc$handle[speed_acc$plate == p]
-  k <- match(rank.order, gsub(".*:", "", names(x)))
-  j <- which(names(x) == "benchmark")
-  100*(x / x[j] - 1)[k]
-})
-auc <- head(auc, 9)
-COL <- c(rgb(1,0,0,0.45), rgb(0,0,1, 0.45))
-b <- barplot(t(auc), beside = TRUE, border = "white", las = 3, yaxt = "n", col = COL)
-axis(2, at = c(0, max(auc)), format(c(0, max(auc)), digits = 2))
-#txt <- paste0(format(apply(auc, 1, mean),digits=0), "%")
-#text(x = apply(b, 2, mean), y = apply(auc, 1, max), txt, pos = 3)
-legend("topright", fill = COL, c("shRNA", "compounds"), border = "white", bty = "n")
-title(ylab = expression(paste(Delta, "auc"[plate])), main = "C. Difference in AUC")
-
-# Knockdown 
-par(mar = par.old)
-plot(NA, NA, ylim = c(0.68, 0.8), xlim = c(0.028, 0.038), ann = FALSE, axes = FALSE)
-x.axis <- with(na.omit(speed_acc), c(max(kd_precision), kd_precision[handle=="benchmark"]))
-y.axis <- with(na.omit(speed_acc), c(max(kd_success_freq), kd_success_freq[handle=="benchmark"]))
-axis(1, at = x.axis, format(x.axis, digits = 2))
-axis(2, at = y.axis, format(y.axis, digits = 2))
-box()
-rect(x.axis[2], y.axis[2], 1, 1, col = rgb(0,0,1, 0.05), border = "white")
-points(kd_success_freq ~ kd_precision, data = speed_acc, pch = 19, col = "orange")
-highlight.handles <- c("gardn999", "Ardavel", "mkagenius", "Ramzes2", "benchmark")
-with(speed_acc, text(x = kd_precision, y = kd_success_freq, ifelse(!handle %in% highlight.handles, "", handle), pos = 3))
-#with(speed_acc, text(x = kd_precision, y = kd_success_freq, ifelse(handle != "Ardavel","", handle), pos = 1))
-with(speed_acc, abline(v = kd_precision[handle=="benchmark"], col = gray(.75), lty = 3))
-with(speed_acc, abline(h = kd_success_freq[handle=="benchmark"], col = gray(.75), lty = 3))
-title(main = "D. Knockdown detection", xlab = "precision (TP/TP+FP)", ylab = "recall (TP/TP+FN)")
-```
-
 \clearpage 
 
-## Inter-replicate variance 
+## Figure 3 {-}
 
-```{r variance-setup, include = FALSE}
-(ds <- parse.gctx("data/DECONV_holdout_n8228x976.gctx"))
-annot <- fread("data/holdout_sample_annotations.txt")
-gene_annot <- fread("data/barcode_to_gene_map.txt", colClasses = c("gene_id"="character"))
-ds <- annotate.gct(ds, annot, dim="col", keyfield="id")
-ds <- annotate.gct(ds, gene_annot, dim="row", keyfield="gene_id")
-```
-
-```{r compute-variance, include = FALSE, cache = TRUE}
-handles <- unique(ds@cdesc$handle)
-perts <- unique(ds@cdesc$pert_id)
-gene_id <- ds@rdesc$gene_id
-n.perts <- length(perts) # 121
-n.genes <- length(gene_id) # 976
-high <- ds@rdesc$high_prop == 1
-n.high <- sum(high) # 488 
-library(parallel)
-out <- mclapply(handles, function(h) {
-  out.var <- out.mean <- array(NA, c(n.genes, n.perts))
-  obs <- numeric(length(perts))
-  for (j in 1:length(perts)) {
-     cids <- which(ds@cdesc$pert_id==perts[j] & ds@cdesc$handle==h)
-     mat <- subset.gct(ds, cid=cids, rid=gene_id)@mat
-     #cids.gt <- which(ds@cdesc$pert_id==perts[j] & ds@cdesc$handle=="ground-truth")
-     #mat.gt <- subset.gct(ds, cid=cids, rid=gene_id)@mat
-     out.mean[, j] <-  apply(log(mat), 1, mean)
-     out.var[, j] <-  apply(log(mat), 1, var)     
-     obs[j] <-  length(cids)    
-  }
-  list(mean = out.mean, var = out.var, n = obs)
-})
-names(out) <- handles
-```
-
-```{r variance-ratio, fig.width=7, fig.height = 3.5, fig.cap=cap, echo = FALSE}
-cap <- "\\label{fig:inter-replicate-variance} Figure shows empirical CDF of the distribution \
-        of the sample variance ($s^2$) of the logarithm of the gene values \
-        for each combination of gene and perturbagen.\
-        The gene-perturbagen variance is based on a sample that ranges between 4 to 11 replicates\
-         of the same perturbagen experiment on a given plate.\
-         Data are then stratified for genes with (**A**) high and (**B**) low bead proportions.\
-         The CDF of the benchmark is on the right, indicating higher inter-replicate variance compared to the \
-         distribution of the competitors."
-panel <- function(x, margin = 1, ...) {
-  y <- apply(x, margin, mean)
-  lines(ecdf(y), pch = "", ...)
-  axis(1, at = c(0, 0.05, 0.1))
-  axis(2, at = c(0, 0.5, 1))
-  box()
-}
-par( mfrow = c(1, 2), mar = c(4,4,3,2) + .2)
-plot(NA, NA, xlim = c(0, .1), ylim = c(0, 1), ann = FALSE, axes = FALSE)
-for (j in names(out)){
-  panel(out[[j]]$var[high, ], col = gray(.75))
-  panel(out[["benchmark"]]$var[high, ], col = "brown", lwd = 2)
-  title(main = "A. high bead prop.", xlab = expression("s" ^2), ylab = expression(paste("F(s" ^2, ")")))
-  legend("bottomright", lty=1, col=c("brown", gray(.75)), c("benchmark", "competitors"), bty = "n")
-}
-plot(NA, NA, xlim = c(0, .1), ylim = c(0, 1), ann = FALSE, axes = FALSE)
-for (j in names(out)){
-  panel(out[[j]]$var[!high, ], col = gray(.75))
-  panel(out[["benchmark"]]$var[!high, ], col = "brown", lwd = 2)
-  title(main = "B. low bead prop.", xlab = expression("s" ^2), ylab = expression(paste("F(s" ^2, ")")))
-  legend("bottomright", lty=1, col=c("brown", gray(.75)), c("benchmark", "competitors"), bty = "n")
-}
-```
-
-```{r setup, include = FALSE}
-impute <- function(x, value) ifelse(is.na(x), value, x)
-n <- nrow(speed_acc)
-attach(speed_acc)
-```
-
-
-\clearpage 
-
-# Runtime and speedups 
-
-```{r runtime-speedups, fig.width = 7, fig.cap = cap, echo = FALSE}
-cap <- "**Speed improvements.** Distribution of the per-plate runtime (in seconds) and speedups over the benchmark ($t_{\\text{benchmark}}/t_{\\text{competitor}}$) for each of the competitors' algorithms"
-sec.mean <- sort(tapply(sec, handle, mean))
-handle_f <- factor(handle, levels = names(sort(sec.mean)))
-sec.bench <- sec[which(handle == "benchmark")]
-
-par(mfrow = c(1, 2), mar = c(6, 4, 3, 1)+.1)
-plot(as.numeric(handle_f), sec
-  , pch = c(1, 16)[factor(plate)], xaxt = "n", xlab = "", xlim = c(1, 10.5)
-  , ylab = "runtime (seconds)"
-  , main = "A. runtime")
-axis(1, at = 1:10, levels(handle_f), las=2)
-legend("topleft", pch = c(1, 16), c("shRNA","compounds"), cex=.75, bty = "n")
-plot(as.numeric(handle_f), sec.bench[factor(plate)]/sec
-  , pch = c(1, 16)[factor(plate)]
-  , xaxt = "n", xlab = "", xlim = c(1, 10.5)
-  , ylab = "speedup"
-  , main = "B. speedup")
-axis(1, at = 1:10, levels(handle_f), las=2)
-legend("topright", pch = c(1, 16), c("shRNA","compounds"), cex=.75, bty = "n")
-```
-
-\clearpage 
-
-## Clustering of solutions
+**Clustering of solutions.** Each point represents the two-dimensional projection of a sample generated by UNI ground truth (GT) or by applying a deconvolution algorithm to DUO data. t-SNE was run on the 2 plates of holdout data, one each containing compound and shRNA treatmens. DECONV data colored by perturbagen type (A) and algorithm type (B). DECONV (C) and DE (D) data colored by algorithm type and stratified by each individual implementation.
 
 ```{r clus_setup, echo=FALSE}
 # read tsne files and other data
@@ -475,8 +125,7 @@ p_de <- ggplot(tsne_de, aes(x=TS1, y=TS2, color=method_short)) +
   ggtitle("DE colored by algorithm type")
 ```
 
-```{r tsne_figure, fig.height=7, fig.width=12, fig.cap=cap, echo=F, warning=F, cache = TRUE, dependson = "clus_setup"}
-cap <- "\\label{fig:tsne}**t-SNE projection of deconvoluted data.** Each point represents the 2D projection of a sample generated by UNI ground truth (GT) or by applying a deconvolution algorithm to DUO data. t-SNE was run on the 2 plates of holdout data, one each containing compound and shRNA treatmens. DECONV data colored by perturbagen type (A) and algorithm type (B). DECONV (C) and DE (D) data colored by algorithm type and stratified by each individual implementation."
+```{r tsne_figure, fig.height=7, fig.width=12, echo=F, warning=F, cache = TRUE, dependson = "clus_setup"}
 cowplot::plot_grid(p_deconv_color_type,
                    p_deconv_color_method,
                    p_deconv_facet_handle,
@@ -487,7 +136,17 @@ cowplot::plot_grid(p_deconv_color_type,
 
 \clearpage 
 
-## Ensembles
+## Figure 4 {-}
+
+**Improvements in accuracy**  XXX 
+
+![](outcomes/schematic-results v3.png)
+
+\clearpage 
+
+## Figure 5 {-}
+
+**Performance of ensembles.**  This figure shows the performance in the **A** correlation metric and **B** the AUC metric of the ensemble based on the median prediction of all possible combinations of a given size of the top 10 algorithms (including the benchmark). The median performance of the ensemble tends to increase with its size. However, the maximum performance in both metrics tends to plateau (or even decrease) after the ensamble reaches a size equal to 3.
 
 ```{r ensemble_setup, echo=F}
 library(data.table)
@@ -502,7 +161,6 @@ ens[, sec := {
   these_algos <- unlist(strsplit(algos, ":"))
   sum(speed_acc[handle %in% these_algos]$sec)
 }, algos]
-
 # stack
 speed_acc$nalgo <- 1
 setnames(speed_acc, "handle", "algos")
@@ -511,98 +169,27 @@ tmp <- rbind(ens[!grepl("benchmark", algos)],
              fill=T, use.names=T)
 ```
 
-```{r ensemble_plot_cor, include = FALSE}
-ggplot(tmp, aes(x=sec, y=cor)) +
-  geom_point(aes(size=nalgo), alpha=0.6) +
-  geom_point(data=tmp[nalgo==1],
-             aes(x=sec, y=cor, color=algos)) +
-  scale_size_continuous(breaks = seq(1, 9, 2), name="num. algos") +
-  scale_color_discrete(name="handle") +
-  xlab("cumulative runtime (sec)") +
-  ylab("correlation score")
-```
 
-```{r ensemble_plot_auc, include = FALSE}
-ggplot(tmp, aes(x=sec, y=auc)) +
-  geom_point(aes(size=nalgo), alpha=0.6) +
-  geom_point(data=tmp[nalgo==1],
-             aes(x=sec, y=auc, color=algos)) +
-  scale_size_continuous(breaks = seq(1, 9, 2), name="num. algos") +
-  scale_color_discrete(name="handle") +
-  xlab("cumulative runtime (sec)") +
-  ylab("AUC score")
-```
-
-```{r ensemble_plot_pr, include = FALSE}
-ggplot(tmp, aes(x=sec, y=pr)) +
-  geom_point(aes(size=nalgo), alpha=0.6) +
-  geom_point(data=tmp[nalgo==1],
-             aes(x=sec, y=pr, color=algos)) +
-  scale_size_continuous(breaks = seq(1, 9, 2), name="num. algos") +
-  scale_color_discrete(name="handle") +
-  xlab("cumulative runtime (sec)") +
-  ylab("Precision-recall AUC")
-```
-
-
-```{r ensemble_plot2_cor, include = FALSE}
-ggplot(tmp, aes(x=nalgo, y=cor, group=nalgo)) +
-  geom_boxplot() +
-  geom_jitter(width=0.25, alpha=0.6) +
-  scale_x_continuous(breaks=1:10) +
-  xlab("# of algos combined") +
-  ylab("correlation score")
-```
-
-```{r ensemble_plot2_auc, include = FALSE}
-ggplot(tmp, aes(x=nalgo, y=auc, group=nalgo)) +
-  geom_boxplot() +
-  geom_jitter(width=0.25, alpha=0.6) +
-  scale_x_continuous(breaks=1:10) +
-  xlab("# of algos combined") +
-  ylab("AUC score")
-```
-
-```{r ensemble_plot2_pr, include = FALSE}
-ggplot(tmp, aes(x=nalgo, y=pr, group=nalgo)) +
-  geom_boxplot() +
-  geom_jitter(width=0.25, alpha=0.6) +
-  scale_x_continuous(breaks=2:10) +
-  xlab("# of algos combined") +
-  ylab("Precision-recall AUC")
-```
-
-```{r ensemble_final, fig.width = 7.1, fig.height = 7, echo = FALSE, fig.cap = cap}
-cap <- "\\label{fig:ensemble}**Ensemble** Top panels show the performance in the **A** correlation metric and **B** the AUC metric of the ensemble based on the median prediction of all possible combinations of a given size of the top 10 algorithms (including the benchmark). The median performance of the ensemble tends to increase with its size. However, the maximum performance in both metrics tends to plateau (or even decrease) after the ensamble reaches a size equal to 3.\
-Panel **C** shows the association between the performance metrics for all the ensembles. The metrics are highly correlated. We reported the estimated slopes of a linea regression, indicating that the correlation is stronger for ensembles with size 4 or higher."
+```{r ensemble_final, fig.width = 7.1, fig.height = 7, echo = FALSE}
 bp.cor <- boxplot(cor ~ nalgo, data = ens, plot = FALSE)
 bp.auc <- boxplot(auc ~ nalgo, data = ens, plot = FALSE)
 par(mfrow = c(2, 2), mar = c(4,4,3,2) + .1)
-# left
+
+# left panel
 matplot(t(bp.cor$stats), type = "l", lty = c(3,2,1,2,3), col =1, ann = FALSE, axes = FALSE, ylim = c(0.55, 0.6))
 axis(1, at = 1:9, 2:10)
 axis(2, at = range(bp.cor$stats), format(range(bp.cor$stats), digits = 2))
 box()
-title(main = "A. correlation (ensembles)", xlab = "# algorithms", ylab = expression(rho))
+title(main = "Spearman's rank correlation", xlab = "# algorithms", ylab = expression(rho))
 legend("bottomright", lty=1:3, c("50th percentile (median)", "25th/75th percentile", "max/min"), bty ="n")
-#
+
+# right panel 
 matplot(t(bp.auc$stats), type = "l", col = 1, lty = c(3,2,1,2,3), ann = FALSE, axes = FALSE, ylim = c(0.92, 0.95))
 axis(1, at = 1:9, 2:10)
 axis(2, at = range(bp.auc$stats), format(range(bp.auc$stats), digits = 2))
 box()
-title(main = "B. AUC (ensembles)", xlab = "# algorithms", ylab = "AUC")
+title(main = "AUC of extreme modulations", xlab = "# algorithms", ylab = "AUC")
 legend("bottomright", lty=1:3, c("50th percentile (median)", "25th/75th percentile", "max/min"), bty ="n")
-#
-plot(cor ~ auc, data = ens, pch = 19, col = "orange", ylim = c(0.55, 0.6), xlim = c(0.92, 0.95))
-n.levels <- 2:6
-bhat <- array(NA, c(length(n.levels), 2))
-for(n in n.levels) {
-  abline(fit <- lm(cor ~ auc, data = ens, subset = nalgo == n), lty = n, col = gray(.75))
-  bhat[n - 1, ] <- coef(fit)
-}
-txt <- paste0(paste("#algo =", n.levels), " (slope = ", format(bhat[,2], digits=2), ")")
-legend("bottomright", lty=n.levels, txt, bty = "n")
-title(main = "C. correlation vs AUC")
 ```
 
 

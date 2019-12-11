@@ -47,7 +47,7 @@ gene_annot <- fread("data/barcode_to_gene_map.txt", colClasses = c("gene_id"="ch
 
 \clearpage 
 
-## S1 Table. {-}
+## S1 Table {-}
 
 **Compound perturbagens descriptives.** This table shows componud perturbagen names (`pert_iname`), unique id (`pert_id`), time of treatment (`pert_itime`), dose (`pert_idose`), and number of replicates (`num_replicates`). 
 
@@ -61,9 +61,9 @@ annot %>%
 
 \clearpage 
 
-## S2 Table. {-}
+## S2 Table {-}
 
-**Non-compound perturbagens descriptives.** This table shows non-compound perturbagen names (`pert_iname`), unique id (`pert_id`), and number of replicates (`num_replicates`). 
+**Short-hairpin (shRNA) perturbagens descriptives.** This table shows shRNA perturbagen names (`pert_iname`), unique id (`pert_id`), and number of replicates (`num_replicates`). 
 
 ```{r non_compound_table, echo = FALSE}
 annot %>% 
@@ -71,19 +71,6 @@ annot %>%
   count(pert_iname, pert_id) %>%
   rename(num_replicates = n) %>%
   knitr::kable()
-```
-
-\clearpage 
-
-## S3 Table {-}
-
-**Top-nine performing solutions.**  This table lists the top-nine solutions and the languages and algorithms each used, as well as the average speedup per plate relative to the k-means benchmark.  
-
-```{r soln_desc, echo=F, warning=F}
-library(data.table)
-soln_desc <- fread("data/solution_descriptions.txt", na.strings = "n/a")
-setnames(soln_desc, "method_short", "category")
-knitr::kable(soln_desc[1:9])
 ```
 
 \clearpage 

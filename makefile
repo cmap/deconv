@@ -1,6 +1,6 @@
 
-all:  main.pdf \
-      figures.rout \
+all:  main.docx \
+      main.pdf \
       submission/nat_meth/cover.pdf
 
 %.pdf : %.rmd $(wildcard *.rmd) _output.yml
@@ -13,7 +13,7 @@ submission/nat_meth/%.pdf: submission/nat_meth/%.rmd
 	Rscript -e "system.time(rmarkdown::render('$<'))"
 
 figures.rout : scripts/figures.R
-	nohup Rscript "$<" &> "$@" &
+	nohup Rscript "$<" &> "$@" 
 
 	
 view: 

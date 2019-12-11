@@ -60,13 +60,20 @@ plot.corr <- function(ds_cor, handles, method, plate = NULL, x.scale = c(0.2, 1)
   title(main = paste("Top-four performing methods", ifelse(plate == "DPK", "(shRNA)", "(compounds)")), outer = T)
 }
 
-## Inter-replicate variance 
-plot.inter.rep <- function(bead.proportion.high = FALSE) {
+
+# Get deconv data with annotations 
+get.ds_deconv <- function() {
   ds <- parse.gctx("data/DECONV_holdout_n8228x976.gctx")
   annot <- fread("data/holdout_sample_annotations.txt")
   gene_annot <- fread("data/barcode_to_gene_map.txt", colClasses = c("gene_id"="character"))
   ds <- annotate.gct(ds, annot, dim="col", keyfield="id")
   ds <- annotate.gct(ds, gene_annot, dim="row", keyfield="gene_id")
+  return(ds)
+}
+
+## Inter-replicate variance 
+compute.inter.rep <- function() {
+  ds <- get.ds_deconv()
   # Params 
   handles <- unique(ds@cdesc$handle)
   perts <- unique(ds@cdesc$pert_id)
@@ -90,33 +97,40 @@ plot.inter.rep <- function(bead.proportion.high = FALSE) {
     list(mean = out.mean, var = out.var, n = obs)
   })
   names(out) <- handles
+  return(out)
+}
+
+plot.inter.ecdf <- function(out) {
   extract.var <- function(out, handle, rows) {
     out[[handle]]$var[rows, ]
   } 
-  for (k in FALSE:TRUE) {
-    par(mfrow = c(1, 4), mar = c(0,0,1,1), oma = c(4,4,3,0))
-    y.scale <- c(0, 50)
-    x.scale <- c(0, 0.2)
-    COL <- c(rgb(1,0,0,0.5), rgb(0,0,1,0.5))
-    rows <- !high # !high 
-    if (k) rows <- high 
-    x.bench <- out[["benchmark"]]$var[rows, ]
-    types <- c("gardn999","Ardavel","mkagenius", "Ramzes2")
-    meth <- c("DTR", "GMM", "k-means", "CNN")
-    for (j in 1:length(types)){
-      x <- extract.var(out, types[j], rows)
-      x <- apply(x, 1, mean)  # = 1 average variance by genes
-      plot.stepfun(ecdf(x), xlim = x.scale, ann = F, axes = F, col = COL[1])
-      plot.stepfun(ecdf(apply(x.bench, 1, mean)), col = COL[2], add = T)
-      title(main = sprintf("%i, %s (%s)", j, types[j], meth[j]))
-      axis(1)
-      abline(h = seq(0.2, 0.8, by = 0.2), lty = 3)
-      if (j == 1) axis(2)
+  par(ann = F)
+  for (k in c("high", "low")) {
+      library(RColorBrewer)
+      b.pal <- brewer.pal(5, "Blues")
+      o.pal <- brewer.pal(5, "Oranges")
+      COL <- c(high = b.pal[4], low = b.pal[2])
+      COL.2 <- c(high = o.pal[4], low = o.pal[2])
+      rows <- !high # !high 
+      if (k == "high") rows <- high 
+      x.bench <- out[["benchmark"]]$var[rows, ]
+      x <- extract.var(out,  "gardn999", rows)
+      x.mean <- exp(apply(x, 1, mean))  # = 1 average variance by genes
+      y.mean <- exp(apply(x.bench, 1, mean))
+      x.scale <- c(1, 1.1)
+      if (k == "high") plot(NA, NA, ylim = c(0, 1), xlim = x.scale, axes = F)
+      plot.stepfun(ecdf(x.mean), do.points = F, lwd = 2, col = COL[k], add = T)
+      plot.stepfun(ecdf(y.mean), do.points = F, lwd = 2, col = COL.2[k], add = T)
+      box(bty = "l")
+      axis(2, at = c(0, 1, 0.5))      
+      axis(1, at = c(0, 1, 1.1, 2))
+      title(xlab = "inter-replicate variability"
+          , ylab = "cumulative fraction of perturbagens")      
+      txt.1 <- ifelse(k==1, "high bead prop.", "low bead prop")
+      text(x = 0.7, y = 0.25, sprintf("%i genes\n%s", length(x), txt.1), adj = 0)
+      legend.txt <- c("winner (high)","winner (low)", "benchmark (high)", "benchmark (low)")
+      legend("bottomright", lty = 1, lwd = 2, col = c(COL, COL.2), legend = legend.txt, , bty = "n")
     }
-    title(main = ifelse(k, "High bead proportion", "Low bead proportion")
-        , ylab = "fraction of gene-pert. combination"
-        , xlab = "average inter-replicate variance", outer = T)
-  }
 }
 
 # Function plots runtime improvement
@@ -152,8 +166,8 @@ plot.runtime <- function(speed_acc) {
 #   title(ylab = "Top nine approaches", line = 8)
 }
 
-# Function to plot AUC figures
-plot.auc <- function(speed_acc) {
+# [DEPRECTATED] Function to plot AUC figures
+plot.auc.deprec <- function(speed_acc) {
   ds_gardn999_auc <- parse.gctx("data/DPK.CP003_PC3_24H_X1_B42_DE_gardn999.gct")
   ds_uni_auc <- parse.gctx("data/DPK.CP003_PC3_24H_X1_B42_DE_UNI.gct")
   ds_bench_auc <- parse.gctx("data/DPK.CP003_PC3_24H_X1_B42_DE_benchmark.gct")
@@ -170,31 +184,163 @@ plot.auc <- function(speed_acc) {
   title(ylab = "AUC")
 }
 
-plot.kd <- function(speed_acc) {
-  d <- speed_acc %>% filter(!is.na(kd_precision))
-  plot(NA, NA, ylim = c(0.68, 0.8), xlim = c(0.028, 0.038), ann = FALSE, axes = FALSE)
-  x.axis <- with(na.omit(speed_acc), c(max(kd_precision), kd_precision[handle=="benchmark"]))
-  y.axis <- with(na.omit(speed_acc), c(max(kd_success_freq), kd_success_freq[handle=="benchmark"]))
-  axis(1, at = x.axis, format(x.axis, digits = 2))
-  axis(2, at = y.axis, format(y.axis, digits = 2))
-  box()
-  rect(x.axis[2], y.axis[2], 1, 1, col = rgb(0,0,1, 0.05), border = "white")
-  points(kd_success_freq ~ kd_precision, data = speed_acc, cex = 2, pch = 21, bg = rgb(1,0,0,0.5), col = "white")
-  prec <- d$kd_precision 
-  sf <- d$kd_success_freq
-  h <- d$handle 
-  pos <- rep(4, length(h))
-  pos[1:3] <- 3
-  text(prec, sf, h, pos = pos)
-  with(speed_acc, abline(v = kd_precision[handle=="benchmark"], col = gray(.75), lty = 3))
-  with(speed_acc, abline(h = kd_success_freq[handle=="benchmark"], col = gray(.75), lty = 3))
-#  title(main = "D. Knockdown detection", xlab = "precision (TP/TP+FP)", ylab = "recall (TP/TP+FN)")
+
+
+# AUC figure 
+plot.auc <- function(speed_acc, x.baseline=0.005) {
+#  par(las = 1, mfrow = c(1, 2), mar = c(1,4,1,1), oma = c(0,0,4,0))
+  COL <-   brewer.pal(7, "Pastel1")
+  for(p in c("DPK", "LIT")) {
+    d <- speed_acc %>% 
+         filter(grepl(p, plate)) %>% 
+         arrange(rank)
+      x.mean <- d$auc
+      x.meth <- d$method_short
+#       x.baseline <- min(x.mean) - offset.baseline
+      y.scale <- c(0, max(x.mean) + 0.002 - x.baseline)
+      barplot(x.mean - x.baseline
+            , axisnames = F, col = COL[factor(x.meth)], axes = F, border = "white", ylim = y.scale)
+      title(ylab = "AUC", line = 1, outer = T)
+      txt <- paste(1:10, x.meth)
+      txt[10] <- "dpeak*"
+      text(x = b, y = 0.001, txt, adj = 0, srt = 90)
+      values.txt <- sprintf("%.1f", 100*x.mean)
+      text(x = b, y = x.mean - x.baseline, values.txt, pos = 3, srt = 0, cex = .75, xpd = T)
+      mtext(side = 3, ifelse(p == "DPK", "shRNAs", "compounds"))
+  }
 }
 
+plot.kd <- function(speed_acc) {
+  d <- speed_acc %>% 
+       filter(!is.na(kd_precision))
+  plot(NA, NA, ylim = c(0.65, 0.80), xlim = c(0.025, 0.04), ann = FALSE, axes = FALSE)
+  with(d, abline(v = kd_precision[handle=="benchmark"],   lty = 3))
+  with(d, abline(h = kd_success_freq[handle=="benchmark"], lty = 3))
+#   rect(x.axis[2], y.axis[2], 1, 1, col = rgb(0,0,1, 0.05), border = "white")
+  COL <- c(rgb(0,0,1,0.5), rgb(1,0,0,0.75))
+  points(kd_success_freq ~ kd_precision, data = d
+        , cex = 2, pch = 21, bg = COL[factor(d$handle=="benchmark")], col = "white")
+  prec <- d$kd_precision 
+  sf <- d$kd_success_freq
+  h <- paste(d$rank, d$method_short)
+  h[grep("bench", h)] <- "dpeak*"
+  pos <- rep(4, length(h))
+  pos[1:3] <- 3
+  pos[10] <- 1
+  pos[6] <- 1
+  text(prec, sf, h, pos = pos, xpd = T)
+  axis(1)
+  axis(2)
+  box(bty = "l")
+  title(xlab = "precision (TP/TP+FP)", ylab = "recall (TP/TP+FN)")
+}
+ 
+# DEPRECATED Function to plot corrlaion 
+plot.cor.barplot <- function(ds, handles, COL, y.scale = c(-0.01, 0.05), y.offset = 0.0075, ...) { 
+  par(las = 1, mfrow = c(1, 2), mar = c(1, 4, 2, 1), oma = c(0,0,4,0))
+  for (plate in c("DPK", "LIT")) {
+    x <- extract.cols(ds, handle = handles, plate)
+    x.mean <- apply(x@mat, 2, mean)
+    x.baseline <- min(x.mean) - 0.015
+    barplot(x.mean - x.baseline, axisnames = F, col = COL, axes = F, border = "white", ...)
+    abline(h = pretty(x.mean) - x.baseline, lty = 2, col = gray(.75))
+    b <- barplot(x.mean - x.baseline, axisnames = F, col = COL, axes = F, add = T, border = "white", ...)
+    title(main = ifelse(plate == "DPK", "shRNAs", "compounds"), line = 1)
+    title(ylab = "avg. Spearman's rank correlation")
+    axis(2, at = pretty(x.mean) - x.baseline, pretty(x.mean))
+    box()
+    txt <- paste(1:10, soln_desc$method_short)
+    txt[10] <- "dpeak*"
+    text(x = b, y = 0.001, txt, adj = 0, srt = 90)
+  }
+}
 
-# ======================================== #
-# ======================================== #
-# ======================================== #
+# ECDF winner vs benchmark 
+plot.cor.winner <-  function(d) {
+  d$value <- ifelse(d$value < 0, 0, d$value)
+  COL <- c(rgb(1,0,0,0.5), rgb(0,0,1,0.5))
+  y <- factor(d$plate.prop[d$handle == "benchmark"])
+  x <- d$value[d$handle == "benchmark"] 
+  x.winner <- d$value[d$handle == "gardn999"] 
+  y.winner <- factor(d$plate.prop[d$handle == "gardn999"])
+  par(mfrow = c(2, 2), ann = F)
+  for (k in 1:nlevels(y)) {
+    x.ecdf <- ecdf(x[y == levels(y)[k]])
+    x.ecdf.winner <- ecdf(x.winner[y.winner == levels(y.winner)[k]])
+    plot.stepfun(x.ecdf, do.points = F, col = COL[1])
+    plot.stepfun(x.ecdf.winner, do.points = F, col = COL[2], add = T)
+    abline(h = seq(0.2, 0.8, by = 0.2), lty = 3)
+    pr <- ifelse(grepl("^0 ", levels(y)[k]), "low bead proportion", "high bead proportion")
+    pl <- ifelse(grepl("DPK", levels(y)[k]), "(shRNAs)", "(compounds)")
+    title(paste(pr, pl))
+    stat.bench <- mean(x[y == levels(y)[k]])
+    stat.winner <- mean(x.winner[y.winner == levels(y.winner)[k]])
+    legend.1 <- bquote("benchmark"~bar(rho)==.(stat.bench))
+    legend.2 <- bquote("winner"~bar(rho)==.(stat.winner))
+    legend("topleft", lty =1 , col = COL, legend = as.expression(c(legend.1, legend.2)), bty = "n")
+    title(xlab = "genewise Spearman's rank correlation")
+    title(ylab = "cumulative fraction of genes")
+  }
+}
+
+plot.cor.bars <- function(ds_cor, ds_deconv, p, x.baseline = 0
+                          , handles = soln_desc$handle, x.meth = soln_desc$method_short) {
+    COL <-   brewer.pal(7, "Pastel1")  
+    for(k in c(0, 1)) {    
+      # compute 
+      ds <- subset.gct(ds_cor, rid = ds_deconv@rdesc$id[ds_deconv@rdesc$high_prop == k])
+      d <- extract.cols(ds, handle = handles, plate = p)
+      x.mean <- apply(d@mat, 2, mean)
+      x.se <- apply(d@mat, 2, function(x)sqrt(var(x)/length(x)))
+      if (is.null(x.baseline)) x.baseline <- min(x.mean)# - 0.025
+      x.lo <- x.mean - x.se - x.baseline
+      x.hi <- x.mean + x.se - x.baseline
+      y.scale <- c(0, max(x.hi) + 0.005)
+      b <- barplot(x.mean - x.baseline, axisnames = F, axes = F, ylim = y.scale
+            , col = COL[factor(x.meth)], border = "white")
+      segments(x0=b, y0 = x.lo, y1 = x.hi)
+      mtext(side = 3, ifelse(k == 1, "genes in high bead proportion", "genes in low bead proportion"))
+#         mtext(side = 3, line = 1, ifelse(p == "DPK", "shRNAs", "compounds"), font = 4)
+      title(ylab = "average genewise correlation", line = 1, outer = T)
+      txt <- paste(1:10, x.meth)
+      txt[10] <- "dpeak*"
+      text(x = b, y = 0.001, txt, adj = 0, srt = 90)
+      values.txt <- sprintf("%.1f", 100*x.mean)
+      text(x = b, y = x.hi, values.txt, pos = 3, srt = 0, cex = .75, xpd = T)
+    }      
+}
+
+plot.ecdf.cor.winner <- function(ds_cor, ds_deconv) {
+  par(ann = F)
+  for(k in c(0, 1)) {
+    for(p in c("DPK", "LIT")) {
+      ds_cor.sub <- subset.gct(ds_cor, rid = ds_deconv@rdesc$id[ds_deconv@rdesc$high_prop == k])
+      d <- extract.cols(ds_cor.sub, c("gardn999", "benchmark"), plate = p)
+      x <- ifelse(d@mat[,1]<0, 0, d@mat[,1])
+      y <- ifelse(d@mat[,2]<0, 0, d@mat[,2])
+      library(RColorBrewer)
+      b.pal <- brewer.pal(5, "Blues")
+      o.pal <- brewer.pal(5, "Oranges")
+      COL <- c(DPK = b.pal[4], LIT = b.pal[2])
+      COL.2 <- c(DPK = o.pal[4], LIT = o.pal[2])
+      if (p=="DPK") plot(NA,NA, ylim = c(0, 1), xlim = c(0, 1), axes = F)
+      plot.stepfun(ecdf(x), do.points = F, lwd = 2, col = COL[p], add = T)
+      plot.stepfun(ecdf(y), do.points = F, lwd = 2, col = COL.2[p], add = T)
+      box(bty = "l")
+      axis(2, at = c(0, 1, 0.5))      
+      axis(1, at = c(0, 1, 0.5))
+      title(xlab = "genewise Spearman's rank correlation", ylab = "cumulative fraction of genes")      
+      txt.1 <- ifelse(k==1, "high bead prop.", "low bead prop")
+      text(x = 0.7, y = 0.25, sprintf("%i genes\n%s", length(x), txt.1), adj = 0)
+      legend.txt <- c("winner (shRNAs)","winner (compounds)", "benchmark (shRNAs)", "benchmark (compounds)")
+      legend("topleft", lty = 1, lwd = 2, col = c(COL, COL.2), legend = legend.txt, , bty = "n")
+    }
+  }
+}
+
+# ================================================================== #
+# ================================================================== #
+# ================================================================== #
 
 main <- function() {
   
@@ -203,6 +349,47 @@ main <- function() {
   soln_desc <- fread("data/solution_descriptions.txt", na.strings="n/a")
   speed_acc <- merge(speed_acc, soln_desc, by="handle")
   ds_cor <- parse.gctx("data/UNI_DUO_gene_spearman_correlations_holdout_n20x976.gctx")
+  ds_deconv <- get.ds_deconv()
+
+  # Correlation by low/high bead proportion 
+  ds_cor.low <- subset.gct(ds_cor, rid = ds_deconv@rdesc$id[ds_deconv@rdesc$high_prop == 0])
+  ds_cor.high <- subset.gct(ds_cor, rid = ds_deconv@rdesc$id[ds_deconv@rdesc$high_prop == 1])
+  extract.cols <- function(x, handle, plate) {
+    j <- which(x@cdesc$handle %in% handle &  grepl(plate, x@cdesc$plate))
+    x.sub <- subset.gct(x, cid = j)
+    subset.gct(x.sub, cid = match(handle, x.sub@cdesc$handle))
+  }
+
+
+  pdf("outcomes/figures/corr-ecdf-winner.pdf", width = 6, height = 6, onefile = T)
+  plot.ecdf(ds_cor.winner, ds_deconv)
+  dev.off()
+
+  pdf("outcomes/figures/corr-bars.pdf", width = 8, height = 4, onefile = T)
+  for (plate in c("DPK", "LIT")) {
+    par(las = 1, mfrow = c(1, 2), mar = c(0,0,1,1), oma = c(1,3,0,0))
+    plot.cor.bars(ds_cor, ds_deconv, p = plate, x.baseline = ifelse(plate == "DPK", 0.49, 0.63))
+  }
+  dev.off()
+
+  pdf("outcomes/figures/auc-finale.pdf", width = 8, height = 4)
+  par(las = 1, mfrow = c(1, 2), mar = c(0,0,1,1), oma = c(1,3,0,0))
+  plot.auc(speed_acc, x.baseline = 0.86)
+  dev.off()
+
+  # Data melt 
+  gene_annot <- fread("data/barcode_to_gene_map.txt", colClasses = c("gene_id"="character"))
+  d <- melt(ds_cor@mat) %>% 
+        rename(gene_id = Var1) %>%
+        tidyr::separate(Var2, into = c("plate", "handle"), sep = ":") %>% 
+        mutate(gene_id = as.character(gene_id)) %>% 
+        mutate(value.bc = ifelse(value < 0.05, 0.05, value)) %>% 
+        left_join(gene_annot) %>%
+        mutate(plate.prop = paste(high_prop, plate)) %>% 
+        as_tibble
+  pdf("outcomes/figures/cor_winner.pdf", width = 8, height = 8)
+  plot.cor.winner(d)
+  dev.off()
 
   # ECDF of correlation 
   n <- 4
@@ -224,17 +411,21 @@ main <- function() {
   dev.off()
   
   pdf("outcomes/figures/auc.pdf", width = 5, height = 5)
+  par(las = 1, mfrow = c(1, 2), mar = c(0,0,1,1), oma = c(1,3,0,0))
   plot.auc(speed_acc)
   dev.off()
   
   pdf("outcomes/figures/kd.pdf", width = 5, height = 5)
+  par(mar = c(4,4,1,1))
   plot.kd(speed_acc)
   dev.off()
 
-  pdf("outcomes/figures/inter-rep.pdf", width = 2.5*4, height = 3, onefile = T)
-  plot.inter.rep()
+  out <- compute.inter.rep()
+  
+  pdf("outcomes/figures/inter-rep.pdf", width = 5, height = 5, onefile = T)
+  plot.inter.ecdf(out)
   dev.off()
 
 }
 
-main()
+# main()

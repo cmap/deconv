@@ -1,77 +1,48 @@
-
-```{r results-setup, include=FALSE}
-options(digits=2)
-library(data.table)
-library(dplyr, warn=FALSE)
-library(knitr)
-```
-
-```{r datasets, include = FALSE}
-speed_acc <- fread("data/holdout_score_time.txt", na.strings="n/a")
-soln_desc <- fread("data/solution_descriptions.txt", na.strings="n/a")
-speed_acc <- merge(speed_acc, soln_desc, by="handle")
-```
-
-```{r main-stats, include = FALSE}
-percent <- function (x, digits = 0, brackets = FALSE) {
-    pc <- paste0(round(x * 100, digits), "%")
-    if (brackets) 
-        pc <- paste0("(", pc, ")")
-    return(pc)
-}
-bench.auc <- speed_acc$auc[speed_acc$handle == "benchmark"]
-bench.cor <- speed_acc$cor[speed_acc$handle == "benchmark"]
-bench.sec <- speed_acc$sec[speed_acc$handle == "benchmark"]
-plate_id <- as.numeric(factor(speed_acc$plate))
-
-# avg. improvements
-ols.sec <- lm((sec - bench.sec[plate_id])/bench.sec[plate_id] ~ 1, data=speed_acc, subset = handle!="benchmark")
-ols.auc <- lm(log(auc / bench.auc[plate_id]) ~ 1, data=speed_acc, subset = handle!="benchmark")
-ols.cor <- lm(log(cor / bench.cor[plate_id]) ~ 1, data=speed_acc, subset = handle!="benchmark")
-ci <- sapply(list(sec=ols.sec,auc=ols.auc,cor=ols.cor), confint)
-speed_acc$sec / bench.sec[plate_id] 
-``` 
-
 # Results
 
-The contest attracted 294 participants who made 820 code submissions overall. The submissions were narrowed down to the top nine scoring submissions in the contest. We illustrate the variety of different analysis methods by outlining the top four below (while \nameref{s3-table} provides brief information on the others).
+The contest attracted 294 participants who made 820 code submissions overall with a variety of different analysis methods (see \nameref{table-1} for an overview of the best methods). Here we report the top-four performing methods based on the score obtained on the holdout data. 
 
-The winning approach (developed by `gardn999`, a competitor from the United States with a degree in Physics from the University of Kansas) was a random forest algorithm that combined the predictions of 10 different trees. Each tree was trained using 60 different features of the data. These features included the actual measurements for each bead type (binned into 50 different variables), as well as aggregate variables of associations at the plate and experiment level. 
+The winning solution (by a competitor from the United States with a degree in Physics from the University of Kansas) was a random forest algorithm (combining 10 different trees). Each tree was trained using 60 different features of the data; 50 features were from the distribution of measurements within the gene pair, the remaining 10 features were measures of the association between the distribution of values within the pair and aggregate values at the plate and experiment level.
 
-The second best (developed by `Ardavel`, a competitor from Poland with a Master's degree in Computer Science from The Lodz University of Technology) classified the clusters using a Gaussian mixture model fitted with the Expectation-Maximization (EM) algorithm for each gene pair. Next, it improved the predictions using the clustered data to fit a plate-wide distribution of the estimated expression levels and cluster sizes for each gene. The fitted distribution was then used to adjust the peak assignments.
-
-The third best (developed by `mkagenius`, a competitor from India with a bachelor's degree in Computer Science) was a  k-means algorithm with fine adjustments to avoid local minima, minimize the impact of extreme outliers, and improve speed.
+The second solution (by a competitor from Poland with a Master's degree in Computer Science from The Lodz University of Technology) used the Expectation-Maximization (EM) method for an initial clustering of the observed values, assuming the distribution was a mixture of two log-normal distributions (Gaussian mixture model). It then fit a plate-wide distribution of the estimated expressions and cluster sizes for each gene, using the results to adjust the assignment of peaks to the low- and high-proportion genes. 
+ 
+The third solution (by a competitor from India with a bachelor's degree in Computer Science) was a  basic k-means algorithm with random initial points to avoid local minima along with other fine adjustments to minimize the impact of extreme outliers and improve speed.
   
-Finally, the fourth best (developed by `Ramzes2`, a competitor from Ukraine with a bachelor's degree in Computer Science from the Cherkasy National University) was based on a Convolutional Neural Network (CNN). The algorithm first filtered the data to remove extreme outlier measurements. The filtered data were then transformed into a 32-bin histogram for each pair of genes and served as input to a CNN, which consisted of two parts. The first part used the classic U-net architecture [@ronneberger2015u] (a contracting path to capture context and a symmetric expanding path) to provide adequate representation of the data. The output of this network was then used to label bins into one of the two genes for each pair, and to predict the exact value within the bin. This step was achieved using two subnetworks with the same architecture but weights trained separately (using a mean squared error loss function).   
+The fourth solution (by a competitor from Ukraine with a bachelor's degree in Computer Science from the Cherkasy National University) was a Convolutional Neural Network (CNN). The algorithm first filtered the data to remove extreme outlier measurements, transforming the filtered data into a 32-bin histogram for each pair of genes. The CNN consisted of two parts. The first part used the classic U-net architecture [@ronneberger2015u] (a contracting path to capture context and a symmetric expanding path) to provide adequate representation of the data. The output of this network was then used to label bins into one of the two genes for each pair, and to predict the exact value within the bin. This second step was achieved using two subnetworks with the same architecture but weights trained separately (using a mean squared error loss function).
 
-<!-- Despite the wide diversity of the approaches described above, all top solutions included ways to automatically remove extreme outlier measurements and to incorporate plate level information to refine the predictions.  -->
+## Clustering by method and perturbagen type 
 
-Given the variety of methods represented amongst the prize-winning solutions, we sought to assess whether there were notable differences in the predictions generated. Using the holdout dataset,
-we generated the contestants' deconvolution data (DECONV) and the corresponding differential expression (DE) values. We obtained the DE values by using a robust z-score procedure [described by @subramanian2017next]. We then compared the results using a two-dimensional t-SNE projection [@maaten2008visualizing]. We observe that in DECONV data the samples primarily cluster by pertubagen type, except for the ground truth UNI data, which appears distinct from the deconvoluted samples (\Fig{tsne}, A and B). Separating the samples by algorithm reveals commonalities in the predictions generated by similar approaches (\Fig{tsne}, C). For example, the decision tree regressor (DTR) algorithms have similar 'footprints' in the projection, as do the k-means and Gaussian mixture model (GMM) algorithms. This suggests that in general similar algorithms generate predictions with similar properties. However, after the standard transformation to DE data, the t-SNE projection appears more homogenous (\Fig{tsne} D), indicating that perturbagen-type and algorithm-specific effects have greatly reduced. The reduced role of these effects at the DE level is reassuring, given the downstream analysis is often focused on DE values.
-  
-## Accuracy and speed
+Given the variety of methods represented amongst the prize-winning solutions, we sought to assess whether there were notable differences in the predictions generated. Using the holdout dataset, we generated the contestants' deconvolution data (DECONV) and the corresponding differential expression (DE) values. We obtained the DE values by using the robust z-score procedure by @subramanian2017next. We then compared the results using a two-dimensional t-SNE projection [@maaten2008visualizing]. 
 
-### Global correlation 
+For the most part, the DECONV data clustered by pertubagen type, except for the ground truth UNI data, which appears distinct from the deconvolution samples (\Fig{figure-3}, A and B). 
+Separating the samples by method revealed commonalities in the predictions generated by similar approaches (\Fig{figure-3}, C). For example, the decision tree regressor (DTR) algorithms have similar 'footprints' in the projection, as do the k-means and Gaussian mixture model (GMM) algorithms. This suggests that in general similar algorithms generate predictions with similar properties. However, after the transformation to DE data, the t-SNE projection appears more homogenous (\Fig{figure-3} D), indicating that perturbagen-type and algorithm-specific effects have greatly reduced. The reduced clustering at the DE level is reassuring given the downstream analysis is often focused on DE values.
 
-We tested the accuracy of the solutions by comparing the distribution of the genewise spearman correlation ($\rho$) between the ground-truth gene-expressions (as detected by UNI) and values of the competitors and of the benchmark that were obtained through the deconvolution of DUO data. The Spearman rank correlation was high overall ($\rho$ > `r min(speed_acc$cor)`). The empirical distributions of the competitor soutions were right-shifted compared to the k-means benchmark, indicating more accurate predictions in both shRNA and compound experiments (\Fig{accuracy-fig}, A and B). On average, nearly all competitors achieved significant improvements compared to the benchmark (\Fig{accuracy-fig}, C and D), with the random forest approach of the contest winner raising the average correlation by 3 to 4 percentage points (approximately 5% increase over the benchmark).
+## Correlation accuracy
 
-To understand whether there were differences between the algorithms at the individual gene level, we identified the best performing algorithm (by the correlation metric) for each of the 976 landmark genes (\Fig{accuracy-fig}, E and F). The random forest approach was the best performer for about a third (30%) of the genes. The gaussian mixture model was the best performer for about one fourth (20%). Thus, the top two contest submissions achieved the highest correlation in more than half of the genes. Even so, all but a few algorithms were the best performers for at least 5% of the genes, suggesting some complementarity between the algorithms, which could potentially be leveraged by an ensemble approach, as discussed below.
+We tested the accuracy of the solutions by comparing the distribution of the genewise Spearman's rank correlation ($\rho$) between the UNI data and the values obtained by the competitors through the deconvolution of DUO (holdout) data. We did so for the shRNA and compound experiments separately; and, within each set of experiments, we compared the correlation accuracy for genes in high and low bead proportion. In all these cases, we found that the winner's distribution was shifted to the right of the benchmark's, indicating significant improvements in accuracy. We also observed that, for each set of experiments, the greatest shift was for the distribution of genes in low bead proportions (compared to genes in high bead proportions). For the genes in low bead proportions, the winner's average improvement was of 5 percentage points (with standard error of half a point) whereas the improvement was of 2 percentage points (with standard error of half a point) for the genes in high bead proportions. 
 
-### Extreme modulations
+The analysis of the top-nine performing algorithms showed similar results: the average Spearman's rank correlation was generally greater for genes in high bead proportions (relative to low bead proportions) and for genes in shRNA experiments (relative to compounds); the benchmark performed consistently worse than all the others in the genes in low bead proportions, although it performed well in the high-proportion genes. Remarkably, the winning solution outperformed the other approaches in nearly all the comparisons.
+
+Next, we ranked the top-nine algorithms by the average correlation metric for each of the 976 landmark genes and selected the best algorithm for each gene across all the experiments. The winning solution was selected as the best performer for about a third (30%) of the genes. The second-placed gaussian mixture model was selected as the best performer for about one fourth (20%). Thus, the top two submissions achieved the highest correlation in more than half of the genes in our sample. Even so, all but a few algorithms were the best performers for at least 5% of the genes, suggesting some complementarity between these algorithms.
+
+## Detection of extreme modulations
 
 We further tested the accuracy of the competitors' solutions on the detection of genes notably up- or down-regulated by perturbation, or _extreme modulations_. These genes exhibit exceedingly high (or low) DE values (above a given threshold). Using the UNI DE values as the ground truth, we evaluated the detection accuracy of each solution by computing the corresponding area under the curve (AUC).
 
-All the solutions achieved a good detection accuracy (AUC > `r  min(speed_acc$auc)`) and achieved significant improvements relative to the benchmark in both the shRNA and compound experiments (\Fig{auc}, A, B and C). We further tested differences in accuracy for targeted gene knockdowns (KD). These are experiments involving an shRNA targeting one of the 976 landmark genes. We expected the targeted gene to exhibit a very low DE value (highly negative). For each such experiment, we define a successful KD as one in which the DE value is less than -2 and the gene-wise rank is less than 10, meaning that the targeted gene achieves one of its lowest DE values in the experiment where it was targeted. We computed the KD success frequency for each competitor algorithm as well as the benchmark and UNI data. We used the $UNI$ ground-truth data to estimate the maximum achievable frequency, which in this case was 0.8. We observe that all but 2 of the top 9 contestant algorithms achieved a higher KD success frequency than the benchmark solution (\Fig{auc}, D). These results suggest that the algorithm improvements translate to improvements in biologically relevant metrics used in common applications of L1000 data.
+All the solutions achieved a good average detection accuracy (AUC > .86) with significant improvements over the benchmark in both the shRNA and compound experiments (\Fig{auc}). 
 
-### Reduction variation across replicate samples
+We further tested differences in accuracy for targeted gene knockdowns (KD). These are experiments involving an shRNA targeting one of the 976 landmark genes. We expected the targeted gene to exhibit a very low DE value (highly negative). For each such experiment, we define a successful KD as one in which the DE value is less than -2 and the gene-wise rank is less than 10, meaning that the targeted gene achieves one of its lowest DE values in the experiment where it was targeted. We computed the KD success frequency, or recall, for each competitor algorithm as well as the benchmark and UNI data. We used the $UNI$ ground-truth data to estimate the maximum achievable recall, which in this case was $0.8$. We observed that all (but 2) algorithms achieved a higher KD success frequency than the benchmark solution. These results suggest that the algorithm improvements translate to improvements in biologically relevant metrics used in common applications of L1000 data.
 
-Our data contain several replicates which enabled us to study improvements in inter-replicate variation of gene expression-quantities. Keeping low the inter-replicate variation is of crucial practical importance to biologists because it means higher reproducibility of results. With this goal in mind, the benchmark k-means solution is likely suboptimal because it does little to mitigate the discrepancy in variability between the genes measured with high and low bead proportions (recall genes are mixed in a 2:1 ratio to allow the algorithm to isolate different genes). To test potential improvements, we computed the distribution of the sample variance ($s^2$) of the measurements of each gene-perturbagen combination for each approach. The sample size ranged between 4 to 11 replicates of the same perturbagen experiment on a given plate. 
-Of particular interest was the difference between distributions for genes in high versus low bead proportions, as we expected those in low bead proportions to have a higher variance. 
-We found that the distribution of sample variances of the benchmark was right-shifted compared to the distribution of the competitors (\Fig{inter-replicate-variance}) and the shift was more visible for genes in low bead proportions. This evidence indicates significant improvements in the inter-replicate variance of the competitors over the benchmark. 
+## Reduced variation across replicate samples
 
-### Computational speed
+Our data contain between 4 to 11 replicate samples for each perturbagen. Keeping low the inter-replicate variation is of crucial practical importance to biologists because it means higher reproducibility of results. With this goal in mind, the benchmark k-means solution is likely suboptimal because it does little to mitigate the discrepancy in variability between the genes measured with high and low bead proportions. 
 
-Speed improvements over the benchmark were substantial (\Fig{speed}). The benchmark took about 4 minutes per plates. In contrast, the fastest algorithm took as little as `r min(speed_acc$sec)` seconds per plate (a 60x speedup compared to the benchmark), and the slowest was well below one minute per plate. We observed no particular trade-off between speed and accuracy. The fastest algorithm (Ardavel), that was based a gaussian mixture model, achieved a good level of accuracy as well, and ranked second overall. On the other hand, the algorithm with the best performance in terms of accuracy (gardn999), which was based on a decision tree regression, also achieved a decent speed performance compared to the benchmark. Thus, at least within the context of the implemented solutions, we found a negligible trade-off between speed and accuracy.
+We compared the inter-replicate variance of the predictions made by each method for genes in low and high bead proportions. As expected, we found significant improvements in the inter-replicate variance of the competitors over the benchmark with the difference being more visible for genes in low bead proportions. Among the competitors, the winning method, which was the most accurate on average, was also the most efficient achieving the lowest inter-replicate variance.
+
+## Computational speed
+
+<!-- \nameref{table-1} shows that  -->
+The speed improvements over the benchmark were substantial. While the dpeak took about 4 minutes per plates, the  fastest algorithm took as little as 5 seconds per plate (a 60x speedup compared to the benchmark) and the slowest was well below one minute per plate. We observed no particular trade-off between speed and accuracy. The fastest algorithm (`Ardavel`), that was based a gaussian mixture model, achieved a good level of accuracy as well, and ranked second overall. On the other hand, the algorithm with the best performance in terms of accuracy (`gardn999`), which was based on a decision tree regression, also achieved a decent speed performance compared to the benchmark. 
 
 
 ### Ensembles
