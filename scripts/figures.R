@@ -105,6 +105,9 @@ plot.inter.ecdf <- function(out) {
     out[[handle]]$var[rows, ]
   } 
   par(ann = F)
+  mean.arr <- array(NA, dim = c(11, 2), dimnames = list(handles, c("high","low")))
+  se.arr <- mean.arr
+  for (handle in handles) 
   for (k in c("high", "low")) {
       library(RColorBrewer)
       b.pal <- brewer.pal(5, "Blues")
@@ -113,10 +116,13 @@ plot.inter.ecdf <- function(out) {
       COL.2 <- c(high = o.pal[4], low = o.pal[2])
       rows <- !high # !high 
       if (k == "high") rows <- high 
-      x.bench <- out[["benchmark"]]$var[rows, ]
-      x <- extract.var(out,  "gardn999", rows)
+      col.indices <- 1:121
+      x.bench <- out[["benchmark"]]$var[rows, col.indices] # more than 4
+      x <- extract.var(out,  handle, rows)[, col.indices]
       x.mean <- exp(apply(x, 1, mean))  # = 1 average variance by genes
       y.mean <- exp(apply(x.bench, 1, mean))
+      mean.arr[handle, k] <- mean(x.mean)
+      se.arr[handle, k] <- sqrt(var(x.mean) / length(x.mean))
       x.scale <- c(1, 1.1)
       if (k == "high") plot(NA, NA, ylim = c(0, 1), xlim = x.scale, axes = F)
       plot.stepfun(ecdf(x.mean), do.points = F, lwd = 2, col = COL[k], add = T)
@@ -128,9 +134,10 @@ plot.inter.ecdf <- function(out) {
           , ylab = "cumulative fraction of perturbagens")      
       txt.1 <- ifelse(k==1, "high bead prop.", "low bead prop")
       text(x = 0.7, y = 0.25, sprintf("%i genes\n%s", length(x), txt.1), adj = 0)
-      legend.txt <- c("winner (high)","winner (low)", "benchmark (high)", "benchmark (low)")
+      legend.txt <- c(paste(handle, c("(high)", "(low)")), "benchmark (high)", "benchmark (low)")
       legend("bottomright", lty = 1, lwd = 2, col = c(COL, COL.2), legend = legend.txt, , bty = "n")
     }
+  return(list(mean = mean.arr, se = se.arr))
 }
 
 # Function plots runtime improvement
@@ -421,11 +428,37 @@ main <- function() {
   dev.off()
 
   out <- compute.inter.rep()
-  
   pdf("outcomes/figures/inter-rep.pdf", width = 5, height = 5, onefile = T)
-  plot.inter.ecdf(out)
+  var.arr <- plot.inter.ecdf(out)
   dev.off()
 
+  # plto bars
+  pdf("outcomes/figures/inter-bars.pdf", width = 8, height = 4, onefile = T)
+  par(las = 1, mfrow = c(1, 2), mar = c(0,0,1,1), oma = c(1,3,0,0))
+  j <- match(soln_desc$handle, rownames(var.arr$mean))
+  for (k in c("high", "low")) {
+    x.mean <- var.arr$mean[j, k]
+    x.se <- var.arr$se[j, k]
+    x.meth <- soln_desc$method_short
+    COL <- brewer.pal(7, "Pastel1")  
+    x.baseline <- 1
+    x.hi <- x.mean + x.se - x.baseline
+    x.lo <- x.mean - x.se - x.baseline
+    y.scale <- c(0, 0.05) #c(0, max(x.hi) + 0.005)
+    b <- barplot(x.mean - x.baseline, axisnames = F, axes = F, ylim = y.scale
+          , col = COL[factor(x.meth)], border = "white")
+    segments(x0=b, y0 = x.lo, y1 = x.hi)
+    mtext(side = 3, ifelse(k == 1, "genes in high bead proportion", "genes in low bead proportion"))
+  #         mtext(side = 3, line = 1, ifelse(p == "DPK", "shRNAs", "compounds"), font = 4)
+    title(ylab = "average inter-replicate variation", line = 1, outer = T)
+    txt <- paste(1:10, x.meth)
+    txt[10] <- "dpeak*"
+    text(x = b, y = 0.001, txt, adj = 0, srt = 90)
+    values.txt <- sprintf("%.2f", 100*(x.mean - 1))
+    text(x = b, y = x.hi, values.txt, pos = 3, srt = 0, cex = .75, xpd = T)
+  }
+  dev.off()
+  
 }
 
 # main()

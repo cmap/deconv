@@ -1,12 +1,15 @@
-## Concluding remarks 
+# Discussion 
 
+We created a novel dataset of L1000 profiles for over 120 shRNA and compound experiments with several replicates for a total of 2,200 gene expression profiles. This dataset constitutes a public resource to all the researchers in this area who are interested in testing their deconvolution approaches. 
 
-In summary, we have created a novel dataset of over 120 shRNA and compound experiments with measurements for about 1,000 genes. This dataset constitutes a public resource to all the researchers in this area who are interested in testing their deconvolution appproaches. Using an open innovation competition, we collected and evaluated multiple and diverse deconvolution methods. 
+Using an open innovation competition, we collected and evaluated multiple and diverse deconvolution methods. The best approach was based on a random forest,  which is a collection of decision tree regressors. This method achieved: (i) the highest "global" correlation between UNI and DUO data, (ii) the lowest inter-replicate variability, and (iii), compared to the benchmark, was able to detect more than a thousand additional differentially-expressed genes while improving the detection precision at the same time.  
 
-The best approach was based on a random forest,  which achieved (i) the highest "global" correlation between UNI and DUO data, (ii) the lowest inter-replicate variability and (iii), compared to the benchmark, was able to detect more than a thousand additional differentially-expressed genes, while improving the detection precision at the same time. 
-This provides evidence of the tremendous potential of using machine-learning approaches for deconvolution methods in biology.
+The random-forest approach achieves these improvements with only 10 trees in the forest. This ensures that the algorithm is also relatively fast and easy to implement. By comparison, the fastest approach used a more traditional Gaussian mixture model (with plate-level adjustments), which turned out to be less accurate. 
 
-Next, we will apply these resutls to over one million experiments that constitute the Connectivity Map, and explore cost svings achieved by having a lower number of replicates. Another potential application is to leverage these algorithms to enable detection of three or more genes using the same analyte type. 
+This gap can be due to several factors, including outliers and random variation in the mixing proportions (as outlined by nearly all the competitors), that are hard to model explicitly. And the gains of using a random forest seemed considerable when different populations were sampled in different proportions (e.g., genes in high and low bead proportions) with the basic k-means approach being systematically less accurate. Thus, and overall, our analysis provided evidence of the tremendous potential of using random-forest methods for deconvolution in biology compared to more traditional methods. 
+
+Next, we will apply these results to over one million experiments that constitute the Connectivity Map and explore cost savings achieved by having a lower number of replicates. Another potential application is to leverage these algorithms to enable the detection of three or more genes using the same analyte type. 
+
 
 <!-- 
 Summary of the results presented in the methods section. 

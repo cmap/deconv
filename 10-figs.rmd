@@ -17,15 +17,6 @@ soln_desc <- fread("data/solution_descriptions.txt", na.strings="n/a")
 speed_acc <- merge(speed_acc, soln_desc, by="handle")
 ```
 
-## Table 1 {-}
-
-**Top-nine performing solutions.**  This table lists the top-nine solutions and the languages and algorithms each used, as well as the average speedup per plate relative to the k-means benchmark.  
-
-```{r top-nine, echo=F, warning=F}
-setnames(soln_desc, "method_short", "category")
-knitr::kable(soln_desc[1:9])
-```
-
 \clearpage 
 
 ## Figure 1 {-}
@@ -138,13 +129,29 @@ cowplot::plot_grid(p_deconv_color_type,
 
 ## Figure 4 {-}
 
-**Improvements in accuracy**  XXX 
+**Correlation between ground-truth and deconvolution samples** This figure shows the distribution of the genewise Spearman's correlation coefficients between the ground-truth (UNI) and the deconvolution data (DUO) achieved by the winning random-forest method against the k-means benchmark (dpeak*) for the subset of genes in low bead proportion (**a**) and in high bead proportion (**b**) for the shRNA and compound perturbagen types. It also shows the average and standard error of the correlation coefficients for the top-nine performing methods and the benchmark for the compounds (**c**) and the shRNAs experiments (**d**). 
 
-![](outcomes/schematic-results v3.png)
+![](outcomes/correlation.png)
 
 \clearpage 
 
 ## Figure 5 {-}
+
+**Detection of extreme modulations and targeted knockdown genes** This figure shows the area under the curve (AUC) for the predicted differential expressions (DE data) obtained by the top-nine performing methods and the k-means benchmark (dpeak*) and the corresponding ground-truth extreme modulations (as detected in the UNI data) both for the shRNA and compound samples (**a**). It also shows the computed recall and precision of the top-nine methods and the benchmark for the detection of the targeted knockdown genes for a subset of shRNA experiments (**b**).
+
+![](outcomes/detection.png)
+
+\clearpage 
+
+## Figure 6 {-}
+
+**Variation across replicates** This figure shows the distribution of the genewise inter-replicate variation of the predicted deconvolution values for the winning random-forest approach and the benchmark for the subset of genes in high and low bead proportions (**a**). It also shows the average genewise inter-replicate variation of the predictions for the top-nine performing methods (**b**). 
+
+![](outcomes/variation.png)
+
+\clearpage
+
+## Figure 7 {-}
 
 **Performance of ensembles.**  This figure shows the performance in the **A** correlation metric and **B** the AUC metric of the ensemble based on the median prediction of all possible combinations of a given size of the top 10 algorithms (including the benchmark). The median performance of the ensemble tends to increase with its size. However, the maximum performance in both metrics tends to plateau (or even decrease) after the ensamble reaches a size equal to 3.
 
@@ -176,7 +183,8 @@ bp.auc <- boxplot(auc ~ nalgo, data = ens, plot = FALSE)
 par(mfrow = c(2, 2), mar = c(4,4,3,2) + .1)
 
 # left panel
-matplot(t(bp.cor$stats), type = "l", lty = c(3,2,1,2,3), col =1, ann = FALSE, axes = FALSE, ylim = c(0.55, 0.6))
+COL <- c(rgb(0,0,1), rgb(1,0,0))
+matplot(t(bp.cor$stats), type = "l", lty = c(3,2,1,2,3), col = COL[1], ann = FALSE, axes = FALSE, ylim = c(0.55, 0.6))
 axis(1, at = 1:9, 2:10)
 axis(2, at = range(bp.cor$stats), format(range(bp.cor$stats), digits = 2))
 box()
@@ -184,7 +192,7 @@ title(main = "Spearman's rank correlation", xlab = "# algorithms", ylab = expres
 legend("bottomright", lty=1:3, c("50th percentile (median)", "25th/75th percentile", "max/min"), bty ="n")
 
 # right panel 
-matplot(t(bp.auc$stats), type = "l", col = 1, lty = c(3,2,1,2,3), ann = FALSE, axes = FALSE, ylim = c(0.92, 0.95))
+matplot(t(bp.auc$stats), type = "l", col = COL[2], lty = c(3,2,1,2,3), ann = FALSE, axes = FALSE, ylim = c(0.92, 0.95))
 axis(1, at = 1:9, 2:10)
 axis(2, at = range(bp.auc$stats), format(range(bp.auc$stats), digits = 2))
 box()

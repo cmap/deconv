@@ -11,43 +11,19 @@ gene_annot <- fread("data/barcode_to_gene_map.txt", colClasses = c("gene_id"="ch
 
 \clearpage 
 
-## S1 Figure  {-}
+## Table 1 {-}
 
-**eCDF of genewise Spearman's rank correlation.** This figure shows the empirical Cumulative Distribution Function (eCDF) of the genewise Spearman's rank correlation for the top-four performing approaches and the k-means benchmark. The top panels present the eCDFs corresponding to the shRNAs, whereas the bottom panels present the eCDFs corresponding to the compounds.
+**Top-nine performing solutions.**  This table lists the top-nine solutions and the languages and algorithms each used, as well as the average speedup per plate relative to the k-means benchmark.  
 
-\begin{figure}
-\centering
-\includegraphics{outcomes/figures/ecdf.corr-shrna.pdf}
-\includegraphics{outcomes/figures/ecdf.corr-compounds.pdf}
-\end{figure}
-
-\clearpage 
-
-## S2 Figure {-}
-
-**Improvements in genewise Spearman's rank correlation.** This figure shows the association between the genewise Spearman's rank correlation for the top-four performing approaches and the k-means benchmark; it also reports the fraction genes with a higher genewise Spearman's rank correlation than the benchmark. The top panels present the scatter plots corresponding to the shRNAs, whereas the bottom panels present the scatter plots corresponding to the compounds.
-
-\begin{figure}
-\centering
-\includegraphics{outcomes/figures/corr-shrna.pdf}
-\includegraphics{outcomes/figures/corr-compounds.pdf}
-\end{figure}
+```{r top-nine, echo=F, warning=F}
+setnames(soln_desc, "method_short", "category")
+knitr::kable(soln_desc[1:9])
+```
 
 \clearpage 
 
-## S3 Figure {-}
 
-**Improvements in inter-replicate variability.** This figure shows the empirical Cumulative Distribution Function (eCDF) of the genewise inter-replicate variance for the top-four performing approaches and the k-means benchmark. The top panels present the eCDFs corresponding to the genes in low bead proportion (recall genes are paired and mixed in 2:1 ratio within each pair), whereas the bottom panels present the eCDFs corresponding to the genes in high bead proportion.
-
-\begin{figure}
-\centering
-\includegraphics{outcomes/figures/inter-rep-low.pdf}
-\includegraphics{outcomes/figures/inter-rep-high.pdf}
-\end{figure}
-
-\clearpage 
-
-## S1 Table {-}
+## S2 Table {-}
 
 **Compound perturbagens descriptives.** This table shows componud perturbagen names (`pert_iname`), unique id (`pert_id`), time of treatment (`pert_itime`), dose (`pert_idose`), and number of replicates (`num_replicates`). 
 
@@ -61,7 +37,7 @@ annot %>%
 
 \clearpage 
 
-## S2 Table {-}
+## S3 Table {-}
 
 **Short-hairpin (shRNA) perturbagens descriptives.** This table shows shRNA perturbagen names (`pert_iname`), unique id (`pert_id`), and number of replicates (`num_replicates`). 
 

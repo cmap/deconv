@@ -14,7 +14,7 @@ author:
     - Karim R. Lakhani (Harvard)
     - Aravind Subramanian (Broad)
 
-abstract: "The Connectivity Map (CMap) team has generated millions of perturbational gene expression profiles using an assay called L1000.  L1000 uses a 500-plex cytometry platform to measure a reduced representation of the transcriptome comprising 1,000 genes. A key computational challenge is to deconvolute the 500 composite raw signal values for each profile into the 1,000 gene expression values. The current k-means approach is slow (~5 minutes per plate) and susceptible to errors. Here we describe new methods obtained via an open innovation challenge. The challenge used a novel dataset of L1000 profiles for 2,200 perturbation experiments for performance evaluation, and attracted 294 competitors from 20 countries. The top-nine performing methods ranged from machine learning (Convolutional Neural Networks and Random Forests) to more traditional solutions (Gaussian Mixtures and k-means). The winning method, a random forest regressor, achieved the highest accuracy with the lowest (inter-replicate) variation, detecting nearly a thousand more differentially-expressed genes than the k-means benchmark, while also improving precision."
+abstract: "The Connectivity Map (CMap) project has generated millions of perturbational gene expression profiles using a new assay, called L1000. This assay uses 500 analyte types, or sensors, to measure the messenger RNA molecules of 1,000 genes. A key computational challenge is to deconvolute the 500 composite raw signal values for each profile into the 1,000 gene expression values. The current k-means approach is slow (~5 minutes per plate) and susceptible to errors. Here we describe new methods obtained via an open innovation challenge. The challenge used a novel dataset of L1000 profiles for 2,200 perturbation experiments for evaluation and attracted 294 competitors from 20 countries. The top-nine performing methods ranged from machine learning (Convolutional Neural Networks and Random Forests) to more traditional solutions (Gaussian Mixtures and k-means). The winning method, a random forest approach, achieved the highest accuracy overall with the lowest (inter-replicate) variation and, compared to the k-means benchmark, was able to detect nearly a thousand more differentially-expressed genes while also improving precision."
     
 date: 'Last updated: `r format(Sys.Date(), "%b %d, %Y")`'
 
@@ -33,7 +33,6 @@ biblatexoptions: "sorting=none"
 
 header-includes:
   - \usepackage{bbm}
-  - \newcommand\hl{}
   - \newcommand\Fig[1]{\nameref{#1}}
   - \usepackage{setspace}
   - \onehalfspacing 
