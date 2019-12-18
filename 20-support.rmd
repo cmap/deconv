@@ -11,7 +11,7 @@ gene_annot <- fread("data/barcode_to_gene_map.txt", colClasses = c("gene_id"="ch
 
 \clearpage 
 
-## Table 1 {-}
+## S1 Table {-}
 
 **Top-nine performing solutions.**  This table lists the top-nine solutions and the languages and algorithms each used, as well as the average speedup per plate relative to the k-means benchmark.  
 
