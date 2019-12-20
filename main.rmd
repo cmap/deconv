@@ -6,6 +6,7 @@ title: "Improving Deconvolution Methods in Biology \
 author: 
     - Andrea Blasco (Harvard)
     - Ted Natoli (Broad)
+    - Michael G. Endres (Harvard)
     - Rinat A. Sergeev (Harvard)
     - Steven Randazzo (Harvard)
     - Jin H. Paik (Harvard)

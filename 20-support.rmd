@@ -51,6 +51,12 @@ annot %>%
 
 \clearpage 
 
+## S1 Data {-}
+
+LINK TO DATA REPOSITORY on http://CLUE.io WILL BECOME AVAILABLE AFTER PUBLICATION
+
+\clearpage 
+
 ## S1 Appendix {-}
 
 **Scoring function.** This appendix describes the scoring function used in the contest to evaluate the performance of the competitors' submissions.
@@ -66,24 +72,24 @@ The first accuracy component is based on the Spearman rank correlation between t
 For a given dataset $p$, let $M_{\text{DUO},p}$ and $M_{\text{UNI},p}$ denote the matrices of the estimated gene intensities for $G = 976$ genes (rows) and $S = 384$ experiments (columns) under DUO and UNI detection.
 Compute the Spearman rank correlation matrix, $\rho$, between the rows of these matrices and take the median of the diagonal elements of the resulting matrix (i.e., the values corresponding to the matched experiments between UNI and DUO) to compute the median correlation per dataset, 
 $$
-  \text{COR}_p = median(diag(\rho(M_{\text{DUO},p}, M_{\text{UNI},p})). 
+  \text{COR}_p = median(diag(\rho(M_{\text{DUO},p}, M_{\text{UNI},p}))). 
 $$
 
 The second component of the scoring function is based on the Area Under the receiver operating characteristic Curve (AUC) that uses the competitor's DE values at various thresholds to predict the UNI's DE values being higher than 2 ("high") or lower than -2 ("low").
  
-For a given dataset $p$, let $\text{AUC}_{p, c}$ denote the corresponding area under the curve where $c = \{ \text{high}, \text{low} \}$ (either higher than 2 or less than -2); then, compute the arithmetic mean of the area under the curve per class to obtain the corresponding score per dataset:
+For a given dataset $p$, let $\text{AUC}_{p, c}$ denote the corresponding area under the curve where $c = \{ \text{high}, \text{low} \}$; then, compute the arithmetic mean of the area under the curve per class to obtain the corresponding score per dataset:
 $$
-  \text{AUC}_p = (\text{AUC}_{p,\text{high}} + \text{AUC}_{p,\text{high}} / 2.
+  \text{AUC}_p = (\text{AUC}_{p,\text{high}} + \text{AUC}_{p,\text{high}}) / 2.
 $$
 
 These accuracy components were integrated into a single aggregate scores:
 $$
 \text{SCORE} = 
-  \text{SCORE}_{\text{max}} \cdot (\max(\text{COR}_{p}, 0)) 2 
+  \text{SCORE}_{\text{max}} \cdot (\max(\text{COR}_{p}, 0))^2 
                    \cdot \text{AUC}_{p} 
                    \cdot \exp(- T_{\text{solution}} / (3 \cdot T_{\text{benchmark}})), 
 $$ 
-where $T_\text{solution}$ is the run time in seconds for deconvoluting the data in each plate, and $T_{\text{benchmark}}$ is the deconvolution time required by the benchmark D-Peak implementation. 
+where $T_\text{solution}$ is the run time for deconvoluting the data in each plate, and $T_{\text{benchmark}}$ is the deconvolution time required by the benchmark D-Peak implementation. 
 
 \clearpage
 
