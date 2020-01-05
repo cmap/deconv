@@ -15,18 +15,17 @@ author:
     - Karim R. Lakhani (Harvard)
     - Aravind Subramanian (Broad)
 
-abstract: "The Connectivity Map (CMap) project has generated millions of perturbational gene expression profiles using a new assay, called L1000.  Using computational deconvolution methods, the L1000 platform characterizes the expression of 1,000 genes from composite measurements obtained by 500 analytes. This procedure greatly lowers cost allowing CMap's massive scale-up. However, the current deconvolution algorithm is slow (~5 minutes per experimental plate) and susceptible to errors. Here we describe new methods obtained via an open innovation challenge. The challenge used a novel dataset of 2,200 L1000 profiles of perturbation experiments for evaluation and attracted 294 competitors from 20 countries. The top-nine performing methods ranged from machine learning (Convolutional Neural Networks and Random Forests) to more traditional solutions (Gaussian Mixtures and k-means). These approaches were faster and more accurate than the benchmark and likely have applications beyond gene expression."
+abstract: "A recurring problem in biomedical research is how to isolate signals of distinct populations (cell types, tissues, and genes) from composite measures obtained by a single analyte or sensor. Existing computational deconvolution approaches work well in many specific settings, but they might be suboptimal in more general applications. Here, we describe new methods that were obtained via an open innovation competition. The goal of the competition was to characterize the expression of 1,000 genes from 500 composite measurements, which constitutes the approach of a new assay, called L1000, used to scale-up the Connectivity Map (CMap) --- a catalog of millions of perturbational gene expression profiles. The competition used a novel dataset of 2,200 L1000 profiles for evaluation and attracted 294 competitors from 20 countries. The top-nine performing methods ranged from machine learning (Convolutional Neural Networks and Random Forests) to more traditional solutions (Gaussian Mixtures and k-means). These approaches were faster and more accurate than the benchmark and likely have applications beyond gene expression."
     
 date: 'Last updated: `r format(Sys.Date(), "%b %d, %Y")`'
 
 keywords:
   - connectivity map
-  - open innovation competitions
+  - open innovation competition
   - crowdsourcing
-  - deconvolution
-  - gene expressions
+  - deconvolution algorithm
   - machine learning
-  - transcriptome
+  - gene expression
 
 geometry: margin=1in
 bibliography: dpeak.bib
@@ -38,6 +37,9 @@ header-includes:
   - \usepackage{setspace}
   - \onehalfspacing 
 ---
+
+
+<!-- abstract: "The Connectivity Map (CMap) project has generated millions of perturbational gene expression profiles using a new assay, called L1000.  Using computational deconvolution methods, the L1000 platform characterizes the expression of 1,000 genes from composite measurements obtained by 500 analytes. This procedure greatly lowers cost allowing CMap's massive scale-up. However, the current deconvolution algorithm is slow (~5 minutes per experimental plate) and susceptible to errors. Here we describe new methods obtained via an open innovation challenge. The challenge used a novel dataset of 2,200 L1000 profiles of perturbation experiments for evaluation and attracted 294 competitors from 20 countries. The top-nine performing methods ranged from machine learning (Convolutional Neural Networks and Random Forests) to more traditional solutions (Gaussian Mixtures and k-means). These approaches were faster and more accurate than the benchmark and likely have applications beyond gene expression." -->
 
 
 <!-- abstract: "A central goal in biology is to understand the response of human cells to perturbations.  Researchers pursuing this goal often seek to characterize cellular responses using large repositories of gene-expression profiles, such as the Connectivity Map. However, a recurrent issue is how to isolate specific gene expressions of distinct populations (cell types, tissues, and genes) from composite measures obtained by a single analyte or sensor, which stems from the prohibitive cost of profiling each population separately. To improve upon existing solutions, we generated a novel dataset of gene expressions from 2,2000 perturbation experiments where genes were measured both separately and in tandem. We then ran an open competition challenging participants to develop deconvolution solutions using these data. The contest attracted 300 competitors worldwide who employed both machine learning (Convolutional Neural Networks and Random Forests) and more traditional approaches (Gaussian mixtures and k-means). The winning approach, a random forest regressor, achieved the highest global correlation with the ground truth, the lowest inter-replicate variability, and, compared to the k-means benchmark solution, was able to detect more than a thousand additional differentially-expressed genes while also improving precision. This provides evidence of the tremendous potential of random-forest approaches for deconvolution problems in biology."
