@@ -14,7 +14,6 @@ submission/nat_meth/%.pdf: submission/nat_meth/%.rmd
 
 figures.rout : scripts/figures.R
 	nohup Rscript "$<" &> "$@" 
-
 	
 view: 
 	open -a Skim main.pdf 

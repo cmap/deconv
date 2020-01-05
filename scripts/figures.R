@@ -292,6 +292,9 @@ main <- function() {
             as_tibble
   var.arr <- compute.inter.var(ds_deconv)   # This computes coeff of var. 
 
+  # change directory
+  #   setwd(args[1])
+
   # Correlation # ======================================== #
   pdf("outcomes/figures/corr-bars.pdf", width = 8, height = 4, onefile = T)
   par(las = 1, mfrow = c(1, 1), mar = c(1,2,1,1))
@@ -306,7 +309,7 @@ main <- function() {
     }
   }
   dev.off()
-  system("open outcomes/figures/corr-bars.pdf")
+  #system("open outcomes/figures/corr-bars.pdf")
   # ======================================== #
 
   # AUC # ======================================== #
@@ -319,7 +322,7 @@ main <- function() {
     title(main = plate.labels[p])
   }
   dev.off()
-  system("open outcomes/figures/auc-bars.pdf")
+#   system("open outcomes/figures/auc-bars.pdf")
   # ======================================== #
 
   # KD # ======================================== #
@@ -327,7 +330,7 @@ main <- function() {
   par(mar = c(4,4,1,1))
   plot.kd(speed_acc)
   dev.off()
-  system("open outcomes/figures/kd.pdf")
+#   system("open outcomes/figures/kd.pdf")
 
   # Inter-replicate variation   # ======================================== #
   x.pos <- rep(4, 10)
@@ -363,15 +366,14 @@ main <- function() {
     }
   }
   dev.off()
-  system("open outcomes/figures/cv-variation.pdf")
+#   system("open outcomes/figures/cv-variation.pdf")
   # ======================================== #
-
   
   # Winner ... 
   pdf("outcomes/figures/cor-winner.pdf", width = 8, height = 8, onefile=T)
   plot.winner(cor_df)
   dev.off()
- 
+
 }
 
 main()

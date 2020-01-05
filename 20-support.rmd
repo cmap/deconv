@@ -89,7 +89,7 @@ $$
                    \cdot \text{AUC}_{p} 
                    \cdot \exp(- T_{\text{solution}} / (3 \cdot T_{\text{benchmark}})), 
 $$ 
-where $T_\text{solution}$ is the run time for deconvoluting the data in each plate, and $T_{\text{benchmark}}$ is the deconvolution time required by the benchmark D-Peak implementation. 
+where $T_\text{solution}$ is the run time for deconvoluting the data in each plate, and $T_{\text{benchmark}}$ is the deconvolution time required by the benchmark dpeak implementation. 
 
 \clearpage
 
