@@ -6,13 +6,11 @@
 usage <- function() {
   message("Rscript figures.R [path to data]")
 }
-args = commandArgs(trailingOnly=TRUE) # empty arguments 
 options(warn = -1)
 library(cmapR)
 library(dplyr, warn = F)
 library(parallel)
 library(RColorBrewer)
-#library(pROC)
 
 # Colors and labels # ======================================== #
 COL           <- brewer.pal(7, "Pastel1")  
@@ -38,6 +36,38 @@ pval2stars <- function(x) {
   ifelse(x < 0.001, "***", ifelse(x < 0.05, "**", ifelse(x < 0.1, "*", "")))
 }
 
+
+cor.coefplot <- function(d, x.scale = NULL) {
+  ols <- lm(d@mat ~ 1)
+  est <- sapply(coef(summary(ols)), function(x) x[1])
+  est.se <- sapply(coef(summary(ols)), function(x) x[2])
+  est.ci.long <- cbind(est + 2*est.se, est - 2*est.se)
+  est.ci <- cbind(est + est.se, est - est.se)
+  x.ks <- apply(d@mat, 2, wilcox.test, y = d@mat[,10])
+  if (is.null(x.scale)) x.scale <- range(est.ci.long)
+  par(ann = F, mar = c(4,4,3,1))
+  plot(NA,NA, xlim = x.scale, ylim = c(1,10), axes = F)
+  abline(h=1:10, lty = 3, col = gray(.9))
+  points(est, 1:length(est), pch = 19, col = COL[factor(x.meth)])
+#   segments(x0 = est.ci[,1], x1 = est.ci[,2], y0 = 1:length(est)
+#     , col = COL[factor(x.meth)], lwd = 2)
+  segments(x0 = est.ci.long[,1], x1 = est.ci.long[,2], y0 = 1:length(est)
+    , col = COL[factor(x.meth)])
+#   arrows(x0 = est.ci.long[,1], x1 = est.ci.long[,2], y0 = 1:length(est)
+#     , code = 3, angle = 90, length = .1, col = COL[factor(x.meth)])
+  sig.stars <- pval2stars(sapply(x.ks, function(x) x$p.value)) 
+  txt.short <- x.meth #paste(1:10, x.meth) 
+#   txt.short[10] <- "dpeak"
+  txt <- sprintf("%s %0.3f %s", txt.short, est, sig.stars)
+  text(x = x.scale[1], y = 1:length(est), txt, adj = c(0,0)) 
+  #, xpd = T, col = COL[factor(x.meth)])
+  axis(2, at = c(1:10), las = 1, c(1:9, "dpeak"))
+  axis(1)
+  box(bty = "l")
+}
+      cor.coefplot(d, x.scale = c(0, 0.15) + ifelse(plate=="DPK", 0.47, 0.62))
+
+
 # Plot correlation bars 
 plot.cor.bars <- function(ds, p, x.baseline = 0, handles = soln_desc$handle
                     , x.meth = soln_desc$method_short) {
@@ -49,18 +79,23 @@ plot.cor.bars <- function(ds, p, x.baseline = 0, handles = soln_desc$handle
     if (is.null(x.baseline)) x.baseline <- min(x.mean)# - 0.025
     x.lo <- x.mean - x.se - x.baseline
     x.hi <- x.mean + x.se - x.baseline
-    y.scale <- c(0, max(x.hi) + 0.005)
+    y.scale <- c(0, .75 - x.baseline) #c(0, max(x.hi) + 0.005)
     b <- barplot(x.mean - x.baseline, axisnames = F, axes = F, ylim = y.scale
           , col = COL[factor(x.meth)]
           , border = "white")
-    segments(x0 = b, y0 = x.lo, y1 = x.hi)
+    arrows(x0 = b, y0 = x.lo, y1 = x.hi, code = 3, angle = 90, length = 0.1)
+    y.ticks <- seq(par("usr")[3], par("usr")[4], length = 2)
+    axis(2, at = y.ticks, round(y.ticks + x.baseline, 2))
     txt <- paste(1:10, x.meth)
-    txt[10] <- "dpeak*"
-    text(x = b, y = 0.001, txt, adj = 0, srt = 90)
+    txt[10] <- "dpeak"
     sig.stars <- pval2stars(sapply(x.ks, function(x) x$p.value))
-    values.txt <- sprintf("%.1f %s", 100*x.mean, sig.stars)
-    text(x = b, y = x.hi, values.txt, pos = 3, srt = 0, cex = .75, xpd = T)
+    values.txt <- sprintf("%.3f %s", x.mean, sig.stars)
+    text(x = b, y = 0.0015, txt, adj = 0, srt = 90)
+    text(x = b, y = 0.1, values.txt, adj = 0, srt = 90)
 }
+#       plot.cor.bars(ds, p = plate, x.baseline = ifelse(plate == "DPK", 0.49, 0.63)
+#                   , handles = soln_desc$handle, x.meth = soln_desc$method_short)
+
 
 plot.auc <- function(x.mean, x.meth, x.baseline = 0.005) {
     y.scale <- c(0, max(x.mean) + 0.002 - x.baseline)
@@ -265,20 +300,29 @@ plot.ecdf.winner.deprec <- function(ds_cor, ds_deconv) {
   }
 }
 
-
-# ================================================================== #
-# ================================================================== #
-# ================================================================== #
+#- Main function
 main <- function() {
+  args <- commandArgs(trailingOnly=TRUE) 
+  path_out <- args[1]
+  path_data <- ifelse(is.na(args[2]), "data", args[2])
   
+  path_speed_acc <- file.path(path_data, "holdout_score_time.txt")
+  path_soln_desc <- file.path(path_data, "solution_descriptions.txt")
+  path_annot <- file.path(path_data, "holdout_sample_annotations.txt")
+  path_gene_annot <- file.path(path_data, "barcode_to_gene_map.txt")
+  path_ds_cor <- file.path(path_data, "UNI_DUO_gene_spearman_correlations_holdout_n20x976.gctx")
+  path_ds_deconv <- file.path(path_data, "DECONV_holdout_n8228x976.gctx")
+
   # Load data sets
-  speed_acc <- fread("data/holdout_score_time.txt", na.strings="n/a")
-  soln_desc <- fread("data/solution_descriptions.txt", na.strings="n/a")
+  speed_acc <- fread(path_speed_acc, na.strings="n/a")
+  soln_desc <- fread(path_soln_desc, na.strings="n/a")
+  ds_cor <- parse.gctx(path_ds_cor)
+  annot <- fread(path_annot)
+  gene_annot <- fread(path_gene_annot, colClasses = c("gene_id"="character"))
+  ds_deconv <- parse.gctx(path_ds_deconv)
+
+  # Process data 
   speed_acc <- merge(speed_acc, soln_desc, by="handle")
-  ds_cor <- parse.gctx("data/UNI_DUO_gene_spearman_correlations_holdout_n20x976.gctx")
-  annot <- fread("data/holdout_sample_annotations.txt")
-  gene_annot <- fread("data/barcode_to_gene_map.txt", colClasses = c("gene_id"="character"))
-  ds_deconv <- parse.gctx("data/DECONV_holdout_n8228x976.gctx")
   ds_deconv <- annotate.gct(ds_deconv, annot, dim="col", keyfield="id")
   ds_deconv <- annotate.gct(ds_deconv, gene_annot, dim="row", keyfield="gene_id")
   names(COL.handle) <- soln_desc$handle
@@ -296,20 +340,22 @@ main <- function() {
   #   setwd(args[1])
 
   # Correlation # ======================================== #
-  pdf("outcomes/figures/corr-bars.pdf", width = 8, height = 4, onefile = T)
-  par(las = 1, mfrow = c(1, 1), mar = c(1,2,1,1))
+  pdf("outcomes/figures/corr-coefplot2.pdf", width = 9, height = 9, onefile = T)
+  par(mfrow = c(2, 2))
   for (plate in c("DPK", "LIT")) {
     for (k in c(0, 1)) {
       rids <- ds_deconv@rdesc$id[ds_deconv@rdesc$high_prop == k]
       ds <- subset.gct(ds_cor, rid = rids)
-      plot.cor.bars(ds, p = plate, x.baseline = ifelse(plate == "DPK", 0.49, 0.63)
-                  , handles = soln_desc$handle, x.meth = soln_desc$method_short)
-      title(ylab = "average genewise correlation", line = 1)
+      d <- extract.cols(ds, handle = handles, plate = plate)
+      cor.coefplot(d, x.scale = c(-0.05, 0.15) + ifelse(plate=="DPK", 0.47, 0.62))
+      abline(v = mean(d@mat[,10]), lty = 3)
+      title(ylab = "solution's rank (holdout data)")
+      title(xlab = "mean genewise correlation with 95% CI")
       title(main = sprintf("%s (%s)",gene.prop.labels[k+1], plate.labels[plate]))
     }
   }
   dev.off()
-  #system("open outcomes/figures/corr-bars.pdf")
+  system("open outcomes/figures/corr-coefplot2.pdf")
   # ======================================== #
 
   # AUC # ======================================== #

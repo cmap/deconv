@@ -1,12 +1,13 @@
+files := $(wildcard *.rmd) _output.yml
 
 all:  main.docx \
       main.pdf \
       submission/nat_meth/cover.pdf
 
-%.pdf : %.rmd $(wildcard *.rmd) _output.yml
+%.pdf : %.rmd $(files)
 	Rscript -e "system.time(rmarkdown::render('$<'))"
 
-%.docx : %.rmd $(wildcard *.rmd) 
+%.docx : %.rmd $(files) 
 	Rscript -e "system.time(rmarkdown::render('$<', output_format='word_document'))"
 
 submission/nat_meth/%.pdf: submission/nat_meth/%.rmd
