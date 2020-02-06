@@ -351,29 +351,25 @@ $endif$
 $if(author)$
 \author{$for(author)$$author$$sep$ \and $endfor$}
 $endif$
-$if(institute)$
-\providecommand{\institute}[1]{}
-\institute{$for(institute)$$institute$$sep$ \and $endfor$}
-$endif$
 \date{$date$}
-$if(beamer)$
-$if(titlegraphic)$
-\titlegraphic{\includegraphics{$titlegraphic$}}
-$endif$
-$if(logo)$
-\logo{\includegraphics{$logo$}}
-$endif$
-$endif$
 
 \begin{document}
 $if(title)$
-$if(beamer)$
-\frame{\titlepage}
-$else$
 \maketitle
 $endif$
+
+$if(institution)$
+\begin{center}
+$for(institution)$$institution$$sep$ \\ $endfor$
+\end{center}
+$endif$
+
+
+$for(include-before)$
+$include-before$
+$endfor$
+
 $if(abstract)$
-\newpage
 \begin{abstract}
 $abstract$
 
@@ -388,12 +384,8 @@ Keywords: $for(keywords)$$keywords$$sep$; $endfor$.
 $endif$
 \end{abstract}
 $endif$
-$endif$
 
-$for(include-before)$
-$include-before$
 
-$endfor$
 $if(toc)$
 $if(beamer)$
 \begin{frame}

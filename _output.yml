@@ -1,9 +1,11 @@
 pdf_document:
-  toc: false 
+  toc: false
   number_sections: true
   template: templates/default.latex
   fig_height: 3.5 
   fig_width: 3.5
   keep_tex: true
   citation_package: biblatex
+  pandoc_args:
+        - '--pdf-engine=xelatex'
 

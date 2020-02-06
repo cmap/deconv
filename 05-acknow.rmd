@@ -1,0 +1,3 @@
+# Acknowledgements 
+
+This work was funded by the Eric and Wendy Schmidt Foundation, NASA Center of Collaborative Excellence, and the Kraft Precision Medicine Accelerator & Division of Research and Faculty Development at the Harvard Business School. The CMap competitions were supported in part by the NIH Common Funds Library of Integrated Network-based Cellular Signatures (LINCS) program U54HG006093 and NIH Big Data to Knowledge (BD2K) program 5U01HG008699.

@@ -1,5 +1,6 @@
 \clearpage 
 
+
 # Tables and Figures
 
 ```{r setup-and-libraries, include = FALSE}
@@ -53,7 +54,7 @@ speed_acc <- merge(speed_acc, soln_desc, by="handle")
 
 ## Figure 5  {#figure-inter -}
 
-**Variation across replicates for the top-four performing methods and the (dpeak) benchmark.** This figure shows the mean coefficient of variation for each compound perturbagen in our sample. The mean coefficient of variation is computed as the average of the gene-wise percent ratio between the interquartile-range and the median of the deconvoluted values across 10 replicates. Results are stratified by the genes in low bead proportions (**a**) and those in high bead proportions (**b**). The perturbagens on the x-axis are ordered by increasing mean coefficient of variation of the benchmark.
+**Variation across replicates for the top-four performing methods and the (dpeak) benchmark.** This figure shows the mean coefficient of variation for each compound perturbagen in our sample. The mean coefficient of variation is computed as the average of the gene-wise percent ratio between the interquartile-range and the median of the deconvoluted values across 10 replicates. These values are computed separately for the subset of genes in low bead proportions (**a**) and of those in high bead proportions (**b**). The perturbagens on the x-axis are ordered by increasing mean coefficient of variation of the benchmark. This was computed for all the genes, allowing a direct comparison across the panels.
 
 ![](outcomes/coef-variation.png)
 
@@ -63,5 +64,5 @@ speed_acc <- merge(speed_acc, soln_desc, by="handle")
 
 **Performance of ensembles.**  This figure shows the performance in the (**a**) correlation metric and (**b**) AUC metric of the ensemble based on the median prediction of all possible combinations of a given size of the top 9 algorithms plus the benchmark. The median performance of the ensemble tends to increase with its size. However, the maximum performance in both metrics tends to plateau (or even decrease) after the ensamble reaches a size equal to 3.
 
-![](outcomes/ensembles.pdf)
+![](outcomes/ensembles.png)
 

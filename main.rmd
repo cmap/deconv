@@ -4,16 +4,27 @@ title: "Improving Deconvolution Methods in Biology \
         An Application to the Connectivity Map"
 
 author: 
-    - Andrea Blasco (Harvard)
-    - Ted Natoli (Broad)
-    - Michael G. Endres (Harvard)
-    - Rinat A. Sergeev (Harvard)
-    - Steven Randazzo (Harvard)
-    - Jin H. Paik (Harvard)
-    - Max Macaluso (Broad)
-    - Rajiv Narayan (Broad)
-    - Karim R. Lakhani (Harvard)
-    - Aravind Subramanian (Broad)
+    - Andrea Blasco\textsuperscript{1,2,3,*,$\dagger$}
+    - Ted Natoli\textsuperscript{3,*}
+    - Michael G. Endres\textsuperscript{1,2}
+    - Rinat A. Sergeev\textsuperscript{1,2}
+    - Steven Randazzo\textsuperscript{1,2}
+    - Jin H. Paik\textsuperscript{1,2}
+    - N. J. Maximilian Macaluso\textsuperscript{3}
+    - Rajiv Narayan\textsuperscript{3}
+    - Xiaodong Lu\textsuperscript{3}
+    - David Peck\textsuperscript{3}
+    - Karim R. Lakhani\textsuperscript{1,2,4}
+    - Aravind Subramanian\textsuperscript{3}
+
+institution: 
+  - \textsuperscript{1} Laboratory for Innovation Science at Harvard, Harvard University, Cambridge, MA, USA
+  - \textsuperscript{2} Harvard Business School, Harvard University, Boston, MA, USA
+  - \textsuperscript{3} Broad Institute of Harvard and MIT, Cambridge, MA, USA
+  - \textsuperscript{4} National Bureau of Economic Research, Cambridge, MA, USA
+  - \textsuperscript{*} These authors contributed equally
+  - \textsuperscript{$\dagger$} Corresponding author (ablasco@fas.harvard.edu)
+
 
 abstract: "A recurring problem in biomedical research is how to isolate signals of distinct populations (cell types, tissues, and genes) from composite measures obtained by a single analyte or sensor. Existing computational deconvolution approaches work well in many specific settings, but they might be suboptimal in more general applications. Here, we describe new methods that were obtained via an open innovation competition. The goal of the competition was to characterize the expression of 1,000 genes from 500 composite measurements, which constitutes the approach of a new assay, called L1000, used to scale-up the Connectivity Map (CMap) --- a catalog of millions of perturbational gene expression profiles. The competition used a novel dataset of 2,200 profiles and attracted 294 competitors from 20 countries. The top-nine performing methods ranged from machine learning approaches (Convolutional Neural Networks and Random Forests) to more traditional ones (Gaussian Mixtures and k-means). These solutions were faster and more accurate than the benchmark and likely have applications beyond gene expression."
     
@@ -21,11 +32,11 @@ date: 'Last updated: `r format(Sys.Date(), "%b %d, %Y")`'
 
 keywords:
   - connectivity map
-  - open innovation competition
   - crowdsourcing
   - deconvolution algorithm
-  - machine learning
   - gene expression
+  - machine learning
+  - open innovation competition
 
 geometry: margin=1in
 bibliography: dpeak.bib
@@ -35,7 +46,8 @@ header-includes:
   - \usepackage{bbm}
   - \newcommand\Fig[1]{\nameref{#1}}
   - \usepackage{setspace}
-  - \onehalfspacing 
+  - \onehalfspacing
+
 ---
 
 
@@ -77,6 +89,7 @@ childs <- list.files(pattern = "^[0-9].*rmd")
 
 ```{r child=childs}
 ``` 
+
 
 References
 ==========

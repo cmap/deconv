@@ -1,4 +1,4 @@
-files := $(wildcard *.rmd) _output.yml
+files := $(wildcard *.rmd) _output.yml templates/default.latex
 
 all:  main.docx \
       main.pdf \
