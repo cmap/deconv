@@ -1,4 +1,6 @@
-# Discussion 
+
+Discussion 
+===========
 
 <!-- Our data contain several replicate samples for each perturbagen (4 for shRNAs and 10 for compounds). Minimizing inter-replicate variation is of crucial practical importance to biologists because it translates to higher reproducibility of results. In this regard, the benchmark k-means solution is likely suboptimal because it does little to mitigate the discrepancy in variability between the genes measured with high and low bead proportion. MOVE TO DISCUSSION -->
 
