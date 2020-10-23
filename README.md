@@ -5,3 +5,4 @@ This repository contains all files needed to reproduce the results presented in 
 
 - The `data/` folder contains all the data files
 - The `analysis/` folder contains all `R` scripts needed to reproduce all the figures and tables 
+- `contestant_writeups/` folder contains verbal description of the winning algorithms as submitted by the competitors
