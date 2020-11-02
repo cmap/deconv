@@ -161,12 +161,13 @@
 |YME1L1         |TRCN0000073864 |              4| 
 |ZW10           |TRCN0000155335 |              4|
 
-
 \clearpage 
 
 ## S1 Data {-}
 
-LINK TO DATA REPOSITORY on http://CLUE.io WILL BECOME AVAILABLE AFTER PUBLICATION
+The contest data are available in the clue data library [https://clue.io/data/CT#CT_DPEAK](https://clue.io/data/CT).
+ 
+A collection of scripts in the language R used to generate tables and figures can be downloaded from the Github repository [https://github.com/cmap/deconv](https://github.com/cmap/deconv).
 
 \clearpage 
 

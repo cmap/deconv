@@ -12,7 +12,8 @@ The third solution (by a competitor from India with a bachelor's degree in Compu
   
 The fourth solution (by a competitor from Ukraine with a bachelor's degree in Computer Science from the Cherkasy National University) used a Convolutional Neural Network (CNN). This algorithm first filters and transforms the data into a 32-bin histogram for each pair of genes. Then, it uses the U-net architecture [@ronneberger2015u] to provide an adequate representation of the data. Then, it assigns each of the 32 bins to one of the two genes for each pair and predicts the median value. This final step uses two subnetworks with the same architecture with a mean squared error loss function (instead of the Spearman correlation used for scoring).
 
-For each method, we generated the deconvolution data (DECONV) and the corresponding differential expression (DE) values [as in @subramanian2017next]. Performance was then evaluated on the hold-out data. 
+For each method, we generated the deconvolution data (DECONV) and the corresponding differential expression (DE) values. A docker container used for converting the deconvolution data to differential expression values can be downloaded from the Docker Hub [https://hub.docker.com/r/cmap/sig_2to4_tool](https://hub.docker.com/r/cmap/sig_2to4_tool).
+Performance was then evaluated on the hold-out data. 
 
 ## Clustering by method and perturbagen type
 
