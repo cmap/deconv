@@ -163,11 +163,15 @@
 
 \clearpage 
 
-## S1 Data {-}
+## S1 Availability and Implementation {-}
 
-The contest data are available in the clue data library [https://clue.io/data/CT#CT_DPEAK](https://clue.io/data/CT).
+- The contest data are available in the Clue.io data library [https://clue.io/data/CT#CT_DPEAK](https://clue.io/data/CT).
  
-A collection of scripts in the language R used to generate tables and figures can be downloaded from the Github repository [https://github.com/cmap/deconv](https://github.com/cmap/deconv).
+- The source codes of the solutions along with Docker containers that include all the dependencies needed to run the codes are available in the CMap Github repository [https://github.com/cmap/gene_deconvolution_challenge](https://github.com/cmap/gene_deconvolution_challenge)
+ 
+- A Docker container used for converting the deconvolution data to differential expression values is available in the Docker Hub [https://hub.docker.com/r/cmap/sig_2to4_tool](https://hub.docker.com/r/cmap/sig_2to4_tool). 
+ 
+- A collection of scripts in the language R used to generate tables and figures are available in the CMap Github repository [https://github.com/cmap/deconv](https://github.com/cmap/deconv).
 
 \clearpage 
 

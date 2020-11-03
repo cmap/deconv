@@ -1,7 +1,6 @@
 # Methods
 
-\Fig{figure-methods} shows a schematic illustration of the contest's main features including a problem statement, the data, and the scoring function
-used to evaluate submissions. 
+\Fig{figure-methods} shows a schematic illustration of the contest's main features including a problem statement, the data, and the scoring function used to evaluate submissions. 
 
 The contest's problem statement described the deconvolution task and the current solution in detail. The key insight was that the typical distribution of measurements for each gene pair has two peaks, the size of which should reflect the relative proportion of the genes in the sample. L1000 takes full advantage of this statistical property by: (1) pairing genes optimally, trying to maximize the average difference in their expression levels, and (2) mixing genes in a 2:1 proportion, which enables the correct assignment of peaks to each gene within the pair (see @subramanian2017next for details). Then, it uses a deconvolution approach to partition the composite measurements for each profile into $k$ clusters (by minimizing the within-cluster sum of squares) and associate the largest (smallest) cluster to the gene with higher (lower) bead proportion, assigning the cluster's median value to the corresponding gene.
 
